@@ -7,3 +7,4 @@
 * L3-Chains
 * L4-QnA
 * L5-Evaluation
+* L6-Agents
