@@ -15,3 +15,4 @@
 * L3_Moderation
 * L4_Chain_of_Thought_Reasoning
 * L5_Chaining_Prompts
+* L6_Check_Outputs
