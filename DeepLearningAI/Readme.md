@@ -17,3 +17,4 @@
 * L5_Chaining_Prompts
 * L6_Check_Outputs
 * L7_Evaluation
+* L8_Evaluation_Part_I
