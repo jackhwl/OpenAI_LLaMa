@@ -19,3 +19,6 @@
 * L7_Evaluation
 * L8_Evaluation_Part_I
 * L8_Evaluation_Part_II
+
+# How Diffusion Models Work
+* L1_Sampling
