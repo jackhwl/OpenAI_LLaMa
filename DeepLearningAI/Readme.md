@@ -25,3 +25,11 @@
 * L2_Training
 * L3_Controlling
 * L4_Speeding
+
+# Generative AI with Large Language Models
+* LLM pre-training and scaling laws
+* Generative AI project lifecycle:
+
+Scope|Select|Adapt and align model|Application integration
+---|---|---|---
+Define the use case|Choose an existing model or pretrain your own|<table><tr><td>Prompt engineering</td><td colspan=3 >Evaluate</td></tr><tr><td>Fine-tuning</td></tr><tr><td>Align with human feedback</td></tr></table>|<table><tr><td>Optimize and deploy model for inference</td><td>Augment model and build LLM-powered applications</td></tr></table>
