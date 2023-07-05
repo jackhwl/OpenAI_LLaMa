@@ -11,3 +11,6 @@
 
 ### EleutherAI_pythia
 
+## [Deep Learnong AI courses](https://github.com/jackhwl/OpenAI_LLaMa/tree/main/DeepLearningAI)
+## Career Essentials in Generative AI by Microsoft and LinkedIn
+
