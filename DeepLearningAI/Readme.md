@@ -38,3 +38,4 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
 * Components: Prompts, Models, Indexes, Chains, Agents
 * Document Loading
 * Document Splitting
+* Vectorstores and Embeddings
