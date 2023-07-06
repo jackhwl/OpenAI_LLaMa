@@ -36,3 +36,5 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
 
 # LangChain Chat with Your Data
 * Components: Prompts, Models, Indexes, Chains, Agents
+* Document Loading
+* Document Splitting
