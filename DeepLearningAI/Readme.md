@@ -39,3 +39,11 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
 * Document Loading
 * Document Splitting
 * Vectorstores and Embeddings
+* Retrieval
+* * Maximum marginal relevance (MMR): you may not always want to choose the most similar responses.
+* * 1 Query the Vector Store
+* * 2 Choose the `fetch_k` most similar responses
+* * 3 Within those responses choose the `k` most diverse
+* * LLM Aided Reetrieval: There are several situations where the Query applied to the DB is more than just the Question asked. One is SelfQuery, where we use an LLM to convert the user question into a query: Filter + Search term.
+* * Compression: Increase the number of results you can put in the context by shrinking the responses to only the relevant information.
+* Other types of retrieval: Not using a vector database, such as: SVM, TF-IDF
