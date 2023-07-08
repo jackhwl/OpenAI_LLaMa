@@ -41,3 +41,5 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
 
 * Model evaluation
 * * ROUGE, BLEU SCORE
+
+* Benchmarks: GLUE / SuperGLUE
