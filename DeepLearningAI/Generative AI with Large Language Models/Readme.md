@@ -36,3 +36,8 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
 
 * Multi-task instruction fine-tuning
 * * Instruction fine-tuning with FLAN (Fine-tuned LAnguage Net)
+
+* [Scaling instruct models](https://arxiv.org/abs/2210.11416)
+
+* Model evaluation
+* * ROUGE, BLEU SCORE
