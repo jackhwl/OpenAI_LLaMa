@@ -43,3 +43,9 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
 * * ROUGE, BLEU SCORE
 
 * Benchmarks: GLUE / SuperGLUE
+
+### Parameter efficient fine-tuning (PEFT)
+* Parameter efficient fine-tuning (PEFT)
+* * Selective: select subset of initial LLM paramters to fine-tune
+* * Reparameterization: Repararameterize model weights using a low-rank representation (LoRA)
+* * Additive: Add trainable layers or parameters to model
