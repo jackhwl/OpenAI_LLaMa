@@ -49,3 +49,4 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
 * * Selective: select subset of initial LLM paramters to fine-tune
 * * Reparameterization: Repararameterize model weights using a low-rank representation (LoRA)
 * * Additive: Add trainable layers or parameters to model
+* PEFT techniques 1: Low-Rank Adaptation of Large Language Models (LoRA)
