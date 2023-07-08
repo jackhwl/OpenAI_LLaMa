@@ -51,3 +51,4 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
 * * 1. Map_reduce
 * * 2. Refine
 * * 3. Map_rerank
+* Chat
