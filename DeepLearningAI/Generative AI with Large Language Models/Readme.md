@@ -27,3 +27,10 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
 * In-context learning (ICL) - zero shot inference
 * * Using prompts to fine-tune LLMs with instruction
 1. Prepared instruction dataset => Training splits (Training, Validation, Test)
+
+* Fine-tuning on a single task
+* * how to avoid Catastrophic forgetting
+1. First note that you might not have to!
+2. Fine-tune on multiple tasks at the same time
+3. Consider Parameter Efficient Fine-tuning (PEFT)
+
