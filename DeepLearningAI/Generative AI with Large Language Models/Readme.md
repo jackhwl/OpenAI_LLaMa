@@ -34,3 +34,5 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
 2. Fine-tune on multiple tasks at the same time
 3. Consider Parameter Efficient Fine-tuning (PEFT)
 
+* Multi-task instruction fine-tuning
+* * Instruction fine-tuning with FLAN (Fine-tuned LAnguage Net)
