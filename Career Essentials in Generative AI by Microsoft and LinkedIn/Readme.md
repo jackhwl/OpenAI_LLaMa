@@ -7,3 +7,5 @@
 * Generative Adversarial Networks (GANs): GAN models work together to improve the generator's ability to create realistic data.
 * VAE and Anomaly Detection
 * * Variational Autoencoders (VAE) use anomaly detection
+### 3. The Future of AI
+* Future predictions
