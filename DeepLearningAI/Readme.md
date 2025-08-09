@@ -10,7 +10,7 @@
 * L6-Agents
 
 # Building Systems with the ChatGPT API
-* L1_student
+* L1_studen
 * L2_Classification
 * L3_Moderation
 * L4_Chain_of_Thought_Reasoning
@@ -52,3 +52,10 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
 * * 2. Refine
 * * 3. Map_rerank
 * Chat
+
+# Claude Code: A Highly Agentic Coding Assistant
+  - Introduction
+  - What is Claude code?
+  - Course Notes
+    - npm icnstall -g @anthropic-ai/claude-code
+  - Setup & Codebase Understanding
