@@ -63,3 +63,4 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
 # MCP: Build Rich-Context AI Apps with Anthropic
   - Introduction
   - Why MCP
+  - MCP Architecture Video
