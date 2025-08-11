@@ -66,3 +66,4 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
   - MCP Architecture Video
   - Chatbot Example
   - Creating an MCP Server Video with Code Example
+  - Creating an MCP Client Video with Code Example
