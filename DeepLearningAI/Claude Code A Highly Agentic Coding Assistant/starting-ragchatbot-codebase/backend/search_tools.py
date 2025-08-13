@@ -1,6 +1,6 @@
 from typing import Dict, Any, Optional, Protocol
 from abc import ABC, abstractmethod
-from vector_store import VectorStore, SearchResults
+from simple_vector_store import SimpleVectorStore, SearchResults
 
 
 class Tool(ABC):
@@ -20,7 +20,7 @@ class Tool(ABC):
 class CourseSearchTool(Tool):
     """Tool for searching course content with semantic course name matching"""
     
-    def __init__(self, vector_store: VectorStore):
+    def __init__(self, vector_store: SimpleVectorStore):
         self.store = vector_store
         self.last_sources = []  # Track sources from last search
     
