@@ -84,7 +84,7 @@ class SimpleVectorStore:
                         self.vectorizer = pickle.load(f)
                     
                     if os.path.exists(os.path.join(self.persist_path, 'vectors.npy')):
-                        self.course_vectors = np.load(os.path.join(self.persist_path, 'vectors.npy'))
+                        self.course_vectors = np.load(os.path.join(self.persist_path, 'vectors.npy'), allow_pickle=True)
         except Exception as e:
             print(f"Error loading vector store data: {e}")
     
