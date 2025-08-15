@@ -88,6 +88,24 @@ async def get_course_stats():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/api/courses/detailed")
+async def get_detailed_courses():
+    """Get detailed course information including lessons"""
+    try:
+        return rag_system.vector_store.get_all_courses_metadata()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/api/reload")
+async def reload_documents():
+    """Force reload documents"""
+    try:
+        docs_path = "../docs"
+        courses, chunks = rag_system.add_course_folder(docs_path, clear_existing=True)
+        return {"message": f"Loaded {courses} courses with {chunks} chunks"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 @app.on_event("startup")
 async def startup_event():
     """Load initial documents on startup"""

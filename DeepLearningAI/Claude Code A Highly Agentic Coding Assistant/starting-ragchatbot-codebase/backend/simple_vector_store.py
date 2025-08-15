@@ -106,13 +106,18 @@ class SimpleVectorStore:
             # Calculate similarities
             similarities = cosine_similarity(query_vector, self.course_vectors)[0]
             
-            # Get top results
+            # Get all results sorted by similarity
+            all_indices = np.argsort(similarities)[::-1]
             search_limit = limit if limit is not None else self.max_results
-            top_indices = np.argsort(similarities)[::-1][:search_limit]
             
-            # Filter results
+            # Diversify results across lessons to avoid lesson clustering
             filtered_results = []
-            for idx in top_indices:
+            lesson_counts = {}  # Track how many results per lesson
+            max_per_lesson = max(1, search_limit // 3)  # Allow max 1-2 results per lesson initially
+            
+            for idx in all_indices:
+                if len(filtered_results) >= search_limit:
+                    break
                 if similarities[idx] < 0.01:  # Skip very low similarity results
                     continue
                     
@@ -124,11 +129,48 @@ class SimpleVectorStore:
                 if lesson_number is not None and content_item['metadata']['lesson_number'] != lesson_number:
                     continue
                 
-                filtered_results.append({
-                    'document': content_item['document'],
-                    'metadata': content_item['metadata'],
-                    'distance': 1 - similarities[idx]  # Convert similarity to distance
-                })
+                # Check lesson diversity
+                lesson_key = f"{content_item['metadata']['course_title']}-{content_item['metadata']['lesson_number']}"
+                current_count = lesson_counts.get(lesson_key, 0)
+                
+                # Allow more results from same lesson if we haven't filled our quota yet
+                if current_count < max_per_lesson or len(filtered_results) < search_limit // 2:
+                    lesson_counts[lesson_key] = current_count + 1
+                    filtered_results.append({
+                        'document': content_item['document'],
+                        'metadata': content_item['metadata'],
+                        'distance': 1 - similarities[idx]  # Convert similarity to distance
+                    })
+            
+            # If we still have space and haven't found enough diverse results, 
+            # fill remaining spots with best remaining matches
+            if len(filtered_results) < search_limit:
+                for idx in all_indices:
+                    if len(filtered_results) >= search_limit:
+                        break
+                    if similarities[idx] < 0.01:
+                        continue
+                        
+                    content_item = self.course_content[idx]
+                    
+                    # Apply filters
+                    if course_name and course_name.lower() not in content_item['metadata']['course_title'].lower():
+                        continue
+                    if lesson_number is not None and content_item['metadata']['lesson_number'] != lesson_number:
+                        continue
+                    
+                    # Check if we already have this result
+                    result_exists = any(
+                        r['document'] == content_item['document'] 
+                        for r in filtered_results
+                    )
+                    
+                    if not result_exists:
+                        filtered_results.append({
+                            'document': content_item['document'],
+                            'metadata': content_item['metadata'],
+                            'distance': 1 - similarities[idx]
+                        })
             
             return SearchResults(
                 documents=[r['document'] for r in filtered_results],
