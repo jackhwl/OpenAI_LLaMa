@@ -59,6 +59,8 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
   - Course Notes
     - npm icnstall -g @anthropic-ai/claude-code
   - Setup & Codebase Understanding
+  - Adding Features
+    - claude mcp add playwright npx @playwright/mcp@latest
 
 # MCP: Build Rich-Context AI Apps with Anthropic
   - Introduction
