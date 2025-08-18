@@ -124,6 +124,123 @@ class CourseSearchTool(Tool):
         
         return "\n\n".join(formatted)
 
+
+class CourseOutlineTool(Tool):
+    """Tool for getting complete course outlines with lesson lists"""
+    
+    def __init__(self, vector_store: SimpleVectorStore):
+        self.store = vector_store
+        self.last_sources = []  # Track sources from last search
+    
+    def get_tool_definition(self) -> Dict[str, Any]:
+        """Return Anthropic tool definition for this tool"""
+        return {
+            "name": "get_course_outline",
+            "description": "Get complete course outline with title, link, and all lessons for a specific course",
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "course_title": {
+                        "type": "string",
+                        "description": "Course title or partial title to find (e.g. 'MCP', 'Building Toward Computer', 'Anthropic')"
+                    }
+                },
+                "required": ["course_title"]
+            }
+        }
+    
+    def execute(self, course_title: str) -> str:
+        """
+        Execute the course outline tool to get complete course information.
+        
+        Args:
+            course_title: Full or partial course title to search for
+            
+        Returns:
+            Formatted course outline or error message
+        """
+        try:
+            # Get all course metadata from vector store
+            all_courses = self.store.get_all_courses_metadata()
+            
+            if not all_courses:
+                return "No courses found in the system."
+            
+            # Find matching course using fuzzy matching (case-insensitive substring)
+            matching_course = None
+            course_title_lower = course_title.lower().strip()
+            
+            # Try exact match first
+            for course in all_courses:
+                if course['title'].lower() == course_title_lower:
+                    matching_course = course
+                    break
+            
+            # If no exact match, try partial matching
+            if not matching_course:
+                for course in all_courses:
+                    if course_title_lower in course['title'].lower():
+                        matching_course = course
+                        break
+            
+            if not matching_course:
+                available_courses = [course['title'] for course in all_courses]
+                return f"Course '{course_title}' not found. Available courses: {', '.join(available_courses)}"
+            
+            # Format the course outline
+            result = self._format_course_outline(matching_course)
+            
+            # Track source for the UI with course link
+            source_obj = {
+                "text": matching_course['title'],
+                "link": matching_course.get('course_link')
+            }
+            self.last_sources = [source_obj]
+            
+            return result
+            
+        except Exception as e:
+            return f"Error retrieving course outline: {str(e)}"
+    
+    def _format_course_outline(self, course_data: Dict[str, Any]) -> str:
+        """Format course data into a readable outline"""
+        lines = []
+        
+        # Course title
+        lines.append(f"Course: {course_data['title']}")
+        
+        # Course link if available
+        if course_data.get('course_link'):
+            lines.append(f"Course Link: {course_data['course_link']}")
+        
+        # Instructor if available
+        if course_data.get('instructor'):
+            lines.append(f"Instructor: {course_data['instructor']}")
+        
+        # Lesson count
+        lesson_count = course_data.get('lesson_count', len(course_data.get('lessons', [])))
+        lines.append(f"Total Lessons: {lesson_count}")
+        
+        # Lessons list
+        lessons = course_data.get('lessons', [])
+        if lessons:
+            lines.append("\nLessons:")
+            for lesson in sorted(lessons, key=lambda x: x.get('lesson_number', 0)):
+                lesson_num = lesson.get('lesson_number')
+                lesson_title = lesson.get('lesson_title')
+                lesson_link = lesson.get('lesson_link')
+                
+                if lesson_num is not None and lesson_title:
+                    lesson_line = f"  {lesson_num}. {lesson_title}"
+                    if lesson_link:
+                        lesson_line += f" (Link: {lesson_link})"
+                    lines.append(lesson_line)
+        else:
+            lines.append("\nNo lesson details available.")
+        
+        return "\n".join(lines)
+
+
 class ToolManager:
     """Manages available tools for the AI"""
     
