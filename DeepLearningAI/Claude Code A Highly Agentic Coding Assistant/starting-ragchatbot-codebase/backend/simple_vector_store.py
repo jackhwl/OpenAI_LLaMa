@@ -66,7 +66,9 @@ class SimpleVectorStore:
                 pickle.dump(self.vectorizer, f)
             
             if self.course_vectors is not None:
-                np.save(os.path.join(self.persist_path, 'vectors.npy'), self.course_vectors)
+                # Use pickle for sparse matrices to preserve their structure
+                with open(os.path.join(self.persist_path, 'vectors.pkl'), 'wb') as f:
+                    pickle.dump(self.course_vectors, f)
     
     def _load_data(self):
         """Load existing vector store data from disk"""
@@ -83,8 +85,19 @@ class SimpleVectorStore:
                     with open(os.path.join(self.persist_path, 'vectorizer.pkl'), 'rb') as f:
                         self.vectorizer = pickle.load(f)
                     
-                    if os.path.exists(os.path.join(self.persist_path, 'vectors.npy')):
-                        self.course_vectors = np.load(os.path.join(self.persist_path, 'vectors.npy'), allow_pickle=True)
+                    # Try loading vectors from pickle file first (new format)
+                    vectors_pkl_path = os.path.join(self.persist_path, 'vectors.pkl')
+                    vectors_npy_path = os.path.join(self.persist_path, 'vectors.npy')
+                    
+                    if os.path.exists(vectors_pkl_path):
+                        with open(vectors_pkl_path, 'rb') as f:
+                            self.course_vectors = pickle.load(f)
+                    elif os.path.exists(vectors_npy_path):
+                        # Fallback to old format - but this will likely have the sparse matrix issue
+                        # We'll regenerate vectors in this case
+                        print("Warning: Found old vector format, will regenerate vectors on next content addition")
+                        self.course_vectors = None
+                        self.vectorizer_fitted = False
         except Exception as e:
             print(f"Error loading vector store data: {e}")
     
