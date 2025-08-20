@@ -61,7 +61,7 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
   - Setup & Codebase Understanding
   - Adding Features
     - claude mcp add playwright npx @playwright/mcp@latest
-
+  - Testing, Error Debugging and Code Refactoring
 # MCP: Build Rich-Context AI Apps with Anthropic
   - Introduction
   - Why MCP
