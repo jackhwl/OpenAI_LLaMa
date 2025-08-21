@@ -63,7 +63,8 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
     - claude mcp add playwright npx @playwright/mcp@latest
   - Testing, Error Debugging and Code Refactoring
   - Adding Multiple Features Simutaneously
-    - git worktree add .trees/ui_feature  
+    - git worktree add .trees/ui_feature
+  - Exploring Github Integration & Hooks
 # MCP: Build Rich-Context AI Apps with Anthropic
   - Introduction
   - Why MCP
