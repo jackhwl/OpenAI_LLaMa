@@ -65,6 +65,7 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
   - Adding Multiple Features Simutaneously
     - git worktree add .trees/ui_feature
   - Exploring Github Integration & Hooks
+  - Refactoring a Jupyter Notebook & Creating a Dashboard
 # MCP: Build Rich-Context AI Apps with Anthropic
   - Introduction
   - Why MCP
