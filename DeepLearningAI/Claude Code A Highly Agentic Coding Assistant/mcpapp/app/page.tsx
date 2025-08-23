@@ -1,42 +1,52 @@
 'use client';
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { useEffect, useState } from 'react';
+import { fetchFredSeries, FRED_SERIES_IDS } from '../lib/fredApi';
 
-const sampleCPIData = [
-  { year: '2019', value: 255.7 },
-  { year: '2020', value: 258.8 },
-  { year: '2021', value: 270.9 },
-  { year: '2022', value: 292.7 },
-  { year: '2023', value: 307.0 },
-  { year: '2024', value: 310.3 }
-];
-
-const sampleUnemploymentData = [
-  { date: 'Jan 2023', rate: 3.4 },
-  { date: 'Apr 2023', rate: 3.4 },
-  { date: 'Jul 2023', rate: 3.5 },
-  { date: 'Oct 2023', rate: 3.9 },
-  { date: 'Jan 2024', rate: 3.7 },
-  { date: 'Apr 2024', rate: 3.9 }
-];
-
-const sampleBondYieldData = [
-  { date: 'Jan 2020', yield: 1.5 },
-  { date: 'Jan 2021', yield: 1.0 },
-  { date: 'Jan 2022', yield: 1.8 },
-  { date: 'Jan 2023', yield: 3.5 },
-  { date: 'Jan 2024', yield: 4.2 }
-];
-
-const sampleShortRateData = [
-  { date: 'Jan 2020', rate: 1.6 },
-  { date: 'Jan 2021', rate: 0.1 },
-  { date: 'Jan 2022', rate: 0.2 },
-  { date: 'Jan 2023', rate: 4.3 },
-  { date: 'Jan 2024', rate: 5.4 }
-];
 
 export default function Home() {
+  const [cpiData, setCpiData] = useState<any[]>([]);
+  const [unemploymentData, setUnemploymentData] = useState<any[]>([]);
+  const [bondYieldData, setBondYieldData] = useState<any[]>([]);
+  const [shortRateData, setShortRateData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [cpi, unemployment, bondYield, shortRate] = await Promise.all([
+          fetchFredSeries(FRED_SERIES_IDS.CPI, 60),
+          fetchFredSeries(FRED_SERIES_IDS.UNEMPLOYMENT, 24),
+          fetchFredSeries(FRED_SERIES_IDS.BOND_10Y, 60),
+          fetchFredSeries(FRED_SERIES_IDS.BOND_3M, 60)
+        ]);
+        
+        setCpiData(cpi);
+        setUnemploymentData(unemployment.map(item => ({ ...item, rate: item.value })));
+        setBondYieldData(bondYield.map(item => ({ ...item, yield: item.value })));
+        setShortRateData(shortRate.map(item => ({ ...item, rate: item.value })));
+      } catch (error) {
+        console.error('Failed to fetch FRED data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex h-screen bg-gray-50 items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading FRED economic data...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex h-screen bg-gray-50">
       <aside className="w-64 bg-white border-r border-gray-200 p-4">
@@ -102,9 +112,9 @@ export default function Home() {
             </h3>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={sampleCPIData}>
+                <LineChart data={cpiData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                  <XAxis dataKey="year" stroke="#666" fontSize={12} />
+                  <XAxis dataKey="date" stroke="#666" fontSize={12} />
                   <YAxis stroke="#666" fontSize={12} />
                   <Tooltip 
                     contentStyle={{ 
@@ -132,7 +142,7 @@ export default function Home() {
             </h3>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={sampleUnemploymentData}>
+                <LineChart data={unemploymentData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                   <XAxis dataKey="date" stroke="#666" fontSize={12} />
                   <YAxis stroke="#666" fontSize={12} />
@@ -162,7 +172,7 @@ export default function Home() {
             </h3>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={sampleBondYieldData}>
+                <LineChart data={bondYieldData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                   <XAxis dataKey="date" stroke="#666" fontSize={12} />
                   <YAxis stroke="#666" fontSize={12} />
@@ -192,7 +202,7 @@ export default function Home() {
             </h3>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={sampleShortRateData}>
+                <LineChart data={shortRateData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                   <XAxis dataKey="date" stroke="#666" fontSize={12} />
                   <YAxis stroke="#666" fontSize={12} />
