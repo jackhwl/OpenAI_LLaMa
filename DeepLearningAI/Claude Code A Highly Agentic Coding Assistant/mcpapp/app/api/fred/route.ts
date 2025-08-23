@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
 
   try {
     const response = await fetch(
-      `${FRED_API_BASE}/series/observations?series_id=${seriesId}&api_key=${API_KEY}&file_type=json&limit=${limit}&sort_order=desc`
+      `${FRED_API_BASE}/series/observations?series_id=${seriesId}&api_key=${API_KEY}&file_type=json&observation_start=2023-07-01&limit=${limit}&sort_order=desc`
     );
     
     if (!response.ok) {

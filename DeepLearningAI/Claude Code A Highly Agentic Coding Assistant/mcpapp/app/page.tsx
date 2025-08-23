@@ -1,6 +1,6 @@
 'use client';
 
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { useEffect, useState } from 'react';
 import { fetchFredSeries, FRED_SERIES_IDS } from '../lib/fredApi';
 
@@ -107,15 +107,16 @@ export default function Home() {
 
         <div className="grid grid-cols-2 gap-6">
           <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 className="text-lg font-semibold mb-4 text-gray-900">
-              CPI - last five years
+            <h3 className="text-lg font-semibold mb-2 text-gray-900">
+              Consumer Price Index (CPI)
             </h3>
+            <p className="text-sm text-gray-600 mb-4">FRED - All Urban Consumers, All Items (CPIAUCSL)</p>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={cpiData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                  <XAxis dataKey="date" stroke="#666" fontSize={12} />
-                  <YAxis stroke="#666" fontSize={12} />
+                  <XAxis dataKey="date" stroke="#666" fontSize={11} />
+                  <YAxis stroke="#666" fontSize={11} domain={['dataMin - 10', 'dataMax + 10']} />
                   <Tooltip 
                     contentStyle={{ 
                       backgroundColor: '#fff', 
@@ -126,26 +127,27 @@ export default function Home() {
                   <Line 
                     type="monotone" 
                     dataKey="value" 
-                    stroke="#2563eb" 
+                    stroke="#3b82f6" 
                     strokeWidth={2}
-                    dot={{ fill: '#2563eb', strokeWidth: 2, r: 4 }}
+                    dot={false}
                   />
                 </LineChart>
               </ResponsiveContainer>
             </div>
-            <p className="text-xs text-gray-500 mt-2">FRED</p>
+            <p className="text-xs text-gray-500 mt-2">Last Updated: {new Date().toLocaleDateString()} • View Details &gt;</p>
           </div>
 
           <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 className="text-lg font-semibold mb-4 text-gray-900">
-              Infra-Annual Labor Statistics: Unemployment Rate Total
+            <h3 className="text-lg font-semibold mb-2 text-gray-900">
+              Unemployment Rate
             </h3>
+            <p className="text-sm text-gray-600 mb-4">FRED - Civilian Unemployment Rate (UNRATE)</p>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={unemploymentData}>
+                <AreaChart data={unemploymentData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                  <XAxis dataKey="date" stroke="#666" fontSize={12} />
-                  <YAxis stroke="#666" fontSize={12} />
+                  <XAxis dataKey="date" stroke="#666" fontSize={11} />
+                  <YAxis stroke="#666" fontSize={11} domain={[0, 'dataMax + 1']} />
                   <Tooltip 
                     contentStyle={{ 
                       backgroundColor: '#fff', 
@@ -153,29 +155,31 @@ export default function Home() {
                       borderRadius: '4px'
                     }} 
                   />
-                  <Line 
+                  <Area 
                     type="monotone" 
                     dataKey="rate" 
-                    stroke="#2563eb" 
+                    stroke="#10b981" 
+                    fill="#10b981"
+                    fillOpacity={0.3}
                     strokeWidth={2}
-                    dot={{ fill: '#2563eb', strokeWidth: 2, r: 4 }}
                   />
-                </LineChart>
+                </AreaChart>
               </ResponsiveContainer>
             </div>
-            <p className="text-xs text-gray-500 mt-2">FRED</p>
+            <p className="text-xs text-gray-500 mt-2">Last Updated: {new Date().toLocaleDateString()} • View Details &gt;</p>
           </div>
 
           <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 className="text-lg font-semibold mb-4 text-gray-900">
-              Interest Rates: Long-Term Government Bond Yields: 10-Year
+            <h3 className="text-lg font-semibold mb-2 text-gray-900">
+              10-Year Treasury Yield
             </h3>
+            <p className="text-sm text-gray-600 mb-4">FRED - Market Yield on U.S. Treasury Securities (GS10)</p>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={bondYieldData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                  <XAxis dataKey="date" stroke="#666" fontSize={12} />
-                  <YAxis stroke="#666" fontSize={12} />
+                  <XAxis dataKey="date" stroke="#666" fontSize={11} />
+                  <YAxis stroke="#666" fontSize={11} domain={['dataMin - 0.5', 'dataMax + 0.5']} />
                   <Tooltip 
                     contentStyle={{ 
                       backgroundColor: '#fff', 
@@ -186,26 +190,27 @@ export default function Home() {
                   <Line 
                     type="monotone" 
                     dataKey="yield" 
-                    stroke="#2563eb" 
+                    stroke="#8b5cf6" 
                     strokeWidth={2}
-                    dot={{ fill: '#2563eb', strokeWidth: 2, r: 4 }}
+                    dot={false}
                   />
                 </LineChart>
               </ResponsiveContainer>
             </div>
-            <p className="text-xs text-gray-500 mt-2">FRED</p>
+            <p className="text-xs text-gray-500 mt-2">Last Updated: {new Date().toLocaleDateString()} • View Details &gt;</p>
           </div>
 
           <div className="bg-white p-6 rounded-lg border border-gray-200">
-            <h3 className="text-lg font-semibold mb-4 text-gray-900">
-              Interest Rates: 3-Month or 90-Day Rates and Yields
+            <h3 className="text-lg font-semibold mb-2 text-gray-900">
+              3-Month Treasury Yield
             </h3>
+            <p className="text-sm text-gray-600 mb-4">FRED - Market Yield on U.S. Treasury Securities (GS3M)</p>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={shortRateData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                  <XAxis dataKey="date" stroke="#666" fontSize={12} />
-                  <YAxis stroke="#666" fontSize={12} />
+                  <XAxis dataKey="date" stroke="#666" fontSize={11} />
+                  <YAxis stroke="#666" fontSize={11} domain={['dataMin - 0.5', 'dataMax + 0.5']} />
                   <Tooltip 
                     contentStyle={{ 
                       backgroundColor: '#fff', 
@@ -216,14 +221,14 @@ export default function Home() {
                   <Line 
                     type="monotone" 
                     dataKey="rate" 
-                    stroke="#2563eb" 
+                    stroke="#f59e0b" 
                     strokeWidth={2}
-                    dot={{ fill: '#2563eb', strokeWidth: 2, r: 4 }}
+                    dot={false}
                   />
                 </LineChart>
               </ResponsiveContainer>
             </div>
-            <p className="text-xs text-gray-500 mt-2">FRED</p>
+            <p className="text-xs text-gray-500 mt-2">Last Updated: {new Date().toLocaleDateString()} • View Details &gt;</p>
           </div>
         </div>
       </main>
