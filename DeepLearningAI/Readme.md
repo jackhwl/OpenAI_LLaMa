@@ -66,6 +66,9 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
     - git worktree add .trees/ui_feature
   - Exploring Github Integration & Hooks
   - Refactoring a Jupyter Notebook & Creating a Dashboard
+  - Creating Web App based on a Figma Mockup
+    - claude mcp add playwright npx @playwright/mcp@latest
+    - Using the app/design.png as the design mockup to analyze the mockup and build the underlying code in this next.js  application. Use the recharts library for creating charts to make this a web application. Check how this application looks using the playwright MCP server and verify it looks as close to the mock as possible   
 # MCP: Build Rich-Context AI Apps with Anthropic
   - Introduction
   - Why MCP
