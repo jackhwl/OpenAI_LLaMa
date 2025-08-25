@@ -72,7 +72,18 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
 # MCP: Build Rich-Context AI Apps with Anthropic
   - Introduction
   - Why MCP
-  - MCP Architecture Video
+  - MCP Architectur
+    - Tools: functions and tools that can be invoked by the client
+    - Resources: Read-only data or exposed by the server
+    - Prompt Templates: Pre-defined templates for AI
+    - MCP Client
+      - Invokes Tools
+      - Queries for Resources
+      - Interpolates Prompts
+    - MCP Server
+      - Exposes Tools
+      - Exposes Resources
+      - Exposes Prompt Templates
   - Chatbot Example
   - Creating an MCP Server Video with Code Example
   - Creating an MCP Client Video with Code Example
