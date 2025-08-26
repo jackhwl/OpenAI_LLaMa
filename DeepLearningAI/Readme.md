@@ -91,6 +91,11 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
         - @mcp.resource("docs://documents/{doc_id}", mime_type="text/plain")
       - Prompts
         - @mcp.prompt(name="format", description="Rewrites the contents of a document in Markdown format",)
+    - MCP Transports
+      - For servers running locally: stdio
+      - For remote servers:
+        - HTTP+SSE stateful 2024-11-05
+        - Streamable HTTP stateless or stateful 2025-03-26
   - Chatbot Example
   - Creating an MCP Server Video with Code Example
   - Creating an MCP Client Video with Code Example
