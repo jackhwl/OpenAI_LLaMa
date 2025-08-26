@@ -97,5 +97,6 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
         - HTTP+SSE stateful 2024-11-05
         - Streamable HTTP stateless or stateful 2025-03-26
   - Chatbot Example
+    - .env contains apikey
   - Creating an MCP Server Video with Code Example
   - Creating an MCP Client Video with Code Example
