@@ -81,9 +81,16 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
       - Queries for Resources
       - Interpolates Prompts
     - MCP Server
-      - Exposes Tools
+      - Exposes Tools: @mcp.tools
       - Exposes Resources
       - Exposes Prompt Templates
+      - Defining a Tool
+        - @mcp.tools()
+      - Resources
+        - @mcp.resource("docs://documents", mime_type="application/json")
+        - @mcp.resource("docs://documents/{doc_id}", mime_type="text/plain")
+      - Prompts
+        - @mcp.prompt(name="format", description="Rewrites the contents of a document in Markdown format",)
   - Chatbot Example
   - Creating an MCP Server Video with Code Example
   - Creating an MCP Client Video with Code Example
