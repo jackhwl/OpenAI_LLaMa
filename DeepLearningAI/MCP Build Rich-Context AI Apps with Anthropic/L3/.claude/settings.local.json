@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "mcp__ide__executeCode",
+      "Bash(pyenv:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

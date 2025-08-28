@@ -98,5 +98,11 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
         - Streamable HTTP stateless or stateful 2025-03-26
   - Chatbot Example
     - .env contains apikey
-  - Creating an MCP Server Video with Code Example
+  - Creating an MCP Server
+    - uv init
+    - un venv
+      - 3.13.6
+    - source .venv/bin/activate
+    - uv add mcp
+    - npx @modelcontextprotocol/inspector uv run research_server.py
   - Creating an MCP Client Video with Code Example
