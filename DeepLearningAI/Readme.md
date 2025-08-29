@@ -105,4 +105,6 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
     - source .venv/bin/activate
     - uv add mcp
     - npx @modelcontextprotocol/inspector uv run research_server.py
-  - Creating an MCP Client Video with Code Example
+  - Creating an MCP Client
+# Building toward Computer Use with Anthropic
+  - Overview
