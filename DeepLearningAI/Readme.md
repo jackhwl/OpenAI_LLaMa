@@ -106,5 +106,8 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
     - uv add mcp
     - npx @modelcontextprotocol/inspector uv run research_server.py
   - Creating an MCP Client
+    - uv add anthropic python-dotenv nest_asyncio
+    - uv run mcp_chatbot.py
 # Building toward Computer Use with Anthropic
   - Overview
+  - Working with the API
