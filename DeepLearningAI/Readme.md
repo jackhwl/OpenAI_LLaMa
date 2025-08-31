@@ -110,6 +110,10 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
     - uv run mcp_chatbot.py
   - Connecting the MCP Chatbot to Refrence Servers
   - Adding Prompt and Resource Features
+  - Configuring Servers for Claude Desktop
+    - source .venv/bin/activate
+    - deactivate
+    - uv add arxiv mcp
 # Building toward Computer Use with Anthropic
   - Overview
   - Working with the API
