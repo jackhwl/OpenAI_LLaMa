@@ -1,0 +1,33 @@
+# Research on Mixture of Experts in AI
+
+After exploring deeplearning.ai, I discovered "Mixture of Experts" (MoE) as an interesting and significant concept in modern AI research. This technique involves combining multiple specialized models (experts) to tackle complex tasks, with each expert handling different aspects of the problem.
+
+## Paper 1: Biased Mixtures Of Experts
+**Title:** Biased Mixtures Of Experts: Enabling Computer Vision Inference Under Data Transfer Limitations
+**Authors:** Alhabib Abbas, Yiannis Andreopoulos
+**Published:** August 21, 2020
+
+This research introduces a novel approach to mixture-of-experts that optimizes computer vision models for scenarios with data transfer limitations. The key insight is that different input data may require different amounts of information to achieve high accuracy. The authors developed a sparse gating function that divides the input space appropriately among experts that require varying amounts of data.
+
+The paper demonstrates applications in three important computer vision tasks:
+1. Single shot detection
+2. Image super resolution
+3. Real-time video action classification
+
+Their biased mixture approach significantly outperformed baseline models when operating under the same data constraints.
+
+## Paper 2: HoME: Hierarchy of Multi-Gate Experts
+**Title:** HoME: Hierarchy of Multi-Gate Experts for Multi-Task Learning at Kuaishou
+**Authors:** Xu Wang, Jiangxia Cao, Zhiyi Fu, Kun Gai, Guorui Zhou
+**Published:** August 10, 2024
+
+This more recent paper comes from industry application at Kuaishou, a short-video platform. The researchers identified three critical challenges in deploying Mixture-of-Experts systems in production:
+
+1. **Expert Collapse:** Some experts had over 90% zero activations with ReLU, causing gate networks to struggle with assigning fair weights.
+2. **Expert Degradation:** Shared experts designed to help multiple tasks often became specialized to only one task.
+3. **Expert Underfitting:** Data-sparse prediction tasks tended to ignore their specific experts in favor of shared experts.
+
+To address these issues, the authors proposed HoME (Hierarchy of Multi-Gate Experts), a more balanced and efficient MoE system for multi-task learning.
+
+## Conclusion
+Mixture of Experts remains an active area of research with significant implications for efficient AI deployment. The evolution of this concept from academic research (2020) to industry implementation challenges (2024) demonstrates how AI methodologies mature as they move from theory to practice. The ability to specialize different models for different aspects of complex tasks while intelligently routing inputs to the appropriate experts is proving to be a powerful paradigm in modern AI systems.

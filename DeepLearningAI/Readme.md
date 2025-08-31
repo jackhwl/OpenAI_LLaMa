@@ -108,6 +108,7 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
   - Creating an MCP Client
     - uv add anthropic python-dotenv nest_asyncio
     - uv run mcp_chatbot.py
+  - Connecting the MCP Chatbot to Refrence Servers
 # Building toward Computer Use with Anthropic
   - Overview
   - Working with the API
