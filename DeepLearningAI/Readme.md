@@ -114,6 +114,8 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
     - source .venv/bin/activate
     - deactivate
     - uv add arxiv mcp
+    - Create a symlink without spaces
+    - ln -s "/Users/wenlin/OpenAI_LLaMa/DeepLearningAI/MCP Build Rich-Context AI Apps with Anthropic/L4/mcp_project" ~/mcp_project
 # Building toward Computer Use with Anthropic
   - Overview
   - Working with the API
