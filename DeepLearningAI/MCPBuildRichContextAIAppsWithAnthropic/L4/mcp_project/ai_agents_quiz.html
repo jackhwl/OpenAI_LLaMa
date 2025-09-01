@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agents & Multi-Agent Systems Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 90%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: #718096;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+        }
+
+        .mode-selector {
+            margin-bottom: 30px;
+        }
+
+        .mode-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 0 10px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .mode-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .mode-btn.active {
+            background: linear-gradient(45deg, #4299e1, #3182ce);
+            transform: scale(1.05);
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        .card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+
+        .question, .term {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .answer, .definition {
+            font-size: 1.1em;
+            color: #4a5568;
+            line-height: 1.6;
+            max-width: 100%;
+        }
+
+        .controls {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #ed8936, #dd6b20);
+        }
+
+        .progress {
+            margin: 20px 0;
+            font-size: 1.1em;
+            color: #4a5568;
+            font-weight: 600;
+        }
+
+        .score {
+            background: linear-gradient(45deg, #38b2ac, #319795);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin: 10px;
+            font-weight: 600;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .option {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        .option:hover {
+            background: #edf2f7;
+            border-color: #cbd5e0;
+            transform: translateY(-2px);
+        }
+
+        .option.selected {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border-color: #667eea;
+        }
+
+        .option.correct {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+            color: white;
+            border-color: #48bb78;
+        }
+
+        .option.incorrect {
+            background: linear-gradient(45deg, #f56565, #e53e3e);
+            color: white;
+            border-color: #f56565;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI Agents & Multi-Agent Systems</h1>
+        <p class="subtitle">Interactive Quiz & Flashcards based on latest arXiv research</p>
+        
+        <div class="mode-selector">
+            <button class="mode-btn active" onclick="setMode('flashcards')">Flashcards</button>
+            <button class="mode-btn" onclick="setMode('quiz')">Quiz Mode</button>
+        </div>
+
+        <div id="flashcard-mode">
+            <div class="progress">
+                Card <span id="current-card">1</span> of <span id="total-cards">15</span>
+            </div>
+            
+            <div class="card" id="flashcard" onclick="flipCard()">
+                <div class="card-front">
+                    <div class="term" id="card-term">AI Agents</div>
+                    <p style="color: #718096; margin-top: 20px;">Click to reveal definition</p>
+                </div>
+                <div class="card-back">
+                    <div class="definition" id="card-definition">Autonomous systems designed to perceive, reason, and act within dynamic environments, typically driven by Large Language Models (LLMs) for narrow, task-specific automation.</div>
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button class="btn btn-secondary" onclick="previousCard()">Previous</button>
+                <button class="btn" onclick="flipCard()">Flip Card</button>
+                <button class="btn btn-secondary" onclick="nextCard()">Next</button>
+            </div>
+        </div>
+
+        <div id="quiz-mode" style="display: none;">
+            <div class="progress">
+                Question <span id="current-question">1</span> of <span id="total-questions">10</span>
+            </div>
+            
+            <div class="score">
+                Score: <span id="score">0</span> / <span id="total-answered">0</span>
+            </div>
+
+            <div class="card">
+                <div class="question" id="quiz-question">What are AI Agents primarily designed to do?</div>
+                <div class="quiz-options" id="quiz-options">
+                    <!-- Options will be populated dynamically -->
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button class="btn btn-secondary" onclick="previousQuestion()">Previous</button>
+                <button class="btn" onclick="submitAnswer()" id="submit-btn">Submit Answer</button>
+                <button class="btn btn-secondary" onclick="nextQuestion()" style="display: none;" id="next-btn">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Flashcard data based on the research papers
+        const flashcards = [
+            {
+                term: "AI Agents",
+                definition: "Autonomous systems designed to perceive, reason, and act within dynamic environments, typically driven by Large Language Models (LLMs) for narrow, task-specific automation."
+            },
+            {
+                term: "Agentic AI",
+                definition: "A paradigmatic shift marked by multi-agent collaboration, dynamic task decomposition, persistent memory, and orchestrated autonomy, representing more advanced AI capabilities."
+            },
+            {
+                term: "Multi-Agent Systems",
+                definition: "Systems involving multiple AI agents working together, often showing improved performance through coordination and parallel processing compared to single-agent approaches."
+            },
+            {
+                term: "LLM-Agents",
+                definition: "AI agents based on Large Language Models that leverage semantic comprehension and complex reasoning for autonomous decision-making in various tasks."
+            },
+            {
+                term: "MLLM-Agents",
+                definition: "Multimodal Large Language Model-based agents that can process and understand multiple types of input (text, images, etc.) for more comprehensive environmental perception."
+            },
+            {
+                term: "Tool Integration",
+                definition: "The ability of AI agents to use external tools and APIs to extend their capabilities beyond their base training, enabling more complex task completion."
+            },
+            {
+                term: "Prompt Engineering",
+                definition: "The practice of designing and optimizing input prompts to improve AI agent performance and guide them toward desired outcomes."
+            },
+            {
+                term: "Dynamic Task Decomposition",
+                definition: "The ability of agentic AI systems to break down complex tasks into smaller, manageable subtasks that can be distributed among multiple agents."
+            },
+            {
+                term: "Persistent Memory",
+                definition: "The capability of advanced AI agents to maintain and utilize information across different interactions and sessions for improved continuity."
+            },
+            {
+                term: "Orchestrated Autonomy",
+                definition: "Coordinated autonomous behavior in multi-agent systems where agents work together while maintaining individual decision-making capabilities."
+            },
+            {
+                term: "ReAct Loops",
+                definition: "Reasoning and Acting loops used in AI agents to combine thinking and action steps iteratively for better problem-solving."
+            },
+            {
+                term: "RAG (Retrieval-Augmented Generation)",
+                definition: "A technique that combines retrieval of relevant information from external sources with generation capabilities to reduce hallucinations and improve accuracy."
+            },
+            {
+                term: "Emergent Behavior",
+                definition: "Unexpected behaviors that arise from the interaction of multiple agents in a system, which can be both beneficial and problematic."
+            },
+            {
+                term: "Coordination Failure",
+                definition: "A challenge in multi-agent systems where agents fail to work together effectively, leading to suboptimal performance or conflicts."
+            },
+            {
+                term: "Smart Manufacturing",
+                definition: "Manufacturing systems enhanced with AI agents for improved information processing, environmental perception, and autonomous decision-making in production processes."
+            }
+        ];
+
+        // Quiz questions based on the research papers
+        const quizQuestions = [
+            {
+                question: "What is the main difference between AI Agents and Agentic AI according to recent research?",
+                options: [
+                    "AI Agents are older technology, Agentic AI is newer",
+                    "AI Agents are modular systems for narrow tasks, Agentic AI involves multi-agent collaboration",
+                    "AI Agents use LLMs, Agentic AI uses traditional algorithms",
+                    "There is no difference between them"
+                ],
+                correct: 1
+            },
+            {
+                question: "What are LLM-Agents primarily based on?",
+                options: [
+                    "Traditional rule-based systems",
+                    "Large Language Models for semantic comprehension",
+                    "Computer vision algorithms",
+                    "Mathematical optimization"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which technique helps reduce hallucinations in AI agents?",
+                options: [
+                    "Increasing model size",
+                    "RAG (Retrieval-Augmented Generation)",
+                    "Faster processing",
+                    "More training data"
+                ],
+                correct: 1
+            },
+            {
+                question: "What is a key challenge in multi-agent systems?",
+                options: [
+                    "Lack of computational power",
+                    "Coordination failure between agents",
+                    "Insufficient training data",
+                    "Hardware limitations"
+                ],
+                correct: 1
+            },
+            {
+                question: "What capability distinguishes MLLM-Agents from LLM-Agents?",
+                options: [
+                    "Faster processing speed",
+                    "Better memory management",
+                    "Multimodal input processing (text, images, etc.)",
+                    "Lower computational requirements"
+                ],
+                correct: 2
+            },
+            {
+                question: "What is dynamic task decomposition in Agentic AI?",
+                options: [
+                    "Breaking down complex tasks into smaller subtasks",
+                    "Increasing computational power dynamically",
+                    "Changing agent behavior randomly",
+                    "Optimizing memory usage"
+                ],
+                correct: 0
+            },
+            {
+                question: "What do ReAct loops combine in AI agents?",
+                options: [
+                    "Reading and Computing",
+                    "Reasoning and Acting",
+                    "Retrieving and Calculating",
+                    "Remembering and Anticipating"
+                ],
+                correct: 1
+            },
+            {
+                question: "According to research, when can multi-agent implementations improve performance?",
+                options: [
+                    "Always, in every scenario",
+                    "Never, single agents are always better",
+                    "In some cases, particularly with fine-tuned approaches",
+                    "Only with very large datasets"
+                ],
+                correct: 2
+            },
+            {
+                question: "What is persistent memory in AI agents?",
+                options: [
+                    "Memory that never gets deleted",
+                    "Very large memory capacity",
+                    "Ability to maintain information across different interactions",
+                    "Memory stored on persistent storage devices"
+                ],
+                correct: 2
+            },
+            {
+                question: "What field is mentioned as a potential application area for AI agents in smart manufacturing?",
+                options: [
+                    "Environmental perception and autonomous decision-making",
+                    "Only data processing",
+                    "Only robotic control",
+                    "Only quality inspection"
+                ],
+                correct: 0
+            }
+        ];
+
+        // Current state
+        let currentMode = 'flashcards';
+        let currentCardIndex = 0;
+        let currentQuestionIndex = 0;
+        let isFlipped = false;
+        let score = 0;
+        let totalAnswered = 0;
+        let selectedOption = -1;
+        let questionAnswered = false;
+
+        function setMode(mode) {
+            currentMode = mode;
+            
+            // Update button states
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (mode === 'flashcards') {
+                document.getElementById('flashcard-mode').style.display = 'block';
+                document.getElementById('quiz-mode').style.display = 'none';
+                updateFlashcard();
+            } else {
+                document.getElementById('flashcard-mode').style.display = 'none';
+                document.getElementById('quiz-mode').style.display = 'block';
+                updateQuiz();
+            }
+        }
+
+        function updateFlashcard() {
+            const card = flashcards[currentCardIndex];
+            document.getElementById('card-term').textContent = card.term;
+            document.getElementById('card-definition').textContent = card.definition;
+            document.getElementById('current-card').textContent = currentCardIndex + 1;
+            document.getElementById('total-cards').textContent = flashcards.length;
+            
+            // Reset flip state
+            document.getElementById('flashcard').classList.remove('flipped');
+            isFlipped = false;
+        }
+
+        function flipCard() {
+            const card = document.getElementById('flashcard');
+            card.classList.toggle('flipped');
+            isFlipped = !isFlipped;
+        }
+
+        function nextCard() {
+            if (currentCardIndex < flashcards.length - 1) {
+                currentCardIndex++;
+                updateFlashcard();
+            }
+        }
+
+        function previousCard() {
+            if (currentCardIndex > 0) {
+                currentCardIndex--;
+                updateFlashcard();
+            }
+        }
+
+        function updateQuiz() {
+            const question = quizQuestions[currentQuestionIndex];
+            document.getElementById('quiz-question').textContent = question.question;
+            document.getElementById('current-question').textContent = currentQuestionIndex + 1;
+            document.getElementById('total-questions').textContent = quizQuestions.length;
+            document.getElementById('score').textContent = score;
+            document.getElementById('total-answered').textContent = totalAnswered;
+            
+            // Reset question state
+            selectedOption = -1;
+            questionAnswered = false;
+            document.getElementById('submit-btn').style.display = 'block';
+            document.getElementById('next-btn').style.display = 'none';
+            
+            // Create options
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option';
+                optionElement.textContent = option;
+                optionElement.onclick = () => selectOption(index);
+                optionsContainer.appendChild(optionElement);
+            });
+        }
+
+        function selectOption(index) {
+            if (questionAnswered) return;
+            
+            // Clear previous selection
+            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            
+            // Select current option
+            document.querySelectorAll('.option')[index].classList.add('selected');
+            selectedOption = index;
+        }
+
+        function submitAnswer() {
+            if (selectedOption === -1 || questionAnswered) return;
+            
+            questionAnswered = true;
+            totalAnswered++;
+            
+            const question = quizQuestions[currentQuestionIndex];
+            const options = document.querySelectorAll('.option');
+            
+            // Show correct/incorrect
+            options[question.correct].classList.add('correct');
+            if (selectedOption !== question.correct) {
+                options[selectedOption].classList.add('incorrect');
+            } else {
+                score++;
+            }
+            
+            // Update UI
+            document.getElementById('submit-btn').style.display = 'none';
+            document.getElementById('next-btn').style.display = 'block';
+            document.getElementById('score').textContent = score;
+            document.getElementById('total-answered').textContent = totalAnswered;
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < quizQuestions.length - 1) {
+                currentQuestionIndex++;
+                updateQuiz();
+            } else {
+                // Quiz completed
+                alert(`Quiz completed! Your final score: ${score}/${totalAnswered}`);
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                // Don't reset the answered state for previous questions
+                updateQuiz();
+            }
+        }
+
+        // Initialize the app
+        updateFlashcard();
+    </script>
+</body>
+</html>

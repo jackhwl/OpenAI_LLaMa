@@ -116,6 +116,10 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
     - uv add arxiv mcp
     - Create a symlink without spaces
     - ln -s "/Users/wenlin/OpenAI_LLaMa/DeepLearningAI/MCP Build Rich-Context AI Apps with Anthropic/L4/mcp_project" ~/mcp_project
+    - Use the fetch tool visit deeplearning.ai and find an interesting topic about machine learning on that webpage.
+    - Then research two papers on arxiv about that topic and summarize the main topics covered.
+    - Finally, generate a web based quiz application with a set of flashcards based on the key topics in the papers.
+    - ai_agents_quiz.html
 # Building toward Computer Use with Anthropic
   - Overview
   - Working with the API
