@@ -120,6 +120,7 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
     - Then research two papers on arxiv about that topic and summarize the main topics covered.
     - Finally, generate a web based quiz application with a set of flashcards based on the key topics in the papers.
     - ai_agents_quiz.html
+  - Creating and Deploying Remote Servers
 # Building toward Computer Use with Anthropic
   - Overview
   - Working with the API
