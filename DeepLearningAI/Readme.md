@@ -121,6 +121,11 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
     - Finally, generate a web based quiz application with a set of flashcards based on the key topics in the papers.
     - ai_agents_quiz.html
   - Creating and Deploying Remote Servers
+  - Conclusion
+    - Authentication
+    - client expose
+      - Roots: a root is a URI that a client suggests a server should operate.
+      - Sampling: allows a server to request inference from the LLM they're connected to via the MCP client, giving the user application full control over security, privacy, and cost.
 # Building toward Computer Use with Anthropic
   - Overview
   - Working with the API
