@@ -131,3 +131,7 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
   - Working with the API
     - pip install anthropic python-dotenv
     - chatbot
+    - Model Parameters
+      - max tokens
+      - stop sequences
+      - Temperature
