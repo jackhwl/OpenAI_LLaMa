@@ -129,3 +129,5 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
 # Building toward Computer Use with Anthropic
   - Overview
   - Working with the API
+    - pip install anthropic python-dotenv
+    - chatbot
