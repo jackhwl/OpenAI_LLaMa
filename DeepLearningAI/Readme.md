@@ -141,3 +141,4 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
       - Set the role
       - Let claude think
       - Output Instructions
+  - Prompt Caching
