@@ -136,4 +136,8 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
       - stop sequences
       - Temperature
   - Multimodal Requests
-  - Real World Prompting 
+  - Real World Prompting
+    - Writing our prompt
+      - Set the role
+      - Let claude think
+      - Output Instructions
