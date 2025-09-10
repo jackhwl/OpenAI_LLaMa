@@ -142,3 +142,10 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
       - Let claude think
       - Output Instructions
   - Prompt Caching
+  - Tool Use
+    - Retrieve data
+    - Query Database
+    - Interact with APIs
+    - Execute Code
+    - Search the web
+    - Control a computer!
