@@ -149,3 +149,6 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
     - Execute Code
     - Search the web
     - Control a computer!
+  - Computer Use
+# Multi AI Agent Systems with crewAI
+  - Overview
