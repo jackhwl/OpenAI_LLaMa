@@ -152,3 +152,10 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
   - Computer Use
 # Multi AI Agent Systems with crewAI
   - Overview
+    - Role Playing
+    - Focus
+    - Tools
+    - Cooperation
+    - Guardrails
+    - Memory
+  - AI Agents
