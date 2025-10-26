@@ -19,3 +19,4 @@
 - 第一章 初识智能体
   - [Hello Agent](https://github.com/datawhalechina/Hello-Agents)
   - 1.1.1 传统视角下的智能体
+  - 1.1.2 大语言模型驱动的新范式
