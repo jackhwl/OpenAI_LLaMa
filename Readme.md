@@ -14,3 +14,8 @@
 ## [Deep Learnong AI courses](https://github.com/jackhwl/OpenAI_LLaMa/tree/main/DeepLearningAI)
 ## Career Essentials in Generative AI by Microsoft and LinkedIn
 
+## Hello-Agents
+### 第一部分：智能体与语言模型基础
+- 第一章 初识智能体
+  - [Hello Agent](https://github.com/datawhalechina/Hello-Agents)
+  - 1.1.1 传统视角下的智能体
