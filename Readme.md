@@ -20,3 +20,4 @@
   - [Hello Agent](https://github.com/datawhalechina/Hello-Agents)
   - 1.1.1 传统视角下的智能体
   - 1.1.2 大语言模型驱动的新范式
+  - 1.1.3 智能体的类型
