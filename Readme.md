@@ -17,7 +17,17 @@
 ## Hello-Agents
 ### 第一部分：智能体与语言模型基础
 - 第一章 初识智能体
-  - [Hello Agent](https://github.com/datawhalechina/Hello-Agents)
-  - 1.1.1 传统视角下的智能体
-  - 1.1.2 大语言模型驱动的新范式
-  - 1.1.3 智能体的类型
+  - 1.1 什么是智能体？
+    - [Hello Agent](https://github.com/datawhalechina/Hello-Agents)
+    - 1.1.1 传统视角下的智能体
+    - 1.1.2 大语言模型驱动的新范式
+    - 1.1.3 智能体的类型
+  - 1.2 智能体的构成与运行原理
+    - 1.2.1 任务环境定义
+    - 1.2.2 智能体的运行机制
+    - 1.2.3 智能体的感知与行动
+  - 1.3 动手体验：5 分钟实现第一个智能体
+    - Thought-Action-Observation
+    - 1.3.1 准备工作
+    - 1.3.2 接入大语言模型
+    - 1.3.3 执行行动循环
