@@ -59,3 +59,5 @@
 - 第三章 大语言模型基础
   - 3.1 语言模型与 Transformer 架构
     - 3.1.1 从 N-gram 到 RNN, LSTM
+    - 3.1.2 Transformer 架构解析
+    - 3.1.3 Decoder-Only 架构
