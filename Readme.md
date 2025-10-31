@@ -61,3 +61,6 @@
     - 3.1.1 从 N-gram 到 RNN, LSTM
     - 3.1.2 Transformer 架构解析
     - 3.1.3 Decoder-Only 架构
+  - 3.2 与大语言模型交互
+    - 3.2.1 提示工程
+    - 3.2.2 文本分词
