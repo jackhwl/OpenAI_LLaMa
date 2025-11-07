@@ -132,4 +132,4 @@
   - 6.3 框架二：AgentScope
     - 6.3.1 AgentScope 的设计
     - 6.3.2 三国狼人杀游戏
-    
+    - 6.3.3 AgentScope 的优势与局限性分析
