@@ -148,3 +148,5 @@
     - 7.1.2 HelloAgents框架的设计理念
     - 7.1.3 本章学习目标
       - 快速开始：安装HelloAgents框架
+  - 7.2 HelloAgentsLLM扩展
+    - 7.2.1 支持多提供商

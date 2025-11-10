@@ -1,2 +1,8 @@
 .DS_Store
 .env
+
+__pycache__/
+Hello-Agents/__pycache__/
+*.pyc
+*.pyo
+*.pyd
