@@ -7,7 +7,12 @@ load_dotenv()
 
 # 实例化我们重写的客户端，并指定provider
 #llm = MyLLM(provider="modelscope") 
-llm = MyLLM() 
+llm = MyLLM(    
+    provider="ollama",
+    model="llama3", # 需与 `ollama run` 指定的模型一致
+    base_url="http://localhost:11434/v1",
+    api_key="ollama" # 本地服务同样不需要真实 Key
+) 
 
 # 准备消息
 messages = [{"role": "user", "content": "你好，请介绍一下你自己。"}]

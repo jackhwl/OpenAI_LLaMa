@@ -150,3 +150,5 @@
       - 快速开始：安装HelloAgents框架
   - 7.2 HelloAgentsLLM扩展
     - 7.2.1 支持多提供商
+    - 7.2.2 本地模型调用
+      - ollama
