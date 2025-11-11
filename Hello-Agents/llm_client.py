@@ -22,6 +22,7 @@ class HelloJackAgentsLLM:
         
         if not all([self.model, api_key, base_url]):
             raise ValueError("模型ID、API密钥和服务地址必须被提供或在.env文件中定义。")
+        
 
         self.client = OpenAI(api_key=api_key, base_url=base_url, timeout=timeout)
 
@@ -42,6 +43,7 @@ class HelloJackAgentsLLM:
         # 2. 根据 base_url 判断
         if actual_base_url:
             base_url_lower = actual_base_url.lower()
+            if base_url_lower == "bedrock": return "bedrock"
             if "api-inference.modelscope.cn" in base_url_lower: return "modelscope"
             if "open.bigmodel.cn" in base_url_lower: return "zhipu"
             if "localhost" in base_url_lower or "127.0.0.1" in base_url_lower:
@@ -59,6 +61,7 @@ class HelloJackAgentsLLM:
     
     def _resolve_credentials(self, api_key: Optional[str], base_url: Optional[str]) -> tuple[str, str]:
         """根据provider解析API密钥和base_url"""
+        
         if self.provider == "openai":
             resolved_api_key = api_key or os.getenv("OPENAI_API_KEY") or os.getenv("LLM_API_KEY")
             resolved_base_url = base_url or os.getenv("LLM_BASE_URL") or "https://api.openai.com/v1"
@@ -69,8 +72,17 @@ class HelloJackAgentsLLM:
             resolved_base_url = base_url or os.getenv("LLM_BASE_URL") or "https://api-inference.modelscope.cn/v1/"
             return resolved_api_key, resolved_base_url
         
+        elif self.provider == "bedrock":
+            region = os.getenv("AWS_REGION", "us-east-1")
+            return None, region  # No API key needed for Bedrock
+        
         # ... 其他服务商的逻辑
-
+        else:
+            # 默认处理：使用通用环境变量
+            resolved_api_key = api_key or os.getenv("LLM_API_KEY")
+            resolved_base_url = base_url or os.getenv("LLM_BASE_URL")
+            return resolved_api_key, resolved_base_url
+        
     def think(self, messages: List[Dict[str, str]], temperature: float = 0) -> str:
         """
         调用大语言模型进行思考，并返回其响应。
