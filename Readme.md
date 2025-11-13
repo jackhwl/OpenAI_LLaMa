@@ -157,3 +157,5 @@
     - 7.3.1 Message 类
     - 7.3.2 Config 类
     - 7.3.3 Agent 抽象基类
+  - 7.4 Agent范式的框架化实现
+    - 7.4.1 SimpleAgent
