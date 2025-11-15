@@ -160,3 +160,4 @@
   - 7.4 Agent范式的框架化实现
     - 7.4.1 SimpleAgent
       - bring hello agent to pkg folder venv editable install
+    - 7.4.2 ReActAgent
