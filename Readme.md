@@ -164,3 +164,8 @@
     - 7.4.3 ReflectionAgent
     - 7.4.4 PlanAndSolveAgent
     - 7.4.5 FunctionCallAgent
+  - 7.5 工具系统
+    - 7.5.1 工具基类与注册机制设计
+    - 7.5.2 自定义工具开发
+    - 7.5.3 多源搜索工具
+    - 7.5.4 工具系统的高级特性
