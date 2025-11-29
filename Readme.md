@@ -172,6 +172,13 @@
   - 7.6 本章小结
     - chapter07_basic_setup.py
 ### 第三部分：高级知识扩展
+  - test case:
+    .venv312  pyhtong 3.12 in order to support 'pip install spacy'
+    source .venv/bin/activate
+    python my_main.py
+    python aws.py
+    python chapter07_basic_setup.py
+    python test_8_memory.py
   - 8.1 从认知科学到智能体记忆
     - 8.1.1 人类记忆系统的启发
     - 8.1.2 为何智能体需要记忆与RAG
@@ -179,9 +186,5 @@
     - 8.1.4 本章学习目标与快速体验
   - 8.2 记忆系统：让智能体拥有记忆
     - 8.2.1 记忆系统的工作流程
-    - test case:
-    source .venv/bin/activate
-    python my_main.py
-    python aws.py
-    python chapter07_basic_setup.py
-    python test_8_memory.py
+    - 8.2.2 快速体验：30秒上手记忆功能
+    
