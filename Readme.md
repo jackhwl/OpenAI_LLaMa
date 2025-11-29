@@ -184,3 +184,4 @@
     python my_main.py
     python aws.py
     python chapter07_basic_setup.py
+    python test_8_memory.py

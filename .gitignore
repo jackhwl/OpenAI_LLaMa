@@ -8,3 +8,5 @@ Hello-Agents/__pycache__/
 *.pyd
 pkg/
 .venv312/
+!Hello-Agents/pkg/HelloAgents-0.2/hello_agents/memory/embedding.py
+!Hello-Agents/pkg/HelloAgents-0.2/hello_agents/core/llm.py
