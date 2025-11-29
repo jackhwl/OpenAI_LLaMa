@@ -7,3 +7,4 @@ Hello-Agents/__pycache__/
 *.pyo
 *.pyd
 pkg/
+.venv312/
