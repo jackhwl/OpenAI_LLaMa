@@ -104,3 +104,4 @@ if __name__ == "__main__":
         print("3. AWS 账号是否有 Bedrock 访问权限")
         print("4. 模型 ID 是否正确")
 
+

@@ -179,3 +179,8 @@
     - 8.1.4 本章学习目标与快速体验
   - 8.2 记忆系统：让智能体拥有记忆
     - 8.2.1 记忆系统的工作流程
+    - test case:
+    source .venv/bin/activate
+    python my_main.py
+    python aws.py
+    python chapter07_basic_setup.py
