@@ -98,17 +98,17 @@ class PDFLearningAssistant:
 
     def ask(self, question: str, use_advanced_search: bool = True) -> str:
         """向文档提问
-
+        
         Args:
             question: 用户问题
             use_advanced_search: 是否使用高级检索（MQE + HyDE）
-
+            
         Returns:
             str: 答案
         """
-        if not self.current_document:
-            return "⚠️ 请先加载文档！使用 load_document() 方法加载PDF文档。"
-
+        # if not self.current_document:
+        #    return "⚠️ 请先加载文档！使用 load_document() 方法加载PDF文档。"
+        
         # 记录问题到工作记忆
         self.memory_tool.execute(
             "add",
@@ -245,14 +245,16 @@ class PDFLearningAssistant:
 def create_gradio_ui():
     """创建Gradio Web UI"""
     # 全局助手实例
-    assistant_state = {"assistant": None}
+    default_user = "wenlin_huang"
+    assistant_state = {"assistant": PDFLearningAssistant(user_id=default_user)}
+    print(f"✅ 助手已自动初始化 (用户: {default_user})")
 
     def init_assistant(user_id: str) -> str:
         """初始化助手"""
         if not user_id:
-            user_id = "wenlin_huang"
+            user_id = default_user
         assistant_state["assistant"] = PDFLearningAssistant(user_id=user_id)
-        return f"✅ 助手已初始化 (用户: {user_id})"
+        return f"✅ 助手已重新初始化 (用户: {user_id})"
 
     def load_pdf(pdf_file) -> str:
         """加载PDF文件"""
@@ -275,11 +277,16 @@ def create_gradio_ui():
         """聊天功能"""
         if assistant_state["assistant"] is None:
             history.append({"role": "user", "content": message})
-            history.append({"role": "assistant", "content": "❌ 请先初始化助手并加载文档"})
+            history.append({"role": "assistant", "content": "❌ 请先初始化助手"})
             return "", history
 
         if not message.strip():
             return "", history
+
+        # 如果没有加载文档，提醒用户但尝试回答（可能基于之前的知识）
+        if not assistant_state["assistant"].current_document:
+             # 尝试设置一个默认文档名，如果之前已经有数据的话
+             assistant_state["assistant"].current_document = "已存档知识库"
 
         # 判断是技术问题还是回顾问题
         if any(keyword in message for keyword in ["之前", "学过", "回顾", "历史", "记得"]):
