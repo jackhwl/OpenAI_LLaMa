@@ -15,7 +15,7 @@ def test_bedrock():
     try:
         response = client.invoke_model(
             # Use inference profile instead of direct model ID
-            modelId='us.anthropic.claude-3-5-sonnet-20241022-v2:0',
+            modelId='us.anthropic.claude-sonnet-4-5-20250929-v1:0',
             body=json.dumps(body)
         )
         

@@ -200,3 +200,4 @@ python example_bedrock.py
 如果配置正确，你应该看到成功的响应输出。
 
 
+
