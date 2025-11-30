@@ -250,7 +250,7 @@ def create_gradio_ui():
     def init_assistant(user_id: str) -> str:
         """初始化助手"""
         if not user_id:
-            user_id = "web_user"
+            user_id = "wenlin_huang"
         assistant_state["assistant"] = PDFLearningAssistant(user_id=user_id)
         return f"✅ 助手已初始化 (用户: {user_id})"
 
@@ -274,7 +274,9 @@ def create_gradio_ui():
     def chat(message: str, history: List) -> Tuple[str, List]:
         """聊天功能"""
         if assistant_state["assistant"] is None:
-            return "", history + [[message, "❌ 请先初始化助手并加载文档"]]
+            history.append({"role": "user", "content": message})
+            history.append({"role": "assistant", "content": "❌ 请先初始化助手并加载文档"})
+            return "", history
 
         if not message.strip():
             return "", history
@@ -289,7 +291,8 @@ def create_gradio_ui():
             response = assistant_state["assistant"].ask(message)
             response = f"💡 **回答**\n\n{response}"
 
-        history.append([message, response])
+        history.append({"role": "user", "content": message})
+        history.append({"role": "assistant", "content": response})
         return "", history
 
     def add_note_ui(note_content: str, concept: str) -> str:
@@ -350,8 +353,8 @@ def create_gradio_ui():
             with gr.Row():
                 user_id_input = gr.Textbox(
                     label="用户ID",
-                    placeholder="输入你的用户ID（可选，默认为web_user）",
-                    value="web_user"
+                    placeholder="输入你的用户ID（可选，默认为wenlin_huang）",
+                    value="wenlin_huang"
                 )
                 init_btn = gr.Button("初始化助手", variant="primary")
 

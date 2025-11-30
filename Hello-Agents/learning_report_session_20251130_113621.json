@@ -1,0 +1,15 @@
+{
+  "session_info": {
+    "session_id": "session_20251130_113621",
+    "user_id": "wenlin_huang",
+    "start_time": "2025-11-30T11:36:29.123326",
+    "duration_seconds": 296.272736
+  },
+  "learning_metrics": {
+    "documents_loaded": 1,
+    "questions_asked": 3,
+    "concepts_learned": 1
+  },
+  "memory_summary": "📊 记忆系统摘要\n总记忆数: 8\n当前会话: session_20251130_113715\n对话轮次: 0\n\n📋 记忆类型分布:\n  • 工作记忆: 3 条 (平均重要性: 0.60)\n  • 情景记忆: 4 条 (平均重要性: 0.75)\n  • 语义记忆: 1 条 (平均重要性: 0.80)\n\n⭐ 重要记忆 (前5条):\n  1. 加载了文档《Happy-LLM-0727.pdf》 (重要性: 0.90)\n  2. 这是一个笔记的测试 (重要性: 0.80)\n  3. 关于'如何训练大语言模型？'的学习 (重要性: 0.70)\n  4. 关于'什么是大语言模型？'的学习 (重要性: 0.70)\n  5. 关于'Transformer架构有哪些核心组件？'的学习 (重要性: 0.70)",
+  "rag_status": "📊 **RAG 知识库统计**\n📝 命名空间: default\n📋 集合名称: rag_knowledge_base\n📂 存储根路径: ./knowledge_base\n📦 存储类型: qdrant\n📊 文档分块数: 94\n🔢 向量维度: 1536\n📎 距离度量: Cosine\n\n🟢 **系统状态**\n✅ RAG 管道: 正常\n✅ LLM 连接: 正常"
+}
