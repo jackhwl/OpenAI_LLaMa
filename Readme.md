@@ -189,4 +189,8 @@
     - 8.2.2 快速体验：30秒上手记忆功能
     - 8.2.3 MemoryTool详解
     - 8.2.4 MemoryManager详解
-    
+    - 8.2.5 四种记忆类型
+      - 工作记忆（WorkingMemory）
+      - 情景记忆（EpisodicMemory）
+      - 语义记忆（SemanticMemory）
+      - 感知记忆（PerceptualMemory）
