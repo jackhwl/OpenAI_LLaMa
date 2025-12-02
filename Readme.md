@@ -220,4 +220,5 @@
   - git checkout V0.2.7
   - pip install -e pkg/HelloAgents-0.27
   - 9.1 什么是上下文工程
-  
+  - 9.2 为什么上下文工程重要
+    - 9.2.1 有效上下文的“解剖学”
