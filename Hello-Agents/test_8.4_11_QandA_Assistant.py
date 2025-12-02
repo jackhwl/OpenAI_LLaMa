@@ -15,6 +15,25 @@ import time
 import json
 from datetime import datetime
 from typing import Dict, List, Optional, Any, Tuple
+
+# Load .env file BEFORE importing hello_agents (which imports boto3)
+# This ensures AWS credentials from .env take precedence
+from dotenv import load_dotenv
+load_dotenv(override=True)
+
+# Convert lowercase aws credentials to uppercase if present
+for lower_key, upper_key in [
+    ('aws_access_key_id', 'AWS_ACCESS_KEY_ID'),
+    ('aws_secret_access_key', 'AWS_SECRET_ACCESS_KEY'),
+    ('aws_session_token', 'AWS_SESSION_TOKEN'),
+]:
+    if lower_key in os.environ and upper_key not in os.environ:
+        os.environ[upper_key] = os.environ[lower_key]
+    # Also check .env file values that might be lowercase
+    val = os.environ.get(lower_key)
+    if val:
+        os.environ[upper_key] = val
+
 from hello_agents.tools import MemoryTool, RAGTool
 import gradio as gr
 
@@ -273,34 +292,42 @@ def create_gradio_ui():
         else:
             return f"❌ {result['message']}"
 
-    def chat(message: str, history: List) -> Tuple[str, List]:
+    def chat(message: str, history: Any) -> Tuple[str, Any]:
         """聊天功能"""
-        if assistant_state["assistant"] is None:
+        try:
+            if assistant_state["assistant"] is None:
+                history.append({"role": "user", "content": message})
+                history.append({"role": "assistant", "content": "❌ 请先初始化助手"})
+                return "", history
+
+            if not message.strip():
+                return "", history
+
+            # 如果没有加载文档，提醒用户但尝试回答（可能基于之前的知识）
+            if not assistant_state["assistant"].current_document:
+                 # 尝试设置一个默认文档名，如果之前已经有数据的话
+                 assistant_state["assistant"].current_document = "已存档知识库"
+
+            # 判断是技术问题还是回顾问题
+            if any(keyword in message for keyword in ["之前", "学过", "回顾", "历史", "记得"]):
+                # 回顾学习历程
+                response = assistant_state["assistant"].recall(message)
+                response = f"🧠 **学习回顾**\n\n{response}"
+            else:
+                # 技术问答
+                response = assistant_state["assistant"].ask(message)
+                response = f"💡 **回答**\n\n{response}"
+
             history.append({"role": "user", "content": message})
-            history.append({"role": "assistant", "content": "❌ 请先初始化助手"})
+            history.append({"role": "assistant", "content": response})
             return "", history
-
-        if not message.strip():
+        except Exception as e:
+            print(f"❌ 聊天处理出错: {str(e)}")
+            import traceback
+            traceback.print_exc()
+            history.append({"role": "user", "content": message})
+            history.append({"role": "assistant", "content": f"❌ 系统错误: {str(e)}"})
             return "", history
-
-        # 如果没有加载文档，提醒用户但尝试回答（可能基于之前的知识）
-        if not assistant_state["assistant"].current_document:
-             # 尝试设置一个默认文档名，如果之前已经有数据的话
-             assistant_state["assistant"].current_document = "已存档知识库"
-
-        # 判断是技术问题还是回顾问题
-        if any(keyword in message for keyword in ["之前", "学过", "回顾", "历史", "记得"]):
-            # 回顾学习历程
-            response = assistant_state["assistant"].recall(message)
-            response = f"🧠 **学习回顾**\n\n{response}"
-        else:
-            # 技术问答
-            response = assistant_state["assistant"].ask(message)
-            response = f"💡 **回答**\n\n{response}"
-
-        history.append({"role": "user", "content": message})
-        history.append({"role": "assistant", "content": response})
-        return "", history
 
     def add_note_ui(note_content: str, concept: str) -> str:
         """添加笔记"""
@@ -444,8 +471,8 @@ def main():
 
     demo = create_gradio_ui()
     demo.launch(
-        server_name="0.0.0.0",
-        server_port=7860,
+        server_name="127.0.0.1",
+        server_port=7865,
         share=False,
         show_error=True
     )

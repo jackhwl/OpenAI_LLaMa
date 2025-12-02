@@ -214,5 +214,10 @@
       - python test_8.4_11_QandA_Assistant.py
     - 8.5 本章总结与展望
 - 第九章 上下文工程
+  - cd pkg
+  - git clone https://github.com/jjyaoao/HelloAgents.git HelloAgents-0.27
+  - cd HelloAgents-0.27
+  - git checkout V0.2.7
+  - pip install -e pkg/HelloAgents-0.27
   - 9.1 什么是上下文工程
   
