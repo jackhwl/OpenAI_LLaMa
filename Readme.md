@@ -172,6 +172,7 @@
   - 7.6 本章小结
     - chapter07_basic_setup.py
 ### 第三部分：高级知识扩展
+- 第八章 记忆与检索
   - test case:
     .venv312  pyhtong 3.12 in order to support 'pip install spacy'
     source .venv/bin/activate
@@ -212,3 +213,6 @@
     - 8.4.5 运行效果展示
       - python test_8.4_11_QandA_Assistant.py
     - 8.5 本章总结与展望
+- 第九章 上下文工程
+  - 9.1 什么是上下文工程
+  
