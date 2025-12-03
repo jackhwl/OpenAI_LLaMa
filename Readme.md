@@ -227,3 +227,5 @@
   - 9.3 在 Hello-Agents 中的实践：ContextBuilder
     - 9.3.1 设计动机与目标
     - 9.3.2 核心数据结构
+    - 9.3.3 GSSC 流水线详解
+    
