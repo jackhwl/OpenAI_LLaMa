@@ -273,3 +273,6 @@
     - 10.5.2 上传 MCP 服务器
       - https://smithery.ai/
   - 10.6 本章总结
+- 第十一章 Agentic-RL
+  - 11.1 从 LLM 训练到 Agentic RL
+    - 11.1.1 从强化学习到 Agentic RL
