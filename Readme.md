@@ -277,3 +277,4 @@
   - 11.1 从 LLM 训练到 Agentic RL
     - 11.1.1 从强化学习到 Agentic RL
     - 11.1.2 LLM 训练全景图
+    - 11.1.3 Agentic RL 的核心理念
