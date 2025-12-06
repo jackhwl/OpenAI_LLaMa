@@ -281,3 +281,5 @@
     ![alt text](Hello-Agents/agenticRL.png)
     - 11.1.4 HelloAgents 的 Agentic RL 设计
     - 11.1.5 快速上手示例
+  - 11.2 数据集与奖励函数
+    - 11.2.1 GSM8K 数学推理数据集
