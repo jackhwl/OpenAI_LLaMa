@@ -279,4 +279,5 @@
     - 11.1.2 LLM 训练全景图
     - 11.1.3 Agentic RL 的核心理念
     ![alt text](Hello-Agents/agenticRL.png)
-    
+    - 11.1.4 HelloAgents 的 Agentic RL 设计
+    - 11.1.5 快速上手示例
