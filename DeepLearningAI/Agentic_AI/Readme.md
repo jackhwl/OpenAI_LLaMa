@@ -63,3 +63,7 @@
     - Subjective evals
       - Use LLM as a judge
       - Rubric-based grading is better
+  - Using external feedback
+    - Mentioning competitiors
+    - Fact checking an essay
+    - LLM won't follow output length guidelines
