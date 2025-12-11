@@ -55,3 +55,4 @@
   - Reflection to improve outputs of a task
   - Why not just direct generation?
   - Chart generation workflow
+  - Ungraded Lab: Chart Generation
