@@ -11,3 +11,4 @@
     - building block
       - Models: LLMs
       - Tools: API, Information retrieval, Code execution
+  - Evaluation agentic AI (evals)
