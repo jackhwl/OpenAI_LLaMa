@@ -56,3 +56,10 @@
   - Why not just direct generation?
   - Chart generation workflow
   - Ungraded Lab: Chart Generation
+  - Evaluating the impact of reflection
+    - Objective evals
+      - Code-based evals are easier
+      - Build a dataset of ground truth examples
+    - Subjective evals
+      - Use LLM as a judge
+      - Rubric-based grading is better
