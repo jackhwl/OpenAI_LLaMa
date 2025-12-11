@@ -33,7 +33,8 @@
         - OCR
     - Planning
     - Multi-agentic workflows
-    
+    - Optional: Set up your local environment for the ungraded labs
+
     ```
         Make sure you have Python 3.10+ installed.
 
@@ -48,6 +49,7 @@
             pip install -r requirements.txt
         (Optional) Link this environment to your IDE or Jupyter notebook:
 
-        python -m ipykernel install --user --name=venv
+        python -m ipykernel install --user --name=venvI'
     ```
-    
+## Module 2: Reflection Design Pattern
+  - Reflection to improve outputs of a task
