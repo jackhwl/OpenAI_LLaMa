@@ -4,3 +4,10 @@
   - Degrees of autonomy
   - Benefits of agentic AI
   - Agentic AI applications
+  - Task decomposition: Identifying steps in a workflow
+    - one step
+    - 3-step workflow
+    - 5-step workflow
+    - building block
+      - Models: LLMs
+      - Tools: API, Information retrieval, Code execution
