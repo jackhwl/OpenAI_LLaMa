@@ -3,3 +3,4 @@
   - What is agentic AI
   - Degrees of autonomy
   - Benefits of agentic AI
+  - Agentic AI applications
