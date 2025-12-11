@@ -12,3 +12,25 @@
       - Models: LLMs
       - Tools: API, Information retrieval, Code execution
   - Evaluation agentic AI (evals)
+  - Agentic Design Patterns
+    - Reflection
+    - Tool use
+      - Analysis
+        - Code Execution
+        - Wolfram Alpha
+        - Bearly Code Interpreter
+      - Information gathering
+        - Web search
+        - Wikipedia
+        - Database access
+      - Productivity
+        - Email
+        - Calendar
+        - Messaging
+      - Images
+        - Image generation
+        - Image captioning
+        - OCR
+    - Planning
+    - Multi-agentic workflows
+    
