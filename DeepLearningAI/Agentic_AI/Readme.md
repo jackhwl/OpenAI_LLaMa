@@ -49,7 +49,9 @@
             pip install -r requirements.txt
         (Optional) Link this environment to your IDE or Jupyter notebook:
 
-        python -m ipykernel install --user --name=venvI'
+        python -m ipykernel install --user --name=venv'
     ```
 ## Module 2: Reflection Design Pattern
   - Reflection to improve outputs of a task
+  - Why not just direct generation?
+  - Chart generation workflow
