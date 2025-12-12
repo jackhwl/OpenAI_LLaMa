@@ -74,3 +74,5 @@
   - Tool syntax
   - Ungraded Lab: Turning functions into tools
   - Ungraded Lab: Email Assistant Workflow
+  - Code execution
+  - MCP
