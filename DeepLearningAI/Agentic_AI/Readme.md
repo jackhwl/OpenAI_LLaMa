@@ -68,3 +68,6 @@
     - Fact checking an essay
     - LLM won't follow output length guidelines
   - Ungraded Lab: Improving SQL Generation with Reflection
+## Module 3: Tool use
+  - What are tools?
+  
