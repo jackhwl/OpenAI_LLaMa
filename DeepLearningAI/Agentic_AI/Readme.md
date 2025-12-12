@@ -70,4 +70,6 @@
   - Ungraded Lab: Improving SQL Generation with Reflection
 ## Module 3: Tool use
   - What are tools?
-  
+  - Creating a tool
+  - Tool syntax
+  - Ungraded Lab: Turning functions into tools
