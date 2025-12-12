@@ -67,3 +67,4 @@
     - Mentioning competitiors
     - Fact checking an essay
     - LLM won't follow output length guidelines
+  - Ungraded Lab: Improving SQL Generation with Reflection
