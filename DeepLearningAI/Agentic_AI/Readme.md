@@ -73,3 +73,4 @@
   - Creating a tool
   - Tool syntax
   - Ungraded Lab: Turning functions into tools
+  - Ungraded Lab: Email Assistant Workflow
