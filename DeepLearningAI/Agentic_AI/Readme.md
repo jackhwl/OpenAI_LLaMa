@@ -76,3 +76,8 @@
   - Ungraded Lab: Email Assistant Workflow
   - Code execution
   - MCP
+## Module 4: Practical Tips for Building Agentic AI
+  - Evaluations (evals)
+    - Quick and dirty is ok to start!
+    - As you find places where your evals fail to capture human judgement as to what system is better, use that as an opportunity to improve the metric
+    - Look for places where performance is worse than humans 
