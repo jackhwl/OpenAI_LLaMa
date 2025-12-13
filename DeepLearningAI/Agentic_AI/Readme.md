@@ -102,3 +102,4 @@
   - Planning workflows
   - Creating and executing LLM plans
     - Formatting plan as JSON
+  - Planning with code execution
