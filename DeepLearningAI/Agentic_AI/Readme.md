@@ -98,3 +98,5 @@
         - aisuite makes it easy to quickly swap out models
   - Latency, cost optimization
   - Development process summary
+## Module 5: Patterns for Highly Autonomous Agents
+  - Planning workflows
