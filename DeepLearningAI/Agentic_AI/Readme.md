@@ -80,4 +80,8 @@
   - Evaluations (evals)
     - Quick and dirty is ok to start!
     - As you find places where your evals fail to capture human judgement as to what system is better, use that as an opportunity to improve the metric
-    - Look for places where performance is worse than humans 
+    - Look for places where performance is worse than humans
+  - Errors analysis and prioritizing next steps
+    - Develop a habit of looking at traces
+    - Carry out error analysis to figure out what component performed poorly, leading to a poor final output
+    - Use error analysis output to decide where to focus efforts
