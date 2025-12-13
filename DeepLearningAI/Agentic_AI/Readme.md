@@ -100,3 +100,5 @@
   - Development process summary
 ## Module 5: Patterns for Highly Autonomous Agents
   - Planning workflows
+  - Creating and executing LLM plans
+    - Formatting plan as JSON
