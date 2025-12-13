@@ -88,3 +88,8 @@
   - More error analysis examples
   - Component-level evaluations
   - Ungraded Lab: Adding a component-level eval to the research workflow 
+  - How to address problems you identify
+    - Developing intuition for model intelligence
+      - play with models often
+        - Having apersonal set of evals might be helpful
+        - Read other people's prompts for ideas of how to best use models
