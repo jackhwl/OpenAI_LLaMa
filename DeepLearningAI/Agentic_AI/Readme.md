@@ -93,3 +93,7 @@
       - play with models often
         - Having apersonal set of evals might be helpful
         - Read other people's prompts for ideas of how to best use models
+      - Use different models in your agentic workflows
+        - Which models work for which types of tasks?
+        - aisuite makes it easy to quickly swap out models
+  - Latency, cost optimization
