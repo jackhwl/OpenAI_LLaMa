@@ -107,3 +107,4 @@
     - As Andrew explained in the lecture, planning with code execution means letting the LLM write code that becomes the plan itself. Compared to plain-text or JSON-based plans, this approach is more expressive and flexible: the code not only documents the steps but can also execute them directly.
   - Multi-agentic workflows
   - Ungraded Lab: Market Research Team
+  - Communication patterns for multi-agent systems
