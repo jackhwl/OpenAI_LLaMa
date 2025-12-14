@@ -108,3 +108,9 @@
   - Multi-agentic workflows
   - Ungraded Lab: Market Research Team
   - Communication patterns for multi-agent systems
+  - Conclusion
+    - Why Agentic AI
+    - Reflection design pattern
+    - Tool use (function calling)
+    - Evals, error analysis
+    - Planning, multi-agent systems
