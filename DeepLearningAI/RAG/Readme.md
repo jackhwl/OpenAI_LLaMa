@@ -3,3 +3,5 @@
   - Introduction to RAG
   - Applications of RAG
   - RAG architecture overview
+  - Introduction to LLMs
+    - LLMs are just fancy autocomplete
