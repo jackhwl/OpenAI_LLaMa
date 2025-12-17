@@ -7,3 +7,4 @@
     - LLMs are just fancy autocomplete
   - A brief Python refresherbxd
   - LLM Calls and Crafting Simple Augmented Prompts
+  - Introduction to information retrieval
