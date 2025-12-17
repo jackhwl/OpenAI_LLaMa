@@ -14,3 +14,11 @@
         - RAG 已死？
       - 第二节 准备工作
       - 第三节 四步构建RAG
+        - 一、启动虚拟环境
+        - 二、运行RAG示例代码
+        - 三、基于LangChain框架的RAG实现
+          - 3.1 初始化设置
+          - 3.2 数据准备 (Data Preparation)
+          - 3.3 索引构建 (Index Construction)
+          - 3.4 查询与检索 (Query and Retrieval)
+          - 3.5 生成集成 (Generation Integration)
