@@ -5,3 +5,4 @@
   - RAG architecture overview
   - Introduction to LLMs
     - LLMs are just fancy autocomplete
+  - A brief Python refresherbxd
