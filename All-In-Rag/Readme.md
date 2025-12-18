@@ -44,4 +44,12 @@
         - 二、Unstructured文档处理库
         - 三、从LangChain封装到原始Unstructured
           - [**Unstructured官方文档**](https://docs.unstructured.io/open-source/core-functionality/partitioning)
-
+      - 第二节 文本分块
+        - 一、理解文本分块
+        - 二、文本分块重要性
+          - 2.1 满足模型上下文限制
+          - 2.2 为何“块”不是越大越好
+        - 三、基础分块策略
+          - 3.1 固定大小分块 (段落感知的自适应分块)
+          - 3.2 递归字符分块 (RecursiveCharacterTextSplitter)
+          - 3.3 语义分块
