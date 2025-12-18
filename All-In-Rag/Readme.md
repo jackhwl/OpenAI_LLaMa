@@ -23,3 +23,25 @@
           - 3.4 查询与检索 (Query and Retrieval)
           - 3.5 生成集成 (Generation Integration)
         - 四、低代码（基于LlamaIndex）
+    - 第二章 数据准备
+      - 第一节 数据加载
+        - Garbage In, Garbage Out
+        - 一、文档加载器
+        - 当前主流RAG文档加载器
+
+          | 工具名称 | 特点 | 适用场景 | 性能表现 |
+          |---------|---------|---------|---------|
+          | **PyMuPDF4LLM** | PDF→Markdown转换，OCR+表格识别 | 科研文献、技术手册 | 开源免费，GPU加速 |
+          | **TextLoader** | 基础文本文件加载 | 纯文本处理 | 轻量高效 |
+          | **DirectoryLoader** | 批量目录文件处理 | 混合格式文档库 | 支持多格式扩展 |
+          | **Unstructured** | 多格式文档解析 | PDF、Word、HTML等 | 统一接口，智能解析 |
+          | **FireCrawlLoader** | 网页内容抓取 | 在线文档、新闻 | 实时内容获取 |
+          | **LlamaParse** | 深度PDF结构解析 | 法律合同、学术论文 | 解析精度高，商业API |
+          | **Docling** | 模块化企业级解析 | 企业合同、报告 | IBM生态兼容 |
+          | **Marker** | PDF→Markdown，GPU加速 | 科研文献、书籍 | 专注PDF转换 |
+          | **MinerU** | 多模态集成解析 | 学术文献、财务报表 | 集成LayoutLMv3+YOLOv8 |
+
+        - 二、Unstructured文档处理库
+        - 三、从LangChain封装到原始Unstructured
+          - [**Unstructured官方文档**](https://docs.unstructured.io/open-source/core-functionality/partitioning)
+
