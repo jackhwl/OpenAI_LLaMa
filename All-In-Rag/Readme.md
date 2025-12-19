@@ -53,3 +53,8 @@
           - 3.1 固定大小分块 (段落感知的自适应分块)
           - 3.2 递归字符分块 (RecursiveCharacterTextSplitter)
           - 3.3 语义分块
+          - 3.4 基于文档结构的分块
+        - 四、其他开源框架中的分块策略
+          - 4.1 Unstructured：基于文档元素的智能分块
+          - 4.2 LlamaIndex：面向节点的解析与转换
+          - 4.3 ChunkViz：简易的可视化分块工具
