@@ -8,3 +8,9 @@
   - A brief Python refresherbxd
   - LLM Calls and Crafting Simple Augmented Prompts
   - Introduction to information retrieval
+## Module 2: Information Retrieval and Search Foundations
+  - Retriever architecture overview
+    - Hybrid search
+      - Keyword search
+      - Semantic search
+      - Metadata Filtering
