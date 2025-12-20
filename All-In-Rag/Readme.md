@@ -71,3 +71,13 @@
         - 三、常用多模态嵌入模型(以bge-visualized-m3为例)
         - 四、代码示例
           - 4.2 基础示例
+      - 第三节 向量数据库
+        - 一、向量数据库的作用
+        - 二、工作原理
+        - 三、主流向量数据库介绍
+          - Pinecone
+          - Milvus
+          - Qdrant
+          - Weaviate
+          - Chroma
+        - 四、本地向量存储：以 FAISS 为例
