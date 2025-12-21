@@ -26,3 +26,4 @@
     - percision
     - recall
   - Retrieval metrics
+  - Semantic search - embedding model deepdive
