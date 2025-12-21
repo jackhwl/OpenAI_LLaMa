@@ -32,3 +32,6 @@
   - Approximate nearest neighbors algorithms (ANN)
     - KNN
     - HNSW
+  - Vector databases
+    - Weaviate
+  - Introduction to the Weaviate
