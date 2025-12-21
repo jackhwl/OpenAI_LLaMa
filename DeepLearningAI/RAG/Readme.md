@@ -17,4 +17,5 @@
   - Metadata filtering
   - Keyword search - TF-IDF
   - Keyword search - BM25 (best matching 25)
-  - Semantic search
+  - Semantic search - introduction
+  - Vector embeddings in RAG
