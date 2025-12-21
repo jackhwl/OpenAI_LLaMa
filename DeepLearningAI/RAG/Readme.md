@@ -14,3 +14,6 @@
       - Keyword search
       - Semantic search
       - Metadata Filtering
+  - Metadata filtering
+  - Keyword search - TF-IDF
+  - Keyword search - BM25 (best matching 25)
