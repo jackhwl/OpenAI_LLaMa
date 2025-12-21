@@ -27,3 +27,8 @@
     - recall
   - Retrieval metrics
   - Semantic search - embedding model deepdive
+## Module 3: Information Retrieval with Vector Databases
+  - Introduction
+  - Approximate nearest neighbors algorithms (ANN)
+    - KNN
+    - HNSW
