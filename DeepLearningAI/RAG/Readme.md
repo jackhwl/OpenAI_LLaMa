@@ -35,3 +35,5 @@
   - Vector databases
     - Weaviate
   - Introduction to the Weaviate
+  - Chunking
+  
