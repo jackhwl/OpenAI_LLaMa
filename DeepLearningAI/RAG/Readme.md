@@ -19,3 +19,6 @@
   - Keyword search - BM25 (best matching 25)
   - Semantic search - introduction
   - Vector embeddings in RAG
+  - Hybrid search
+    - Keyword search => 50 docs => Metadata filter => 35 docs  \ two list combine together form single ranking
+    - Semantic search => 50 docs => Metadata filter => 30 docs / reciprocal rank fusion
