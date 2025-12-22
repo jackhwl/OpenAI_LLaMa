@@ -8,3 +8,4 @@ models
 faiss_index_store
 llamaindex_index_store
 volumes
+data

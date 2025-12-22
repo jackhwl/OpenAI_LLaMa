@@ -2,7 +2,7 @@
   - https://github.com/datawhalechina/all-in-rag
     pyenv local 3.12.7
     python -m venv .v3127
-    source venv/bin/activate
+    source .v3127/bin/activate
     pip install -r requirements.txt
   - 第一部分：RAG基础入门
     - 第一章 解锁RAG 📖 查看章节
@@ -89,3 +89,22 @@
           - 3. 验证安装
           - 4. 常用管理命令
         - 三、核心组件
+          - 3.1 Collection
+            - Collection
+            - Partition
+            - Schema
+            - Entity
+            - Alias
+          - 3.2 索引（index）
+
+            | 场景 | 推荐索引 | 备注 |
+            | :--- | :--- | :--- |
+            | 数据可完全载入内存，追求低延迟 | **HNSW** | 内存占用较大，但查询性能和召回率都很优秀。 |
+            | 数据可完全载入内存，追求高吞吐 | **IVF_FLAT / IVF_SQ8** | 性能和资源消耗的平衡之选。 |
+            | 数据量巨大，无法载入内存 | **DiskANN** | 在 SSD 上性能优异，专为海量数据设计。 |
+            | 追求 100% 准确率，数据量不大 | **FLAT** | 暴力搜索，确保结果最精确。 |
+
+          - 3.3 检索
+            - 3.3.1 基础向量检索 (ANN Search)
+            - 3.3.2 增强检索
+        - 四、milvus多模态实践
