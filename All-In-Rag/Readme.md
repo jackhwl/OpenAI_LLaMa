@@ -108,3 +108,6 @@
             - 3.3.1 基础向量检索 (ANN Search)
             - 3.3.2 增强检索
         - 四、milvus多模态实践
+      - 第五节 索引优化
+        - 一、上下文扩展
+          - 句子窗口检索（Sentence Window Retrieval）
