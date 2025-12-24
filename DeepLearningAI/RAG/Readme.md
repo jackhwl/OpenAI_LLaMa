@@ -36,4 +36,4 @@
     - Weaviate
   - Introduction to the Weaviate
   - Chunking
-  
+  - Advanced chunking techniques
