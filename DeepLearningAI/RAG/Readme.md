@@ -39,3 +39,4 @@
   - Advanced chunking techniques
   - Query parsing
   - Cross-encoders and ColBERT
+  - Reranking
