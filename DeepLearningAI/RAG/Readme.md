@@ -37,3 +37,5 @@
   - Introduction to the Weaviate
   - Chunking
   - Advanced chunking techniques
+  - Query parsing
+  - Cross-encoders and ColBERT
