@@ -40,3 +40,6 @@
   - Query parsing
   - Cross-encoders and ColBERT
   - Reranking
+## Module 4: LLMs and Text Generation
+  - Introduction
+  - Transformer architecture
