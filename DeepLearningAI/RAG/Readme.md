@@ -43,3 +43,4 @@
 ## Module 4: LLMs and Text Generation
   - Introduction
   - Transformer architecture
+  - LLM sampling strategies
