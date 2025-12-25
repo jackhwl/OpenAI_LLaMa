@@ -44,3 +44,5 @@
   - Introduction
   - Transformer architecture
   - LLM sampling strategies
+  - Exploring LLM capabilities
+  - Choosing your LLM
