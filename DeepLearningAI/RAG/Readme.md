@@ -46,3 +46,4 @@
   - LLM sampling strategies
   - Exploring LLM capabilities
   - Choosing your LLM
+  - Prompt engineering: building your augmented prompt
