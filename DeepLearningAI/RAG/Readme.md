@@ -52,3 +52,4 @@
   - Handling hallucinations
   - Evaluating your LLM's performance
     - RAGAS metrics
+  - Agentic RAG
