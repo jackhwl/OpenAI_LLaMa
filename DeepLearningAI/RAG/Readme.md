@@ -53,3 +53,7 @@
   - Evaluating your LLM's performance
     - RAGAS metrics
   - Agentic RAG
+  - RAG vs. Fine-Tuning
+    - SFT
+    - RAG provides current, accurate information
+    - Fine-tuning optimizes how models use that information
