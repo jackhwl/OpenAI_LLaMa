@@ -50,3 +50,5 @@
   - Prompt engineering: advanced techniques
   - Prompt engineering
   - Handling hallucinations
+  - Evaluating your LLM's performance
+    - RAGAS metrics
