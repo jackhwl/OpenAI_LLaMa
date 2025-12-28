@@ -130,3 +130,14 @@
         - 二、文本到Cypher
           - 2.1 什么是 Cypher？
           - 2.2 “文本到Cypher”的原理
+      - 第三节：文本到SQL
+        - 一、业务挑战
+        - 二、优化策略
+        - 三、实现一个简单的Text2SQL框架
+          - 3.1 知识库模块 (knowledge_base.py)
+          - 3.2 SQL生成模块 (sql_generator.py)
+          - 3.3 代理模块 (text2sql_agent.py)
+          - 3.4 完整流程模拟
+          - 3.5 代码运行
+          - 3.6 为什么不直接使用封装好的框架？
+
