@@ -162,4 +162,7 @@
         - 二、压缩 (Compression)
           - 2.1 LangChain 的 ContextualCompressionRetriever
           - 2.2 自定义重排器与压缩管道
+          - 2.3 LlamaIndex 中的检索压缩
+        - 三、校正 (Correcting)
+          - 校正检索（Corrective-RAG, C-RAG）
 
