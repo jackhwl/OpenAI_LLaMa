@@ -159,3 +159,7 @@
           - 1.3 Cross-Encoder 重排
           - 1.4 ColBERT 重排
           - 1.5 重排方法对比
+        - 二、压缩 (Compression)
+          - 2.1 LangChain 的 ContextualCompressionRetriever
+          - 2.2 自定义重排器与压缩管道
+
