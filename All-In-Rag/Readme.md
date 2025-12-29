@@ -152,4 +152,10 @@
             - 2.2.1 基于LLM的意图识别
             - 2.2.2 嵌入相似性路由
           - 2.3 LlamaIndex 拓展
-
+      - 第五节：检索进阶
+        - 一、重排序 (Re-ranking)
+          - 1.1 RRF (Reciprocal Rank Fusion)
+          - 1.2 RankLLM / LLM-based Reranker
+          - 1.3 Cross-Encoder 重排
+          - 1.4 ColBERT 重排
+          - 1.5 重排方法对比
