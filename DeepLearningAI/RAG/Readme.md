@@ -57,3 +57,6 @@
     - SFT
     - RAG provides current, accurate information
     - Fine-tuning optimizes how models use that information
+## Module 5: RAG Systems in Production
+  - Introduction
+  - What makes production
