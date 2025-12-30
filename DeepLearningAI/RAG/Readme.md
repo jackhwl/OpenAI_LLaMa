@@ -63,3 +63,4 @@
   - Implementing RAG evaluation strategies
   - Logging, monitoring, and observability
   - Tracing a RAG system
+  - Customized evaluation
