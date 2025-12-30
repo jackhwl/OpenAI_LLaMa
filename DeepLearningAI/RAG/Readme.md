@@ -60,3 +60,4 @@
 ## Module 5: RAG Systems in Production
   - Introduction
   - What makes production
+  - Implementing RAG evaluation strategies
