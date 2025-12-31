@@ -68,3 +68,4 @@
     - LLM 16-bit parameters
     - Quantized LLM 4 or 8-bit
   - Cost vs Response Quality
+  - Latency vs Response Quality
