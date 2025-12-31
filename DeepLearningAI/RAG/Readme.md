@@ -64,3 +64,6 @@
   - Logging, monitoring, and observability
   - Tracing a RAG system
   - Customized evaluation
+  - Quantization
+    - LLM 16-bit parameters
+    - Quantized LLM 4 or 8-bit
