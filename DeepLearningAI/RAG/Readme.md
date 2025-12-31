@@ -70,3 +70,4 @@
   - Cost vs Response Quality
   - Latency vs Response Quality
   - Security
+  - Multimodal RAG
