@@ -3,7 +3,7 @@
 """
 
 import logging
-from typing import List
+from typing import List, Dict, Set
 
 from langchain_core.prompts import ChatPromptTemplate, PromptTemplate
 from langchain_aws import ChatBedrockConverse
@@ -12,6 +12,29 @@ from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 
 logger = logging.getLogger(__name__)
+
+# 烹饪相关同义词表 - 用于查询扩展
+COOKING_SYNONYMS: Dict[str, Set[str]] = {
+    # 调料/调味料相关
+    "调料": {"调味料", "佐料", "配料"},
+    "调味料": {"调料", "佐料", "配料"},
+    "佐料": {"调料", "调味料", "配料"},
+    # 食材相关
+    "食材": {"原料", "材料", "用料"},
+    "原料": {"食材", "材料", "用料"},
+    "材料": {"食材", "原料", "用料"},
+    "用料": {"食材", "原料", "材料"},
+    # 做法相关
+    "做法": {"制作方法", "烹饪方法", "步骤"},
+    "制作方法": {"做法", "烹饪方法", "步骤"},
+    "烹饪方法": {"做法", "制作方法", "步骤"},
+    # 技巧相关
+    "技巧": {"窍门", "诀窍", "要点"},
+    "窍门": {"技巧", "诀窍", "要点"},
+    # 口味相关
+    "口味": {"味道", "风味"},
+    "味道": {"口味", "风味"},
+}
 
 class GenerationIntegrationModule:
     """生成集成模块 - 负责LLM集成和回答生成"""
@@ -45,6 +68,37 @@ class GenerationIntegrationModule:
         )
         
         logger.info("LLM初始化完成")
+
+    def expand_synonyms(self, query: str) -> str:
+        """
+        同义词扩展 - 将查询中的关键词扩展为包含同义词的查询
+        
+        这是一个轻量级的本地处理，不调用LLM，用于提高检索召回率。
+        例如: "宫保鸡丁需要什么调料" -> "宫保鸡丁需要什么调料 调味料 佐料 配料"
+        
+        Args:
+            query: 原始查询
+            
+        Returns:
+            扩展后的查询
+        """
+        expanded_terms = []
+        
+        # 查找查询中包含的同义词关键词
+        for keyword, synonyms in COOKING_SYNONYMS.items():
+            if keyword in query:
+                # 添加所有同义词
+                for syn in synonyms:
+                    if syn not in query and syn not in expanded_terms:
+                        expanded_terms.append(syn)
+        
+        # 如果有扩展词，追加到查询末尾
+        if expanded_terms:
+            expanded_query = query + " " + " ".join(expanded_terms)
+            logger.info(f"同义词扩展: '{query}' → '{expanded_query}'")
+            return expanded_query
+        
+        return query
     
     def generate_basic_answer(self, query: str, context_docs: List[Document]) -> str:
         """
@@ -146,8 +200,7 @@ class GenerationIntegrationModule:
             重写后的查询或原查询
         """
         prompt = PromptTemplate(
-            template="""
-你是一个智能查询分析助手。请分析用户的查询，判断是否需要重写以提高食谱搜索效果。
+            template="""你是一个智能查询分析助手。请分析用户的查询，判断是否需要重写以提高食谱搜索效果。
 
 原始查询: {query}
 
@@ -169,14 +222,14 @@ class GenerationIntegrationModule:
 - 保持简洁性
 
 示例：
-- "做菜" → "简单易做的家常菜谱"
-- "有饮品推荐吗" → "简单饮品制作方法"
-- "推荐个菜" → "简单家常菜推荐"
-- "川菜" → "经典川菜菜谱"
-- "宫保鸡丁怎么做" → "宫保鸡丁怎么做"（保持原查询）
-- "红烧肉需要什么食材" → "红烧肉需要什么食材"（保持原查询）
+- "做菜" → 简单易做的家常菜谱
+- "有饮品推荐吗" → 简单饮品制作方法
+- "推荐个菜" → 简单家常菜推荐
+- "川菜" → 经典川菜菜谱
+- "宫保鸡丁怎么做" → 宫保鸡丁怎么做
+- "红烧肉需要什么食材" → 红烧肉需要什么食材
 
-请输出最终查询（如果不需要重写就返回原查询）:""",
+【重要】只输出最终查询文本，不要输出任何分析、解释或其他内容。直接输出查询文本即可。""",
             input_variables=["query"]
         )
 
@@ -188,6 +241,10 @@ class GenerationIntegrationModule:
         )
 
         response = chain.invoke(query).strip()
+        
+        # 清理可能的多余内容（只保留第一行）
+        if '\n' in response:
+            response = response.split('\n')[0].strip()
 
         # 记录重写结果
         if response != query:

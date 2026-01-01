@@ -153,14 +153,19 @@ class RecipeRAGSystem:
             print("🤖 智能分析查询...")
             rewritten_query = self.generation_module.query_rewrite(question)
         
+        # 2.5 同义词扩展 - 提高检索召回率
+        search_query = self.generation_module.expand_synonyms(rewritten_query)
+        if search_query != rewritten_query:
+            print(f"🔄 同义词扩展: {rewritten_query} → {search_query}")
+        
         # 3. 检索相关子块（自动应用元数据过滤）
         print("🔍 检索相关文档...")
         filters = self._extract_filters_from_query(question)
         if filters:
             print(f"应用过滤条件: {filters}")
-            relevant_chunks = self.retrieval_module.metadata_filtered_search(rewritten_query, filters, top_k=self.config.top_k)
+            relevant_chunks = self.retrieval_module.metadata_filtered_search(search_query, filters, top_k=self.config.top_k)
         else:
-            relevant_chunks = self.retrieval_module.hybrid_search(rewritten_query, top_k=self.config.top_k)
+            relevant_chunks = self.retrieval_module.hybrid_search(search_query, top_k=self.config.top_k)
 
         # 显示检索到的子块信息
         if relevant_chunks:
@@ -236,12 +241,29 @@ class RecipeRAGSystem:
     def _extract_filters_from_query(self, query: str) -> dict:
         """
         从用户问题中提取元数据过滤条件
+        
+        注意：当用户询问"需要什么调料/食材"时，不应该应用分类过滤，
+        因为这是在问某道菜需要的配料，而不是在搜索某个分类的菜谱。
         """
         filters = {}
+        
+        # 检测是否是询问配料/食材的问题模式
+        # 这些模式表示用户在问某道菜需要什么，而不是在搜索某个分类
+        ingredient_question_patterns = [
+            "需要什么", "需要哪些", "用什么", "用哪些",
+            "要什么", "要哪些", "放什么", "放哪些",
+            "加什么", "加哪些", "配什么", "配哪些"
+        ]
+        is_ingredient_question = any(pattern in query for pattern in ingredient_question_patterns)
+        
         # 分类关键词
         category_keywords = DataPreparationModule.get_supported_categories()
         for cat in category_keywords:
             if cat in query:
+                # 如果是询问配料的问题，且匹配到的分类是"调料"，则跳过
+                # 因为"需要哪些调料"是在问配料，不是在搜索调料分类
+                if is_ingredient_question and cat == "调料":
+                    continue
                 filters['category'] = cat
                 break
 
