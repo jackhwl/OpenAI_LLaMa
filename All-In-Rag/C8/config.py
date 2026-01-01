@@ -15,7 +15,8 @@ class RAGConfig:
 
     # 模型配置
     embedding_model: str = "BAAI/bge-small-zh-v1.5"
-    llm_model: str = "kimi-k2-0711-preview"
+    llm_model: str = "us.anthropic.claude-sonnet-4-5-20250929-v1:0"
+    region_name: str = "us-east-1"
 
     # 检索配置
     top_k: int = 3
@@ -40,6 +41,7 @@ class RAGConfig:
             'index_save_path': self.index_save_path,
             'embedding_model': self.embedding_model,
             'llm_model': self.llm_model,
+            'region_name': self.region_name,
             'top_k': self.top_k,
             'temperature': self.temperature,
             'max_tokens': self.max_tokens

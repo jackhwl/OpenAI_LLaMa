@@ -49,10 +49,6 @@ class RecipeRAGSystem:
         # 检查数据路径
         if not Path(self.config.data_path).exists():
             raise FileNotFoundError(f"数据路径不存在: {self.config.data_path}")
-
-        # 检查API密钥
-        if not os.getenv("MOONSHOT_API_KEY"):
-            raise ValueError("请设置 MOONSHOT_API_KEY 环境变量")
     
     def initialize_system(self):
         """初始化所有模块"""
@@ -73,6 +69,7 @@ class RecipeRAGSystem:
         print("🤖 初始化生成集成模块...")
         self.generation_module = GenerationIntegrationModule(
             model_name=self.config.llm_model,
+            region_name=self.config.region_name,
             temperature=self.config.temperature,
             max_tokens=self.config.max_tokens
         )
