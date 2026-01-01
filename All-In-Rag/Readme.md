@@ -173,6 +173,13 @@
           - 1.2 知识图谱赋能 RAG 的核心优势
           - 1.3 GraphRAG：一种范式革新
         - 二、GraphRAG框架的核心架构与工作流程
+          - 2.1 通用架构三阶段
+          - 2.2 方法论分类
+        - 三、前沿GraphRAG框架介绍（截至2025年）
+          - 3.1 GraphRAG (Microsoft)
+          - 3.2 LightRAG
+          - 3.3 FRAG (Flexible RAG)
+          - 3.4 GraphIRAG (Iterative Knowledge Retrieval)
   - 第五部分：高级应用与实战
     - 第八章 项目实战一
       - 第一节 环境配置与项目架构
