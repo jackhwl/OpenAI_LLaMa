@@ -180,6 +180,8 @@
           - 3.2 LightRAG
           - 3.3 FRAG (Flexible RAG)
           - 3.4 GraphIRAG (Iterative Knowledge Retrieval)
+        - 四、性能评估与基准测试
+        - 五、生产环境部署实践与挑战
   - 第五部分：高级应用与实战
     - 第八章 项目实战一
       - 第一节 环境配置与项目架构
