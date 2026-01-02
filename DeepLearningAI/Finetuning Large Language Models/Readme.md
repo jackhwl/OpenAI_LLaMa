@@ -9,3 +9,4 @@
     - Gain knowledge
     - Both
 ## Instruction finetuning
+## Data preparation
