@@ -12,3 +12,4 @@
 ## Data preparation
 ## Training process
 ## Evaluation and iteration
+## Consideration on getting started now
