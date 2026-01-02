@@ -10,3 +10,4 @@
     - Both
 ## Instruction finetuning
 ## Data preparation
+## Training process
