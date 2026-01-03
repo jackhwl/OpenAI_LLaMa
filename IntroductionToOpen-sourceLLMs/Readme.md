@@ -21,3 +21,7 @@
      - Retrieval-angumented generation
      - Architectural changes
        - Modifying config.json file and weights
+   - Fine-tuning Open-source LLMs
+     - Full fine-tuning
+     - Parameter-efficient fine-tuning
+       - LoRA (Low Rank Adaptation)
