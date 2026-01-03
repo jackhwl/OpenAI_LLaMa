@@ -25,3 +25,9 @@
      - Full fine-tuning
      - Parameter-efficient fine-tuning
        - LoRA (Low Rank Adaptation)
+   - Deploying LLMs on your own infrastructure
+     - Install Ollama on Linux
+     - Run the Llama3 model
+     - For a 7-billion-parameter model:
+       - GPU with at least 14 GB of VRAM
+       - CPU works, but much slower
