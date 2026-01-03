@@ -5,6 +5,19 @@
    - Benefits for businesses and developers
 2. Customizing and deploying open-source LLMs
    - Inspecting and Modifying Open-source LLMs
-    - config.json
-    - tokenizer.json
-    - using inspect_model.py to evaluate the pytorch, generate weight_analysis.txt
+     - config.json
+     - tokenizer.json
+     - using inspect_model.py to evaluate the pytorch, generate weight_analysis.txt
+   - Understanding LLM Architecture and customization
+     - tokenizer
+     - embedding layers
+     - transformer blocks (h.0...h.11)
+       - multi-head attention mechanism
+       - feed-forward network
+       - layer normalization and residual connections
+     - output layer
+     - Prompt engineering
+     - Modifying intefrence parameters
+     - Retrieval-angumented generation
+     - Architectural changes
+       - Modifying config.json file and weights
