@@ -45,6 +45,7 @@
       - Deployment Options
         - Ollama Desktop application
         - Hugging Face Transformers Python library
+          - integriting with python
     - Demo Running Llama with Ollama
     - Selecting Quantization Formats for Memory Optimization
       - What is Quantization?
@@ -54,3 +55,15 @@
       FP16|100%|Baseline
       Q6_K|99.5%|10% faster|6.6GB|12 GB
       Q4_K_M (default)|99%|20% faster|5GB|8 GB
+
+    - Loading Llama with Hugging Face Transformers
+      - Why Use transformers library?
+        - Llama in Python code
+        - Process responses
+        - Customize model behavior
+      - Prerequisites
+        - pip install torch --index-url https://download.pytorch.org/whl/cu121
+        - pip install transformers accelerate bitsandbytes
+        - pip install huggingface_hub
+        - hf auth login
+        - using token from https://huggingface.co/settings/tokens
