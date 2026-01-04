@@ -31,3 +31,7 @@
      - For a 7-billion-parameter model:
        - GPU with at least 14 GB of VRAM
        - CPU works, but much slower
+   - Industr-specific customization demonstration
+     - GPU - 16GB VRAM for an 8b model
+     - Cloud GPU - Lambda Labs, RunPod or AWS
+     - Python
