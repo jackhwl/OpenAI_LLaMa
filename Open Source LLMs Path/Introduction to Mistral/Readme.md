@@ -1,0 +1,12 @@
+1. Getting Started with Mistral
+    - History of Mistral
+      - Apr 2023, Paris, France
+      - 7B Sep 2023
+      - Le Chat Nov 2024
+    - Mistral Models
+      - Mistral 7B
+      - Mixtral 8x7B/8x22B
+      - Mistral Small Medium Large
+      - Codestral Mathstral Pixtral
+      - Ministral
+      - Magistral
