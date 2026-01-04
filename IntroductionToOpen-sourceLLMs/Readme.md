@@ -35,3 +35,8 @@
      - GPU - 16GB VRAM for an 8b model
      - Cloud GPU - Lambda Labs, RunPod or AWS
      - Python
+3. Surveying Leading opn-source LLMs and Their Use cases
+   - Llama, BLOOM, DeepSeek and Mistral Overview
+   - Architecture, Scale, and Benchmarks
+   - Specialized Models and Optimal Use Cases
+   - Model strengths, weaknesses, and When to use each 
