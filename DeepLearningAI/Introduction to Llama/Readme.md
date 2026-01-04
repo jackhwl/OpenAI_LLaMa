@@ -39,3 +39,9 @@
           - ChatGPT 3.5 70%
           - Llama 3.1 70B 85%
           - ChatGPT 5 90%
+    - Navigating Licensing Requirements
+2. Running Llama Locally
+    - Configuring Local Deployment
+      - Deployment Options
+        - Ollama Desktop application
+        - Hugging Face Transformers Python library
