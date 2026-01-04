@@ -10,3 +10,5 @@
       - Codestral Mathstral Pixtral
       - Ministral
       - Magistral
+    - Mistral Licenses
+    - What Makes Mistral Unique?
