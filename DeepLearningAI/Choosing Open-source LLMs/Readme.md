@@ -8,3 +8,26 @@
         - 70B
       - Mistral 7B
       - Falcon
+2. Evaluating Models for Performance and usability
+    - Getting started with model evaluation   
+    - Understanding model specifications: parameter count
+        - 7B: consumer 8GB, Mistral 7B
+          - writing help, summarization, customer service
+          - no complex reasoning or analysis
+        - 13B: 16GB (Llama2 13B)
+          - better reasoning, can handle nuances
+        - 30B+: 64GB+
+          - Advanced reasoning, technical analysis
+          - Legal and scientific domains
+    - What is Context Length?
+      - short 4k-8k
+      - medium 32k-128k
+      - massive 1M+
+    - Architecture considerations
+    - Decoding benchmarks and metrics
+    - Reality Check: Benchmarks vs real-world performance
+    - Model Evaluation step 1: define your requirements
+    - Model Evaluation step 2: Multi-tier evaluation approach
+    - Model Evaluation step 3: Total cost of ownership 
+    - Running your first local LLM
+        - ollama help
