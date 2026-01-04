@@ -70,3 +70,7 @@
 3. Building an Application with Llama
     - Implementing RAG Architecture for Document Search
     - Demo: Processing Documents
+    - Demo: Building Vector Storage
+    - Demo: Getting Answer
+    - Demo: Creating a Streamlit UI
+    - Summary
