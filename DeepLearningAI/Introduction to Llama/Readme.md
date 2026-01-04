@@ -31,3 +31,11 @@
       - Llama 3.2 Sep 2024
       - Llama 3.3 Dec 2024
       - Llama 4 Apr 2025
+    - Comparing Llama Models
+      - Llama 3.1 8B
+        - context window of about 100 pages of text
+        - Benchmark Scores
+          - Llama 3.1 8B 70%
+          - ChatGPT 3.5 70%
+          - Llama 3.1 70B 85%
+          - ChatGPT 5 90%
