@@ -67,3 +67,6 @@
         - pip install huggingface_hub
         - hf auth login
         - using token from https://huggingface.co/settings/tokens
+3. Building an Application with Llama
+    - Implementing RAG Architecture for Document Search
+    - Demo: Processing Documents
