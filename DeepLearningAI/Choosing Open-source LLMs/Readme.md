@@ -31,3 +31,8 @@
     - Model Evaluation step 3: Total cost of ownership 
     - Running your first local LLM
         - ollama help
+3. Licensing and practical constraints
+    - Understanding Model Licenses
+    - Common Licensing Red Flags
+    - Practical deployment considerations
+    - Where to go from here
