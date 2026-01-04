@@ -45,3 +45,12 @@
       - Deployment Options
         - Ollama Desktop application
         - Hugging Face Transformers Python library
+    - Demo Running Llama with Ollama
+    - Selecting Quantization Formats for Memory Optimization
+      - What is Quantization?
+
+      Quantization|Quality|Performance|Disk space|GPU
+      ---|---|---|---|---
+      FP16|100%|Baseline
+      Q6_K|99.5%|10% faster|6.6GB|12 GB
+      Q4_K_M (default)|99%|20% faster|5GB|8 GB
