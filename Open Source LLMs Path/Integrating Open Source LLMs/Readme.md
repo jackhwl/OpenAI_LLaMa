@@ -2,3 +2,4 @@
     - Beyond the Basics: Safe, efficient and advanced iintegration
     - Integrating LLM: An Overview
     - Integrating LLM: Installation & Setup
+    - Managing Credentials & Authentication

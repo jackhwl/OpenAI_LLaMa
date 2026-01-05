@@ -25,3 +25,6 @@ client_anthropic = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 client_mistral = Mistral(api_key=os.getenv("MISTRAL_API_KEY"))
 
 
+print(f"{Fore.YELLOW}OpenAI secret key is {os.getenv('OPENAI_API_KEY')}!{Fore.RESET}")
+print(f"{Fore.GREEN}Anthropic secret key is {os.getenv('ANTHROPIC_API_KEY')}!{Fore.RESET}")
+print(f"{Fore.BLUE}Mistral secret key is {os.getenv('MISTRAL_API_KEY')}!{Fore.RESET}")
