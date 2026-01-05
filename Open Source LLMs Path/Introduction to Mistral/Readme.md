@@ -12,3 +12,14 @@
       - Magistral
     - Mistral Licenses
     - What Makes Mistral Unique?
+    - Comparing Mistral
+    - Mistral Features
+    - Mistral Use Cases
+2. Developing with Mistral
+    - Mistral with Ollama
+    - Mistral with Llama.cpp
+    - Mistral with LM Studio
+    - Mistral in the Cloud
+    - Using Python: Code Completion
+    - Using TypeScript: Image Generation
+    - Using .NET: Chatbot
