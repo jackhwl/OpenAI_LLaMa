@@ -8,3 +8,8 @@
     - Defining the Nodes and Agents
     - Setting up a UserproxyAgent 
     - Running the workflow
+3. Building a real-time weather forecasting system
+    - Defining the workflow and agents
+    - Using OpenWeatherMap and OpenAI
+    - Defining Custom Agents
+    - Running the FLow: What is the weather like?
