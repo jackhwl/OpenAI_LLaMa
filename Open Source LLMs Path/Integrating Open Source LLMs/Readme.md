@@ -11,3 +11,4 @@
     - Building with the OpenAI Agents SDK - Part 2/2
     - Leveraging the Power of the LLMs with RAG
     - Create a Vector Store
+    - Optimizing Model Outputs
