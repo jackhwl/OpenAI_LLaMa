@@ -12,3 +12,4 @@
     - Leveraging the Power of the LLMs with RAG
     - Create a Vector Store
     - Optimizing Model Outputs
+    - Tracing LLM Outputs and Monitoring Usage
