@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 from colorama import Fore
 from autogen_agentchat.agents import AssistantAgent # type: ignore
+from autogen_agentchat.teams import RoundRobinGroupChat
 from autogen_agentchat.ui import Console # type: ignore
 from autogen_ext.models.openai import OpenAIChatCompletionClient # type: ignore
 
@@ -21,15 +22,26 @@ model_client = OpenAIChatCompletionClient(
 )
 
 # 2. Set up Single Agent (AssistantAgent)
-agent = AssistantAgent(
-    name="marketin_agent",
+marketing_agent = AssistantAgent(
+    name="marketing_agent",
     model_client=model_client,
     system_message=PROMPT,
 )
 
+presenter_agent = AssistantAgent(
+    name="presenter_agent",
+    model_client=model_client,
+    system_message="You are a presentation assistant to present the marketing idea nicely using colors and emojis.",
+)
+
 # Async function for getting results
 async def main():
-    await Console(agent.run_stream(task="Create a marketing concept for an 'idea box'"))
+    """Main function to run the multi-agent system."""
+    print(f"{Fore.MAGENTA} Generating idea... {Fore.RESET}")
+
+    group_chat = RoundRobinGroupChat([marketing_agent, presenter_agent])
+
+    await Console(group_chat.run_stream(task="Create a marketing concept for an 'idea box'"))
     await model_client.close()
 
 
