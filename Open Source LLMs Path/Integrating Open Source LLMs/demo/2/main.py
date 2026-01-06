@@ -28,7 +28,7 @@ lead_developer_agent = Agent(
     instructions="You are the lead developer. Oversee the project and provide guidance to other developers based on the code review checklist and project guidelines. You give final approval on code before it is merged into the main codebase.",
 )
 
-orchestrator_agent = Agent(
+project_manager_orchestrator = Agent(
     name="orchestrator_agent",
     instructions=(
         "You are a translation agent. You use the tools given to you to translate."
@@ -57,8 +57,23 @@ client_openai = OpenAI()
 console.rule("[bold Green]START OF CHAT")
 
 async def main():
-    """Main function to run the orchestrator example."""
-    pass
+    msg = input("Hi! What feature would you want to develop?")
+
+    # Run the entire orchestration in a single trace
+    with trace("Orchestrator evaluator"):
+        orchestrator_result = await Runner.run(project_manager_orchestrator, msg)
+
+        for item in orchestrator_result.new_items:
+            if isinstance(item, MessageOutputItem):
+                text = ItemHelpers.text_message_output(item)
+                if text:
+                    print(f"  - step: {text}")
+
+        result = await Runner.run(
+            project_manager_orchestrator, orchestrator_result.to_input_list()
+        )
+
+    print(f"\n\nFinal response:\n{result.final_output}")
 
     console.rule("[bold Blue]END OF CHAT")
 
