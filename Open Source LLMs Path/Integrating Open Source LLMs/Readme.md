@@ -9,3 +9,4 @@
     - Building with the OpenAI Agents SDK - Part 1/2
       - https://github.com/openai/openai-agents-python/blob/main/examples/agent_patterns/agents_as_tools.py
     - Building with the OpenAI Agents SDK - Part 2/2
+    - Leveraging the Power of the LLMs with RAG

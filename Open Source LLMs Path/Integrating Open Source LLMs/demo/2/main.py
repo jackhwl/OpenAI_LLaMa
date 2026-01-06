@@ -57,26 +57,43 @@ client_openai = OpenAI()
 console.rule("[bold Green]START OF CHAT")
 
 async def main():
-    msg = input("Hi! What feature would you want to develop?")
+    msg = input("Hi! What feature would you want to develop? ")
 
     # Run the entire orchestration in a single trace
     with trace("Orchestrator evaluator"):
-        orchestrator_result = await Runner.run(project_manager_orchestrator, msg)
+        orchestrator_result = Runner.run_streamed(project_manager_orchestrator, input=msg)
 
-        for item in orchestrator_result.new_items:
-            if isinstance(item, MessageOutputItem):
-                text = ItemHelpers.text_message_output(item)
-                if text:
-                    print(f"  - step: {text}")
+        async for event in orchestrator_result.stream_events():
+        # We'll ignore the raw responses event deltas
+       
+    
+            if event.type == "raw_response_event":
+                continue
+            
+            # When the agent updates, print that
+            elif event.type == "agent_updated_stream_event":
+                print(Fore.MAGENTA + f"Agent updated: {event.new_agent.name}" + Fore.RESET)
+                continue
+            elif event.type == "response.output_text.delta":
+                print(Fore.CYAN + f"Output: {event.new_agent.name}" + Fore.RESET)
+                continue
+            # When items are generated, print them
+            elif event.type == "run_item_stream_event":
+                if event.item.type == "tool_call_item":
+                    print(Fore.YELLOW + "-- Tool was called" + Fore.RESET)
+                elif event.item.type == "tool_call_output_item":
+                    print(Fore.YELLOW + f"-- Tool output: {event.item.output}" + Fore.RESET)
+                elif event.item.type == "message_output_item":
+                    print(Fore.YELLOW + f"-- Message output:\n {ItemHelpers.text_message_output(event.item)}" + Fore.RESET)
+                else:
+                    pass  # Ignore other event types
 
-        result = await Runner.run(
+        synthesizer_result = await Runner.run(
             project_manager_orchestrator, orchestrator_result.to_input_list()
         )
 
-    print(f"\n\nFinal response:\n{result.final_output}")
-
+    print(f"\n\nFinal response:\n{synthesizer_result.final_output}")
     console.rule("[bold Blue]END OF CHAT")
-
-
+    
 if __name__ == "__main__":
     asyncio.run(main())
