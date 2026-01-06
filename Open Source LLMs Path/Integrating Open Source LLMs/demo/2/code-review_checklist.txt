@@ -1,0 +1,52 @@
+=== Checklist: Code Review Recommendations and Best Practices ===
+
+Reviewer Feedback :
+
+- Code Style & Standards: Code follows the project’s style guide with consistent naming conventions.
+    - ✅ Best Practice: Consistent naming (e.g., camelCase for variables, PascalCase for components).
+    - ⚠️ Issue Example: Mixing snake_case and camelCase in the same file.
+- Formatting: Indentation, spacing, and naming are consistent and easy to read.
+    - ✅ Best Practice: Code is auto-formatted using Prettier/ESLint.
+    - ⚠️ Issue Example: Inconsistent indentation (2 vs. 4 spaces) across functions.
+- Architectural Integrity: Codebase is scalable, maintainable, and aligns with the overall system design.
+    - ✅ Best Practice: Separation of concerns (controllers, services, and data layers are modular).
+    - ⚠️ Issue Example: Business logic directly embedded in route handlers.
+- Performance: Queries and logic are optimized for expected load and future growth.
+    - ✅ Best Practice: Proper indexing added to frequently queried DB columns.
+    - ⚠️ Issue Example: SELECT * queries without filters, leading to performance bottlenecks.
+- Security: Sensitive information (e.g., API keys, JWT secrets) is not hardcoded and is securely managed.
+    - ✅ Best Practice: Passwords hashed with bcrypt or Argon2.
+    - ⚠️ Issue Example: JWT secret stored in plain text instead of environment variables.
+- Error Handling & Logging: Proper error handling, logging, and fallbacks are implemented.
+    - ✅ Best Practice: Centralized error middleware with descriptive error codes.
+    - ⚠️ Issue Example: Silent failure — errors logged only to console without proper handling.
+- Testing: Adequate unit, integration, and/or end-to-end tests are provided.
+    - ✅ Best Practice: Tests cover core business logic and edge cases.
+    - ⚠️ Issue Example: No tests for API error states or edge-case inputs.
+
+Guiding Questions : 
+
+- Is the purpose and behavior of the code clear and understandable?
+- Does the code function as intended and pass relevant test cases?
+- Does the implementation meet all stated functional and non-functional requirements?
+- Are there potential risks (security, scalability, maintainability) that need to be addressed?
+
+Issues Examples to flag  :
+
+Password hashing is implemented correctly.
+⚠️ Issue: JWT secret is stored in plain text and must be moved to environment variables.
+
+Lead Developer Approval
+
+Approval may be granted with conditions if minor issues remain.
+
+
+=== Code Review Approval Report (Q&A) ===
+✅ Approved
+⚠️ Approved with Minor Changes
+❌ Rejected
+
+
+sources : 
+- What to look for in a Code Review -  https://google.github.io/eng-practices/review/reviewer/looking-for.html
+- The Standard of Code Review - https://google.github.io/eng-practices/review/reviewer/standard.html
