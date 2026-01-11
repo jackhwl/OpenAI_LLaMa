@@ -3,3 +3,6 @@
   - MCP Architecture
   - Pros and Cons of FastMCP
   - Setting up FastMCP
+  - MCP and the Agentic AI Ecosystem
+  - Alternative to MCP
+  - Practical Use Cases of MCP
