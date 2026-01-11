@@ -6,3 +6,5 @@
   - MCP and the Agentic AI Ecosystem
   - Alternative to MCP
   - Practical Use Cases of MCP
+2. FastMCP Essentials
+  - Comparing FastMCP to Stardard MCP Implementations
