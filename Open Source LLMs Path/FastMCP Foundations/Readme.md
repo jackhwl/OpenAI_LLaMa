@@ -8,3 +8,5 @@
   - Practical Use Cases of MCP
 2. FastMCP Essentials
   - Comparing FastMCP to Stardard MCP Implementations
+  - Connecting to an MCP Server in VS Code
+  - Connecting to an MCP Server to Claude Desktop
