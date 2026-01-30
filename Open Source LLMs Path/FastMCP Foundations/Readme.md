@@ -15,3 +15,7 @@
   - Building a Crypto MCP Server with FastMCP
   - Building a Document and Knowledge Base MCP Server
   - Chaining Tools with a Crypto MCP
+3. Metrics and Observability for FastMCP
+  - Structured Message Handling in FastMCP
+  - Demo: Using Middleware in FastMCP
+  - Extending FastMCP with Plugin
