@@ -3,3 +3,4 @@
 3. Why Use Skills - Part II
 4. Skills vs Tools, MCP, and Subagents
 5. Exploring Pre-Built Skills
+6. Creating Custom Skills
