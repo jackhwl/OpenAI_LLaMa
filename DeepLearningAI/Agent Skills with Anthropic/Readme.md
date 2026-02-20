@@ -6,3 +6,4 @@
 6. Creating Custom Skills
 7. Skills with the Claude API
 8. Skills with Claude Code
+9. Skills with the Claude Agent SDK

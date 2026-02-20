@@ -161,3 +161,4 @@ Define the use case|Choose an existing model or pretrain your own|<table><tr><td
   - AI Agents
   - Create agents to research and write an article
     - sample under crewAiß
+# Gemini CLI: Code & Create with an Open-Source Agent
