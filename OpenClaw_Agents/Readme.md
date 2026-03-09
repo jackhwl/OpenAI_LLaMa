@@ -13,3 +13,5 @@
   - AI Model setup & whatsapp integration
   - OpenClaw Terminal UI & Gateway Explained: Start Your AI Agent and Chat
   - OpenClaw Automation Demo: File Creation, Scheduling Jobs & Web Summarization
+## Build Application using Gradio
+  - Introduction to Gradio Part 1
