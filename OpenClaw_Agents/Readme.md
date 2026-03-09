@@ -9,3 +9,4 @@
   - Multiple ways to Install OpenClaw
 ## OpenClaw Installation on Ubuntu with Windows WSL
   - Enable WSL on Windows
+  - Install OpenClaw on Ubuntu
