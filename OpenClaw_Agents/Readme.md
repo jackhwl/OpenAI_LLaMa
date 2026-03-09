@@ -4,3 +4,4 @@
   - Openclaw vs Other AI Assitants
   - Understanding the 25 Built-in Tools
   - Understanding the 53 Bundled Skills
+  - Security Mindset: Why it matters from Day 1
