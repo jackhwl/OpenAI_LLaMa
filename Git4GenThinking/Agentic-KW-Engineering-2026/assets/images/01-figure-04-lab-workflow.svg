@@ -1,0 +1,152 @@
+<!--
+================================================================================
+图表名称：第一天课程演练：构建 MVA 实战步骤
+文件命名：01-figure-04-1.svg
+用途：展示 Day 01 实验中从初始化本地库到云端对话的工程路径
+版本：v1.0.0
+作者：Gitconomy Research-郭晧
+SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+创建日期：2026-01-31
+================================================================================
+-->
+<svg viewBox="0 0 800 505" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background: Solid White -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+  <defs>
+    <style>
+      :root {
+        --c-cloud-blue: #0052CC;
+        --c-local-green: #00875A;
+        --c-risk-amber: #FF991F;
+        --c-neutral-gray: #64748B;
+        --c-brand-purple: #7C3AED;
+        --c-bg-light: #F8FAFC;
+        --font-sans: "Noto Sans SC", "Noto Sans", system-ui, sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+      text { font-family: var(--font-sans); }
+      .text-mono { font-family: var(--font-mono); font-size: 11px; }
+      /* 标题颜色根据规范调整为黑色 */
+      .text-title { font-family: var(--font-sans); font-weight: bold; fill: #000000; font-size: 24px; }
+      .text-step-title { font-family: var(--font-sans); font-weight: bold; font-size: 16px; fill: #1E293B; }
+      .text-step-desc { font-family: var(--font-sans); font-size: 12px; fill: #64748B; }
+      .text-num { font-family: var(--font-mono); font-weight: bold; fill: var(--c-brand-purple); font-size: 18px; }
+
+      /* 卡片样式 */
+      .step-card { fill: white; stroke: #E2E8F0; stroke-width: 1; }
+
+      /* 连接线 */
+      .flow-arrow { fill: #CBD5E1; }
+      .line-async { stroke: var(--c-cloud-blue); stroke-dasharray: 4 2; stroke-width: 1.5; fill: none; }
+    </style>
+  </defs>
+
+  <!-- 1. 纯文字标题块 -->
+  <g id="title-block" transform="translate(400, 40)">
+    <text y="20" text-anchor="middle" class="text-title">构建最小可行智能体 (MVA)</text>
+    <text y="45" text-anchor="middle" class="text-mono" font-size="14" fill="var(--c-neutral-gray)">第 1 天 > 实验演练</text>
+    <line x1="-30" y1="60" x2="30" y2="60" stroke="var(--c-local-green)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- 2. 步骤主体 -->
+  <g id="diagram-content" transform="translate(0, 120)">
+
+    <!-- 步骤 1: 本地 Obsidian -->
+    <g transform="translate(40, 60)">
+      <text x="0" y="0" class="text-num">1. 初始化知识库</text>
+      <text x="0" y="20" class="text-step-desc" font-weight="bold" fill="#1E293B">在 Obsidian 中</text>
+
+      <g transform="translate(0, 50)">
+        <rect width="210" height="150" rx="8" class="step-card" />
+        <!-- 图标：Monitor + Folder -->
+        <rect x="40" y="30" width="100" height="60" rx="4" fill="none" stroke="#64748B" stroke-width="2"/>
+        <path d="M 70,90 L 110,90 M 90,90 L 90,105 M 60,105 L 120,105" stroke="#64748B" stroke-width="2"/>
+        <g transform="translate(100, 60)">
+          <rect x="0" y="0" width="60" height="45" rx="2" fill="var(--c-local-green)" fill-opacity="0.1" stroke="var(--c-local-green)" stroke-width="1.5"/>
+          <path d="M 10,15 L 50,15 M 10,25 L 30,25" stroke="var(--c-local-green)" stroke-width="2" stroke-linecap="round"/>
+        </g>
+        <text x="105" y="130" text-anchor="middle" class="text-step-desc" font-weight="bold">本地 Obsidian 知识库</text>
+      </g>
+    </g>
+
+    <!-- 箭头 1-2 -->
+    <path d="M 270,200 L 310,200" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+    <polygon points="310,200 300,195 300,205" class="flow-arrow" />
+
+    <!-- 步骤 2: 插件配置 -->
+    <g transform="translate(300, 60)">
+      <text x="0" y="0" class="text-num">2. 安装并配置</text>
+      <text x="0" y="20" class="text-step-desc" font-weight="bold" fill="#1E293B">Text Generator 插件</text>
+
+      <g transform="translate(0, 50)">
+        <rect width="210" height="150" rx="8" class="step-card" />
+        <!-- 图标：Gear + AI Doc -->
+        <circle cx="70" cy="65" r="25" fill="none" stroke="var(--c-risk-amber)" stroke-width="2" stroke-dasharray="2 1"/>
+        <path d="M 70,55 L 70,75 M 60,65 L 80,65" stroke="var(--c-risk-amber)" stroke-width="2"/>
+        <g transform="translate(105, 45)">
+          <path d="M 0,0 L 40,0 L 50,10 L 50,55 L 0,55 Z" fill="white" stroke="var(--c-neutral-gray)" stroke-width="1.5"/>
+          <text x="25" y="35" text-anchor="middle" class="text-mono" font-size="10" fill="var(--c-risk-amber)">&lt;AI&gt;</text>
+        </g>
+        <text x="105" y="130" text-anchor="middle" class="text-step-desc" font-weight="bold">Text Generator 插件</text>
+      </g>
+    </g>
+
+    <!-- 箭头 2-3 -->
+    <path d="M 530,200 L 570,200" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+    <polygon points="570,200 560,195 560,205" class="flow-arrow" />
+
+    <!-- 步骤 3: 云端对话 -->
+    <g transform="translate(560, 60)">
+      <text x="0" y="0" class="text-num">3. 运行 'Hello World'</text>
+      <text x="0" y="20" class="text-step-desc" font-weight="bold" fill="#1E293B">与 AI 进行对话</text>
+
+      <g transform="translate(0, 50)">
+        <rect width="200" height="150" rx="8" class="step-card" />
+        <!-- 图标：Chat Window + Cloud Brain -->
+        <rect x="25" y="30" width="70" height="50" rx="3" fill="#1E293B" />
+        <text x="35" y="50" text-anchor="start" font-size="8" fill="white">你好，AI！</text>
+        <text x="35" y="65" text-anchor="start" font-size="8" fill="#94A3B8">你好，人类！</text>
+
+        <path d="M 95,55 L 125,55" class="line-async" />
+
+        <g transform="translate(155, 55)">
+          <!-- Cloud Hexagon Brain -->
+          <polygon points="0,-25 22,-12 22,12 0,25 -22,12 -22,-12" fill="var(--c-cloud-blue)" fill-opacity="0.1" stroke="var(--c-cloud-blue)" stroke-width="1.5" />
+          <path d="M -8,-8 L 8,8 M -8,8 L 8,-8" stroke="var(--c-cloud-blue)" stroke-width="1" />
+        </g>
+        <text x="100" y="130" text-anchor="middle" class="text-step-desc" font-weight="bold">在云端与 AI 对话</text>
+      </g>
+    </g>
+
+  </g>
+
+  <!-- 3. 图例 -->
+  <g id="legend-block" transform="translate(40, 420)">
+    <rect x="0" y="0" width="720" height="40" rx="4" fill="white" stroke="#E2E8F0" stroke-width="0.5"/>
+    <g transform="translate(15, 24)">
+      <text x="0" y="0" font-size="10" fill="#64748B">图例语义：</text>
+      <g transform="translate(80, -5)">
+        <rect width="10" height="10" rx="2" fill="var(--c-local-green)" />
+        <text x="18" y="8" font-size="10" fill="#334155">本地身体 (数据主权)</text>
+      </g>
+      <g transform="translate(230, -5)">
+        <rect width="10" height="10" rx="2" fill="var(--c-risk-amber)" />
+        <text x="18" y="8" font-size="10" fill="#334155">神经接口 (协议转换)</text>
+      </g>
+      <g transform="translate(380, -5)">
+        <polygon points="5,0 10,3 10,8 5,11 0,8 0,3" fill="var(--c-cloud-blue)" />
+        <text x="18" y="8" font-size="10" fill="#334155">云端大脑 (逻辑推理)</text>
+      </g>
+      <g transform="translate(530, -5)">
+        <line x1="0" y1="5" x2="15" y2="5" class="line-async" />
+        <text x="22" y="8" font-size="10" fill="#334155">异步网络连接</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- 4. 底部许可声明 -->
+  <text x="400" y="485" text-anchor="middle" font-size="10" fill="var(--c-neutral-gray)">
+    本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+  </text>
+
+</svg>

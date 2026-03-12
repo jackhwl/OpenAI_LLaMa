@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  图表名称：生成式思维与知识工作流课程实验环境架构图
+  描述：展示从本地知识容器（Obsidian）到客户端（Cherry Studio），再通过 MCP 协议连接本地文件与 ModelScope 云端模型的完整架构。
+  设计规范：遵循 Gitconomy 社区图形即代码设计规范 v1.0 (SVG)。
+-->
+<svg width="1200" height="740" viewBox="0 0 1200 740" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,3 L0,6 Z" fill="#64748b" />
+    </marker>
+    <!-- 虚线箭头 -->
+    <marker id="arrow-dashed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#60A5FA" />
+    </marker>
+    <style><![CDATA[
+      .title { font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 20px; font-weight: 700; fill: #0f172a; }
+      .subtitle { font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; fill: #475569; }
+      .layer-title { font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 14px; font-weight: 700; fill: #0f172a; }
+      .box-title { font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 13px; font-weight: 600; fill: #0f172a; }
+      .box-text { font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; fill: #334155; }
+      .license-text { font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif; font-size: 12px; fill: #94a3b8; }
+    ]]></style>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="1200" height="740" fill="#f8fafc" />
+
+  <!-- title -->
+  <text x="600" y="40" text-anchor="middle" class="title">
+    生成式思维与知识工作流课程实验环境架构图
+  </text>
+  <text x="600" y="65" text-anchor="middle" class="subtitle">
+    本地知识库 (Input) → MCP 协议连接 (Link) → Cherry Studio (Hub) → ModelScope (Engine)
+  </text>
+
+  <!-- ==========================================
+        LAYER 4: 应用与交付层
+       ========================================== -->
+
+  <rect x="60" y="90" width="1080" height="120" rx="24" ry="24" fill="#e0f2fe" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="80" y="120" class="layer-title">Layer 4 · 应用与交付层（Application &amp; Delivery）</text>
+
+  <!-- layer 4 boxes -->
+  <rect x="100" y="135" width="280" height="60" rx="14" ry="14" fill="#ffffff" stroke="#bfdbfe" stroke-width="1.2"/>
+  <text x="240" y="155" text-anchor="middle" class="box-title">协作小组 (Teams)</text>
+  <text x="240" y="173" text-anchor="middle" class="box-text">Product Owner / Prompt Engineer</text>
+
+  <rect x="400" y="135" width="300" height="60" rx="14" ry="14" fill="#ffffff" stroke="#bfdbfe" stroke-width="1.2"/>
+  <text x="550" y="155" text-anchor="middle" class="box-title">自动化工作流 (Agents)</text>
+  <text x="550" y="173" text-anchor="middle" class="box-text">研报生成 / 代码审计 / 知识整理</text>
+
+  <rect x="720" y="135" width="380" height="60" rx="14" ry="14" fill="#ffffff" stroke="#bfdbfe" stroke-width="1.2"/>
+  <text x="910" y="155" text-anchor="middle" class="box-title">交付产物 (Artifacts)</text>
+  <text x="910" y="173" text-anchor="middle" class="box-text">SOP文档 · 助手配置JSON · 演示视频</text>
+
+  <!-- ==========================================
+        LAYER 3: 客户端交互层
+       ========================================== -->
+
+  <rect x="60" y="230" width="1080" height="140" rx="24" ry="24" fill="#f1f5f9" stroke="#cbd5f5" stroke-width="1.5"/>
+  <text x="80" y="260" class="layer-title">Layer 3 · 客户端交互层（Client &amp; Interaction）</text>
+
+  <!-- layer 3 boxes -->
+  <rect x="90" y="280" width="240" height="70" rx="14" ry="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text x="210" y="300" text-anchor="middle" class="box-title">输入端：Obsidian</text>
+  <text x="210" y="318" text-anchor="middle" class="box-text">结构化笔记 · Canvas</text>
+  <text x="210" y="336" text-anchor="middle" class="box-text">Markdown Editor</text>
+
+  <!-- Cherry Studio - The Core Hub -->
+  <rect x="360" y="280" width="480" height="70" rx="14" ry="14" fill="#ffffff" stroke="#db2777" stroke-width="1.5"/>
+  <text x="600" y="300" text-anchor="middle" class="box-title" fill="#be185d">🍒 驾驶舱：Cherry Studio</text>
+  <text x="600" y="318" text-anchor="middle" class="box-text">助手管理 · Prompt 编排 · 知识库索引</text>
+  <text x="600" y="336" text-anchor="middle" class="box-text">Central Hub for AI &amp; Tools</text>
+
+  <rect x="870" y="280" width="240" height="70" rx="14" ry="14" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.2"/>
+  <text x="990" y="300" text-anchor="middle" class="box-title">提交端：GitLink</text>
+  <text x="990" y="318" text-anchor="middle" class="box-text">Pull Requests · Code Review</text>
+  <text x="990" y="336" text-anchor="middle" class="box-text">Open Source Collaboration</text>
+
+  <!-- ==========================================
+        LAYER 2: 协议与引擎层
+       ========================================== -->
+
+  <rect x="60" y="390" width="1080" height="150" rx="24" ry="24" fill="#eef2ff" stroke="#a5b4fc" stroke-width="1.5"/>
+  <text x="80" y="420" class="layer-title">Layer 2 · 协议与引擎层（Protocol &amp; Engine）</text>
+
+  <!-- layer 2 boxes -->
+  <rect x="180" y="440" width="320" height="70" rx="14" ry="14" fill="#ffffff" stroke="#c7d2fe" stroke-width="1.2"/>
+  <text x="340" y="460" text-anchor="middle" class="box-title">🔌 机械臂：MCP Server</text>
+  <text x="340" y="478" text-anchor="middle" class="box-text">Model Context Protocol</text>
+  <text x="340" y="496" text-anchor="middle" class="box-text">Tools: Filesystem, Brave Search</text>
+
+  <rect x="680" y="440" width="320" height="70" rx="14" ry="14" fill="#ffffff" stroke="#c7d2fe" stroke-width="1.2"/>
+  <text x="840" y="460" text-anchor="middle" class="box-title">🚀 动力源：ModelScope API</text>
+  <text x="840" y="478" text-anchor="middle" class="box-text">Qwen 2.5-72B-Instruct</text>
+  <text x="840" y="496" text-anchor="middle" class="box-text">Serverless Inference</text>
+
+  <!-- ==========================================
+        LAYER 1: 存储与数据层
+       ========================================== -->
+
+  <rect x="60" y="560" width="1080" height="120" rx="24" ry="24" fill="#f9fafb" stroke="#d1d5db" stroke-width="1.5"/>
+  <text x="80" y="590" class="layer-title">Layer 1 · 存储与数据层（Storage &amp; Data）</text>
+
+  <!-- layer 1 boxes -->
+  <rect x="135" y="605" width="260" height="50" rx="14" ry="14" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.2"/>
+  <text x="265" y="624" text-anchor="middle" class="box-title">📂 本地文件系统</text>
+  <text x="265" y="642" text-anchor="middle" class="box-text">Obsidian Vault / PDF / Data</text>
+
+  <rect x="470" y="605" width="260" height="50" rx="14" ry="14" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.2"/>
+  <text x="600" y="624" text-anchor="middle" class="box-title">🌐 互联网数据</text>
+  <text x="600" y="642" text-anchor="middle" class="box-text">Search Results / Web Pages</text>
+
+  <rect x="805" y="605" width="260" height="50" rx="14" ry="14" fill="#ffffff" stroke="#e5e7eb" stroke-width="1.2"/>
+  <text x="935" y="624" text-anchor="middle" class="box-title">📦 Git 远程仓库</text>
+  <text x="935" y="642" text-anchor="middle" class="box-text">Version Control &amp; Backup</text>
+
+  <!-- ARROWS -->
+  <!-- Storage -> Protocol/Engine -->
+  <line x1="265" y1="605" x2="340" y2="510" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#arrow)" />
+  <line x1="600" y1="605" x2="380" y2="510" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#arrow)" />
+
+  <!-- Protocol/Engine -> Client -->
+  <line x1="340" y1="440" x2="450" y2="350" stroke="#a855f7" stroke-width="1.4" stroke-dasharray="4,4" marker-end="url(#arrow)" />
+  <line x1="840" y1="440" x2="700" y2="350" stroke="#db2777" stroke-width="1.4" stroke-dasharray="4,4" marker-end="url(#arrow)" />
+
+  <!-- Client -> Application -->
+  <line x1="210" y1="280" x2="210" y2="200" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#arrow)" />
+  <line x1="600" y1="280" x2="550" y2="200" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#arrow)" />
+  <line x1="990" y1="280" x2="990" y2="200" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#arrow)" />
+
+  <!-- License Declaration -->
+  <text x="600" y="710" text-anchor="middle" class="license-text">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

@@ -1,0 +1,198 @@
+<!--
+  文件名：module-05-react-vs-pear-loop.svg
+  图表名称：ReAct vs PEAR 行动闭环对比图
+  描述：对比 ReAct (Reason+Act) 与 PEAR (Perceive-Evaluate-Act-Reflect) 两种智能体行动模式的结构差异，展示 PEAR 如何作为 ReAct 的系统化升级。
+
+  核心对比：
+  1. ReAct (左): 三步循环 (Reason -> Act -> Observe)，侧重“边想边做”。
+  2. PEAR (右): 四步闭环 (Perceive -> Evaluate -> Act -> Reflect)，侧重“感知-决策-执行-反思”的完整系统论。
+  3. 升级点: 显式引入 Evaluate (事前规划) 和 Reflect (事后修正)。
+
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+-->
+<svg width="1200" height="740" viewBox="0 0 1200 740" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义样式与标记 -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+
+      /* 文本样式 */
+      .main-title { font-family: 'Noto Sans', sans-serif; font-size: 24px; font-weight: 800; fill: #111827; text-anchor: middle; }
+      .sub-title { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: normal; fill: #6B7280; text-anchor: middle; }
+
+      .panel-title { font-family: 'Noto Sans', sans-serif; font-size: 18px; font-weight: 800; text-anchor: middle; }
+      .node-text { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: bold; text-anchor: middle; }
+      .desc-text { font-family: 'Noto Sans', sans-serif; font-size: 11px; fill: #4B5563; text-anchor: middle; }
+      .tag-text { font-family: 'Noto Sans', sans-serif; font-size: 10px; font-weight: bold; fill: white; text-anchor: middle; }
+
+      /* 区域背景 */
+      .bg-react { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; rx: 16; }
+      .bg-pear { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; rx: 16; }
+
+      /* 节点样式 */
+      .node-circle { stroke-width: 2px; fill: white; }
+      .node-react { stroke: #2563EB; }
+      .node-pear { stroke: #059669; }
+      .node-new { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2px; } /* 新增模块高亮 */
+
+      /* 连接线 */
+      .loop-path-react { fill: none; stroke: #2563EB; stroke-width: 3px; marker-end: url(#arrow-blue); }
+      .loop-path-pear { fill: none; stroke: #059669; stroke-width: 3px; marker-end: url(#arrow-green); }
+      .compare-line { stroke: #CBD5E1; stroke-width: 1px; stroke-dasharray: 4,4; }
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="7.2" refY="4" orient="auto">
+      <polygon points="0,0 7,4 0,7" fill="#2563EB"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6.5" refY="4" orient="auto">
+      <polygon points="0,0 7,4 0,7" fill="#059669"/>
+    </marker>
+  </defs>
+
+  <!-- 1. 标题区域 -->
+  <text x="600" y="50" class="main-title">ReAct vs PEAR 行动闭环对比</text>
+  <text x="600" y="80" class="sub-title">系统化升级：从“边想边做”到“深思熟虑的闭环”</text>
+
+  <!-- ================================================================================== -->
+  <!-- 左侧：ReAct 模式 (Reason+Act) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(100, 120)">
+    <rect x="0" y="0" width="450" height="420" class="bg-react"/>
+    <text x="225" y="40" class="panel-title" fill="#1E40AF">ReAct 模式</text>
+    <text x="225" y="60" class="desc-text" fill="#1E40AF">Reasoning + Acting</text>
+
+    <!-- 循环路径 (三角形布局) -->
+    <g transform="translate(225, 230)">
+        <!-- 1. Reason (Top) -->
+        <circle cx="0" cy="-100" r="45" class="node-circle node-react"/>
+        <text x="0" y="-105" class="node-text" fill="#1E40AF">Reason</text>
+        <text x="0" y="-85" class="desc-text">(Thought)</text>
+
+        <!-- 2. Act (Right Bottom) -->
+        <circle cx="86" cy="50" r="45" class="node-circle node-react"/>
+        <text x="86" y="45" class="node-text" fill="#1E40AF">Act</text>
+        <text x="86" y="65" class="desc-text">(Action)</text>
+
+        <!-- 3. Observe (Left Bottom) -->
+        <circle cx="-86" cy="50" r="45" class="node-circle node-react"/>
+        <text x="-86" y="45" class="node-text" fill="#1E40AF">Observe</text>
+        <text x="-86" y="65" class="desc-text">(Result)</text>
+
+        <!-- 循环箭头 -->
+        <!-- Reason -> Act -->
+        <path d="M 35 -75 L 75 8" class="loop-path-react"/>
+
+        <!-- Act -> Observe -->
+        <path d="M 41 50 L -41 50" class="loop-path-react"/>
+
+        <!-- Observe -> Reason -->
+        <path d="M -75 5 L -35 -75" class="loop-path-react"/>
+
+        <!-- Center Label -->
+        <text x="0" y="10" font-size="24" text-anchor="middle">🔄</text>
+        <text x="0" y="130" class="desc-text" fill="#2563EB" font-weight="bold">快速迭代，推理与行动交织</text>
+    </g>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 右侧：PEAR 模式 (Perceive-Evaluate-Act-Reflect) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(650, 120)">
+    <rect x="0" y="0" width="450" height="420" class="bg-pear"/>
+    <text x="225" y="40" class="panel-title" fill="#065F46">PEAR 系统模型</text>
+    <text x="225" y="60" class="desc-text" fill="#065F46">Systematic Control Loop</text>
+
+    <!-- 循环路径 (矩形布局) -->
+    <g transform="translate(225, 230)">
+        <!-- 1. Perceive (Left Top) -->
+        <circle cx="-100" cy="-80" r="45" class="node-circle node-pear"/>
+        <text x="-100" y="-85" class="node-text" fill="#059669">Perceive</text>
+        <text x="-100" y="-65" class="desc-text">(Observe)</text>
+
+        <!-- 2. Evaluate (Right Top) - NEW -->
+        <circle cx="100" cy="-80" r="45" class="node-circle node-new"/>
+        <text x="100" y="-85" class="node-text" fill="#B45309">Evaluate</text>
+        <text x="100" y="-65" class="desc-text">(Plan/Judge)</text>
+        <!-- 标签 -->
+        <rect x="60" y="-160" width="80" height="20" rx="4" fill="#F59E0B"/>
+        <text x="100" y="-146" class="tag-text">事前决策</text>
+
+        <!-- 3. Act (Right Bottom) -->
+        <circle cx="100" cy="80" r="45" class="node-circle node-pear"/>
+        <text x="100" y="75" class="node-text" fill="#059669">Act</text>
+        <text x="100" y="95" class="desc-text">(Execute)</text>
+
+        <!-- 4. Reflect (Left Bottom) - NEW -->
+        <circle cx="-100" cy="80" r="45" class="node-circle node-new"/>
+        <text x="-100" y="75" class="node-text" fill="#B45309">Reflect</text>
+        <text x="-100" y="95" class="desc-text">(Critique)</text>
+        <!-- 标签 -->
+        <rect x="-140" y="140" width="80" height="20" rx="4" fill="#F59E0B"/>
+        <text x="-100" y="154" class="tag-text">事后修正</text>
+
+        <!-- 循环箭头 -->
+        <!-- Perceive -> Evaluate -->
+        <path d="M -55 -80 L 55 -80" class="loop-path-pear"/>
+
+        <!-- Evaluate -> Act -->
+        <path d="M 100 -35 L 100 35" class="loop-path-pear"/>
+
+        <!-- Act -> Reflect -->
+        <path d="M 55 80 L -55 80" class="loop-path-pear"/>
+
+        <!-- Reflect -> Perceive -->
+        <path d="M -100 35 L -100 -35" class="loop-path-pear"/>
+
+        <!-- Center Label -->
+        <text x="0" y="10" font-size="24" text-anchor="middle">⚙️</text>
+        <text x="0" y="130" class="desc-text" fill="#059669" font-weight="bold">双重质量门控 (Pre &amp; Post)</text>
+    </g>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 映射关系线 (灰色虚线) -->
+  <!-- ================================================================================== -->
+  <!-- Observe <-> Perceive -->
+  <line x1="220" y1="400" x2="680" y2="280" class="compare-line"/>
+
+  <!-- Reason <-> Evaluate -->
+  <line x1="400" y1="220" x2="880" y2="280" class="compare-line"/>
+
+  <!-- Act <-> Act -->
+  <line x1="400" y1="400" x2="880" y2="440" class="compare-line"/>
+
+  <!-- ================================================================================== -->
+  <!-- 底部：维度对比表格 -->
+  <!-- ================================================================================== -->
+  <g transform="translate(100, 560)">
+    <line x1="0" y1="0" x2="1000" y2="0" stroke="#E2E8F0" stroke-width="2"/>
+
+    <!-- Header -->
+    <text x="100" y="30" class="label-text" fill="#64748B" font-size="13" font-weight="bold">维度</text>
+    <text x="350" y="30" class="label-text" fill="#64748B" font-size="13" font-weight="bold">ReAct (基础模式)</text>
+    <text x="800" y="30" class="label-text" fill="#64748B" font-size="13" font-weight="bold">PEAR (系统模式)</text>
+
+    <!-- Row 1: Decision -->
+    <text x="100" y="60" class="node-text" fill="#111827">决策深度</text>
+    <text x="350" y="60" class="desc-text">隐式推理 (Thought) - 往往较浅</text>
+    <text x="800" y="60" class="node-text" fill="#059669">显式评估 (Evaluate) - 独立规划步骤</text>
+
+    <!-- Row 2: Correction -->
+    <text x="100" y="90" class="node-text" fill="#111827">容错机制</text>
+    <text x="350" y="90" class="desc-text">依赖下一步观察自然修正</text>
+    <text x="800" y="90" class="node-text" fill="#059669">主动反思 (Reflect) - 错误归因与记忆</text>
+
+    <!-- Row 3: Scenario -->
+    <text x="100" y="120" class="node-text" fill="#111827">适用场景</text>
+    <text x="350" y="120" class="desc-text">工具调用、简单多步任务</text>
+    <text x="800" y="120" class="node-text" fill="#059669">复杂系统、长期记忆、高可靠性任务</text>
+  </g>
+
+  <!-- 底部许可 -->
+  <text x="600" y="720" class="desc-text" fill="#94A3B8">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

@@ -1,0 +1,169 @@
+<!--
+  文件名：module-03-prompt-engineering-evolution.svg
+  图表名称：提示词工程演进示意图
+  描述：展示提示词工程从简单的自然语言交互向复杂的提示程序演进的四个阶段。
+
+  核心演进路径：
+  1. Ad-hoc (单提示): 聊天模式，不稳定。
+  2. Structured (结构化): 模板模式，增加静态约束。
+  3. Chained (链式): 工作流模式，增加线性逻辑。
+  4. Programmatic (提示程序): 智能体模式，增加循环、条件判断与工具调用。
+
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+-->
+<svg width="1200" height="700" viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义样式与标记 -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+      .stage-title { font-family: 'Noto Sans', sans-serif; font-size: 16px; font-weight: 800; text-anchor: middle; }
+      .desc-text { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: normal; text-anchor: middle; fill: #4B5563; }
+      .code-text { font-family: 'Courier New', monospace; font-size: 11px; fill: #4B5563; }
+      .axis-label { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: bold; fill: #6B7280; }
+    </style>
+    <!-- 箭头 -->
+    <marker id="arrow-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9CA3AF" />
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563EB" />
+    </marker>
+  </defs>
+
+  <!-- 标题 -->
+  <text x="600" y="50" text-anchor="middle" font-family='Noto Sans,sans-serif' font-size="24" font-weight="800" fill="#111827">
+    提示词工程演进：从“对话”到“程序”
+  </text>
+
+  <!-- 底部轴线 -->
+  <line x1="100" y1="600" x2="1100" y2="600" stroke="#E5E7EB" stroke-width="4" marker-end="url(#arrow-gray)"/>
+  <text x="1100" y="630" text-anchor="end" class="axis-label">工程化深度 / 系统复杂度 (Engineering Depth)</text>
+
+  <text x="150" y="630" class="axis-label" fill="#10B981">熵值 (Entropy) ↓</text>
+  <text x="300" y="630" class="axis-label" fill="#2563EB">可控性 (Control) ↑</text>
+
+  <!-- ================================================================================== -->
+  <!-- Stage 1: 原始提示 (Ad-hoc) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(100, 350)">
+    <!-- 连线到下一级 -->
+    <path d="M 180 100 L 250 50" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="4,4"/>
+
+    <!-- 卡片 -->
+    <rect x="0" y="0" width="180" height="200" rx="8" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="2"/>
+    <text x="90" y="30" class="stage-title" fill="#374151">Level 1: 原始提示</text>
+    <text x="90" y="50" class="desc-text">(Ad-hoc Prompting)</text>
+
+    <!-- 图标：对话气泡 -->
+    <circle cx="90" cy="90" r="30" fill="white" stroke="#9CA3AF" stroke-width="2"/>
+    <text x="90" y="95" text-anchor="middle" font-size="20">💬</text>
+
+    <!-- 特征 -->
+    <text x="90" y="140" class="desc-text">直觉驱动</text>
+    <text x="90" y="160" class="desc-text">自然语言交互</text>
+
+    <!-- 伪代码块 -->
+    <rect x="10" y="210" width="160" height="40" rx="4" fill="#F9FAFB" stroke="#E5E7EB"/>
+    <text x="20" y="235" class="code-text">input("Ask...")</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- Stage 2: 结构化提示 (Structured) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(350, 280)">
+    <!-- 连线到下一级 -->
+    <path d="M 180 100 L 250 50" stroke="#BFDBFE" stroke-width="2" stroke-dasharray="4,4"/>
+
+    <!-- 卡片 -->
+    <rect x="0" y="0" width="180" height="200" rx="8" fill="#EFF6FF" stroke="#60A5FA" stroke-width="2"/>
+    <text x="90" y="30" class="stage-title" fill="#1E40AF">Level 2: 结构化提示</text>
+    <text x="90" y="50" class="desc-text">(Structured)</text>
+
+    <!-- 图标：模板表格 -->
+    <rect x="60" y="70" width="60" height="50" rx="2" fill="white" stroke="#60A5FA" stroke-width="1.5"/>
+    <line x1="65" y1="80" x2="115" y2="80" stroke="#BFDBFE" stroke-width="1"/>
+    <line x1="65" y1="90" x2="115" y2="90" stroke="#BFDBFE" stroke-width="1"/>
+    <line x1="65" y1="100" x2="100" y2="100" stroke="#BFDBFE" stroke-width="1"/>
+
+    <!-- 特征 -->
+    <text x="90" y="140" class="desc-text" fill="#1E3A8A">模板与约束</text>
+    <text x="90" y="160" class="desc-text" fill="#1E3A8A">CO-STAR / 角色</text>
+
+    <!-- 伪代码块 -->
+    <rect x="10" y="210" width="160" height="50" rx="4" fill="#F0F9FF" stroke="#BAE6FD"/>
+    <text x="20" y="230" class="code-text">template = {</text>
+    <text x="20" y="245" class="code-text"> role, task... }</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- Stage 3: 链式提示 (Chained) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(600, 210)">
+    <!-- 连线到下一级 -->
+    <path d="M 180 100 L 250 50" stroke="#BBF7D0" stroke-width="2" stroke-dasharray="4,4"/>
+
+    <!-- 卡片 -->
+    <rect x="0" y="0" width="180" height="200" rx="8" fill="#F0FDF4" stroke="#34D399" stroke-width="2"/>
+    <text x="90" y="30" class="stage-title" fill="#047857">Level 3: 链式提示</text>
+    <text x="90" y="50" class="desc-text">(Chained / CoT)</text>
+
+    <!-- 图标：流程链 -->
+    <g transform="translate(50, 70)">
+        <rect x="0" y="0" width="20" height="20" rx="2" fill="white" stroke="#34D399"/>
+        <line x1="22" y1="10" x2="38" y2="10" stroke="#34D399" stroke-width="1.5"/>
+        <rect x="40" y="0" width="20" height="20" rx="2" fill="white" stroke="#34D399"/>
+        <line x1="62" y1="10" x2="78" y2="10" stroke="#34D399" stroke-width="1.5"/>
+        <rect x="80" y="0" width="20" height="20" rx="2" fill="white" stroke="#34D399"/>
+    </g>
+
+    <!-- 特征 -->
+    <text x="90" y="140" class="desc-text" fill="#064E3B">逻辑推理流</text>
+    <text x="90" y="160" class="desc-text" fill="#064E3B">分步拆解 (Step-by-step)</text>
+
+    <!-- 伪代码块 -->
+    <rect x="10" y="210" width="160" height="50" rx="4" fill="#ECFDF5" stroke="#A7F3D0"/>
+    <text x="20" y="230" class="code-text">res1 = step1()</text>
+    <text x="20" y="245" class="code-text">res2 = step2(res1)</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- Stage 4: 提示程序 (Programmatic) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(850, 140)">
+    <!-- 卡片 -->
+    <rect x="0" y="0" width="220" height="220" rx="8" fill="#FEF9C3" stroke="#FACC15" stroke-width="2"/>
+    <text x="110" y="30" class="stage-title" fill="#B45309">Level 4: 提示程序</text>
+    <text x="110" y="50" class="desc-text">(Programmatic / Agent)</text>
+
+    <!-- 图标：循环与判断 -->
+    <g transform="translate(70, 70)">
+        <!-- 菱形判断 -->
+        <polygon points="40,0 80,20 40,40 0,20" fill="white" stroke="#FACC15" stroke-width="1.5"/>
+        <!-- 循环箭头 -->
+        <path d="M 80 20 L 90 20 L 90 50 L 40 50 L 40 45" fill="none" stroke="#B45309" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+    </g>
+
+    <!-- 特征 -->
+    <text x="110" y="150" class="desc-text" fill="#78350F" font-weight="bold">图灵完备性</text>
+    <text x="110" y="170" class="desc-text" fill="#92400E">循环 / 条件 / 工具调用</text>
+    <text x="110" y="190" class="desc-text" fill="#92400E">自我修正与记忆</text>
+
+    <!-- 伪代码块 -->
+    <rect x="10" y="230" width="200" height="60" rx="4" fill="#FFFBEB" stroke="#FDE68A"/>
+    <text x="20" y="245" class="code-text">while not goal_met:</text>
+    <text x="20" y="260" class="code-text">  action = think(obs)</text>
+    <text x="20" y="275" class="code-text">  obs = env.step(action)</text>
+  </g>
+
+  <!-- 核心趋势箭头 -->
+  <g transform="translate(100, 120)">
+    <text x="0" y="0" font-family="Noto Sans" font-size="14" fill="#6B7280">能力演进趋势</text>
+    <path d="M 10 20 Q 300 200 800 -20" fill="none" stroke="#2563EB" stroke-width="3" stroke-dasharray="5,5" marker-end="url(#arrow-blue)" opacity="0.3"/>
+  </g>
+
+  <!-- 底部许可 -->
+  <text x="600" y="675" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="12" fill="#64748B">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+</svg>

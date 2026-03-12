@@ -1,0 +1,271 @@
+<svg viewBox="0 0 1200 900" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+<!--
+================================================================================
+图表名称：实验1：验证 ReAct 循环 —— 设计智能体行为模型
+文件命名：08-figure-05-lab-pera-react-loop-validtion.svg
+用途：展示实验 1 中在接入自动化脚本前，如何在 Obsidian Canvas 中规划 PEAR 架构与 ReAct 工作流。
+版本：v1.1.0
+作者：Gitconomy Research-郭晧
+SPDX-License-Identifier: CC-BY-SA-4.0
+创建日期：2026-02-20
+================================================================================
+-->
+  <!-- Background: Solid White (强兼容模式) -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+
+  <defs>
+    <style>
+      :root {
+        /* Semantic Colors */
+        --c-cloud-blue: #0052CC;
+        --c-local-green: #00875A;
+        --c-risk-amber: #FF991F;
+        --c-neutral-gray: #64748B;
+        --c-local-green-light: #E3FCEF;
+        --c-cloud-blue-light: #DEEBFF;
+        --c-risk-amber-light: #FFFBEB;
+        --c-gray-light: #F8FAFC;
+
+        /* Typography */
+        --font-sans: "Noto Sans SC", "Noto Sans", system-ui, sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+
+      /* Text Styles */
+      text { font-family: var(--font-sans); }
+      .text-title-main { font-weight: 700; font-size: 26px; fill: #000; }
+      .text-breadcrumbs { font-family: var(--font-mono); font-size: 14px; fill: var(--c-neutral-gray); }
+      .text-fig-id { font-family: var(--font-mono); font-size: 12px; fill: var(--c-neutral-gray); letter-spacing: 1px; }
+
+      .text-node-title { font-weight: 700; font-size: 16px; fill: #000; }
+      .text-node-sub { font-family: var(--font-mono); font-size: 12px; fill: var(--c-neutral-gray); }
+      .text-desc { font-size: 12px; }
+      .text-link { font-size: 12px; font-weight: 700; }
+      .text-legend { font-family: var(--font-mono); font-size: 12px; fill: var(--c-neutral-gray); }
+
+      /* Specific Block Fonts */
+      .font-mono { font-family: var(--font-mono); }
+      .font-sans { font-family: var(--font-sans); }
+
+      /* Connectors */
+      .connector-async { fill: none; stroke: var(--c-cloud-blue); stroke-width: 2.5; stroke-dasharray: 6 4; }
+      .connector-sync { fill: none; stroke: var(--c-local-green); stroke-width: 2.5; }
+      .connector-feedback { fill: none; stroke: var(--c-risk-amber); stroke-width: 2.5; stroke-dasharray: 6 4; }
+    </style>
+
+    <!-- Node Drop Shadow -->
+    <filter id="drop-shadow" x="-5%" y="-5%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.08" />
+    </filter>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-cloud-blue)" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-local-green)" />
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-risk-amber)" />
+    </marker>
+  </defs>
+
+<!--
+===========================================================================
+     TITLE BLOCK (Standardized Layout)
+     Center X = 600
+===========================================================================
+-->
+  <g id="title-block" transform="translate(600, 40)">
+    <text y="20" text-anchor="middle" class="text-title-main">实验1：验证 PEAR-ReAct 循环 —— 设计智能体行为模型</text>
+    <text y="45" text-anchor="middle" class="text-breadcrumbs">第 8 天 > 实战演练</text>
+    <line x1="-30" y1="60" x2="30" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+<!--
+===========================================================================
+     DIAGRAM CONTENT
+     Start Y = 150 (Ensures exactly 50px Gap from Title Block Indicator)
+===========================================================================
+-->
+  <g id="diagram-content" transform="translate(0, 150)">
+
+    <!-- Background Blueprint Grid Pattern (Optional light styling) -->
+    <rect x="50" y="0" width="1100" height="600" fill="var(--c-gray-light)" rx="16" />
+    <path d="M 50 150 L 1150 150 M 50 300 L 1150 300 M 50 450 L 1150 450" stroke="#E2E8F0" stroke-width="1" />
+    <path d="M 325 0 L 325 600 M 600 0 L 600 600 M 875 0 L 875 600" stroke="#E2E8F0" stroke-width="1" />
+
+    <text x="70" y="30" class="font-mono text-node-title" fill="var(--c-neutral-gray)">[ 08-digital-gardener-blueprint.canvas ]</text>
+
+    <!-- ===================================================================
+         1. 环境边界 (Environment)
+         Center: (200, 420)
+    ==================================================================== -->
+    <g id="node-environment" transform="translate(200, 420)" filter="url(#drop-shadow)">
+      <rect x="-110" y="-70" width="220" height="140" rx="8" fill="#FFFFFF" stroke="var(--c-neutral-gray)" stroke-width="2" />
+      <rect x="-110" y="-70" width="220" height="36" rx="8" fill="var(--c-neutral-gray)" />
+      <rect x="-110" y="-40" width="220" height="10" fill="var(--c-neutral-gray)" />
+      <text x="0" y="-48" text-anchor="middle" class="text-node-title" fill="#FFFFFF">📚 我的读书笔记库</text>
+
+      <text x="-90" y="-10" class="font-mono text-desc" fill="var(--c-neutral-gray)">存储路径:</text>
+      <rect x="-90" y="0" width="180" height="22" rx="4" fill="var(--c-gray-light)" stroke="#CBD5E1" stroke-width="1"/>
+      <text x="-80" y="15" class="font-mono text-desc" fill="#000">/Books/ Vault</text>
+
+      <text x="-90" y="45" class="font-sans text-desc" fill="var(--c-neutral-gray)">• 摘要 Markdown 文件</text>
+      <text x="-90" y="60" class="font-sans text-desc" fill="var(--c-neutral-gray)">• 标签系统与作者笔记</text>
+    </g>
+
+    <!-- ===================================================================
+         2. 感知模块 (Perception)
+         Center: (350, 180)
+    ==================================================================== -->
+    <g id="node-perception" transform="translate(350, 180)" filter="url(#drop-shadow)">
+      <rect x="-120" y="-70" width="240" height="140" rx="8" fill="#FFFFFF" stroke="var(--c-local-green)" stroke-width="2" />
+      <rect x="-120" y="-70" width="240" height="36" rx="8" fill="var(--c-local-green)" />
+      <rect x="-120" y="-40" width="240" height="10" fill="var(--c-local-green)" />
+      <text x="0" y="-48" text-anchor="middle" class="text-node-title" fill="#FFFFFF">[👁] 感知模块</text>
+
+      <text x="-100" y="-15" class="font-mono text-desc" font-weight="bold" fill="var(--c-neutral-gray)">触发条件:</text>
+      <text x="-100" y="5" class="font-sans text-desc" fill="var(--c-local-green)">- 定时扫描: 每天 09:00</text>
+      <text x="-100" y="25" class="font-sans text-desc" fill="var(--c-local-green)">- 文件系统事件: 新建或修改 .md 文件</text>
+
+      <text x="-100" y="45" class="font-mono text-desc" font-weight="bold" fill="var(--c-neutral-gray)">提取原始数据:</text>
+      <text x="-100" y="60" class="font-sans text-desc" fill="#000">文件路径 (Path), 全文内容 (Content)</text>
+    </g>
+
+    <!-- ===================================================================
+         3. 编码与 ReAct 核心 (Encoding)
+         Center: (800, 180)
+    ==================================================================== -->
+    <g id="node-encoding" transform="translate(800, 180)" filter="url(#drop-shadow)">
+      <rect x="-180" y="-100" width="360" height="200" rx="8" fill="#FFFFFF" stroke="var(--c-cloud-blue)" stroke-width="2" />
+      <rect x="-180" y="-100" width="360" height="36" rx="8" fill="var(--c-cloud-blue)" />
+      <rect x="-180" y="-70" width="360" height="10" fill="var(--c-cloud-blue)" />
+      <text x="0" y="-78" text-anchor="middle" class="text-node-title" fill="#FFFFFF">[🧠] 编码模块 (LLM Engine)</text>
+
+      <text x="-160" y="-45" class="font-sans text-desc" font-weight="bold" fill="var(--c-cloud-blue)">植入 ReAct 范式 Prompt 模板</text>
+
+      <!-- Mock Code Block -->
+      <rect x="-160" y="-30" width="320" height="110" rx="4" fill="#0F172A" />
+      <text x="-150" y="-10" class="font-mono text-desc" fill="#A3E635">思考: 首先，我需要分析文件内容...</text>
+      <text x="-150" y="10" class="font-mono text-desc" fill="#38BDF8">行动: 调用 extract_keywords</text>
+      <text x="-150" y="30" class="font-mono text-desc" fill="#94A3B8">参数: [《失控》摘要全文]</text>
+      <text x="-150" y="50" class="font-mono text-desc" fill="#FDE047">观察: 关键词: ['分布式系统', '生物逻辑']</text>
+      <text x="-150" y="70" class="font-mono text-desc" fill="#A3E635">思考: 接下来查找关于分布式系统的笔记...</text>
+    </g>
+
+    <!-- ===================================================================
+         4. 行动模块 (Action)
+         Center: (850, 480)
+    ==================================================================== -->
+    <g id="node-action" transform="translate(850, 480)" filter="url(#drop-shadow)">
+      <rect x="-140" y="-100" width="280" height="210" rx="8" fill="#FFFFFF" stroke="var(--c-local-green)" stroke-width="2" />
+      <rect x="-140" y="-100" width="280" height="36" rx="8" fill="var(--c-local-green)" />
+      <rect x="-140" y="-70" width="280" height="10" fill="var(--c-local-green)" />
+      <text x="0" y="-78" text-anchor="middle" class="text-node-title" fill="#FFFFFF">[🦾] 行动模块 (Tools)</text>
+
+      <text x="-120" y="-40" class="font-mono text-desc" font-weight="bold" fill="var(--c-neutral-gray)">可用工具库 (MCP Server):</text>
+
+      <!-- Category 1: Notes -->
+      <text x="-120" y="-20" class="font-sans text-xs" fill="var(--c-neutral-gray)">• 笔记工具:</text>
+      <rect x="-120" y="-10" width="240" height="22" rx="4" fill="var(--c-local-green-light)"/>
+      <text x="-110" y="5" class="font-mono text-xs" fill="var(--c-local-green)">create_note, update_note, link_notes</text>
+
+      <!-- Category 2: Tags -->
+      <text x="-120" y="30" class="font-sans text-xs" fill="var(--c-neutral-gray)">• 标签工具:</text>
+      <rect x="-120" y="40" width="240" height="22" rx="4" fill="var(--c-local-green-light)"/>
+      <text x="-110" y="55" class="font-mono text-xs" fill="var(--c-local-green)">add_tags_to_note</text>
+
+      <!-- Category 3: Query -->
+      <text x="-120" y="80" class="font-sans text-xs" fill="var(--c-neutral-gray)">• 查询工具:</text>
+      <rect x="-120" y="90" width="240" height="22" rx="4" fill="var(--c-local-green-light)"/>
+      <text x="-110" y="105" class="font-mono text-xs" fill="var(--c-local-green)">search_vault_by_keyword</text>
+    </g>
+
+    <!-- ===================================================================
+         5. 反思模块 (Reflection)
+         Center: (480, 480)
+    ==================================================================== -->
+    <g id="node-reflection" transform="translate(480, 480)" filter="url(#drop-shadow)">
+      <rect x="-130" y="-70" width="260" height="140" rx="8" fill="#FFFFFF" stroke="var(--c-risk-amber)" stroke-width="2" />
+      <rect x="-130" y="-70" width="260" height="36" rx="8" fill="var(--c-risk-amber)" />
+      <rect x="-130" y="-40" width="260" height="10" fill="var(--c-risk-amber)" />
+      <text x="0" y="-48" text-anchor="middle" class="text-node-title" fill="#FFFFFF">[🪞] 反思模块</text>
+
+      <text x="-110" y="-15" class="font-mono text-desc" font-weight="bold" fill="var(--c-neutral-gray)">监控项:</text>
+      <text x="-110" y="5" class="font-sans text-desc" fill="#000">工具调用报错 / JSON 格式解析失败</text>
+
+      <text x="-110" y="30" class="font-mono text-desc" font-weight="bold" fill="var(--c-risk-amber)">纠错策略:</text>
+      <rect x="-110" y="40" width="220" height="22" rx="4" fill="var(--c-risk-amber-light)"/>
+      <text x="-100" y="55" class="font-sans text-desc" font-weight="bold" fill="var(--c-risk-amber)">⚠️ 连续 3 次调用失败，触发警报并停止</text>
+    </g>
+
+    <!-- ===================================================================
+         连接线流转 (Data Flow & Loop)
+    ==================================================================== -->
+
+    <!-- 1. Environment -> Perception -->
+    <path d="M 200 350 L 200 190 Q 200 180 210 180 L 225 180" class="connector-sync" marker-end="url(#arrow-green)" />
+    <text x="210" y="270" text-anchor="start" class="text-link" fill="var(--c-local-green)">1. 触发事件</text>
+
+    <!-- 2. Perception -> Encoding -->
+    <path d="M 470 180 L 610 180" class="connector-async" marker-end="url(#arrow-blue)" />
+    <text x="540" y="170" text-anchor="middle" class="text-link" fill="var(--c-cloud-blue)">2. 组装输入数据 (API)</text>
+
+    <!-- 3. Encoding -> Action -->
+    <path d="M 800 280 L 800 370" class="connector-async" marker-end="url(#arrow-blue)" />
+    <text x="810" y="330" text-anchor="start" class="text-link" fill="var(--c-cloud-blue)">3. 工具指令下发</text>
+
+    <!-- 4. Action -> Environment (State Mutation) -->
+    <!-- Elbow line routed below the Reflection node to reach Env -->
+    <path d="M 850 590 L 850 610 Q 850 620 840 620 L 210 620 Q 200 620 200 610 L 200 505" class="connector-sync" marker-end="url(#arrow-green)" />
+    <text x="525" y="610" text-anchor="middle" class="text-link" fill="var(--c-local-green)">4. 执行修改环境 (创建/修改/链接笔记)</text>
+
+    <!-- 5. Action -> Reflection -->
+    <path d="M 710 480 L 610 480" class="connector-feedback" marker-end="url(#arrow-amber)" />
+    <text x="660" y="470" text-anchor="middle" class="text-link" fill="var(--c-risk-amber)">返回日志</text>
+
+    <!-- 6. Reflection -> Encoding (Retry/Feedback loop) -->
+    <path d="M 480 410 L 480 250 C 480 230, 520 210, 610 210" class="connector-feedback" marker-end="url(#arrow-amber)" />
+    <text x="490" y="320" text-anchor="start" class="text-link" fill="var(--c-risk-amber)">5. 经验反馈 (更新上下文并重试)</text>
+
+  </g>
+
+<!--
+===========================================================================
+     底部图例与注释块 (Legend & Key Block)
+===========================================================================
+-->
+  <g id="legend" transform="translate(600, 800)">
+    <rect x="-400" y="-16" width="800" height="32" rx="4" fill="rgba(255, 255, 255, 0.9)" stroke="var(--c-neutral-gray)" stroke-width="0.5"/>
+
+    <g transform="translate(-380, 0)">
+      <text x="0" y="4" class="font-sans text-desc" font-weight="bold" fill="var(--c-neutral-gray)">图例说明:</text>
+
+      <g transform="translate(100, 0)">
+        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="var(--c-local-green)" />
+        <text x="12" y="4" class="text-legend">本地环境与行为 (Local)</text>
+      </g>
+
+      <g transform="translate(300, 0)">
+        <path d="M-6,-4 L0,-8 L6,-4 L6,4 L0,8 L-6,4 Z" fill="var(--c-cloud-blue)" />
+        <text x="12" y="4" class="text-legend">云端推理计算 (Cloud LLM)</text>
+      </g>
+
+      <g transform="translate(500, 0)">
+        <line x1="-10" y1="0" x2="8" y2="0" stroke="var(--c-risk-amber)" stroke-width="2.5" stroke-dasharray="4 2" />
+        <text x="12" y="4" class="text-legend">反思与熔断预警 (Feedback)</text>
+      </g>
+    </g>
+  </g>
+
+<!--
+===========================================================================
+     底部许可注释 (License)
+===========================================================================
+-->
+  <text x="600" y="840" text-anchor="middle" class="font-sans text-desc" fill="#94A3B8">
+    本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+  </text>
+
+</svg>

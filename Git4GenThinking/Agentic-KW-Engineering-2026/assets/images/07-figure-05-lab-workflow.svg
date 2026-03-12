@@ -1,0 +1,241 @@
+<svg viewBox="0 0 800 800" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+<!--
+================================================================================
+图表名称：实战演练：编织智能体的局部网络工作流
+文件命名：07-figure-05-lab-workflow.svg
+用途：展示如何通过 Librarian Agent 自动挖掘孤岛笔记之间的逻辑交集，并写入双向链接构建图谱。
+版本：v1.0.0
+作者：Gitconomy Research-郭晧
+SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+创建日期：2026-02-20
+================================================================================
+-->
+  <!-- Background: Solid White -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+
+  <defs>
+    <style>
+      :root {
+        /* Semantic Colors */
+        --c-cloud-blue: #0052CC;
+        --c-local-green: #00875A;
+        --c-risk-amber: #FF991F;
+        --c-neutral-gray: #64748B;
+        --c-local-green-light: #E3FCEF;
+        --c-cloud-blue-light: #DEEBFF;
+        --c-risk-amber-light: #FFFBEB;
+        --c-gray-light: #F8FAFC;
+
+        /* Typography */
+        --font-sans: "Noto Sans SC", "Noto Sans", system-ui, sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+
+      /* Text Styles */
+      text { font-family: var(--font-sans); }
+      .text-title-main { font-family: var(--font-sans); font-weight: 700; font-size: 24px; fill: #000; }
+      .text-breadcrumbs { font-family: var(--font-mono); font-size: 14px; fill: var(--c-neutral-gray); }
+      .text-fig-id { font-family: var(--font-mono); font-size: 12px; fill: var(--c-neutral-gray); letter-spacing: 1px; }
+
+      .text-region { font-family: var(--font-sans); font-weight: 700; font-size: 12px; letter-spacing: 0.5px; }
+      .text-node-title { font-family: var(--font-sans); font-weight: 700; font-size: 14px; fill: #000; }
+      .text-node-sub { font-family: var(--font-mono); font-size: 11px; fill: var(--c-neutral-gray); }
+      .text-node-desc { font-family: var(--font-sans); font-size: 10px; font-weight: 700; }
+      .text-link { font-family: var(--font-sans); font-size: 11px; font-weight: 700; }
+      .text-legend { font-family: var(--font-mono); font-size: 11px; fill: var(--c-neutral-gray); }
+
+      /* Boundary Boxes */
+      .boundary-cloud { fill: var(--c-cloud-blue-light); fill-opacity: 0.15; stroke: var(--c-cloud-blue); stroke-width: 1.5; stroke-dasharray: 6 4; }
+      .boundary-local { fill: var(--c-local-green-light); fill-opacity: 0.3; stroke: var(--c-local-green); stroke-width: 1.5; }
+
+      /* Node Shapes */
+      .node-brain { fill: #FFF; stroke: var(--c-cloud-blue); stroke-width: 2.5; }
+      .node-body { fill: #FFF; stroke: var(--c-local-green); stroke-width: 2.5; }
+      .node-interface { fill: #FFF; stroke: var(--c-risk-amber); stroke-width: 2.5; }
+      .node-file { fill: #FFF; stroke: var(--c-neutral-gray); stroke-width: 2; }
+      .node-graph-hub { fill: var(--c-local-green); stroke: var(--c-local-green); stroke-width: 2; rx: 4; }
+
+      /* Connectors */
+      .connector-async { fill: none; stroke: var(--c-cloud-blue); stroke-width: 2; stroke-dasharray: 4 2; }
+      .connector-sync { fill: none; stroke: var(--c-local-green); stroke-width: 2; }
+    </style>
+
+    <!-- Node Drop Shadow -->说明
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.05"/>
+    </filter>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-cloud-blue)" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-local-green)" />
+    </marker>
+  </defs>
+
+<!--
+===========================================================================
+     TITLE BLOCK (Standardized Layout)
+     Center X = 400
+===========================================================================
+-->
+  <g id="title-block" transform="translate(400, 40)">
+
+    <!-- Main Title (Baseline y=20) -->
+    <text y="20" text-anchor="middle" class="text-title-main">实战演练：关系挖掘工作流</text>
+
+    <!-- Breadcrumbs (25px below title baseline) -->
+    <text y="45" text-anchor="middle" class="text-breadcrumbs">第 7 天 > 实战演练</text>
+
+    <!-- Context Indicator (15px below breadcrumbs, y=60) -->
+    <!-- Absolute Canvas Y for Indicator = 40 + 60 = 100 -->
+    <line x1="-30" y1="60" x2="30" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+<!--
+===========================================================================
+     DIAGRAM CONTENT
+     Start Y = 150 (Ensures exactly 50px Gap from Title Block Indicator)
+     Absolute Y start = 150. Indicator absolute Y = 100. Gap = 50px.
+===========================================================================
+-->
+  <g id="diagram-content" transform="translate(0, 150)">
+
+    <!-- ================= 1. CLOUD REGION (Remote Brain) ================= -->
+    <g id="cloud-region">
+      <rect x="220" y="0" width="360" height="150" rx="12" class="boundary-cloud" />
+      <text x="400" y="25" text-anchor="middle" class="text-region" fill="var(--c-cloud-blue)">云端推理模型 (Remote LLM API)</text>
+
+      <!-- Node: Librarian Agent Brain -->
+      <g transform="translate(400, 90)" filter="url(#shadow)">
+        <polygon points="0,-45 39,-22 39,22 0,45 -39,22 -39,-22" class="node-brain" />
+        <text y="-8" text-anchor="middle" class="text-node-title">AI 笔记管理员</text>
+        <text y="8" text-anchor="middle" class="text-node-sub">Note Agent</text>
+        <text y="24" text-anchor="middle" class="text-node-desc" fill="var(--c-cloud-blue)">执行 CoT 逻辑推演</text>
+      </g>
+
+      <!-- Constraint Note -->
+      <rect x="500" y="45" width="100" height="40" rx="4" fill="#FFF" stroke="var(--c-risk-amber)" stroke-dasharray="2 2" />
+      <text x="550" y="60" text-anchor="middle" font-size="9" font-family="var(--font-mono)" fill="var(--c-risk-amber)" font-weight="bold">反幻觉约束</text>
+      <text x="550" y="75" text-anchor="middle" font-size="9" font-family="var(--font-sans)" fill="var(--c-neutral-gray)">强迫执行结构化匹配</text>
+    </g>
+
+    <!-- ================= 2. LOCAL REGION (Obsidian Workspace) ================= -->
+    <g id="local-region">
+      <rect x="30" y="200" width="740" height="300" rx="12" class="boundary-local" />
+      <text x="400" y="480" text-anchor="middle" class="text-region" fill="var(--c-local-green)">本地 Obsidian 知识库 (Local Body)</text>
+
+      <!-- Node 1: Unlinked Notes -->
+      <g transform="translate(120, 310)" filter="url(#shadow)">
+        <!-- Document A -->
+        <rect x="-65" y="-55" width="130" height="45" rx="4" class="node-file" stroke="var(--c-risk-amber)"/>
+        <text x="0" y="-28" text-anchor="middle" class="text-node-title" font-size="11">📄 lost-in-the-middle.md</text>
+        <!-- Document B -->
+        <rect x="-65" y="-5" width="130" height="45" rx="4" class="node-file" stroke="var(--c-risk-amber)"/>
+        <text x="0" y="22" text-anchor="middle" class="text-node-title" font-size="11">📄 graph-rag.md</text>
+
+        <text y="60" text-anchor="middle" class="text-node-title">1. 孤岛笔记</text>
+        <text y="75" text-anchor="middle" class="text-node-desc" fill="var(--c-risk-amber)">缺乏显式物理连接</text>
+      </g>
+
+      <!-- Node 2: Prompt / Relationship Miner -->
+      <g transform="translate(310, 310)" filter="url(#shadow)">
+        <rect x="-65" y="-60" width="130" height="100" rx="8" class="node-body" />
+        <rect x="-55" y="-45" width="110" height="20" rx="2" fill="var(--c-local-green-light)"/>
+        <text x="0" y="-33" text-anchor="middle" font-size="9" font-family="var(--font-mono)" fill="var(--c-local-green)" font-weight="bold">枚举限制 (Enums):</text>
+        <text x="0" y="-15" text-anchor="middle" font-size="9" font-family="var(--font-mono)" fill="var(--c-neutral-gray)">[SOLVES, CONTRADICTS...]</text>
+
+        <text y="60" text-anchor="middle" class="text-node-title">2. 关系挖掘机</text>
+        <text y="75" text-anchor="middle" class="text-node-desc" fill="var(--c-local-green)">通过 S.C.O.R.E 限定目标</text>
+      </g>
+
+      <!-- Node 3: Linked Notes (Write back) -->
+      <g transform="translate(500, 310)" filter="url(#shadow)">
+        <rect x="-65" y="-60" width="130" height="100" rx="8" class="node-interface" />
+        <text x="-55" y="-35" text-anchor="start" font-family="var(--font-mono)" font-size="10" fill="var(--c-cloud-blue)">GraphRAG</text>
+        <text x="-55" y="-15" text-anchor="start" font-family="var(--font-mono)" font-size="10" font-weight="bold" fill="var(--c-risk-amber)">_SOLVES_</text>
+        <text x="-55" y="5" text-anchor="start" font-family="var(--font-mono)" font-size="10" fill="var(--c-local-green)">[[lost-in-the-middle]]</text>
+
+        <text y="60" text-anchor="middle" class="text-node-title">3. 注入双向链接</text>
+        <text y="75" text-anchor="middle" class="text-node-desc" fill="var(--c-cloud-blue)">回写结构化 Markdown</text>
+      </g>
+
+      <!-- Node 4: Graph View Visualization -->
+      <g transform="translate(680, 310)" filter="url(#shadow)">
+        <rect x="-60" y="-60" width="120" height="100" rx="8" fill="#FFF" stroke="var(--c-local-green)" stroke-width="2"/>
+        <!-- Mini Graph inside -->
+        <circle cx="-25" cy="-25" r="8" fill="var(--c-cloud-blue)"/>
+        <circle cx="25" cy="5" r="8" fill="var(--c-cloud-blue)"/>
+        <line x1="-19" y1="-19" x2="19" y2="-1" stroke="var(--c-local-green)" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+        <text y="60" text-anchor="middle" class="text-node-title">4. 图谱点亮</text>
+        <text y="75" text-anchor="middle" class="text-node-desc" fill="var(--c-local-green)">Obsidian Graph View</text>
+      </g>
+    </g>
+
+    <!-- ================= 3. CONNECTORS & DATA FLOW ================= -->
+
+    <!-- Local Flow: Isolated Notes -> Prompt -->
+    <path d="M 185,290 L 240,290" class="connector-sync" marker-end="url(#arrow-green)" />
+    <text x="215" y="280" text-anchor="middle" class="text-link" fill="var(--c-local-green)">组装文本</text>
+
+    <!-- Async Flow: Prompt -> LLM -->
+    <path d="M 310,250 C 310,180 370,140 380,135" class="connector-async" marker-end="url(#arrow-blue)" />
+    <text x="300" y="190" text-anchor="end" class="text-link" fill="var(--c-cloud-blue)">发起关系推理 (Async)</text>
+
+    <!-- Async Flow: LLM -> Inject Link -->
+    <path d="M 425,130 C 450,140 500,180 500,245" class="connector-async" marker-end="url(#arrow-blue)" />
+    <text x="510" y="190" text-anchor="start" class="text-link" fill="var(--c-cloud-blue)">返回追加链接指令</text>
+
+    <!-- Local Flow: Inject Link -> Graph View -->
+    <path d="M 565,290 L 615,290" class="connector-sync" marker-end="url(#arrow-green)" />
+    <text x="590" y="280" text-anchor="middle" class="text-link" fill="var(--c-local-green)">实时渲染</text>
+
+  </g>
+
+<!--
+===========================================================================
+     LEGEND BLOCK (Horizontal Structured Layout)
+     Center X = 400, strictly at the bottom
+===========================================================================
+-->
+  <g id="legend-block" transform="translate(400, 720)">
+    <!-- 图例背景：半透明白色容器，统一圆角边框 -->
+    <rect x="-380" y="-20" width="760" height="40" rx="4" fill="rgba(255,255,255,0.9)" stroke="var(--c-neutral-gray)" stroke-width="0.5"/>
+
+    <g transform="translate(-360, 0)">
+      <!-- 图例标题 -->
+      <text x="0" y="4" font-family="var(--font-sans)" font-weight="700" font-size="12" fill="#64748B">图例说明:</text>
+
+      <!-- Item 1: 本地应用节点 -->
+      <g transform="translate(110, 0)">
+        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="var(--c-local-green)" />
+        <text x="12" y="4" class="text-legend">本地文件处理 (Local Obsidian)</text>
+      </g>
+
+      <!-- Item 2: 云端推理模型 -->
+      <g transform="translate(340, 0)">
+        <polygon points="-6,-5 0,-10 6,-5 6,5 0,10 -6,5" fill="var(--c-cloud-blue)" />
+        <text x="12" y="4" class="text-legend">云端推理计算 (CoT Analysis)</text>
+      </g>
+
+      <!-- Item 3: 连接线含义 -->
+      <g transform="translate(560, 0)">
+        <line x1="-10" y1="-4" x2="6" y2="-4" class="connector-async" stroke-width="1.5" />
+        <line x1="-10" y1="4" x2="6" y2="4" class="connector-sync" stroke-width="1.5" />
+        <text x="12" y="4" class="text-legend">网络异步 / 本地同步 (I/O)</text>
+      </g>
+    </g>
+  </g>
+
+<!--
+===========================================================================
+     LICENSE FOOTER
+===========================================================================
+-->
+  <text x="400" y="760" text-anchor="middle" font-family="var(--font-sans)" font-size="10" fill="var(--c-neutral-gray)">
+    本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+  </text>
+
+</svg>

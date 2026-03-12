@@ -1,0 +1,172 @@
+<!--
+================================================================================
+图表名称：JSON 模式契约：格式守门人
+文件命名：03-figure-02-json-schema-contract.svg
+用途：展示 Schema 如何作为格式契约强制转换自然语言为结构化 JSON
+版本：v1.0.0
+作者：Gitconomy Resserch-郭晧
+SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+创建日期：2026-02-01
+================================================================================
+-->
+<svg width="900" height="600" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background: Solid White -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+  <defs>
+    <style>
+      :root {
+        /* 语义色定义*/
+        --c-cloud-blue: #0052CC;
+        --c-brain-blue: #0099FF;
+        --c-body-green: #009900;
+        --c-risk-amber: #FF991F;
+        --c-dark: #0F172A;
+        --c-neutral-gray: #94A3B8;
+        --c-bg-light: #F8FAFC;
+
+        /* 字体规范*/
+        --font-sans: 'Noto Sans SC', sans-serif;
+        --font-mono: 'JetBrains Mono', monospace;
+      }
+
+      text { font-family: var(--font-sans); }
+      .text-mono { font-family: var(--font-mono); }
+
+      /* 模块样式 */
+      .title-main { font-weight: bold; font-size: 24px; fill: #000000; }
+      .title-sub { font-size: 14px; fill: var(--c-neutral-gray); }
+
+      .node-unstructured { fill: rgba(255, 153, 31, 0.05); stroke: var(--c-risk-amber); stroke-width: 2; stroke-dasharray: 6 4; rx: 10; }
+      .node-schema-gate { fill: #FFFFFF; stroke: var(--c-brain-blue); stroke-width: 4; rx: 4; }
+      .node-terminal { fill: var(--c-dark); rx: 6; }
+      .node-payload { fill: #FFFFFF; stroke: var(--c-body-green); stroke-width: 3; rx: 4; }
+
+      .code-key { fill: #8BE9FD; }
+      .code-val { fill: #F1FA8C; }
+      .code-type { fill: #BD93F9; }
+      .code-base { fill: #E2E8F0; }
+
+      .connector { stroke: var(--c-neutral-gray); stroke-width: 2; fill: none; }
+      .label-tag { font-family: var(--font-mono); font-size: 11px; font-weight: bold; }
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-neutral-gray)" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-brain-blue)" />
+    </marker>
+  </defs>
+
+  <!-- MODULE: Header (标题区) -->
+  <g id="header" transform="translate(450, 40)">
+    <text y="20" text-anchor="middle" class="title-main">JSON 模式契约：格式守门人</text>
+    <text y="45" text-anchor="middle" class="text-mono title-sub">第三天 > 基础原理</text>
+    <line x1="-30" y1="60" x2="30" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- MODULE: Main Content (核心机制) -->
+  <g id="diagram-body" transform="translate(0, 130)">
+
+    <!-- LEFT: Unstructured Input (High Entropy) -->
+    <g id="left-input" transform="translate(50, 60)">
+      <rect width="200" height="200" class="node-unstructured" />
+      <text x="100" y="-15" text-anchor="middle" font-weight="bold" font-size="14" fill="var(--c-risk-amber)">非结构化输入</text>
+
+      <!-- 散乱的文本块示意 -->
+      <g transform="translate(20, 40)">
+        <text y="0" font-size="13" fill="#92400E" font-weight="bold">"张三，30岁，</text>
+        <text y="25" font-size="13" fill="#92400E" font-weight="bold">目前在上海工作，</text>
+        <text y="50" font-size="13" fill="#92400E" font-weight="bold">是一名工程师..."</text>
+
+        <path d="M10,80 L150,85 M20,105 L140,100 M15,130 L160,125" stroke="var(--c-risk-amber)" stroke-width="1" opacity="0.4" />
+      </g>
+
+      <text x="100" y="185" text-anchor="middle" class="label-tag" fill="var(--c-risk-amber)">自然语言 (高熵流)</text>
+    </g>
+
+    <!-- CONNECTOR: Input to Schema -->
+    <path d="M 260,160 L 300,160" class="connector" stroke-dasharray="4 4" marker-end="url(#arrow-gray)" />
+
+    <!-- MIDDLE: Schema Gatekeeper (The Contract) -->
+    <g id="middle-schema" transform="translate(320, 20)">
+      <!-- Gate Frame -->
+      <rect width="280" height="280" class="node-schema-gate" />
+      <rect x="20" y="40" width="240" height="200" class="node-terminal" />
+
+      <!-- Schema Constraints -->
+      <g transform="translate(35, 75)" class="text-mono" font-size="11">
+        <text y="0" class="code-base">{</text>
+        <text y="20" x="15" class="code-key">"type"</text><text y="20" x="55" class="code-base">: </text><text y="20" x="65" class="code-val">"object"</text><text y="20" x="115" class="code-base">,</text>
+        <text y="40" x="15" class="code-key">"required"</text><text y="40" x="75" class="code-base">: [</text><text y="40" x="90" class="code-val">"name"</text><text y="40" x="130" class="code-base">, </text><text y="40" x="145" class="code-val">"age"</text><text y="40" x="180" class="code-base">],</text>
+        <text y="60" x="15" class="code-key">"properties"</text><text y="60" x="85" class="code-base">: {</text>
+        <text y="80" x="30" class="code-key">"name"</text><text y="80" x="70" class="code-base">: {</text><text y="80" x="80" class="code-key">"type"</text><text y="80" x="115" class="code-base">: </text><text y="80" x="125" class="code-type">"string"</text><text y="80" x="175" class="code-base">},</text>
+        <text y="100" x="30" class="code-key">"age"</text><text y="100" x="60" class="code-base">: {</text><text y="100" x="70" class="code-key">"type"</text><text y="100" x="105" class="code-base">: </text><text y="100" x="115" class="code-type">"integer"</text><text y="100" x="165" class="code-base">}</text>
+        <text y="120" x="15" class="code-base">}</text>
+        <text y="140" class="code-base">}</text>
+      </g>
+
+      <!-- Visual Mold Metaphor -->
+      <path d="M-10,140 L15,140" class="connector" stroke="var(--c-brain-blue)" stroke-width="3" marker-end="url(#arrow-blue)" />
+
+      <text x="140" y="20" text-anchor="middle" font-weight="bold" font-size="14" fill="var(--c-brain-blue)">Schema 契约 (类型约束)</text>
+      <text x="140" y="265" text-anchor="middle" class="label-tag" fill="var(--c-brain-blue)">GATEKEEPER 校验</text>
+    </g>
+
+    <!-- CONNECTOR: Schema to Output -->
+    <path d="M 610,160 L 650,160" class="connector" stroke="var(--c-body-green)" stroke-width="3" marker-end="url(#arrow-blue)" />
+
+    <!-- RIGHT: Structured Payload (JSON Envelope) -->
+    <g id="right-output" transform="translate(660, 60)">
+      <rect width="200" height="200" class="node-payload" />
+      <!-- Envelope Flap Visual -->
+      <path d="M0,0 L100,40 L200,0" fill="none" stroke="var(--c-body-green)" stroke-width="1" opacity="0.3" />
+
+      <text x="100" y="-15" text-anchor="middle" font-weight="bold" font-size="14" fill="var(--c-body-green)">结构化载体</text>
+
+      <!-- Final JSON Data -->
+      <g transform="translate(25, 60)" class="text-mono" font-size="12">
+        <text y="0" fill="#334155">{</text>
+        <text y="25" x="15" fill="#0052CC">"name"</text><text y="25" x="55" fill="#334155">: </text><text y="25" x="65" fill="var(--c-body-green)">"张三"</text><text y="25" x="105" fill="#334155">,</text>
+        <text y="50" x="15" fill="#0052CC">"age"</text><text y="50" x="50" fill="#334155">: </text><text y="50" x="60" fill="var(--c-body-green)">30</text><text y="50" x="80" fill="#334155">,</text>
+        <text y="75" x="15" fill="#0052CC">"job"</text><text y="75" x="50" fill="#334155">: </text><text y="75" x="60" fill="var(--c-body-green)">"工程师"</text>
+        <text y="100" fill="#334155">}</text>
+      </g>
+
+      <text x="100" y="185" text-anchor="middle" class="label-tag" fill="var(--c-body-green)">JSON 信封 (低熵资产)</text>
+    </g>
+  </g>
+
+  <!-- MODULE: Legend & Footer -->
+  <g id="legend-block" transform="translate(450, 520)">
+    <rect x="-260" y="0" width="520" height="40" rx="20" fill="rgba(255, 255, 255, 0.9)" stroke="#E2E8F0" stroke-width="0.5"/>
+    <g transform="translate(-240, 25)">
+      <text x="0" y="0" font-weight="bold" font-size="10" fill="#64748B">图例说明</text>
+
+      <g transform="translate(80, -10)">
+        <circle cx="5" cy="5" r="5" fill="var(--c-risk-amber)" />
+        <text x="15" y="9" class="label-tag" fill="#334155">模糊意图</text>
+      </g>
+
+      <g transform="translate(180, -10)">
+        <circle cx="5" cy="5" r="5" fill="var(--c-brain-blue)" />
+        <text x="15" y="9" class="label-tag" fill="#334155">逻辑契约</text>
+      </g>
+
+      <g transform="translate(280, -10)">
+        <circle cx="5" cy="5" r="5" fill="var(--c-body-green)" />
+        <text x="15" y="9" class="label-tag" fill="#334155">有效载荷</text>
+      </g>
+
+      <text x="380" y="-1" class="text-mono" font-size="10" fill="var(--c-neutral-gray)" font-style="italic">转换：从无序到有序</text>
+    </g>
+  </g>
+
+  <g id="footer" transform="translate(450, 580)">
+    <text text-anchor="middle" font-size="11" fill="var(--c-neutral-gray)">
+     本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+    </text>
+  </g>
+
+</svg>

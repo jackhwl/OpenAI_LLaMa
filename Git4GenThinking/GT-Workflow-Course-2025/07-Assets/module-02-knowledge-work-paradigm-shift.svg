@@ -1,0 +1,166 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" style="background-color: white; font-family: 'Noto Sans', sans-serif;">
+  <!--
+    图表名称：从搜索到生成：知识工作范式转移总览图
+    描述：展示从传统搜索式思维向生成式思维的范式转移，以Prompt和Workflow为核心分水岭。
+    对比维度：问题处理方式、人的角色、AI的角色、输出形态。
+    设计规范参考：Gitconomy社区图形即代码设计规范指南
+  -->
+
+  <!-- 定义箭头标记 -->
+  <defs>
+    <marker id="arrowhead-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563EB" />
+    </marker>
+    <marker id="arrowhead-yellow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#FACC15" />
+    </marker>
+  </defs>
+
+  <!-- CSS 变量定义 (内联样式以确保独立性) -->
+  <style>
+    .main-title-text { font-size: 22px; font-weight: 800; fill: #111827; }
+    .title-text { font-size: 16px; font-weight: bold; fill: #111827; }
+    .subtitle-text { font-size: 14px; font-weight: bold; fill: #374151; }
+    .body-text { font-size: 12px; font-weight: normal; fill: #374151; }
+    .highlight-text { font-size: 12px; font-weight: bold; fill: #111827; }
+    .license-text { font-size: 12px; font-weight: normal; fill: #64748B; text-anchor: middle; }
+
+    .card-background { fill: #DBEAFE; stroke: #3B82F6; stroke-width: 2px; } /* 柔和蓝背景 */
+    .main-box { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; } /* 淡蓝 - 搜索思维 */
+    .standard-box { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; } /* 淡绿 - 生成思维 */
+    .highlight-box { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2px; } /* 淡黄 - 分水岭 */
+
+    .connector { fill: none; stroke: #2563EB; stroke-width: 2px; marker-end: url(#arrowhead-blue); }
+    .connector-highlight { fill: none; stroke: #FACC15; stroke-width: 3px; marker-end: url(#arrowhead-yellow); }
+    .dashed-line { stroke-dasharray: 5,5; opacity: 0.5; stroke: #6B7280; stroke-width: 1px; }
+  </style>
+
+  <!-- 主标题 -->
+  <text x="400" y="40" text-anchor="middle" class="main-title-text">从搜索到生成：知识工作范式转移总览</text>
+
+  <!-- 左侧区域：搜索式思维 (Search Thinking) -->
+  <g transform="translate(30, 80)">
+    <!-- 背景容器 -->
+    <rect x="0" y="0" width="280" height="450" rx="10" class="card-background" fill-opacity="0.3" />
+    <text x="140" y="35" text-anchor="middle" class="title-text">搜索式思维 (Search Thinking)</text>
+
+    <!-- 维度1: 问题处理 -->
+    <g transform="translate(20, 60)">
+      <rect x="0" y="0" width="240" height="60" rx="5" class="main-box" />
+      <text x="120" y="25" text-anchor="middle" class="subtitle-text">查找答案</text>
+      <text x="120" y="45" text-anchor="middle" class="body-text">Finding Answers</text>
+    </g>
+
+    <!-- 维度2: 人的角色 -->
+    <g transform="translate(20, 140)">
+      <rect x="0" y="0" width="240" height="60" rx="5" class="main-box" />
+      <text x="120" y="25" text-anchor="middle" class="subtitle-text">检索者</text>
+      <text x="120" y="45" text-anchor="middle" class="body-text">Retriever / Consumer</text>
+    </g>
+
+    <!-- 维度3: AI角色 -->
+    <g transform="translate(20, 220)">
+      <rect x="0" y="0" width="240" height="60" rx="5" class="main-box" />
+      <text x="120" y="25" text-anchor="middle" class="subtitle-text">工具/搜索引擎</text>
+      <text x="120" y="45" text-anchor="middle" class="body-text">Tool (Search Engine)</text>
+    </g>
+
+    <!-- 维度4: 输出形态 -->
+    <g transform="translate(20, 300)">
+      <rect x="0" y="0" width="240" height="60" rx="5" class="main-box" />
+      <text x="120" y="25" text-anchor="middle" class="subtitle-text">碎片化信息</text>
+      <text x="120" y="45" text-anchor="middle" class="body-text">Fragmented Info</text>
+    </g>
+  </g>
+
+  <!-- 中间区域：分水岭 (Prompt / Workflow) -->
+  <g transform="translate(345, 80)">
+    <!-- 核心转换器 -->
+    <rect x="0" y="0" width="110" height="450" rx="10" class="highlight-box" fill-opacity="0.2" stroke-dasharray="5,5" />
+
+    <!-- 转换标签 -->
+    <text x="55" y="35" text-anchor="middle" class="highlight-text" fill="#B45309">范式转移</text>
+    <text x="55" y="55" text-anchor="middle" class="body-text" font-size="10px">Paradigm Shift</text>
+
+    <!-- 核心机制：Prompt -->
+    <g transform="translate(10, 145)">
+      <rect x="0" y="0" width="90" height="50" rx="5" class="highlight-box" />
+      <text x="45" y="20" text-anchor="middle" class="highlight-text">Prompt</text>
+      <text x="45" y="38" text-anchor="middle" class="body-text" font-size="10px">结构化指令</text>
+    </g>
+
+    <!-- 核心机制：Workflow -->
+    <g transform="translate(10, 225)">
+      <rect x="0" y="0" width="90" height="50" rx="5" class="highlight-box" />
+      <text x="45" y="20" text-anchor="middle" class="highlight-text">Workflow</text>
+      <text x="45" y="38" text-anchor="middle" class="body-text" font-size="10px">知识工作流</text>
+    </g>
+
+    <!-- 连接线：从左穿过中间到右 -->
+
+    <!-- Line 1: 查找答案 -> 构建结构 (y=90) -->
+    <path d="M -35 90 L 10 90" class="connector" />
+    <path d="M 100 90 L 145 90" class="connector" />
+
+    <!-- Line 2: 检索者 -> Prompt -> 架构师 (y=170) -->
+    <path d="M -35 170 L 10 170" class="connector" />
+    <path d="M 100 170 L 145 170" class="connector" />
+
+    <!-- Line 3: 工具 -> Workflow -> 合作者 (y=250) -->
+    <path d="M -35 250 L 10 250" class="connector" />
+    <path d="M 100 250 L 145 250" class="connector" />
+
+    <!-- Line 4: 碎片信息 -> 可交付成果 (y=330) -->
+    <path d="M -35 330 L 10 330" class="connector" />
+    <path d="M 100 330 L 145 330" class="connector" />
+  </g>
+
+
+  <!-- 右侧区域：生成式思维 (Generative Thinking) -->
+  <g transform="translate(490, 80)">
+    <!-- 背景容器 -->
+    <rect x="0" y="0" width="280" height="450" rx="10" class="card-background" style="fill: #F0FDF4; stroke: #34D399;" fill-opacity="0.3" />
+    <text x="140" y="35" text-anchor="middle" class="title-text">生成式思维 (Generative Thinking)</text>
+
+    <!-- 维度1: 问题处理 -->
+    <g transform="translate(20, 60)">
+      <rect x="0" y="0" width="240" height="60" rx="5" class="standard-box" />
+      <text x="120" y="25" text-anchor="middle" class="subtitle-text">构建结构</text>
+      <text x="120" y="45" text-anchor="middle" class="body-text">Building Structures</text>
+    </g>
+
+    <!-- 维度2: 人的角色 -->
+    <g transform="translate(20, 140)">
+      <rect x="0" y="0" width="240" height="60" rx="5" class="standard-box" />
+      <text x="120" y="25" text-anchor="middle" class="subtitle-text">架构师 / 编排者</text>
+      <text x="120" y="45" text-anchor="middle" class="body-text">Architect / Orchestrator</text>
+    </g>
+
+    <!-- 维度3: AI角色 -->
+    <g transform="translate(20, 220)">
+      <rect x="0" y="0" width="240" height="60" rx="5" class="standard-box" />
+      <text x="120" y="25" text-anchor="middle" class="subtitle-text">合作者 / 概率预测机</text>
+      <text x="120" y="45" text-anchor="middle" class="body-text">Collaborator (Co-pilot)</text>
+    </g>
+
+    <!-- 维度4: 输出形态 -->
+    <g transform="translate(20, 300)">
+      <rect x="0" y="0" width="240" height="60" rx="5" class="standard-box" />
+      <text x="120" y="25" text-anchor="middle" class="subtitle-text">可交付成果</text>
+      <text x="120" y="45" text-anchor="middle" class="body-text">Deliverable Artifacts</text>
+    </g>
+  </g>
+
+  <!-- 底部总结栏 -->
+  <g transform="translate(50, 480)">
+    <rect x="0" y="0" width="700" height="40" rx="5" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+    <text x="350" y="25" text-anchor="middle" class="body-text" style="font-style: italic;">
+      "结构化输入 = 熵减 (Entropy Reduction) | Prompt是思维工程 | 工作流决定系统成功率"
+    </text>
+  </g>
+
+  <!-- 许可声明 -->
+  <text x="400" y="580" class="license-text">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+</svg>

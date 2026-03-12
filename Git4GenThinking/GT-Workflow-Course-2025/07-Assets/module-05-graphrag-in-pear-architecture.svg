@@ -1,0 +1,186 @@
+<!--
+  文件名：module-05-graphrag-in-pear-architecture.svg
+  图表名称：GraphRAG 在 PEAR 中的位置
+  描述：展示 GraphRAG 如何作为认知基础设施，同时支撑智能体的感知（Perceive）、记忆（Memory）和反思（Reflect）三大关键环节。
+
+  核心关系：
+  1. GraphRAG (Core): 知识图谱 + 向量检索的混合引擎。
+  2. Perceive: 利用图谱进行实体消歧与上下文扩展。
+  3. Memory: 利用图结构存储长期记忆与关系。
+  4. Reflect: 利用图路径进行错误归因与逻辑推理。
+
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+-->
+<svg width="1200" height="850" viewBox="0 0 1200 850" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义样式与标记 -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+
+      /* 文本样式 */
+      .main-title { font-family: 'Noto Sans', sans-serif; font-size: 24px; font-weight: 800; fill: #111827; text-anchor: middle; }
+      .sub-title { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: normal; fill: #6B7280; text-anchor: middle; }
+
+      .module-title { font-family: 'Noto Sans', sans-serif; font-size: 18px; font-weight: 700; text-anchor: middle; }
+      .desc-text { font-family: 'Noto Sans', sans-serif; font-size: 12px; fill: #4B5563; text-anchor: middle; }
+      .tag-text { font-family: 'Noto Sans', sans-serif; font-size: 11px; font-weight: bold; fill: #FFFFFF; text-anchor: middle; }
+
+      /* 核心背景 (GraphRAG) */
+      .core-bg { fill: #EFF6FF; stroke: #2563EB; stroke-width: 3px; rx: 150; ry: 100; }
+
+      /* 外围模块背景 */
+      .module-bg { fill: white; stroke-width: 2px; rx: 12; }
+      .bg-perceive { stroke: #059669; }
+      .bg-memory { stroke: #FACC15; }
+      .bg-reflect { stroke: #A855F7; }
+
+      /* 连接线 */
+      .connector { fill: none; stroke: #94A3B8; stroke-width: 2px; stroke-dasharray: 4,4; }
+      .support-line { fill: none; stroke: #2563EB; stroke-width: 4px; marker-end: url(#arrow-blue); }
+
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="5.5" refY="3" orient="auto">
+      <polygon points="0,0 6,3 0,6" fill="#2563EB"/>
+    </marker>
+  </defs>
+
+  <!-- 1. 标题区域 -->
+  <text x="600" y="50" class="main-title">GraphRAG 在 PEAR 架构中的核心地位</text>
+  <text x="600" y="80" class="sub-title">知识工程不仅仅是“检索”，而是智能体的“认知基础设施”</text>
+
+  <!-- ================================================================================== -->
+  <!-- 核心：GraphRAG 引擎 (Center) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(600, 380)">
+    <!-- 椭圆背景 -->
+    <ellipse cx="0" cy="0" rx="180" ry="120" class="core-bg"/>
+    <text x="0" y="-80" class="module-title" fill="#1E40AF" font-size="20">GraphRAG Engine</text>
+    <text x="0" y="90" class="desc-text" fill="#1E40AF">结构化知识图谱 + 向量索引</text>
+
+    <!-- 内部图谱示意 -->
+    <g transform="translate(0, 10)">
+        <!-- Nodes -->
+        <circle cx="-80" cy="-30" r="10" class="node-circle"/>
+        <circle cx="0" cy="-50" r="15" class="node-circle" fill="#DBEAFE"/>
+        <circle cx="80" cy="-30" r="10" class="node-circle"/>
+        <circle cx="-50" cy="30" r="12" class="node-circle"/>
+        <circle cx="50" cy="30" r="12" class="node-circl"/>
+
+        <!-- Links -->
+        <line x1="-80" y1="-30" x2="0" y2="-50" class="node-link"/>
+        <line x1="0" y1="-50" x2="80" y2="-30" class="node-link"/>
+        <line x1="-80" y1="-30" x2="-50" y2="30" class="node-link"/>
+        <line x1="0" y1="-50" x2="-50" y2="30" class="node-link"/>
+        <line x1="0" y1="-50" x2="50" y2="30" class="node-link"/>
+        <line x1="80" y1="-30" x2="50" y2="30" class="node-link"/>
+        <line x1="-50" y1="30" x2="50" y2="30" class="node-link"/>
+    </g>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 支撑模块 1: Perceive (Top Left) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(250, 180)">
+    <rect x="-100" y="-60" width="200" height="120" class="module-bg bg-perceive"/>
+    <text x="0" y="-30" class="module-title" fill="#05966图:GraphRAG 在 PEAR 中的位置(module-05-graphrag-in-pear-architecture.svg)
+
+图类型：结构关系图
+
+示意重点：
+
+GraphRAG 如何同时支撑：
+Perceive（高质量感知）
+Memory（结构化记忆）
+Reflect（可解释反思）
+
+目的与作用：
+
+回应一个常见误解：GraphRAG ≠ 检索升级
+强化“知识工程是认知基础设施”的结论
+9">Perceive (感知)</text>
+    <line x1="-80" y1="-15" x2="80" y2="-15" stroke="#E5E7EB" stroke-width="1"/>
+
+    <text x="0" y="10" class="desc-text">高质量上下文输入</text>
+
+    <!-- 功能点 -->
+    <g transform="translate(0, 35)">
+        <rect x="-70" y="-10" width="60" height="20" rx="4" fill="#059669"/>
+        <text x="-40" y="4" class="tag-text">实体消歧</text>
+
+        <rect x="10" y="-10" width="60" height="20" rx="4" fill="#059669"/>
+        <text x="40" y="4" class="tag-text">术语对齐</text>
+    </g>
+  </g>
+
+  <!-- 连接线 -->
+  <path d="M 450 320 L 350 240" class="support-line" marker-end="url(#arrow-blue)"/>
+  <text x="380" y="300" class="desc-text" fill="#2563EB" font-weight="bold">提供语境</text>
+
+  <!-- ================================================================================== -->
+  <!-- 支撑模块 2: Memory (Top Right) -->
+
+  <!-- ================================================================================== -->
+  <g transform="translate(950, 180)">
+    <rect x="-100" y="-60" width="200" height="120" class="module-bg bg-memory"/>
+    <text x="0" y="-30" class="module-title" fill="#B45309">Memory (记忆)</text>
+    <line x1="-80" y1="-15" x2="80" y2="-15" stroke="#E5E7EB" stroke-width="1"/>
+
+    <text x="0" y="10" class="desc-text">结构化知识存储</text>
+
+    <!-- 功能点 -->
+    <g transform="translate(0, 35)">
+        <rect x="-70" y="-10" width="60" height="20" rx="4" fill="#FACC15"/>
+        <text x="-40" y="4" class="tag-text" fill="#92400E">关系索引</text>
+
+        <rect x="10" y="-10" width="60" height="20" rx="4" fill="#FACC15"/>
+        <text x="40" y="4" class="tag-text" fill="#92400E">全局摘要</text>
+    </g>
+  </g>
+
+  <!-- 连接线 -->
+  <path d="M 750 320 L 850 240" class="support-line" marker-end="url(#arrow-blue)"/>
+  <text x="820" y="300" class="desc-text" fill="#2563EB" font-weight="bold">构建结构</text>
+
+  <!-- ================================================================================== -->
+  <!-- 支撑模块 3: Reflect (Bottom) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(600, 650)">
+    <rect x="-100" y="-60" width="200" height="120" class="module-bg bg-reflect"/>
+    <text x="0" y="-30" class="module-title" fill="#7E22CE">Reflect (反思)</text>
+    <line x1="-80" y1="-15" x2="80" y2="-15" stroke="#E5E7EB" stroke-width="1"/>
+
+    <text x="0" y="10" class="desc-text">可解释的推理与修正</text>
+
+    <!-- 功能点 -->
+    <g transform="translate(0, 35)">
+        <rect x="-70" y="-10" width="60" height="20" rx="4" fill="#A855F7"/>
+        <text x="-40" y="4" class="tag-text">路径溯源</text>
+
+        <rect x="10" y="-10" width="60" height="20" rx="4" fill="#A855F7"/>
+        <text x="40" y="4" class="tag-text">逻辑归因</text>
+    </g>
+  </g>
+
+  <!-- 连接线 -->
+  <path d="M 600 500 L 600 590" class="support-line" marker-end="url(#arrow-blue)"/>
+  <text x="640" y="520" class="desc-text" fill="#2563EB" font-weight="bold">支撑归因</text>
+
+  <!-- ================================================================================== -->
+  <!-- 底部：核心观点 -->
+  <!-- ================================================================================== -->
+  <g transform="translate(100, 750)">
+    <line x1="0" y1="0" x2="1000" y2="0" stroke="#E5E7EB" stroke-width="2"/>
+    <text x="500" y="30" class="desc-text" font-size="14" fill="#374151" font-weight="bold">
+      “GraphRAG 不仅仅是检索工具，它是智能体理解世界、记忆经验、反思错误的认知骨架。”
+    </text>
+  </g>
+
+  <!-- 底部许可 -->
+  <text x="600" y="830" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="12" fill="#64748B">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

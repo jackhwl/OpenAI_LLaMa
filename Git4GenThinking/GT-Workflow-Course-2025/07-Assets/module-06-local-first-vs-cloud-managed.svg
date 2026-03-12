@@ -1,0 +1,194 @@
+<!--
+  文件名：module-06-local-first-vs-cloud-managed.svg
+  图表名称：本地优先运行环境 vs 云端托管系统对比图
+  描述：展示“本地优先”架构与“云端托管”架构在状态管理、数据主权和系统透明度上的核心差异。
+
+  核心对比：
+  1. 云端托管 (Cloud-Managed): 状态存储于云端黑盒，逻辑由服务商控制，用户通过 API 访问。
+  2. 本地优先 (Local-First): 状态存储于本地文件系统，逻辑在本地运行（可调用云模型），用户拥有完全控制权。
+
+  关键洞察：本地优先 ≠ 本地模型。你可以使用云端 LLM，但必须拥有“状态主权”。
+
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+-->
+<svg width="1200" height="750" viewBox="0 0 1200 750" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义样式与标记 -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+
+      /* 文本样式 */
+      .main-title { font-family: 'Noto Sans', sans-serif; font-size: 24px; font-weight: 800; fill: #111827; text-anchor: middle; }
+      .sub-title { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: normal; fill: #6B7280; text-anchor: middle; }
+
+      .panel-title { font-family: 'Noto Sans', sans-serif; font-size: 20px; font-weight: 700; text-anchor: middle; }
+      .section-label { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: 700; fill: #374151; text-anchor: middle; }
+      .item-text { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 400; fill: #4B5563; text-anchor: middle; }
+      .desc-text { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 400; fill: #4B5563; text-start: middle; }
+      .highlight-text { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 700; text-anchor: middle; }
+
+      /* 区域背景 */
+      .bg-cloud { fill: #F3E8FF; stroke: #A855F7; stroke-width: 2px; rx: 16; }
+      .bg-local { fill: #F0FDF4; stroke: #059669; stroke-width: 2px; rx: 16; }
+
+      /* 模块框 */
+      .box-cloud-inner { fill: white; stroke: #A855F7; stroke-width: 1px; rx: 8; stroke-dasharray: 4,4; }
+      .box-local-inner { fill: white; stroke: #059669; stroke-width: 2px; rx: 8; }
+
+      /* 连接线 */
+      .connector { fill: none; stroke: #94A3B8; stroke-width: 2px; marker-end: url(#arrow-gray); }
+      .data-flow-cloud { fill: none; stroke: #A855F7; stroke-width: 1px; marker-end: url(#arrow-purple); stroke-dasharray: 4,4; }
+      .data-flow-local { fill: none; stroke: #059669; stroke-width: 1px; marker-end: url(#arrow-green); }
+
+      /* 图标背景 */
+      .icon-bg { fill: white; stroke-width: 0; }
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow-gray" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#94A3B8"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="#A855F7"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="#059669"/>
+    </marker>
+  </defs>
+
+  <!-- 1. 标题区域 -->
+  <text x="600" y="50" class="main-title">本地优先vs云端托管</text>
+  <text x="600" y="80" class="sub-title">核心差异：状态控制权 (State Ownership) 与 系统透明度 (System Transparency)</text>
+
+  <!-- ================================================================================== -->
+  <!-- 左侧：云端托管系统 (Cloud-Managed) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(100, 130)">
+    <!-- 背景 -->
+    <rect x="0" y="0" width="450" height="520" class="bg-cloud"/>
+    <text x="225" y="40" class="panel-title" fill="#6B21A8">☁️ 云端托管 (SaaS)</text>
+    <text x="225" y="65" class="item-text" fill="#7E22CE">"租用的智能"</text>
+
+    <!-- Cloud Boundary (The Black Box) -->
+    <rect x="50" y="100" width="350" height="300" rx="12" fill="#F3F4F6" stroke="#94A3B8" stroke-width="2"/>
+    <text x="225" y="125" class="section-label" fill="#64748B">服务商黑盒 (Vendor Black Box)</text>
+
+    <!-- Components inside Cloud -->
+    <g transform="translate(100, 150)">
+        <!-- Database -->
+        <path d="M 0 20 Q 50 0 100 20 L 100 80 Q 50 100 0 80 Z" fill="white" stroke="#A855F7" stroke-width="1.5"/>
+        <path d="M 0 20 Q 50 40 100 20" fill="none" stroke="#A855F7" stroke-width="1.5"/>
+        <text x="50" y="60" class="item-text">Proprietary DB</text>
+        <text x="50" y="80" class="item-text" font-size="10">(数据不可见)</text>
+
+        <!-- Logic -->
+        <rect x="150" y="20" width="100" height="60" rx="4" fill="white" stroke="#A855F7" stroke-width="1.5"/>
+        <text x="200" y="55" class="item-text">Closed Logic</text>
+
+        <!-- Model -->
+        <circle cx="125" cy="150" r="40" fill="white" stroke="#A855F7" stroke-width="1.5"/>
+        <text x="125" y="155" class="item-text">LLM</text>
+    </g>
+
+    <!-- User (Outside) -->
+    <g transform="translate(175, 430)">
+        <circle cx="50" cy="0" r="25" class="icon-bg"/>
+        <text x="50" y="5" text-anchor="middle" font-size="24">👤</text>
+        <text x="50" y="40" class="item-text" font-weight="bold">User</text>
+    </g>
+
+    <!-- Connections (API Only) -->
+    <path d="M 225 400 L 225 340" class="data-flow-cloud"/>
+    <rect x="170" y="360" width="100" height="20" rx="4" fill="#F3E8FF" stroke="#A855F7"/>
+    <text x="225" y="374" class="item-text" font-size="10" fill="#6B21A8">API Access Only</text>
+
+    <!-- Pain Points -->
+    <g transform="translate(50, 450)">
+        <text x="0" y="0" class="item-text" fill="#B91C1C" text-anchor="start">❌ 风险：</text>
+        <text x="10" y="20" class="desc-text" >• 数据被锁定</text>
+        <text x="10" y="38" class="desc-text" >• 隐私泄露风险</text>
+        <text x="10" y="56" class="desc-text" >• 服务随时中断</text>
+    </g>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 右侧：本地优先运行环境 (Local-First) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(650, 130)">
+    <!-- 背景 -->
+    <rect x="0" y="0" width="450" height="520" class="bg-local"/>
+    <text x="225" y="40" class="panel-title" fill="#047857">💻 本地优先 (Local-First)</text>
+    <text x="225" y="65" class="item-text" fill="#059669">"拥有的智能"</text>
+
+    <!-- Local Environment (Glass Box) -->
+    <rect x="50" y="100" width="350" height="300" rx="12" fill="white" stroke="#059669" stroke-width="2"/>
+    <text x="225" y="125" class="section-label" fill="#065F46">用户控制环境 (User Controlled Env)</text>
+
+    <!-- Components inside Local -->
+    <g transform="translate(80, 150)">
+        <!-- Local Files -->
+        <rect x="0" y="0" width="100" height="80" class="box-local-inner"/>
+        <text x="50" y="35" class="highlight-text" fill="#047857">Local Files</text>
+        <text x="50" y="55" class="item-text" font-size="10">Markdown/JSON</text>
+        <text x="50" y="70" class="item-text" font-size="10">(SSOT)</text>
+
+        <!-- Local Runtime -->
+        <rect x="140" y="0" width="140" height="80" class="box-local-inner"/>
+        <text x="210" y="35" class="highlight-text" fill="#047857">Agent Runtime</text>
+        <text x="210" y="55" class="item-text" font-size="10">Open Source Code</text>
+
+        <!-- Connections -->
+        <path d="M 100 40 L 140 40" class="data-flow-local"/>
+
+        <!-- Model Choice (The Hybrid Part) -->
+        <g transform="translate(70, 130)">
+            <rect x="0" y="0" width="160" height="60" rx="30" fill="#ECFDF5" stroke="#34D399" stroke-dasharray="4,2"/>
+            <text x="80" y="25" class="item-text" font-weight="bold">Model (可插拔)</text>
+            <text x="40" y="45" class="item-text" font-size="10">Cloud API</text>
+            <text x="80" y="45" class="item-text" font-size="10">or</text>
+            <text x="120" y="45" class="item-text" font-size="10">Local LLM</text>
+        </g>
+
+        <!-- Connection to Model -->
+        <path d="M 260 80 L 260 160 L 230 160" class="data-flow-local"/>
+
+        <!-- Model to Local File Lines -->
+        <path d="M 75 160 L 45 160 L45 80" class="data-flow-local"/>
+        <text x="400" y="200" class="item-text" fill="#059669" transform="rotate(-90, 180, 360)">Direct</text>
+        <text x="400" y="215" class="item-text" fill="#059669" transform="rotate(-90, 180, 360)">Read/Write</text>
+    </g>
+
+    <!-- User (Inside Control Loop) -->
+    <g transform="translate(225, 430)">
+        <circle cx="0" cy="0" r="25" class="icon-bg"/>
+        <text x="0" y="5" text-anchor="middle" font-size="24">🧑‍💻</text>
+        <text x="0" y="40" class="item-text" font-weight="bold">Owner</text>
+    </g>
+
+    <!-- Benefits -->
+    <g transform="translate(50, 450)">
+        <text x="0" y="0" class="item-text" fill="#047857" text-anchor="start">✅ 优势：</text>
+        <text x="10" y="20" class="desc-text" >• 数据主权：文件在本地，永远可用</text>
+        <text x="10" y="38" class="desc-text" >• 可审计：所有操作记录在本地日志</text>
+        <text x="10" y="56" class="desc-text" >• 灵活性：随意切换模型，不丢数据</text>
+    </g>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 底部总结：关于误解的澄清 -->
+  <!-- ================================================================================== -->
+  <g transform="translate(200, 750)">
+    <rect x="0" y="0" width="800" height="50" rx="8" fill="#FFFBEB" stroke="#FACC15" stroke-width="2"/>
+    <text x="400" y="30" class="item-text" font-size="14">
+      💡 <tspan font-weight="bold">关键澄清：</tspan>本地优先 <tspan fill="#DC2626" font-weight="bold">≠</tspan> 必须使用本地模型 (Local LLM)。
+      核心在于 <tspan fill="#059669" font-weight="bold">状态 (State) 和 记忆 (Memory)</tspan> 必须存储在本地。
+    </text>
+  </g>
+
+  <!-- 底部许可 -->
+  <text x="600" y="730" font-family="Noto Sans" font-size="12" fill="#9CA3AF" text-anchor="middle">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

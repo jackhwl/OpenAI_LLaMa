@@ -1,0 +1,248 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1020" width="100%" height="100%">
+  <!--
+  ================================================================================
+  图表名称：上下文窗口与 MCP 动态加载机制 (Context Window & Dynamic Loading)
+  文件命名：11-figure-04-mcp-context-window-mcp.svg
+  用途：展示 MCP 协议将 Tool Schema 注入上下文窗口的过程，以及全量静态注入引发的“上下文溢出”困境。同时呈现高阶分级路由（L1 Manager + L2 Worker）的动态加载解决方案。
+  版本：v1.0.0
+  作者：Gitconomy Research-郭晧
+  SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+  创建日期：2026-02-21
+  ================================================================================
+  -->
+
+  <!-- Background: Solid White -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+
+  <defs>
+    <style>
+      :root {
+        /* Semantic Colors 语义色系统 */
+        --c-cloud-blue: #0066CC;   /* Brain Blue: LLM 上下文/算力 */
+        --c-local-green: #00875A;  /* Body Green: 动态加载/最佳实践 */
+        --c-risk-amber: #FF991F;   /* State Amber: 延迟/性能衰退 */
+        --c-danger-red: #DE350B;   /* Danger Red: 溢出/崩溃/失控 */
+        --c-neutral-gray: #475569; /* Meta Gray: 基础指令/历史对话 */
+
+        /* 浅色背景辅助变量 */
+        --c-bg-light-blue: #EBF3FA;
+        --c-bg-light-green: #E6F3EE;
+        --c-bg-light-amber: #FFF4E5;
+        --c-bg-light-red: #FEE2E2;
+        --c-bg-light-gray: #F1F5F9;
+
+        /* Font Stacks */
+        --font-sans: 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
+        --font-mono: 'JetBrains Mono', Consolas, 'Courier New', monospace;
+      }
+
+      .text-sans { font-family: var(--font-sans); }
+      .text-mono { font-family: var(--font-mono); }
+      .text-bold { font-weight: bold; }
+    </style>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-cloud-blue)" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-local-green)" />
+    </marker>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-neutral-gray)" />
+    </marker>
+  </defs>
+
+  <!--
+  ===========================================================================
+       标题块 (Title Block)
+  ===========================================================================
+  -->
+  <g id="title-block" transform="translate(600, 40)">
+    <!-- A. Main Title -->
+    <text y="20" text-anchor="middle" class="text-sans text-bold" font-size="24" fill="#000000">上下文窗口与动态加载机制</text>
+
+    <!-- B. Breadcrumbs -->
+    <text y="45" text-anchor="middle" class="text-mono" font-size="14" fill="var(--c-neutral-gray)">第 11 天 > 基础原理</text>
+
+    <!-- C. Context Indicator -->
+    <line x1="-50" y1="60" x2="50" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!--
+  ===========================================================================
+       架构主视图区 (Diagram Content Starts at Y=140)
+  ===========================================================================
+  -->
+  <g id="diagram-content" transform="translate(0, 140)">
+
+    <!-- =========================================================
+         SECTION 1: 困境 - 静态全量注入导致上下文溢出
+         ========================================================= -->
+    <text x="80" y="20" class="text-sans text-bold" font-size="18" fill="var(--c-danger-red)">
+      ⚠️ 困境：全量静态注入引发“上下文溢出” (Context Overflow)
+    </text>
+    <line x1="80" y1="35" x2="1120" y2="35" stroke="var(--c-danger-red)" stroke-width="1" stroke-dasharray="4 2" />
+
+    <g transform="translate(100, 60)">
+      <!-- Context Window Boundary Container -->
+      <rect x="0" y="0" width="450" height="320" rx="12" fill="var(--c-bg-light-blue)" stroke="var(--c-cloud-blue)" stroke-width="2" stroke-dasharray="8 4" />
+      <text x="225" y="25" text-anchor="middle" class="text-sans text-bold" font-size="14" fill="var(--c-cloud-blue)">LLM Context Window (固定物理容量限制)</text>
+
+      <!-- Block 1: System Base -->
+      <rect x="25" y="50" width="400" height="40" rx="4" fill="var(--c-neutral-gray)" fill-opacity="0.1" stroke="var(--c-neutral-gray)" stroke-width="1"/>
+      <text x="225" y="75" text-anchor="middle" class="text-mono" font-size="13" fill="#333333">System Instructions (基础设定)</text>
+
+      <!-- Block 2: Chat History -->
+      <rect x="25" y="100" width="400" height="40" rx="4" fill="var(--c-neutral-gray)" fill-opacity="0.1" stroke="var(--c-neutral-gray)" stroke-width="1"/>
+      <text x="225" y="125" text-anchor="middle" class="text-mono" font-size="13" fill="#333333">Chat History (历史对话上下文)</text>
+
+      <!-- Block 3: Overflowing Tool Schemas -->
+      <rect x="25" y="150" width="400" height="200" rx="4" fill="var(--c-bg-light-red)" stroke="var(--c-danger-red)" stroke-width="2"/>
+
+      <!-- Zig-zag bottom to show it breaking out -->
+      <path d="M 25 350 L 65 330 L 105 350 L 145 330 L 185 350 L 225 330 L 265 350 L 305 330 L 345 350 L 385 330 L 425 350 L 425 150 L 25 150 Z" fill="var(--c-bg-light-red)" stroke="var(--c-danger-red)" stroke-width="2" />
+
+      <text x="225" y="180" text-anchor="middle" class="text-mono text-bold" font-size="14" fill="var(--c-danger-red)">[Injected Schema] 100+ MCP Tools 巨量注入</text>
+      <text x="225" y="205" text-anchor="middle" class="text-sans" font-size="12" fill="#991B1B">Tool 1: filesystem_read (400 tokens)</text>
+      <text x="225" y="225" text-anchor="middle" class="text-sans" font-size="12" fill="#991B1B">Tool 2: fetch_web_content (350 tokens)</text>
+      <text x="225" y="245" text-anchor="middle" class="text-sans" font-size="12" fill="#991B1B">...</text>
+      <text x="225" y="265" text-anchor="middle" class="text-sans" font-size="12" fill="#991B1B">Tool 100: database_query (600 tokens)</text>
+
+      <text x="225" y="310" text-anchor="middle" class="text-sans text-bold" font-size="16" fill="var(--c-danger-red)">⚠️ Token 溢出边界！(OOM)</text>
+    </g>
+
+    <!-- Problem Explanation Box -->
+    <g transform="translate(600, 130)">
+      <rect width="500" height="180" rx="8" fill="#FFFFFF" stroke="var(--c-risk-amber)" stroke-width="2" />
+      <rect x="0" y="0" width="500" height="30" rx="8" fill="var(--c-bg-light-amber)" />
+      <text x="20" y="20" class="text-sans text-bold" font-size="14" fill="var(--c-risk-amber)">物理限制与工程副作用</text>
+
+      <circle cx="30" cy="65" r="5" fill="var(--c-risk-amber)"/>
+      <text x="50" y="70" class="text-sans text-bold" font-size="14" fill="#333333">1. 成本与延迟飙升：</text>
+      <text x="50" y="90" class="text-sans" font-size="13" fill="#666666">每次对话都携带数万 Token 的无效 Schema，TTFT (首字延迟) 极高。</text>
+
+      <circle cx="30" cy="125" r="5" fill="var(--c-risk-amber)"/>
+      <text x="50" y="130" class="text-sans text-bold" font-size="14" fill="#333333">2. 中间迷失 (Lost in the Middle)：</text>
+      <text x="50" y="150" class="text-sans" font-size="13" fill="#666666">大量无关工具分散了 LLM 的注意力，导致推理能力与指令遵循度下降。</text>
+    </g>
+
+    <!-- Arrow down to solution -->
+    <path d="M 600 420 L 600 460" fill="none" stroke="var(--c-local-green)" stroke-width="4" marker-end="url(#arrow-green)" />
+
+
+    <!-- =========================================================
+         SECTION 2: 破局 - 基于 MCP 的动态分级路由
+         ========================================================= -->
+    <text x="80" y="490" class="text-sans text-bold" font-size="18" fill="var(--c-local-green)">
+      ✅ 破局：分级路由策略 (Dynamic Loading &amp; L1/L2 Routing)
+    </text>
+    <line x1="80" y1="505" x2="1120" y2="505" stroke="var(--c-local-green)" stroke-width="1" stroke-dasharray="4 2" />
+
+    <!-- L1 Manager (Router) -->
+    <g transform="translate(100, 540)">
+      <rect x="0" y="0" width="300" height="240" rx="12" fill="var(--c-bg-light-blue)" stroke="var(--c-cloud-blue)" stroke-width="2" />
+      <rect x="0" y="0" width="300" height="35" rx="12" fill="var(--c-cloud-blue)" />
+      <text x="150" y="23" text-anchor="middle" class="text-sans text-bold" font-size="15" fill="#FFFFFF">🧠 L1 路由器 (Manager Agent)</text>
+
+      <text x="150" y="60" text-anchor="middle" class="text-sans text-bold" font-size="13" fill="#333333">上下文轻量注入 (仅含分类器)</text>
+
+      <!-- Small injected schemas -->
+      <rect x="20" y="75" width="260" height="30" rx="4" fill="#FFFFFF" stroke="var(--c-local-green)" stroke-width="1"/>
+      <text x="30" y="95" class="text-mono" font-size="11" fill="var(--c-local-green)">Schema: [编程专家助手组]</text>
+
+      <rect x="20" y="115" width="260" height="30" rx="4" fill="#FFFFFF" stroke="var(--c-neutral-gray)" stroke-width="1"/>
+      <text x="30" y="135" class="text-mono" font-size="11" fill="var(--c-neutral-gray)">Schema: [公文写作助手组]</text>
+
+      <rect x="20" y="155" width="260" height="30" rx="4" fill="#FFFFFF" stroke="var(--c-neutral-gray)" stroke-width="1"/>
+      <text x="30" y="175" class="text-mono" font-size="11" fill="var(--c-neutral-gray)">Schema: [金融数据助手组]</text>
+
+      <text x="150" y="215" text-anchor="middle" class="text-mono text-bold" font-size="13" fill="var(--c-cloud-blue)">LLM 决策: "用户想写代码"</text>
+    </g>
+
+    <!-- Orchestrator (MCP Client) -->
+    <g transform="translate(480, 570)">
+      <rect x="0" y="0" width="240" height="180" rx="8" fill="var(--c-bg-light-green)" stroke="var(--c-local-green)" stroke-width="2" />
+      <text x="120" y="25" text-anchor="middle" class="text-sans text-bold" font-size="15" fill="var(--c-local-green)">神经中枢 (MCP Client)</text>
+      <text x="120" y="45" text-anchor="middle" class="text-sans" font-size="12" fill="#333333">动态加载调度器</text>
+
+      <!-- Dynamic Actions -->
+      <rect x="20" y="60" width="200" height="30" rx="4" fill="#FFFFFF" stroke="var(--c-local-green)" stroke-width="1"/>
+      <text x="120" y="79" text-anchor="middle" class="text-sans" font-size="11" fill="#333333">1. 拦截 L1 路由指令</text>
+
+      <rect x="20" y="100" width="200" height="30" rx="4" fill="#FFFFFF" stroke="var(--c-danger-red)" stroke-width="1"/>
+      <text x="120" y="119" text-anchor="middle" class="text-sans text-bold" font-size="11" fill="var(--c-danger-red)">2. 卸载 (Unmount) 无关工具</text>
+
+      <rect x="20" y="140" width="200" height="30" rx="4" fill="#FFFFFF" stroke="var(--c-local-green)" stroke-width="1"/>
+      <text x="120" y="159" text-anchor="middle" class="text-sans text-bold" font-size="11" fill="var(--c-local-green)">3. 挂载 (Mount) L2 专用工具</text>
+    </g>
+
+    <!-- L2 Worker (Executor) -->
+    <g transform="translate(800, 540)">
+      <rect x="0" y="0" width="300" height="240" rx="12" fill="var(--c-bg-light-blue)" stroke="var(--c-cloud-blue)" stroke-width="2" />
+      <rect x="0" y="0" width="300" height="35" rx="12" fill="var(--c-cloud-blue)" />
+      <text x="150" y="23" text-anchor="middle" class="text-sans text-bold" font-size="15" fill="#FFFFFF">🧠 L2 执行器 (Worker Agent)</text>
+
+      <text x="150" y="60" text-anchor="middle" class="text-sans text-bold" font-size="13" fill="var(--c-local-green)">按需加载纯净上下文 (高聚焦)</text>
+
+      <!-- Loaded schemas -->
+      <rect x="20" y="75" width="260" height="30" rx="4" fill="var(--c-bg-light-green)" stroke="var(--c-local-green)" stroke-width="1"/>
+      <text x="30" y="95" class="text-mono" font-size="11" fill="#333333">Schema: <tspan class="text-bold">git_commit_tool</tspan></text>
+
+      <rect x="20" y="115" width="260" height="30" rx="4" fill="var(--c-bg-light-green)" stroke="var(--c-local-green)" stroke-width="1"/>
+      <text x="30" y="135" class="text-mono" font-size="11" fill="#333333">Schema: <tspan class="text-bold">python_linter_tool</tspan></text>
+
+      <rect x="20" y="155" width="260" height="30" rx="4" fill="var(--c-bg-light-green)" stroke="var(--c-local-green)" stroke-width="1"/>
+      <text x="30" y="175" class="text-mono" font-size="11" fill="#333333">Schema: <tspan class="text-bold">file_edit_tool</tspan></text>
+
+      <text x="150" y="215" text-anchor="middle" class="text-mono text-bold" font-size="13" fill="var(--c-local-green)">LLM 专注生成编程 JSON 指令</text>
+    </g>
+
+    <!-- Connectors for Bottom Section -->
+    <path d="M 400 660 L 470 660" fill="none" stroke="var(--c-cloud-blue)" stroke-width="3" marker-end="url(#arrow-blue)" />
+    <path d="M 720 660 L 790 660" fill="none" stroke="var(--c-local-green)" stroke-width="3" marker-end="url(#arrow-green)" />
+
+  </g>
+
+  <!--
+  ===========================================================================
+       底部图例与注释块 (Legend & Key Block - 遵循 3.4 & 7.3)
+  ===========================================================================
+  -->
+  <g id="legend" transform="translate(600, 960)">
+    <!-- 统一的半透明背景容器 -->
+    <rect x="-460" y="-16" width="920" height="32" rx="4" fill="rgba(255, 255, 255, 0.9)" stroke="var(--c-neutral-gray)" stroke-width="0.5"/>
+
+    <g transform="translate(-440, 0)">
+      <text x="0" y="4" class="text-sans text-bold" font-size="12" fill="var(--c-neutral-gray)">图例说明:</text>
+
+      <!-- Item 1: Cloud/LLM -->
+      <g transform="translate(80, 0)">
+        <polygon points="0,-6 6,-3 6,3 0,6 -6,3 -6,-3" fill="var(--c-cloud-blue)" />
+        <text x="12" y="4" class="text-mono" font-size="11" fill="#333333">LLM Context (上下文算力)</text>
+      </g>
+
+      <!-- Item 2: Dynamic Load -->
+      <g transform="translate(290, 0)">
+        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="var(--c-local-green)" />
+        <text x="12" y="4" class="text-mono" font-size="11" fill="#333333">Dynamic Load (按需动态挂载)</text>
+      </g>
+
+      <!-- Item 3: Warning/Overflow -->
+      <g transform="translate(520, 0)">
+        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="var(--c-danger-red)" />
+        <text x="12" y="4" class="text-mono" font-size="11" fill="#333333">Context Overflow (内存溢出/迷失风险)</text>
+      </g>
+    </g>
+  </g>
+
+  <!--
+  ===========================================================================
+       底部许可注释规范 (Footer License - 遵循 7.4)
+  ===========================================================================
+  -->
+  <text x="600" y="1000" text-anchor="middle" class="text-sans" font-size="12" fill="var(--c-neutral-gray)">
+    本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research社区
+  </text>
+
+</svg>

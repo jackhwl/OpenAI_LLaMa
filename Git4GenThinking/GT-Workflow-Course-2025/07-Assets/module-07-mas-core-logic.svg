@@ -1,0 +1,246 @@
+<!--
+  ================================================================================
+  图表名称：多智能体核心逻辑：关注点分离与协同
+  文件命名：module-07-mas-core-logic.svg
+  描述：
+    展示 MAS 的两大核心支柱：
+    1. 关注点分离 (SoC): 将复杂任务拆解为不同角色的独立智能体。
+    2. 协同 (Collaboration): 通过共享协议总线 (Bus) 和 SOP 进行结构化交互。
+
+  遵循 Gitconomy 社区 DaC 设计规范：
+  - 样式：采用 <style> 集中定义 CSS 类
+  - 结构：<defs> 位于头部
+  - 字体：Noto Sans / sans-serif
+  ================================================================================
+-->
+<svg width="1200" height="740" viewBox="0 0 1200 740" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- ========================================================================= -->
+  <!-- DEFINITIONS & STYLES -->
+  <!-- ========================================================================= -->
+  <defs>
+    <style>
+      /* 全局字体 */
+      .font-sans { font-family: 'Noto Sans', sans-serif; }
+
+      /* 文本层级 */
+      .title-main { font-size: 24px; font-weight: 800; fill: #111827; }
+      .title-sub { font-size: 16px; font-weight: 400; fill: #6B7280; }
+      .text-label-lg { font-size: 14px; font-weight: 700; }
+      .text-label-md { font-size: 14px; font-weight: 600; }
+      .text-body { font-size: 12px; }
+      .text-xs { font-size: 11px; }
+
+      /* 颜色通用类 */
+      .fill-white { fill: #FFFFFF; }
+      .stroke-gray { stroke: #E5E7EB; stroke-width: 2px; }
+      .text-gray-dark { fill: #374151; }
+      .text-gray-light { fill: #6B7280; }
+
+      /* Agent A: Planner (Blue) */
+      .box-planner { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; }
+      .header-planner { fill: #DBEAFE; }
+      .text-planner-title { fill: #1E40AF; }
+      .text-planner-body { fill: #1E3A8A; }
+      .conn-planner { stroke: #60A5FA; stroke-width: 3px; }
+
+      /* Agent B: Executor (Green) */
+      .box-executor { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; }
+      .header-executor { fill: #DCFCE7; }
+      .text-executor-title { fill: #065F46; }
+      .text-executor-body { fill: #065F46; }
+      .conn-executor { stroke: #34D399; stroke-width: 3px; }
+
+      /* Agent C: Reviewer (Yellow) */
+      .box-reviewer { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2px; }
+      .header-reviewer { fill: #FEF3C7; }
+      .text-reviewer-title { fill: #92400E; }
+      .text-reviewer-body { fill: #92400E; }
+      .conn-reviewer { stroke: #FACC15; stroke-width: 3px; }
+
+      /* Infrastructure / Bus */
+      .bus-container { fill: #F9FAFB; stroke: #9CA3AF; stroke-width: 2px; stroke-dasharray: 8,4; }
+      .bus-inner { fill: #FFFFFF; stroke: #D1D5DB; stroke-width: 1px; }
+      .conn-feedback { fill: none; stroke: #F59E0B; stroke-width: 2px; }
+      .text-feedback { fill: #D97706; }
+
+      /* Input/Output */
+      .circle-input { fill: #F3F4F6; stroke: #9CA3AF; stroke-width: 2px; stroke-dasharray: 4,2; }
+      .conn-gray { stroke: #9CA3AF; stroke-width: 2px; }
+      .box-result { fill: #EFF6FF; stroke: #1E40AF; stroke-width: 2px; }
+      .line-result { stroke: #BFDBFE; stroke-width: 2px; }
+
+      /* Separator */
+      .soc-line { stroke: #E5E7EB; stroke-width: 2px; stroke-dasharray: 6,4; }
+    </style>
+
+    <!-- Markers -->
+    <marker id="arrow-gray" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9CA3AF" />
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#60A5FA" />
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#34D399" />
+    </marker>
+    <marker id="arrow-yellow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#FACC15" />
+    </marker>
+    <marker id="arrow-up-orange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#F59E0B" />
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="1200" height="700" class="fill-white"/>
+
+  <!-- ========================================================================= -->
+  <!-- Header -->
+  <!-- ========================================================================= -->
+  <text x="600" y="50" class="font-sans title-main" text-anchor="middle">
+    多智能体核心逻辑：关注点分离 (SoC) 与协同
+  </text>
+  <text x="600" y="80" class="font-sans title-sub" text-anchor="middle">
+    Core Logic: Separation of Concerns &amp; Structured Collaboration
+  </text>
+
+  <!-- ========================================================================= -->
+  <!-- INPUT (Complex Chaos) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(80, 280)">
+    <circle cx="60" cy="60" r="50" class="circle-input"/>
+    <text x="60" y="55" class="font-sans text-label-lg text-gray-dark" text-anchor="middle">User Query</text>
+    <text x="60" y="75" class="font-sans text-body text-gray-light" text-anchor="middle">(Complex/Vague)</text>
+
+    <!-- Arrows coming out -->
+    <path d="M 110 60 L 160 60" class="conn-gray" marker-end="url(#arrow-gray)"/>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN SYSTEM BOX (The Machine) -->
+  <!-- ========================================================================= -->
+  <rect x="200" y="130" width="800" height="460" rx="16" class="fill-white stroke-gray"/>
+  <text x="230" y="160" class="font-sans text-label-lg" fill="#9CA3AF">Multi-Agent System Boundary</text>
+
+  <!-- ========================================================================= -->
+  <!-- LAYER 1: SEPARATION OF CONCERNS (The Agents) -->
+  <!-- ========================================================================= -->
+
+  <!-- Group Title -->
+  <g transform="translate(230, 200)">
+    <line x1="0" y1="0" x2="0" y2="280" class="soc-line"/>
+    <text x="10" y="20" class="font-sans text-label-lg" fill="#1E3A8A" transform="rotate(90, 10, 20)">关注点分离 (SoC)</text>
+  </g>
+
+  <!-- Agent 1: Planner (Blue) -->
+  <g transform="translate(280, 180)">
+    <rect x="0" y="0" width="220" height="120" rx="8" class="box-planner"/>
+
+    <!-- Header -->
+    <rect x="0" y="0" width="220" height="36" rx="8" class="header-planner"/>
+    <rect x="0" y="26" width="220" height="10" class="header-planner"/>
+    <text x="110" y="24" class="font-sans text-label-lg text-planner-title" text-anchor="middle">Agent A: 规划 (Planner)</text>
+
+    <!-- Content -->
+    <text x="20" y="60" class="font-sans text-body text-planner-body">关注点 (Concern):</text>
+    <text x="20" y="80" class="font-sans text-body text-gray-light">• 任务拆解与路径规划</text>
+    <text x="20" y="100" class="font-sans text-body text-gray-light">• 不关注具体代码实现</text>
+  </g>
+
+  <!-- Agent 2: Executor (Green) -->
+  <g transform="translate(530, 180)">
+    <rect x="0" y="0" width="220" height="120" rx="8" class="box-executor"/>
+
+    <!-- Header -->
+    <rect x="0" y="0" width="220" height="36" rx="8" class="header-executor"/>
+    <rect x="0" y="26" width="220" height="10" class="header-executor"/>
+    <text x="110" y="24" class="font-sans text-label-lg text-executor-title" text-anchor="middle">Agent B: 执行 (Executor)</text>
+
+    <!-- Content -->
+    <text x="20" y="60" class="font-sans text-body text-executor-body">关注点 (Concern):</text>
+    <text x="20" y="80" class="font-sans text-body text-gray-light">• 代码生成与工具调用</text>
+    <text x="20" y="100" class="font-sans text-body text-gray-light">• 不关注整体业务目标</text>
+  </g>
+
+  <!-- Agent 3: Reviewer (Yellow) -->
+  <g transform="translate(780, 180)">
+    <rect x="0" y="0" width="180" height="120" rx="8" class="box-reviewer"/>
+
+    <!-- Header -->
+    <rect x="0" y="0" width="180" height="36" rx="8" class="header-reviewer"/>
+    <rect x="0" y="26" width="180" height="10" class="header-reviewer"/>
+    <text x="90" y="24" class="font-sans text-label-lg text-reviewer-title" text-anchor="middle">Agent C: 评审</text>
+
+    <!-- Content -->
+    <text x="15" y="60" class="font-sans text-body text-reviewer-body">关注点 (Concern):</text>
+    <text x="15" y="80" class="font-sans text-body text-gray-light">• 安全与错误检查</text>
+    <text x="15" y="100" class="font-sans text-body text-gray-light">• 负责 "Say No"</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- LAYER 2: COLLABORATION (The Protocol Bus) -->
+  <!-- ========================================================================= -->
+
+  <g transform="translate(250, 360)">
+    <!-- Bus Container -->
+    <rect x="0" y="0" width="730" height="180" rx="12" class="bus-container"/>
+
+    <!-- Title Label -->
+    <text x="365" y="165" class="font-sans text-label-lg text-gray-light" text-anchor="middle">
+      协同层：通信协议与共享状态 (Collaboration Protocol)
+    </text>
+
+    <!-- Connector Lines -->
+    <!-- Planner Down -->
+    <line x1="140" y1="-60" x2="140" y2="40" class="conn-planner" marker-end="url(#arrow-blue)"/>
+    <text x="150" y="-10" class="font-sans text-xs" fill="#1E40AF">SOP A->B</text>
+
+    <!-- Executor Down -->
+    <line x1="390" y1="-60" x2="390" y2="40" class="conn-executor" marker-end="url(#arrow-green)"/>
+
+    <!-- Reviewer Down -->
+    <line x1="620" y1="-60" x2="620" y2="40" class="conn-reviewer" marker-end="url(#arrow-yellow)"/>
+
+    <!-- Internal Bus Interaction -->
+    <rect x="40" y="40" width="650" height="60" rx="6" class="bus-inner"/>
+    <text x="325" y="75" class="font-sans text-label-md text-gray-dark" text-anchor="middle">
+      Message Bus / Shared State (Context)
+    </text>
+
+    <!-- Feedback Loop -->
+    <path d="M 620 100 L 620 120 L 390 120 L 390 100" class="conn-feedback" marker-end="url(#arrow-up-orange)"/>
+    <text x="505" y="115" class="font-sans text-xs text-feedback" text-anchor="middle">Feedback Loop (Reject/Retry)</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- OUTPUT -->
+  <!-- ========================================================================= -->
+  <g transform="translate(1030, 280)">
+    <path d="M 0 60 L 40 60" class="conn-gray" marker-end="url(#arrow-gray)"/>
+
+    <rect x="50" y="30" width="80" height="60" rx="4" class="box-result"/>
+    <line x1="60" y1="45" x2="120" y2="45" class="line-result"/>
+    <line x1="60" y1="60" x2="120" y2="60" class="line-result"/>
+    <line x1="60" y1="75" x2="100" y2="75" class="line-result"/>
+
+    <text x="90" y="110" class="font-sans text-body text-label-lg title-main" text-anchor="middle">Result</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- Explanatory Labels (Bottom) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(200, 620)">
+    <rect x="0" y="0" width="800" height="50" rx="8" class="bus-container" style="stroke-dasharray: 0;"/>
+    <text x="20" y="30" class="font-sans text-body font-weight-bold title-main">核心思想：</text>
+    <text x="100" y="30" class="font-sans text-body text-gray-dark">
+      SoC 降低了单个智能体的认知负载，而标准化协议（Protocol）确保了它们能像流水线一样高效协同。
+    </text>
+  </g>
+
+  <!-- License -->
+  <text x="600" y="720" class="font-sans text-body text-gray-light" text-anchor="middle">
+    本作品采用 CC-BY-SA 4.0 国际许可协议进行许可，© 2025 Gitconomy Research 社区
+  </text>
+
+</svg>

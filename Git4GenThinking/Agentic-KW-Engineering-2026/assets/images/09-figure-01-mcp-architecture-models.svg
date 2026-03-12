@@ -1,0 +1,184 @@
+<!--
+================================================================================
+图表名称：MCP 协议核心架构组件详解
+文件命名：09-figure-01-mcp-architecture-components.svg
+用途：展示 MCP 协议定义的四大工程要素（Host, Client, Server, Transport）
+版本：v1.1.0
+作者：Gitconomy Research-郭晧
+SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+创建日期：2026-02-09
+更新日期：2026-02-22（版本1.1.0，更新试图图例说明部分内容）
+================================================================================
+-->
+
+<svg width="800" height="670" viewBox="0 0 800 670" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background: Solid White -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+  <defs>
+    <style>
+      :root {
+        /* 2. 语义色系统 */
+        --c-cloud-blue: #0052CC;      /* Brain: Reasoning / Client */
+        --c-cloud-bg: #F0F7FF;
+        --c-local-green: #00875A;     /* Body: Execution / Server */
+        --c-local-bg: #E3FCEF;
+        --c-risk-amber: #FF991F;      /* State: Transport / Latency */
+        --c-neutral-gray: #64748B;    /* Meta: Storage / Host */
+        --c-text-dark: #1E293B;
+        --c-bg-white: #FFFFFF;
+
+        /* 3.2 字体规范 */
+        --font-sans: "Noto Sans SC", "Noto Sans", sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+
+      text { font-family: var(--font-sans); }
+      .font-mono { font-family: var(--font-mono); font-size: 12px; }
+
+      /* 3.3 标题样式 */
+      .text-id { font-family: var(--font-mono); font-size: 12px; fill: var(--c-neutral-gray); letter-spacing: 1px; }
+      .text-title { font-family: var(--font-sans); font-weight: 700; font-size: 24px; fill: #000000; }
+      .text-breadcrumbs { font-family: var(--font-mono); font-size: 14px; fill: var(--c-neutral-gray); }
+
+      /* 4. 组件样式 */
+      .box-host { fill: #F8FAFC; stroke: var(--c-neutral-gray); stroke-width: 1.5; rx: 8; stroke-dasharray: 4 4; }
+      .box-client { fill: var(--c-cloud-bg); stroke: var(--c-cloud-blue); stroke-width: 2; rx: 6; }
+      .box-server { fill: var(--c-local-bg); stroke: var(--c-local-green); stroke-width: 2; rx: 6; }
+      .box-transport { fill: #FFF7ED; stroke: var(--c-risk-amber); stroke-width: 2; rx: 15; }
+
+      /* 5. 辅助元素 */
+      .conn-async { stroke: var(--c-risk-amber); stroke-width: 2; fill: none; stroke-dasharray: 4 3; }
+      .label-main { font-size: 14px; font-weight: 700; fill: var(--c-text-dark); }
+      .label-sub { font-size: 11px; fill: var(--c-neutral-gray); }
+      .label-badge { font-size: 10px; font-weight: 700; fill: #FFFFFF; }
+    </style>
+
+    <marker id="arrow-amber" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="var(--c-risk-amber)" />
+    </marker>
+    <marker id="arrow-gray" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="var(--c-neutral-gray)" />
+    </marker>
+  </defs>
+
+  <!--
+  ===========================================================================
+     1. TITLE BLOCK
+  ===========================================================================
+  -->
+  <g id="title-block" transform="translate(400, 40)">
+    <text y="20" text-anchor="middle" class="text-title">MCP 协议架构：四大工程核心</text>
+    <text y="45" text-anchor="middle" class="text-breadcrumbs">第9天 > 基础理论</text>
+    <line x1="-30" y1="60" x2="30" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!--
+  ===========================================================================
+     2. DIAGRAM CONTENT
+  ===========================================================================
+  -->
+  <g id="diagram-content" transform="translate(50, 160)">
+
+    <!-- Element 1: MCP Host (Outer Container) -->
+    <g id="mcp-host">
+      <rect x="0" y="0" width="300" height="300" class="box-host" />
+      <g transform="translate(15, 25)">
+        <circle cx="0" cy="-5" r="10" fill="var(--c-neutral-gray)"/>
+        <text x="0" y="-1" text-anchor="middle" class="label-badge">1</text>
+        <text x="18" y="0" class="label-main">MCP Host (宿主环境)</text>
+        <text x="18" y="18" class="font-mono label-sub" fill="var(--c-neutral-gray)">Claude Desktop / IDE</text>
+      </g>
+
+      <!-- Internal UI Hint -->
+      <rect x="30" y="65" width="240" height="35" rx="4" fill="white" stroke="#E2E8F0"/>
+      <text x="150" y="87" text-anchor="middle" class="label-sub">User Interface / Reasoning Loop</text>
+
+      <!-- Internal Flow -->
+      <line x1="150" y1="100" x2="150" y2="140" stroke="#CBD5E1" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+
+      <!-- Element 2: MCP Client (Logic Layer) -->
+      <g transform="translate(30, 150)">
+        <rect x="0" y="0" width="240" height="120" class="box-client" />
+        <g transform="translate(15, 25)">
+          <circle cx="0" cy="-5" r="10" fill="var(--c-cloud-blue)"/>
+          <text x="0" y="-1" text-anchor="middle" class="label-badge">2</text>
+          <text x="18" y="0" class="label-main" fill="var(--c-cloud-blue)">MCP Client</text>
+        </g>
+        <text x="120" y="65" text-anchor="middle" class="font-mono label-sub">Protocol Proxy</text>
+        <text x="120" y="85" text-anchor="middle" class="label-sub">上下文分发 / 权限校验</text>
+      </g>
+    </g>
+
+    <!-- Element 4: Transport Layer (Async Bridge) -->
+    <g id="transport-layer" transform="translate(300, 180)">
+      <path d="M0,30 L180,30" class="conn-async" marker-end="url(#arrow-amber)"/>
+      <rect x="40" y="0" width="100" height="60" class="box-transport" />
+      <g transform="translate(90, 20)">
+        <circle cx="0" cy="-5" r="10" fill="var(--c-risk-amber)"/>
+        <text x="0" y="-1" text-anchor="middle" class="label-badge">4</text>
+      </g>
+      <text x="90" y="38" text-anchor="middle" class="label-main" font-size="12">Transport</text>
+      <text x="90" y="52" text-anchor="middle" class="font-mono label-sub" fill="var(--c-risk-amber)">JSON-RPC</text>
+    </g>
+
+    <!-- Element 3: MCP Server (Execution Layer) -->
+    <g id="mcp-server" transform="translate(480, 150)">
+      <rect x="0" y="0" width="240" height="120" class="box-server" />
+      <g transform="translate(15, 25)">
+        <circle cx="0" cy="-5" r="10" fill="var(--c-local-green)"/>
+        <text x="0" y="-1" text-anchor="middle" class="label-badge">3</text>
+        <text x="18" y="0" class="label-main" fill="var(--c-local-green)">MCP Server</text>
+      </g>
+      <text x="120" y="65" text-anchor="middle" class="font-mono label-sub">Tool Provider</text>
+      <text x="120" y="85" text-anchor="middle" class="label-sub">本地代码执行 / 数据检索</text>
+
+      <!-- Data Store (Cylinder) -->
+      <g transform="translate(120, 170)">
+        <path d="M0,-25 L0,0" stroke="#CBD5E1" stroke-width="1.5" marker-end="url(#arrow-amber)"/>
+        <g transform="translate(0, 30)">
+          <path d="M-50,0 Q-50,-10 0,-10 Q50,-10 50,0 L50,30 Q50,40 0,40 Q-50,40 -50,30 Z" fill="white" stroke="var(--c-neutral-gray)" stroke-width="1.5"/>
+          <ellipse cx="0" cy="0" rx="50" ry="10" fill="none" stroke="var(--c-neutral-gray)" stroke-width="1"/>
+          <text x="0" y="22" text-anchor="middle" class="label-sub" font-weight="bold">External Data</text>
+          <text x="0" y="35" text-anchor="middle" class="font-mono" font-size="8" fill="var(--c-neutral-gray)">Obsidian / DB</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!--
+  ===========================================================================
+     3. LEGEND
+  ===========================================================================
+  -->
+  <g id="legend" transform="translate(100, 580)">
+    <rect x="0" y="0" width="600" height="36" rx="18" fill="rgba(255,255,255,0.9)" stroke="#E2E8F0" stroke-width="1"/>
+    <g transform="translate(30, 22)">
+      <text x="0" y="0" font-weight="bold" font-size="11" fill="var(--c-neutral-gray)">图例说明</text>
+
+      <g transform="translate(80, 0)">
+        <rect x="-5" y="-6" width="10" height="12" rx="2" fill="var(--c-cloud-blue)" />
+        <text x="12" y="3" class="font-mono" font-size="10">Reasoning/Client</text>
+      </g>
+
+      <g transform="translate(240, 0)">
+        <rect x="-5" y="-6" width="10" height="12" rx="2" fill="var(--c-local-green)" />
+        <text x="12" y="3" class="font-mono" font-size="10">Execution/Server</text>
+      </g>
+
+      <g transform="translate(410, 0)">
+        <line x1="-10" y1="0" x2="10" y2="0" stroke="var(--c-risk-amber)" stroke-width="2" stroke-dasharray="2 2" />
+        <text x="15" y="3" class="font-mono" font-size="10">Transport/Async</text>
+      </g>
+    </g>
+  </g>
+
+  <!--
+  ===========================================================================
+     4. FOOTER LICENSE
+  ===========================================================================
+  -->
+  <text x="400" y="650" text-anchor="middle" class="font-mono" font-size="10" fill="#94A3B8">
+    本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+  </text>
+
+</svg>

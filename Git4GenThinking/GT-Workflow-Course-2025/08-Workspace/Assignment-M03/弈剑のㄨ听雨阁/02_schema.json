@@ -1,0 +1,135 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "新闻信息深度抽取",
+  "description": "新闻内容的高维度结构化提取",
+  "type": "object",
+  "properties": {
+    "meta_info": {
+      "type": "object",
+      "description": "新闻的元数据",
+      "properties": {
+        "category": {
+          "type": "string",
+          "description": "新闻类别，如：财经、政治、科技、体育等"
+        },
+        "sentiment": {
+          "type": "string",
+          "enum": [
+            "positive",
+            "negative",
+            "neutral"
+          ],
+          "description": "新闻整体的情感倾向"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "3-5个用于检索的关键标签"
+        }
+      }
+    },
+    "core_event": {
+      "type": "string",
+      "description": "核心事件概述，简明扼要，直接切入重点，控制在3句话以内。"
+    },
+    "entities": {
+      "type": "object",
+      "description": "涉及的实体信息",
+      "properties": {
+        "people": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "人名"
+              },
+              "title": {
+                "type": "string",
+                "description": "职位或身份"
+              },
+              "stance": {
+                "type": "string",
+                "description": "该人物在文中的主要观点或立场"
+              }
+            },
+            "required": [
+              "name"
+            ]
+          }
+        },
+        "organizations": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "涉及的公司、政府部门或组织名称"
+          }
+        }
+      }
+    },
+    "event_details": {
+      "type": "object",
+      "properties": {
+        "time": {
+          "type": "string",
+          "description": "事件发生时间 (标准化格式 yyyy-MM-dd 或原文描述)"
+        },
+        "location": {
+          "type": "string"
+        },
+        "key_data": {
+          "type": "array",
+          "description": "文中出现的关键统计数据或财务数据",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string",
+                "description": "具体数值（包含单位），如 '100亿元'"
+              },
+              "indicator": {
+                "type": "string",
+                "description": "该数值代表的指标，如 '净利润'"
+              },
+              "trend": {
+                "type": "string",
+                "description": "变化趋势，如 '同比增长', '下降', '持平'"
+              }
+            },
+            "required": [
+              "value",
+              "indicator"
+            ]
+          }
+        }
+      }
+    },
+    "analysis": {
+      "type": "object",
+      "properties": {
+        "background": {
+          "type": "string"
+        },
+        "impact": {
+          "type": "string",
+          "description": "后续影响或未来预测"
+        },
+        "quotes": {
+          "type": "array",
+          "description": "保留文中重要的金句或核心引用",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "core_event",
+    "entities",
+    "event_details"
+  ]
+}

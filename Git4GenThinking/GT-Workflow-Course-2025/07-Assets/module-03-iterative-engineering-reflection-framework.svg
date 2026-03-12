@@ -1,0 +1,153 @@
+<!--
+  文件名：iterative-engineering-reflection-framework.svg
+  图表名称：迭代工程：反思框架与自我修正机制
+  描述：展示提示工程中通过“执行域”与“元认知域”的交互，实现自动化反思与修正的闭环流程。
+
+  核心逻辑：
+  1. 执行域 (下层): 生成 (Generate) -> 评估 (Evaluate)
+  2. 元认知域 (上层): 反思 (Reflect/Critique) -> 修正 (Refine/Update)
+  3. 闭环: 评估失败 -> 触发元认知 -> 更新提示/上下文 -> 重新生成
+
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+  修改记录：
+-->
+<svg width="1000" height="620" viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义样式与标记 -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+      .domain-label { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: 800; text-anchor: start; opacity: 0.6; }
+      .node-title { font-family: 'Noto Sans', sans-serif; font-size: 16px; font-weight: 800; text-anchor: middle; }
+      .node-desc { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: normal; text-anchor: middle; }
+      .tag-text { font-family: 'Noto Sans', sans-serif; font-size: 10px; font-weight: bold; text-anchor: middle; fill: white; }
+    </style>
+    <!-- 蓝色箭头 (正向流) -->
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563EB" />
+    </marker>
+    <!-- 红色箭头 (反馈流) -->
+    <marker id="arrow-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#DC2626" />
+    </marker>
+    <!-- 绿色箭头 (成功流) -->
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#059669" />
+    </marker>
+    <!-- 紫色箭头 (元认知流) -->
+    <marker id="arrow-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9333EA" />
+    </marker>
+  </defs>
+
+  <!-- 标题 -->
+  <text x="500" y="50" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="24" font-weight="800" fill="#111827">
+    迭代工程：反思框架与自我修正机制
+  </text>
+
+  <!-- ================================================================================== -->
+  <!-- 背景域划分 -->
+  <!-- ================================================================================== -->
+
+  <!-- 元认知域 (Meta-Cognitive Domain) - 上层 -->
+  <rect x="50" y="120" width="900" height="180" rx="12" fill="#FAF5FF" stroke="#E9D5FF" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="70" y="150" class="domain-label" fill="#7E22CE">🧠 元认知域 (Thinking about Thinking)</text>
+
+  <!-- 执行域 (Execution Domain) - 下层 -->
+  <rect x="50" y="320" width="900" height="230" rx="12" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="2"/>
+  <text x="70" y="350" class="domain-label" fill="#0369A1">⚡ 执行域 (Doing)</text>
+
+  <!-- ================================================================================== -->
+  <!-- 核心节点：执行域 -->
+  <!-- ================================================================================== -->
+
+  <!-- 1. 输入 (Input) -->
+  <g transform="translate(100, 400)">
+    <rect x="0" y="0" width="120" height="80" rx="8" fill="white" stroke="#94A3B8" stroke-width="2"/>
+    <text x="60" y="35" class="node-title" fill="#475569">初始输入</text>
+    <text x="60" y="55" class="node-desc" fill="#64748B">Prompt v0</text>
+  </g>
+
+  <!-- 连接 1 -> 2 -->
+  <line x1="220" y1="440" x2="280" y2="440" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- 2. 生成器 (Generator) -->
+  <g transform="translate(280, 400)">
+    <rect x="0" y="0" width="160" height="80" rx="8" fill="#EFF6FF" stroke="#2563EB" stroke-width="2"/>
+    <text x="80" y="30" class="node-title" fill="#1E40AF">生成器</text>
+    <text x="80" y="50" class="node-desc" fill="#1E3A8A">LLM 推理</text>
+
+    <!-- 标签 -->
+    <rect x="110" y="60" width="40" height="16" rx="4" fill="#60A5FA"/>
+    <text x="130" y="72" class="tag-text">Draft</text>
+  </g>
+
+  <!-- 连接 2 -> 3 -->
+  <line x1="440" y1="440" x2="520" y2="440" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- 3. 评估器 (Evaluator) - 菱形 -->
+  <g transform="translate(520, 380)">
+    <polygon points="80,0 160,60 80,120 0,60" fill="#FEF9C3" stroke="#FACC15" stroke-width="2"/>
+    <text x="80" y="50" class="node-title" fill="#B45309">评估器</text>
+    <text x="80" y="70" class="node-desc" fill="#D97706">质量门控</text>
+    <text x="80" y="90" font-size="10" fill="#B45309" text-anchor="middle">(Pass/Fail?)</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 核心节点：元认知域 (反馈闭环) -->
+  <!-- ================================================================================== -->
+
+  <!-- 路径：Fail -> 反思 -->
+  <path d="M 600 380 L 600 350 L 660 350 L 660 250" fill="none" stroke="#DC2626" stroke-width="2" marker-end="url(#arrow-red)"/>
+  <rect x="610" y="320" width="40" height="20" rx="4" fill="#FEE2E2" stroke="#DC2626"/>
+  <text x="630" y="334" text-anchor="middle" font-size="11" font-weight="bold" fill="#B91C1C">Fail</text>
+
+  <!-- 4. 反思器 (Reflector) -->
+  <g transform="translate(580, 170)">
+    <rect x="0" y="0" width="160" height="80" rx="8" fill="#F3E8FF" stroke="#9333EA" stroke-width="2"/>
+    <text x="80" y="30" class="node-title" fill="#6B21A8">反思器</text>
+    <text x="80" y="50" class="node-desc" fill="#7E22CE">分析错误原因</text>
+    <!-- 标签 -->
+    <rect x="40" y="60" width="80" height="16" rx="4" fill="#A855F7"/>
+    <text x="80" y="72" class="tag-text">Self-Critique</text>
+  </g>
+
+  <!-- 连接 4 -> 5 (更新为紫色箭头) -->
+  <line x1="580" y1="210" x2="520" y2="210" stroke="#9333EA" stroke-width="2" marker-end="url(#arrow-purple)"/>
+
+  <!-- 5. 修正器 (Refiner) -->
+  <g transform="translate(360, 170)">
+    <rect x="0" y="0" width="160" height="80" rx="8" fill="#FCE7F3" stroke="#EC4899" stroke-width="2"/>
+    <text x="80" y="30" class="node-title" fill="#9D174D">修正器</text>
+    <text x="80" y="50" class="node-desc" fill="#BE185D">优化指令/上下文</text>
+    <!-- 标签 -->
+    <rect x="40" y="60" width="80" height="16" rx="4" fill="#EC4899"/>
+    <text x="80" y="72" class="tag-text">Update Prompt</text>
+  </g>
+
+  <!-- 路径：修正 -> 重新生成 (闭环完成) -->
+  <path d="M 360 210 L 320 210 L 320 350 L 320 390" fill="none" stroke="#DC2626" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrow-red)"/>
+  <text x="330" y="300" font-size="11" fill="#DC2626" font-weight="bold" writing-mode="tb">迭代 (Iterate)</text>
+
+  <!-- ================================================================================== -->
+  <!-- 成功输出 -->
+  <!-- ================================================================================== -->
+
+  <!-- 路径：Pass -> 输出 -->
+  <line x1="680" y1="440" x2="800" y2="440" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)"/>
+  <rect x="710" y="415" width="40" height="20" rx="4" fill="#DCFCE7" stroke="#059669"/>
+  <text x="730" y="429" text-anchor="middle" font-size="11" font-weight="bold" fill="#047857">Pass</text>
+
+  <!-- 6. 最终输出 (Final Output) -->
+  <g transform="translate(800, 400)">
+    <rect x="0" y="0" width="120" height="80" rx="8" fill="#F0FDF4" stroke="#059669" stroke-width="2"/>
+    <text x="60" y="35" class="node-title" fill="#064E3B">最终输出</text>
+    <text x="60" y="55" class="node-desc" fill="#065F46">High Quality</text>
+  </g>
+
+  <!-- 底部注释 -->
+  <text x="500" y="600" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="12" fill="#64748B">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

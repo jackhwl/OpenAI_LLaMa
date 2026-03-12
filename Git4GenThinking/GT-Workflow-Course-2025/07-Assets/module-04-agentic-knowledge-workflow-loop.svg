@@ -1,0 +1,182 @@
+<!--
+  文件名：module-04-agentic-knowledge-workflow-loop.svg
+  图表名称：Agentic Knowledge Workflow 行动闭环图（PEAR + Update）
+  描述：展示 Agentic Workflow 的五步认知循环 (PEAR + Update)，强调从感知到行动再到知识沉淀的闭环过程。
+
+  核心流程：
+  1. Perceive (感知): 获取上下文与意图。
+  2. Evaluate (评估): 规划与决策。
+  3. Act (行动): 执行工具或生成。
+  4. Reflect (反思): 结果校验与经验总结。
+  5. Update (更新): 知识回写与记忆增强。
+
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+  修改记录：
+  - 优化连接线为直角折线（Elbow Lines）。
+  - 应用 DaC 标准配色方案。
+  - 调整连接线路径：Update(Top)->Perceive(Left), Perceive(Right)->Evaluate(Top)。
+  - 减小箭头尺寸。
+-->
+<svg width="1200" height="770" viewBox="0 0 1200 770" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义样式与标记 -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+
+      /* 文本样式 */
+      .main-title { font-family: 'Noto Sans', sans-serif; font-size: 24px; font-weight: 800; fill: #111827; text-anchor: middle; }
+      .sub-title { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: normal; fill: #6B7280; text-anchor: middle; }
+
+      .card-title { font-family: 'Noto Sans', sans-serif; font-size: 16px; font-weight: 700; fill: #111827; }
+      .body-text { font-family: 'Noto Sans', sans-serif; font-size: 13px; font-weight: 400; fill: #374151; }
+      .small-text { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 400; fill: #6B7280; }
+
+      .center-title { font-family: 'Noto Sans', sans-serif; font-size: 16px; font-weight: 700; fill: #111827; text-anchor: middle; }
+      .center-desc { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 400; fill: #4B5563; text-anchor: middle; }
+
+      /* 模块样式 (DaC Standard) */
+      .box-blue { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; }
+      .bar-blue { fill: #2563EB; }
+
+      .box-green { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; }
+      .bar-green { fill: #059669; }
+
+      .box-yellow { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2px; }
+      .bar-yellow { fill: #D97706; }
+
+      .circle-center { fill: #FFFFFF; stroke: #E2E8F0; stroke-width: 3px; }
+
+      /* 连接线 */
+      .connector { fill: none; stroke: #94A3B8; stroke-width: 2px; marker-end: url(#arrow); }
+      .connector-loop { fill: none; stroke: #94A3B8; stroke-width: 2px; stroke-dasharray: 5,5; marker-end: url(#arrow); }
+
+      /* 装饰与背景 */
+      .frame-bg { fill: #F8FAFC; stroke: #E2E8F0; stroke-width: 2px; rx: 18; }
+      .callout-bg { fill: #EEF2FF; stroke: #C7D2FE; stroke-width: 2px; rx: 12; }
+    </style>
+
+    <!-- 箭头定义 (尺寸减小至 8x8) -->
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#94A3B8"/>
+    </marker>
+  </defs>
+
+  <!-- 1. 标题与副标题 -->
+  <text x="600" y="72" class="main-title">
+  智能体式工作流行动闭环（PEAR + Knowledge Update）
+  </text>
+  <text x="600" y="104" class="sub-title">
+    用“闭环运动”理解智能体：不是一次性回答，而是围绕目标持续感知、评估、行动、反思，并更新知识底座
+  </text>
+
+  <!-- 图例 -->
+  <g transform="translate(320, 130)">
+    <rect x="0" y="0" width="16" height="16" rx="3" fill="#2563EB"/>
+    <text x="24" y="13" class="body-text">人类主导 (Human)</text>
+
+    <rect x="180" y="0" width="16" height="16" rx="3" fill="#059669"/>
+    <text x="204" y="13" class="body-text">AI 主导 (AI)</text>
+
+    <rect x="330" y="0" width="16" height="16" rx="3" fill="#FACC15"/>
+    <text x="354" y="13" class="body-text">系统产物 (Artifacts)</text>
+  </g>
+
+  <!-- Main frame -->
+  <rect x="60" y="170" width="1080" height="480" class="frame-bg"/>
+
+  <!-- Center Hub -->
+  <g transform="translate(600, 410)">
+    <circle r="86" class="circle-center"/>
+    <text x="0" y="-10" class="center-title">Agent Runtime</text>
+    <text x="0" y="15" class="center-desc">目标驱动 · 工具调用</text>
+    <text x="0" y="35" class="center-desc">记忆上下文</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 节点布局 (Nodes) -->
+  <!-- ================================================================================== -->
+
+  <!-- Perceive (Top) - AI (Green) -->
+  <g transform="translate(505, 210)">
+    <rect x="0" y="0" width="190" height="86" rx="12" class="box-green"/>
+    <text x="30" y="30" class="card-title">感知 Perceive</text>
+    <text x="30" y="52" class="body-text">读取输入/状态</text>
+    <text x="30" y="72" class="small-text">检索、观察、解析</text>
+  </g>
+
+  <!-- Evaluate (Right-Upper) - Human (Blue) -->
+  <g transform="translate(830, 300)">
+    <rect x="0" y="0" width="220" height="92" rx="12" class="box-blue"/>
+    <text x="30" y="30" class="card-title">评估 Evaluate</text>
+    <text x="30" y="52" class="body-text">判断质量/风险</text>
+    <text x="30" y="72" class="small-text">标准、约束、打分</text>
+  </g>
+
+  <!-- Act (Right-Lower) - AI (Green) -->
+  <g transform="translate(830, 430)">
+    <rect x="0" y="0" width="220" height="92" rx="12" class="box-green"/>
+    <text x="30" y="30" class="card-title">行动 Act</text>
+    <text x="30" y="52" class="body-text">调用工具/执行步骤</text>
+    <text x="30" y="72" class="small-text">写作、搜索、运行</text>
+  </g>
+
+  <!-- Reflect (Left-Lower) - Human (Blue) -->
+  <g transform="translate(150, 430)">
+    <rect x="0" y="0" width="240" height="92" rx="12" class="box-blue"/>
+    <text x="30" y="30" class="card-title">反思 Reflect</text>
+    <text x="30" y="52" class="body-text">复盘策略 / 发现偏差</text>
+    <text x="30" y="72" class="small-text">为什么成功/失败？</text>
+  </g>
+
+  <!-- Update Knowledge (Left-Upper) - System (Yellow) -->
+  <g transform="translate(150, 300)">
+    <rect x="0" y="0" width="240" height="92" rx="12" class="box-yellow"/>
+    <text x="30" y="30" class="card-title">知识更新 Update</text>
+    <text x="30" y="52" class="body-text">写入记忆 / 补证据</text>
+    <text x="30" y="72" class="small-text">让系统“越用越准”</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 连接线 (Elbow Lines) -->
+  <!-- ================================================================================== -->
+
+  <!-- 1. Perceive -> Evaluate -->
+  <!-- Perceive Right (695, 253) -> Elbow -> Evaluate Top (940, 300) -->
+  <!-- Note: Evaluate center X is 830 + 110 = 940. Evaluate top Y is 300. -->
+  <path d="M 695 253 L 940 253 L 940 300" class="connector"/>
+
+  <!-- 2. Evaluate -> Act -->
+  <!-- Vertical Down: Exit Bottom (940, 392) -> Enter Top (940, 430) -->
+  <path d="M 940 392 L 940 430" class="connector"/>
+
+  <!-- 3. Act -> Reflect -->
+  <!-- Exit Bottom (940, 522) -> Down -> Left -> Up -> Enter Bottom (270, 522) -->
+  <path d="M 940 522 L 940 560 L 270 560 L 270 522" class="connector"/>
+
+  <!-- 4. Reflect -> Update -->
+  <!-- Vertical Up: Exit Top (270, 430) -> Enter Bottom (270, 392) -->
+  <path d="M 270 430 L 270 392" class="connector"/>
+
+  <!-- 5. Update -> Perceive -->
+  <!-- Update Top (270, 300) -> Elbow -> Perceive Left (505, 253) -->
+  <!-- Note: Update center X is 150 + 120 = 270. Update top Y is 300. Perceive Left Y is 210 + 43 = 253. -->
+  <path d="M 270 300 L 270 253 L 505 253" class="connector"/>
+
+  <!-- Side Callout (Artifacts) -->
+  <rect x="270" y="585" width="680" height="50" class="callout-bg"/>
+  <text x="325" y="615" class="tag-text">循环产物：</text>
+  <text x="395" y="615" class="body-text">日志（Log）· 证据引用（Cite）· 记忆条目（Memory）· 评估结果（Score）</text>
+
+  <!-- Bottom Note -->
+  <rect x="60" y="660" width="1080" height="40" rx="8" fill="white" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="600" y="685" class="body-text" text-anchor="middle">
+    关键理解：PEAR 不是步骤清单，而是一种“持续运行的控制回路”——系统通过反思与知识更新，逐步降低不确定性。
+  </text>
+
+  <!-- Footer -->
+  <text x="600" y="745" text-anchor="middle" font-family="Noto Sans" font-size="12" fill="#64748B">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

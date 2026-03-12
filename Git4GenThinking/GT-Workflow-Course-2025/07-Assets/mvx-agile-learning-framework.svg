@@ -1,0 +1,242 @@
+<!--
+  ===========================================================================
+  图表名称：MVX 敏捷学习方法逻辑示意图 (MVX Agile Learning Framework)
+  图表文件名：mvx-agile-learning-framework.svg
+  描述：展示MVX框架的飞轮效应，强调从工作流到智能体的持续迭代闭环。
+  设计风格：MIT/Stanford 工程教材风格，扁平化，冷色调。
+  SPDX-License-Identifier: MIT AND CC-BY-4.0
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+  版本号：1.2.0
+  创建时间：2026-02-04
+  ===========================================================================
+-->
+<svg width="1200" height="880" viewBox="0 0 1200 880" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    /* 基础字体 - 优先使用系统无衬线字体 */
+    text { font-family: 'Noto Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; }
+
+    /* 飞轮扇区样式 */
+    .sector-base { stroke-width: 2; fill-opacity: 0.1; transition: all 0.3s; }
+
+    /* MVW - Blue */
+    .sector-mvw { stroke: #0EA5E9; fill: #0EA5E9; }
+    .text-mvw { fill: #0369A1; }
+
+    /* MVG - Purple */
+    .sector-mvg { stroke: #8B5CF6; fill: #8B5CF6; }
+    .text-mvg { fill: #7C3AED; }
+
+    /* MVR - Cyan (Tech/Runtime) */
+    .sector-mvr { stroke: #06B6D4; fill: #06B6D4; }
+    .text-mvr { fill: #0E7490; }
+
+    /* MVA - Green (Success/Agent) */
+    .sector-mva { stroke: #10B981; fill: #10B981; }
+    .text-mva { fill: #047857; }
+
+    /* 文本通用样式 */
+    .title-main { font-size: 32px; font-weight: 900; fill: #1E293B; text-anchor: middle; }
+    .title-sub { font-size: 16px; font-weight: normal; fill: #64748B; text-anchor: middle; }
+
+    /* 调整扇区文字大小以适应空间 */
+    .label-code { font-size: 20px; font-weight: 800; text-anchor: middle; }
+    .label-name { font-size: 13px; font-weight: 700; text-anchor: middle; }
+    .label-desc { font-size: 11px; font-weight: normal; text-anchor: middle; opacity: 0.8; }
+
+    .center-text { font-size: 14px; font-weight: 800; fill: #64748B; text-anchor: middle; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* 外环样式 */
+    .orbit-line { fill: none; stroke: #CBD5E1; stroke-width: 2; stroke-dasharray: 8, 4; }
+    .theory-label { font-size: 14px; font-weight: 700; fill: #94A3B8; text-anchor: middle; }
+
+    /* 底部对比框 */
+    .footer-box { fill: #F8FAFC; stroke: #E2E8F0; stroke-width: 1; rx: 4; }
+    .footer-text { font-size: 14px; text-anchor: middle; }
+
+    /* 连接箭头基础样式 (不再统一定义 marker-end) */
+    .arrow-path { fill: none; stroke-width: 3; stroke-linecap: round; }
+
+    .license-text { font-size: 11px; fill: #94A3B8; text-anchor: middle; }
+  </style>
+
+  <defs>
+    <!-- 通用灰色箭头 (用于 footer) -->
+    <marker id="arrow-head-gray" markerWidth="8" markerHeight="8" refX="7" refY="5" orient="auto" viewBox="0 0 10 10">
+      <path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#94A3B8"/>
+    </marker>
+
+    <!-- 特定颜色箭头定义 (MVW - Blue) -->
+    <marker id="arrow-mvw" markerWidth="6" markerHeight="6" refX="9" refY="5" orient="auto" viewBox="0 0 10 10">
+      <path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#0EA5E9"/>
+    </marker>
+
+    <!-- 特定颜色箭头定义 (MVG - Purple) -->
+    <marker id="arrow-mvg" markerWidth="6" markerHeight="6" refX="9" refY="5" orient="auto" viewBox="0 0 10 10">
+      <path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#8B5CF6"/>
+    </marker>
+
+    <!-- 特定颜色箭头定义 (MVR - Cyan) -->
+    <marker id="arrow-mvr" markerWidth="6" markerHeight="6" refX="9" refY="5" orient="auto" viewBox="0 0 10 10">
+      <path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#06B6D4"/>
+    </marker>
+
+    <!-- 特定颜色箭头定义 (MVA - Green) -->
+    <marker id="arrow-mva" markerWidth="6" markerHeight="6" refX="9" refY="5" orient="auto" viewBox="0 0 10 10">
+      <path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#10B981"/>
+    </marker>
+
+    <!-- 渐变定义 (微妙质感) -->
+    <linearGradient id="grad-center" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F1F5F9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E2E8F0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="1200" height="850" fill="#FFFFFF"/>
+
+  <!-- 标题区 -->
+  <g transform="translate(600, 50)">
+    <text class="title-main" y="0">MVX敏捷学习方法框架</text>
+    <text class="title-sub" y="30">一种面向生成式系统的学习框架</text>
+  </g>
+
+  <!--
+    ===========================================================================
+    FLYWHEEL STRUCTURE
+    ===========================================================================
+  -->
+  <g transform="translate(600, 430)">
+
+    <!-- 理论外环 (Theory Orbit) -->
+    <circle cx="0" cy="0" r="300" class="orbit-line"/>
+    <rect x="-40" y="-310" width="80" height="20" fill="#FFFFFF"/>
+    <text x="0" y="-295" class="theory-label" fill="#0EA5E9">AGILE (迭代)</text>
+
+    <rect x="-40" y="290" width="80" height="20" fill="#FFFFFF"/>
+    <text x="0" y="305" class="theory-label" fill="#10B981">LEAN (精益)</text>
+
+    <!-- 中心轴心 -->
+    <circle cx="0" cy="0" r="80" fill="url(#grad-center)" stroke="#CBD5E1" stroke-width="1"/>
+    <text x="0" y="-10" class="center-text">MVX</text>
+    <text x="0" y="10" class="center-text" font-size="10">Learning</text>
+    <text x="0" y="25" class="center-text" font-size="10">Loop</text>
+    <!-- 旋转图标示意 -->
+    <path d="M -20 -40 A 45 45 0 0 1 20 -40" fill="none" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrow-head-gray)"/>
+    <path d="M 20 40 A 45 45 0 0 1 -20 40" fill="none" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrow-head-gray)"/>
+
+
+    <!--
+      SECTOR 1: MVW (Top-Left, 180-270 deg)
+      Radius slightly adjusted or text position optimized
+    -->
+    <g class="sector-group">
+      <!-- Arc Shape -->
+      <path d="M -105 -15 L -230 -30 A 240 240 0 0 1 -30 -230 L -15 -105 A 110 110 0 0 0 -105 -15"
+            class="sector-base sector-mvw"/>
+      <!-- Text Content (Moved closer to center to avoid edge overflow) -->
+      <g transform="translate(-120, -120)">
+        <text x="0" y="-20" class="label-code text-mvw">MVW</text>
+        <text x="0" y="5" class="label-name text-mvw">最小可行工作流</text>
+        <line x1="-30" y1="15" x2="30" y2="15" stroke="#0EA5E9" stroke-width="1" opacity="0.5"/>
+        <text x="0" y="35" class="label-desc text-mvw">问题结构化</text>
+        <text x="0" y="53" class="label-desc text-mvw">工作流建模</text>
+      </g>
+    </g>
+
+    <!-- Connector Arrow 1->2 (North) -->
+    <!-- Blue Arrow -->
+    <path d="M -20 -255 Q 0 -270 20 -255" class="arrow-path" stroke="#0EA5E9" marker-end="url(#arrow-mvw)"/>
+
+
+    <!--
+      SECTOR 2: MVG (Top-Right, 270-360 deg)
+    -->
+    <g class="sector-group">
+      <path d="M 15 -105 L 30 -230 A 240 240 0 0 1 230 -30 L 105 -15 A 110 110 0 0 0 15 -105"
+            class="sector-base sector-mvg"/>
+      <g transform="translate(120, -120)">
+        <text x="0" y="-20" class="label-code text-mvg">MVG</text>
+        <text x="0" y="5" class="label-name text-mvg">最小可行生成结构</text>
+        <line x1="-30" y1="15" x2="30" y2="15" stroke="#8B5CF6" stroke-width="1" opacity="0.5"/>
+        <text x="0" y="35" class="label-desc text-mvg">结构化表达</text>
+        <text x="0" y="53" class="label-desc text-mvg">生成协议</text>
+      </g>
+    </g>
+
+    <!-- Connector Arrow 2->3 (East) -->
+    <!-- Purple Arrow -->
+    <path d="M 255 -20 Q 270 0 255 20" class="arrow-path" stroke="#8B5CF6" marker-end="url(#arrow-mvg)"/>
+
+
+    <!--
+      SECTOR 3: MVR (Bottom-Right, 0-90 deg)
+    -->
+    <g class="sector-group">
+      <path d="M 105 15 L 230 30 A 240 240 0 0 1 30 230 L 15 105 A 110 110 0 0 0 105 15"
+            class="sector-base sector-mvr"/>
+      <g transform="translate(120, 120)">
+        <text x="0" y="-20" class="label-code text-mvr">MVR</text>
+        <text x="0" y="5" class="label-name text-mvr">最小可运行资产</text>
+        <line x1="-30" y1="15" x2="30" y2="15" stroke="#06B6D4" stroke-width="1" opacity="0.5"/>
+        <text x="0" y="35" class="label-desc text-mvr">运行时意识</text>
+        <text x="0" y="53" class="label-desc text-mvr">状态与反馈</text>
+      </g>
+    </g>
+
+    <!-- Connector Arrow 3->4 (South) -->
+    <!-- Cyan Arrow -->
+    <path d="M 20 255 Q 0 270 -20 255" class="arrow-path" stroke="#06B6D4" marker-end="url(#arrow-mvr)"/>
+
+
+    <!--
+      SECTOR 4: MVA (Bottom-Left, 90-180 deg)
+    -->
+    <g class="sector-group">
+      <path d="M -15 105 L -30 230 A 240 240 0 0 1 -230 30 L -105 15 A 110 110 0 0 0 -15 105"
+            class="sector-base sector-mva"/>
+      <g transform="translate(-120, 120)">
+        <text x="0" y="-20" class="label-code text-mva">MVA</text>
+        <text x="0" y="5" class="label-name text-mva">最小可行智能体</text>
+        <line x1="-30" y1="15" x2="30" y2="15" stroke="#10B981" stroke-width="1" opacity="0.5"/>
+        <text x="0" y="35" class="label-desc text-mva">能力整合</text>
+        <text x="0" y="53" class="label-desc text-mva">可协作智能体</text>
+      </g>
+    </g>
+
+    <!-- Connector Arrow 4->1 (West) -->
+    <!-- Green Arrow -->
+    <path d="M -255 20 Q -270 0 -255 -20" class="arrow-path" stroke="#10B981" marker-end="url(#arrow-mva)"/>
+
+  </g>
+
+  <!--
+    ===========================================================================
+    FOOTER / COMPARISON (理念强调)
+    Moved down to accommodate the shifted flywheel
+    Y: 730 -> 780
+    ===========================================================================
+  -->
+  <g transform="translate(200, 770)">
+    <!-- Bad Way -->
+    <g transform="translate(0, 0)">
+      <rect width="380" height="40" class="footer-box" fill="#F1F5F9" stroke="#CBD5E1"/>
+      <text x="190" y="25" class="footer-text" fill="#64748B">❌ 不是一次性学会所有工具 (Not just tools)</text>
+    </g>
+
+    <!-- Arrow -->
+    <path d="M 390 20 L 410 20" stroke="#94A3B8" stroke-width="2" marker-end="url(#arrow-head-gray)"/>
+
+    <!-- Good Way -->
+    <g transform="translate(420, 0)">
+      <rect width="380" height="40" class="footer-box" fill="#F0FDF4" stroke="#86EFAC"/>
+      <text x="190" y="25" class="footer-text" fill="#059669" font-weight="bold">✅ 而是持续交付可运行的系统能力 (System Capability)</text>
+    </g>
+  </g>
+
+  <!-- License -->
+  <text x="600" y="860" class="license-text">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025-2026 Gitconomy Research社区
+  </text>
+
+</svg>

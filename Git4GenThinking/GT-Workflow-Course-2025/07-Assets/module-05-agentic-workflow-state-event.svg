@@ -1,0 +1,204 @@
+<!--
+  文件名：module-05-agentic-workflow-state-event.svg
+  图表名称：Agentic Workflow：State / Event 驱动
+  描述：展示智能体工作流从“Query 驱动”向“State/Event 驱动”的范式转变，解释主动性的来源。
+
+  核心逻辑：
+  1. 触发源 (Triggers): 扩展为 User Event, Time Event, State Event。
+  2. 决策层 (Evaluate): 基于长期目标 (Goal) 评估当前事件。
+  3. 执行层 (Act): 对环境/知识库产生副作用 (Side Effect)。
+  4. 状态层 (State): 被行动改变，并产生新的状态事件，形成闭环。
+
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+-->
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义样式与标记 -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+
+      /* 文本样式 */
+      .main-title { font-family: 'Noto Sans', sans-serif; font-size: 24px; font-weight: 800; fill: #111827; text-anchor: middle; }
+      .sub-title { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: normal; fill: #6B7280; text-anchor: middle; }
+
+      .module-title { font-family: 'Noto Sans', sans-serif; font-size: 16px; font-weight: 700; fill: #111827; text-anchor: middle; }
+      .body-text { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 400; fill: #374151; text-anchor: middle; }
+      .label-text { font-family: 'Noto Sans', sans-serif; font-size: 11px; font-weight: 700; fill: #64748B; text-anchor: middle; }
+      .white-text { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 700; fill: white; text-anchor: middle; }
+
+      /* 模块背景 */
+      .box-trigger { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2px; rx: 8; }
+      .box-evaluate { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; rx: 12; }
+      .box-act { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; rx: 12; }
+      .box-state { fill: #F3E8FF; stroke: #A855F7; stroke-width: 2px; rx: 12; }
+      .box-goal { fill: #1E40AF; stroke: #1E40AF; stroke-width: 2px; rx: 4; }
+
+      /* 连接线 */
+      .connector { fill: none; stroke: #94A3B8; stroke-width: 2px; marker-end: url(#arrow-gray); }
+      .flow-path { fill: none; stroke: #2563EB; stroke-width: 2px; marker-end: url(#arrow-blue); }
+      .state-feedback { fill: none; stroke: #A855F7; stroke-width: 2px; stroke-dasharray: 5,5; marker-end: url(#arrow-purple); }
+
+      /* 装饰 */
+      .frame-bg { fill: #F8FAFC; stroke: #E2E8F0; stroke-width: 2px; rx: 18; }
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow-gray" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#94A3B8"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#2563EB"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#A855F7"/>
+    </marker>
+  </defs>
+
+  <!-- 1. 标题 -->
+  <text x="600" y="60" class="main-title">智能体式工作流：State/Event驱动</text>
+  <text x="600" y="90" class="sub-title">运行范式跃迁：从“响应式问答”到“事件驱动的行动闭环”</text>
+
+  <!-- 主框架 -->
+  <rect x="50" y="140" width="1100" height="570" class="frame-bg"/>
+
+  <!-- ================================================================================== -->
+  <!-- 左侧：事件源 (Event Sources) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(100, 300)">
+    <rect x="-20" y="-60" width="200" height="300" class="box-trigger"/>
+    <text x="80" y="-30" class="module-title" fill="#FACC15">Events (触发源)</text>
+
+    <!-- Event 1: User -->
+    <g transform="translate(0, 0)">
+        <rect x="0" y="0" width="160" height="60" fill="white" stroke="#34D399"/>
+        <text x="15" y="35" font-size="20">👤</text>
+        <text x="85" y="25" class="body-text" font-weight="bold">交互事件</text>
+        <text x="85" y="45" class="label-text">User Query / PR</text>
+    </g>
+
+    <!-- Event 2: Time -->
+    <g transform="translate(0, 80)">
+        <rect x="0" y="0" width="160" height="60" fill="white" stroke="#34D399"/>
+        <text x="15" y="35" font-size="20">⏰</text>
+        <text x="85" y="25" class="body-text" font-weight="bold">时间事件</text>
+        <text x="85" y="45" class="label-text">Cron / Daily</text>
+    </g>
+
+    <!-- Event 3: State -->
+    <g transform="translate(0, 160)">
+        <rect x="0" y="0" width="160" height="60" fill="white" stroke="#34D399"/>
+        <text x="15" y="35" font-size="20">📉</text>
+        <text x="85" y="25" class="body-text" font-weight="bold">结构事件</text>
+        <text x="85" y="45" class="label-text">Drift / Conflicts</text>
+    </g>
+
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 中上：评估层 (Evaluate) - 决策大脑 -->
+  <!-- ================================================================================== -->
+  <g transform="translate(450, 180)">
+    <!-- 目标 (Goal) - 悬挂在上方 -->
+    <g transform="translate(65, -60)">
+        <rect x="0" y="0" width="170" height="40" class="box-goal"/>
+        <text x="85" y="25" class="white-text">System Goals (长期目标)</text>
+        <!-- 连接线 Goal -> Brain -->
+        <line x1="85" y1="40" x2="85" y2="80" stroke="#1E40AF" stroke-width="2" stroke-dasharray="2,2" marker-end="url(#arrow-blue)"/>
+    </g>
+
+    <!-- 评估核心 -->
+    <rect x="0" y="20" width="300" height="150" class="box-evaluate"/>
+    <text x="150" y="50" class="module-title" fill="#1E40AF">Evaluate (决策引擎)</text>
+
+    <g transform="translate(30, 70)">
+        <text x="140" y="20" class="body-text" text-anchor="start">• 事件是否需要响应？</text>
+        <text x="140" y="45" class="body-text" text-anchor="start">• 当前状态是否偏离目标？</text>
+        <text x="140" y="70" class="body-text" text-anchor="start">• 选择什么工具处理？</text>
+
+        <circle cx="30" cy="45" r="35" fill="white" stroke="#60A5FA" stroke-width="2"/>
+        <text x="15" y="55" font-size="24">🧠</text>
+    </g>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 右侧：行动层 (Act) - 执行手 -->
+  <!-- ================================================================================== -->
+  <g transform="translate(850, 0380)">
+    <rect x="0" y="0" width="220" height="120" class="box-act"/>
+    <text x="110" y="30" class="module-title" fill="#065F46">Act (执行)</text>
+
+    <g transform="translate(40, 50)">
+        <rect x="0" y="0" width="140" height="50" rx="4" fill="white" stroke="#34D399"/>
+        <text x="70" y="20" class="body-text" font-weight="bold">执行副作用</text>
+        <text x="70" y="40" class="label-text">Write / API Call</text>
+    </g>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 底部：状态层 (State) - 知识库 -->
+  <!-- ================================================================================== -->
+  <g transform="translate(400, 550)">
+    <rect x="0" y="0" width="400" height="120" class="box-state"/>
+    <text x="200" y="30" class="module-title" fill="#6B21A8">State (知识库状态)</text>
+
+    <!-- 内部展示 -->
+    <g transform="translate(50, 60)">
+        <!-- 数据库图标 -->
+        <path d="M 0 10 Q 30 0 60 10 L 60 50 Q 30 60 0 50 Z" fill="white" stroke="#A855F7" stroke-width="2"/>
+        <path d="M 0 10 Q 30 20 60 10" fill="none" stroke="#A855F7" stroke-width="2"/>
+        <text x="30" y="80" class="label-text">Vector DB</text>
+
+        <path d="M 120 10 L 170 10 L 170 50 L 120 50 Z" fill="white" stroke="#A855F7" stroke-width="2"/>
+        <line x1="130" y1="20" x2="160" y2="20" stroke="#E9D5FF" stroke-width="2"/>
+        <line x1="130" y1="30" x2="160" y2="30" stroke="#E9D5FF" stroke-width="2"/>
+        <line x1="130" y1="40" x2="150" y2="40" stroke="#E9D5FF" stroke-width="2"/>
+        <text x="145" y="80" class="label-text">Files (MD)</text>
+
+        <circle cx="260" cy="20" r="5" fill="#A855F7"/>
+        <circle cx="240" cy="40" r="5" fill="#A855F7"/>
+        <circle cx="280" cy="40" r="5" fill="#A855F7"/>
+        <line x1="260" y1="20" x2="240" y2="40" stroke="#A855F7" stroke-width="2"/>
+        <line x1="260" y1="20" x2="280" y2="40" stroke="#A855F7" stroke-width="2"/>
+        <line x1="240" y1="40" x2="280" y2="40" stroke="#A855F7" stroke-width="2"/>
+        <text x="260" y="80" class="label-text">Graph</text>
+    </g>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 核心流转连接 -->
+  <!-- ================================================================================== -->
+
+  <!-- Events -> Evaluate -->
+  <path d="M 280 275 L 450 275" class="flow-path"/>
+  <text x="350" y="300" class="label-text" fill="#2563EB">Trigger</text>
+
+  <!-- Evaluate -> Act -->
+  <path d="M 750 275 L 960 275 L 960 380" class="flow-path"/>
+  <text x="850" y="300" class="label-text" fill="#2563EB">Plan</text>
+
+  <!-- Act -> State (Change) -->
+  <path d="M 960 500 L 960 610 L 800 610" class="flow-path"/>
+  <text x="850" y="595" class="label-text" fill="#2563EB" text-anchor="start">Update</text>
+
+  <!-- State -> Event (Feedback Loop) -->
+  <path d="M 400 610 L 180 610 L 180 540" class="state-feedback"/>
+  <text x="290" y="595" class="label-text" fill="#A855F7">产生新事件 (State Change Event)</text>
+
+  <!-- State -> Evaluate (Context) -->
+  <path d="M 600 550 L 600 350" class="connector" stroke-dasharray="4,4"/>
+  <text x="610" y="450" class="label-text" text-anchor="start">提供上下文 (Context)</text>
+
+  <!-- ================================================================================== -->
+  <!-- 底部：核心洞察 -->
+  <!-- ================================================================================== -->
+  <g transform="translate(300, 735)">
+    <text x="0" y="0" font-family="Noto Sans" font-size="14" font-weight="bold" fill="#374151">主动性的来源：</text>
+    <text x="100" y="0" font-family="Noto Sans" font-size="14" fill="#6B7280">系统不依赖用户的 Query，而是依赖 <tspan fill="#1E40AF" font-weight="bold">目标 (Goal)</tspan> 对 <tspan fill="#A855F7" font-weight="bold">状态变化 (Event)</tspan> 的持续响应。</text>
+  </g>
+
+  <!-- 底部许可 -->
+  <text x="600" y="780" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="12" fill="#64748B">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+</svg>

@@ -1,0 +1,154 @@
+<svg width="1100" height="550" viewBox="0 0 1100 550" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+
+      :root {
+        --color-main-fill: #EFF6FF;      /* Blue */
+        --color-main-stroke: #60A5FA;
+        --color-std-fill: #F0FDF4;       /* Green */
+        --color-std-stroke: #34D399;
+        --color-highlight-fill: #FEF9C3; /* Yellow */
+        --color-highlight-stroke: #FACC15;
+        --color-connector: #2563EB;
+        --color-text-main: #111827;
+        --color-text-body: #374151;
+        --color-text-small: #6B7280;
+        --color-loop: #B45309;           /* Iteration Color */
+      }
+
+      text { font-family: 'Noto Sans', sans-serif; }
+
+      /* Shapes */
+      .std-box { fill: var(--color-std-fill); stroke: var(--color-std-stroke); stroke-width: 2px; rx: 8; }
+      .main-box { fill: var(--color-main-fill); stroke: var(--color-main-stroke); stroke-width: 2px; rx: 8; }
+      .highlight-box { fill: var(--color-highlight-fill); stroke: var(--color-highlight-stroke); stroke-width: 2px; rx: 8; }
+
+      /* Connectors */
+      .connector { stroke: var(--color-connector); stroke-width: 2px; marker-end: url(#arrow); }
+
+      /* [Modified] Feedback Line Style */
+      .feedback-line {
+        stroke: var(--color-loop);
+        stroke-width: 2px;
+        stroke-dasharray: 6,4;
+        fill: none;
+        marker-end: url(#arrow-loop);
+      }
+
+      /* Typography */
+      .title-main { font-size: 24px; font-weight: 800; fill: var(--color-text-main); }
+      .subtitle-main { font-size: 14px; font-weight: 400; fill: var(--color-text-small); }
+
+      .step-num { font-size: 36px; font-weight: 800; fill: rgba(0,0,0,0.05); }
+      .step-title { font-size: 16px; font-weight: 700; fill: var(--color-text-main); }
+      .step-desc { font-size: 13px; font-weight: 400; fill: var(--color-text-body); }
+      .ai-tag { font-size: 11px; font-weight: 700; fill: var(--color-connector); }
+      .ai-tag-highlight { font-size: 11px; font-weight: 700; fill: #B45309; }
+
+      .license-text { font-size: 12px; font-weight: 400; fill: #64748B; text-anchor: middle; }
+    </style>
+
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563EB" />
+    </marker>
+    <marker id="arrow-loop" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#B45309" />
+    </marker>
+  </defs>
+
+  <text x="550" y="50" class="title-main" text-anchor="middle">生成式知识工作流五阶段</text>
+  <text x="550" y="80" class="subtitle-main" text-anchor="middle">从信息采集到智能表达的闭环系统</text>
+
+  <g transform="translate(40, 130)">
+
+    <g transform="translate(0, 0)">
+      <rect width="180" height="220" class="std-box" />
+      <text x="160" y="45" class="step-num" text-anchor="end">01</text>
+      <text x="20" y="40" class="step-title">输入采集</text>
+      <text x="20" y="60" class="step-title" font-size="12" fill="#059669">(Input)</text>
+      <line x1="20" y1="80" x2="160" y2="80" stroke="#E5E7EB" />
+      <text x="20" y="110" class="step-desc">· 信噪比筛选</text>
+      <text x="20" y="130" class="step-desc">· 语境锚点</text>
+      <text x="20" y="150" class="step-desc">· 避免GIGO</text>
+      <rect x="20" y="175" width="140" height="25" rx="4" fill="#E0F2FE" />
+      <text x="90" y="192" class="ai-tag" text-anchor="middle">AI: 摘要/清洗</text>
+    </g>
+
+    <line x1="180" y1="110" x2="220" y2="110" class="connector" />
+
+    <g transform="translate(220, 0)">
+      <rect width="180" height="220" class="main-box" />
+      <text x="160" y="45" class="step-num" text-anchor="end">02</text>
+      <text x="20" y="40" class="step-title">信息结构化</text>
+      <text x="20" y="60" class="step-title" font-size="12" fill="#2563EB">(Structure)</text>
+      <line x1="20" y1="80" x2="160" y2="80" stroke="#DBEAFE" />
+      <text x="20" y="110" class="step-desc">· 降维/降熵</text>
+      <text x="20" y="130" class="step-desc">· Markdown化</text>
+      <text x="20" y="150" class="step-desc">· 建立逻辑树</text>
+      <rect x="20" y="175" width="140" height="25" rx="4" fill="#DBEAFE" />
+      <text x="90" y="192" class="ai-tag" text-anchor="middle">AI: 格式转换/标签</text>
+    </g>
+
+    <line x1="400" y1="110" x2="440" y2="110" class="connector" />
+
+    <g transform="translate(440, 0)">
+      <rect width="180" height="220" class="main-box" />
+      <text x="160" y="45" class="step-num" text-anchor="end">03</text>
+      <text x="20" y="40" class="step-title">生成推理</text>
+      <text x="20" y="60" class="step-title" font-size="12" fill="#2563EB">(Generate)</text>
+      <line x1="20" y1="80" x2="160" y2="80" stroke="#DBEAFE" />
+      <text x="20" y="110" class="step-desc">· 逻辑推演</text>
+      <text x="20" y="130" class="step-desc">· 思维链 (CoT)</text>
+      <text x="20" y="150" class="step-desc">· 跨域组合</text>
+      <rect x="20" y="175" width="140" height="25" rx="4" fill="#DBEAFE" />
+      <text x="90" y="192" class="ai-tag" text-anchor="middle">AI: 逻辑补全/扩写</text>
+    </g>
+
+    <line x1="620" y1="110" x2="660" y2="110" class="connector" />
+
+    <g transform="translate(660, 0)">
+      <rect width="180" height="220" class="highlight-box" />
+      <text x="160" y="45" class="step-num" text-anchor="end">04</text>
+      <text x="20" y="40" class="step-title">迭代优化</text>
+      <text x="20" y="60" class="step-title" font-size="12" fill="#B45309">(Iterate)</text>
+      <line x1="20" y1="80" x2="160" y2="80" stroke="#FDE68A" />
+      <text x="20" y="110" class="step-desc">· **人机回路**</text>
+      <text x="20" y="130" class="step-desc">· 批判性验证</text>
+      <text x="20" y="150" class="step-desc">· 纠偏与微调</text>
+      <rect x="20" y="175" width="140" height="25" rx="4" fill="#FEF3C7" />
+      <text x="90" y="192" class="ai-tag-highlight" text-anchor="middle">AI: 模拟反对者/评分</text>
+    </g>
+
+    <line x1="840" y1="110" x2="880" y2="110" class="connector" />
+
+    <g transform="translate(880, 0)">
+      <rect width="180" height="220" class="std-box" />
+      <text x="160" y="45" class="step-num" text-anchor="end">05</text>
+      <text x="20" y="40" class="step-title">成果表达</text>
+      <text x="20" y="60" class="step-title" font-size="12" fill="#059669">(Express)</text>
+      <line x1="20" y1="80" x2="160" y2="80" stroke="#E5E7EB" />
+      <text x="20" y="110" class="step-desc">· 风格适配</text>
+      <text x="20" y="130" class="step-desc">· 多模态输出</text>
+      <text x="20" y="150" class="step-desc">· 资产封装</text>
+      <rect x="20" y="175" width="140" height="25" rx="4" fill="#E0F2FE" />
+      <text x="90" y="192" class="ai-tag" text-anchor="middle">AI: 润色/风格迁移</text>
+    </g>
+  </g>
+
+  <g transform="translate(40, 130)">
+    <path d="M750,220 L750,250 Q750,270 730,270 L330,270 Q310,270 310,250 L310,227" class="feedback-line" />
+
+    <text x="530" y="295" class="step-desc" fill="#B45309" text-anchor="middle" font-weight="bold">
+      反馈闭环 (Critical Feedback Loop)
+    </text>
+    <text x="530" y="315" class="ai-tag-highlight" text-anchor="middle" font-weight="normal">
+      若结果未达标，返回结构化调整 Prompt
+    </text>
+  </g>
+
+  <text x="550" y="500" class="license-text">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+</svg>

@@ -1,0 +1,264 @@
+<!--
+  ===========================================================================
+  图表名称：课程 Git 分支策略示意图 (Git Branching Strategy)
+  图表文件名：course-git-branching-strategy.svg
+  描述：使用 Git 提交图风格，展示 Main、Dev、Feature、Learning 四类分支的协作关系，
+        并重点展示学员从个人 Fork 仓库发起 PR 到课程主仓库 Learning 分支的流程。
+  设计逻辑：
+      1. 布局：横向时间轴，从左到右。
+      2. 区域划分：上部为 Course Repo (课程主仓库)，下部为 Student Repo (学员个人仓库)。
+      3. 分支轨道：Main, Dev, Feature, Learning (In Course Repo), Student Main/Feat (In Student Repo).
+      4. 交互：
+         - Feature 分叉自 Dev，合并回 Dev。
+         - Learning 接受来自学员的 PR。
+         - Student Fork 独立提交，通过 PR 指向 Course/Learning。
+  SPDX-License-Identifier: MIT AND CC-BY-4.0
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+  版本号：1.0.0
+  创建时间：2025-12-31
+  ===========================================================================
+-->
+<svg width="1200" height="560" viewBox="0 0 1200 560" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    /* 基础字体 */
+    text { font-family: 'Noto Sans', 'Inter', Arial, sans-serif; }
+
+    /* 轨道线 */
+    .track-line { fill: none; stroke-width: 2; opacity: 0.2; stroke-dasharray: 8, 8; }
+
+    /* 分支线 */
+    .branch-line { fill: none; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* 提交节点 (Commit Nodes) */
+    .commit-node { stroke-width: 3; fill: #FFFFFF; }
+
+    /* Main - Blue */
+    .color-main { stroke: #0EA5E9; fill: #0EA5E9; }
+    .stroke-main { stroke: #0EA5E9; }
+    .fill-main-light { fill: #E0F2FE; }
+
+    /* Dev - Purple */
+    .color-dev { stroke: #9333EA; fill: #9333EA; }
+    .stroke-dev { stroke: #9333EA; }
+    .fill-dev-light { fill: #F3E8FF; }
+
+    /* Feature - Orange */
+    .color-feat { stroke: #F59E0B; fill: #F59E0B; }
+    .stroke-feat { stroke: #F59E0B; }
+    .fill-feat-light { fill: #FEF3C7; }
+
+    /* Learning - Green */
+    .color-learn { stroke: #22C55E; fill: #22C55E; }
+    .stroke-learn { stroke: #22C55E; }
+    .fill-learn-light { fill: #DCFCE7; }
+
+    /* Student - Cyan/Teal (New) */
+    .color-student { stroke: #06B6D4; fill: #06B6D4; }
+    .stroke-student { stroke: #06B6D4; }
+
+    /* 区域背景 */
+    .repo-area-bg { fill: #F8FAFC; rx: 8; ry: 8; }
+    .repo-area-border { fill: none; stroke: #E2E8F0; stroke-width: 2; stroke-dasharray: 6, 6; rx: 8; ry: 8; }
+
+    /* 标签与说明 */
+    .label-box { stroke-width: 0; rx: 4; ry: 4; }
+    .label-text { font-size: 11px; font-weight: 700; fill: #FFFFFF; text-anchor: middle; }
+
+    .msg-text { font-size: 10px; font-weight: 600; fill: #475569; text-anchor: middle; }
+
+    /* 标题 */
+    .main-title { font-size: 22px; font-weight: 800; fill: #1E293B; text-anchor: middle; }
+    .main-subtitle { font-size: 16px; font-weight: normal; fill: #64748B; text-anchor: middle; }
+    .area-label { font-size: 12px; font-weight: 800; fill: #94A3B8; text-anchor: start; }
+
+    /* PR 连线 */
+    .pr-arrow { fill: none; stroke: #EF4444; stroke-width: 2; stroke-dasharray: 4, 4; }
+
+    .license-text { font-size: 10px; fill: #94A3B8; text-anchor: middle; }
+  </style>
+
+  <defs>
+    <marker id="arrow-pr" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#EF4444"/>
+    </marker>
+    <marker id="arrow-fork" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#64748B"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="1200" height="500" fill="#FFFFFF"/>
+
+  <!-- 标题区 -->
+  <g transform="translate(600, 35)">
+    <text class="main-title">Git分支策略是课程方法论本身的重要组成部分</text>
+    <text class="main-subtitle" y="25">Git是连接学习、反馈与课程演进的统一载体</text>
+  </g>
+
+  <!--
+    ===========================================================================
+    REPO AREAS (Visual Grouping - Compact)
+    ===========================================================================
+  -->
+
+  <!-- Course Repo Area -->
+  <rect x="20" y="65" width="1160" height="290" class="repo-area-bg"/>
+  <text x="40" y="90" class="area-label">🏫 课程主仓库</text>
+
+  <!-- Student Repo Area -->
+  <rect x="20" y="370" width="1160" height="80" class="repo-area-bg" fill="#F0FDFA"/>
+  <rect x="20" y="370" width="1160" height="80" class="repo-area-border" stroke="#06B6D4"/>
+  <text x="40" y="395" class="area-label" fill="#06B6D4">👤 学员Fork仓库 </text>
+
+  <!--
+    ===========================================================================
+    TRACKS (Horizontal Guidelines)
+    ===========================================================================
+  -->
+  <g transform="translate(100, 0)">
+
+    <!-- Course Tracks -->
+    <line x1="0" y1="110" x2="1000" y2="110" class="track-line stroke-main"/>
+    <text x="-10" y="115" font-size="12" font-weight="bold" fill="#0EA5E9" text-anchor="end">Main</text>
+
+    <line x1="0" y1="180" x2="1000" y2="180" class="track-line stroke-dev"/>
+    <text x="-10" y="185" font-size="12" font-weight="bold" fill="#9333EA" text-anchor="end">Dev</text>
+
+    <line x1="0" y1="250" x2="1000" y2="250" class="track-line stroke-feat"/>
+    <text x="-10" y="255" font-size="12" font-weight="bold" fill="#F59E0B" text-anchor="end">Feature</text>
+
+    <line x1="0" y1="320" x2="1000" y2="320" class="track-line stroke-learn"/>
+    <text x="-10" y="325" font-size="12" font-weight="bold" fill="#22C55E" text-anchor="end">Learning</text>
+    <text x="-10" y="340" font-size="9" fill="#64748B" text-anchor="end">成果汇聚</text>
+
+    <!-- Student Track -->
+    <line x1="0" y1="410" x2="1000" y2="410" class="track-line stroke-student"/>
+    <text x="-10" y="415" font-size="12" font-weight="bold" fill="#06B6D4" text-anchor="end">My-Feat</text>
+  </g>
+
+  <!--
+    ===========================================================================
+    BRANCH FLOW LINES & NODES
+    ===========================================================================
+  -->
+  <g transform="translate(100, 0)">
+
+    <!-- Main Line (110) -->
+    <path d="M 50 110 L 950 110" class="branch-line stroke-main"/>
+
+    <!-- Dev Line (180) -->
+    <path d="M 150 180 L 900 180" class="branch-line stroke-dev"/>
+    <path d="M 50 110 Q 100 110 150 180" class="branch-line stroke-dev" opacity="0.5"/>
+
+    <!-- Feature Line (250) -->
+    <path d="M 250 180 Q 280 250 320 250 L 480 250 Q 520 250 550 180" class="branch-line stroke-feat"/>
+
+    <!-- Learning Line (320) -->
+    <path d="M 100 320 L 900 320" class="branch-line stroke-learn"/>
+
+    <!-- Student Line (410) -->
+    <path d="M 100 410 L 800 410" class="branch-line stroke-student"/>
+
+    <!-- Fork Action (Visual Cue) -->
+    <!-- Main(110) to Student(410) -->
+    <path d="M 100 110 Q 50 260 100 410" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrow-fork)"/>
+    <text x="60" y="260" font-size="10" fill="#94A3B8" transform="rotate(90, 60, 260)">Fork</text>
+
+    <!--
+       COMMIT NODES & LABELS
+    -->
+
+    <!-- MAIN NODES (110) -->
+    <circle cx="50" cy="110" r="8" class="commit-node stroke-main"/>
+    <text x="50" y="90" class="msg-text">v1.0 Init</text>
+
+    <circle cx="950" cy="110" r="8" class="commit-node stroke-main"/>
+    <rect x="910" y="75" width="80" height="20" class="label-box color-main"/>
+    <text x="950" y="89" class="label-text">v1.1 Release</text>
+
+    <!-- DEV NODES (180) -->
+    <circle cx="150" cy="180" r="6" class="commit-node stroke-dev"/>
+    <circle cx="250" cy="180" r="6" class="commit-node stroke-dev"/>
+    <circle cx="550" cy="180" r="6" class="commit-node stroke-dev"/>
+    <circle cx="750" cy="180" r="6" class="commit-node stroke-dev"/>
+
+    <!-- Dev Merge to Main -->
+    <path d="M 750 180 Q 850 180 950 110" class="branch-line stroke-dev" opacity="0.5"/>
+
+    <!-- FEATURE NODES (250) -->
+    <circle cx="350" cy="250" r="6" class="commit-node stroke-feat"/>
+    <circle cx="450" cy="250" r="6" class="commit-node stroke-feat"/>
+
+    <!-- STUDENT NODES (410) -->
+    <circle cx="200" cy="410" r="6" class="commit-node stroke-student"/>
+    <text x="200" y="435" class="msg-text">Init Lab</text>
+
+    <circle cx="350" cy="410" r="6" class="commit-node stroke-student"/>
+    <text x="350" y="435" class="msg-text">Prompting...</text>
+
+    <circle cx="500" cy="410" r="8" class="commit-node stroke-student"/>
+    <rect x="460" y="430" width="80" height="20" class="label-box color-student"/>
+    <text x="500" y="444" class="label-text">完成作业</text>
+
+    <!-- LEARNING NODES (320) -->
+    <circle cx="150" cy="320" r="6" class="commit-node stroke-learn"/>
+
+    <!-- PR Merge Node (320) -->
+    <circle cx="700" cy="320" r="8" class="commit-node stroke-learn"/>
+    <text x="700" y="300" class="msg-text">Merge PR #101</text>
+
+    <!-- PR INTERACTION -->
+    <!-- Student(500, 410) -> Learning(700, 320) -->
+    <path d="M 500 410 Q 600 365 700 320" class="pr-arrow" marker-end="url(#arrow-pr)"/>
+
+    <!-- PR Label Box -->
+    <g transform="translate(560, 350)">
+      <rect width="130" height="28" rx="14" fill="#FEF2F2" stroke="#EF4444" stroke-width="1.5"/>
+      <text x="65" y="12" font-size="11" font-weight="bold" fill="#B91C1C" text-anchor="middle">⚡ Pull Request</text>
+      <text x="65" y="24" font-size="8" fill="#B91C1C" text-anchor="middle">Student -> Course/Learning</text>
+    </g>
+
+  </g>
+
+  <!--
+    ===========================================================================
+    LEGEND AREA (Compact)
+    ===========================================================================
+  -->
+  <g transform="translate(100, 465)">
+    <rect width="1000" height="30" rx="4" fill="#F8FAFC" stroke="#E2E8F0"/>
+
+    <text x="30" y="20" font-size="11" font-weight="bold" fill="#334155">图例：</text>
+
+    <g transform="translate(100, 15)">
+        <circle cx="0" cy="0" r="5" fill="#FFFFFF" stroke="#0EA5E9" stroke-width="2"/>
+        <text x="12" y="4" font-size="10" fill="#475569">Main</text>
+    </g>
+
+    <g transform="translate(200, 15)">
+        <circle cx="0" cy="0" r="5" fill="#FFFFFF" stroke="#9333EA" stroke-width="2"/>
+        <text x="12" y="4" font-size="10" fill="#475569">Dev</text>
+    </g>
+
+    <g transform="translate(300, 15)">
+        <circle cx="0" cy="0" r="5" fill="#FFFFFF" stroke="#22C55E" stroke-width="2"/>
+        <text x="12" y="4" font-size="10" fill="#475569">Learning</text>
+    </g>
+
+    <g transform="translate(450, 15)">
+        <circle cx="0" cy="0" r="5" fill="#FFFFFF" stroke="#06B6D4" stroke-width="2"/>
+        <text x="12" y="4" font-size="10" fill="#475569">Student Fork</text>
+    </g>
+
+    <g transform="translate(620, 15)">
+        <line x1="0" y1="0" x2="30" y2="0" stroke="#EF4444" stroke-width="2" stroke-dasharray="4,2"/>
+        <text x="35" y="4" font-size="10" fill="#475569">Pull Request (跨仓库提交)</text>
+    </g>
+  </g>
+
+  <!-- License -->
+  <text x="600" y="540" class="license-text">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

@@ -1,0 +1,259 @@
+<!--
+  ================================================================================
+  图表名称：知识工作流跨领域应用
+  图表文件名：module-08-genai-thinking-extension.svg
+  描述：基于第八章8.2.1节，展示工作流思维如何从通用的解题语法哭扩展至个人成长、科研探索和商业运营三大领域，并推动范式转移。
+  SPDX-License-Identifier: MIT AND CC-BY-4.0
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+================================================================================
+-->
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" class="dac-chart">
+  <style>
+    /* 全局字体设置 */
+    .dac-chart {
+      background-color: white;
+      font-family: 'Noto Sans', sans-serif, Arial;
+    }
+
+    /* 文本样式 */
+    .text-title-main { font-size: 22px; font-weight: 800; fill: #111827; letter-spacing: 1px; }
+    .text-title-sub { font-size: 14px; font-weight: normal; fill: #6B7280; }
+    .text-header-blue { font-size: 16px; font-weight: bold; fill: #1E40AF; }
+    .text-header-green { font-size: 14px; font-weight: bold; fill: #065F46; }
+    .text-header-research { font-size: 14px; font-weight: bold; fill: #1E40AF; }
+    .text-header-business { font-size: 14px; font-weight: bold; fill: #B45309; }
+
+    .text-body { font-size: 12px; fill: #4B5563; }
+    .text-body-small { font-size: 11px; }
+    .text-label-bold { font-weight: bold; }
+    .text-center { text-anchor: middle; }
+
+    /* 容器/盒子样式 */
+    .box-core-bg { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; }
+    .box-step-white { fill: white; stroke: #60A5FA; stroke-width: 1px; }
+    .box-step-highlight { fill: #DBEAFE; stroke: #2563EB; stroke-width: 2px; }
+
+    .container-bg { fill: #F9FAFB; stroke: #E5E7EB; stroke-width: 1px; }
+
+    .header-personal { fill: #F0FDF4; stroke: #34D399; stroke-width: 1px; }
+    .header-research { fill: #DBEAFE; stroke: #3B82F6; stroke-width: 1px; }
+    .header-business { fill: #FEF9C3; stroke: #FACC15; stroke-width: 1px; }
+
+    .box-old { fill: #F3F4F6; stroke: #D1D5DB; stroke-width: 1px; }
+
+    .box-new-personal { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; }
+    .item-personal { fill: white; stroke: #86EFAC; stroke-width: 1px; }
+
+    .box-new-research { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; }
+    .item-research { fill: white; stroke: #93C5FD; stroke-width: 1px; }
+
+    .box-new-business { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2px; }
+    .item-business { fill: white; stroke: #FDE047; stroke-width: 1px; }
+
+    /* 线条样式 */
+    .line-flow { stroke-width: 2px; fill: none; }
+    .line-dashed { stroke: #9CA3AF; stroke-dasharray: 4; }
+  </style>
+
+  <defs>
+    <!-- 蓝色箭头 (Standard Blue #2563EB) -->
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563EB" />
+    </marker>
+
+    <!-- 黄色箭头 (Business #FACC15) -->
+    <marker id="arrow-yellow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#FACC15" />
+    </marker>
+
+    <!-- 灰色箭头 (Gray #9CA3AF) -->
+    <marker id="arrow-gray" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9CA3AF" />
+    </marker>
+
+    <!-- 绿色箭头 (Personal #34D399) - 新增 -->
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#34D399" />
+    </marker>
+
+    <!-- 科研蓝箭头 (Research #3B82F6) - 新增 -->
+    <marker id="arrow-research-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#3B82F6" />
+    </marker>
+  </defs>
+
+  <!-- ==================== 1. 标题区域 ==================== -->
+  <g id="header" transform="translate(600, 60)">
+    <text x="0" y="0" class="text-center text-title-main">知识工作流跨领域的应用</text>
+  </g>
+
+  <!-- ==================== 2. 核心逻辑源头 (The Source) ==================== -->
+  <g id="core-logic" transform="translate(350, 130)">
+    <!-- 背景框 -->
+    <rect x="0" y="0" width="500" height="100" rx="8" class="box-core-bg"/>
+
+    <text x="250" y="30" class="text-center text-header-blue">通用解题语法 (Universal Syntax)</text>
+
+    <!-- 逻辑步骤 -->
+    <g transform="translate(60, 55)">
+      <rect x="0" y="0" width="100" height="30" rx="4" class="box-step-white"/>
+      <text x="50" y="20" class="text-center text-body text-header-blue">原子化解构</text>
+
+      <line x1="100" y1="15" x2="140" y2="15" class="line-flow" stroke="#2563EB" marker-end="url(#arrow-blue)"/>
+
+      <rect x="140" y="0" width="100" height="30" rx="4" class="box-step-white"/>
+      <text x="190" y="20" class="text-center text-body text-header-blue">逻辑编排</text>
+
+      <line x1="240" y1="15" x2="280" y2="15" class="line-flow" stroke="#2563EB" marker-end="url(#arrow-blue)"/>
+
+      <rect x="280" y="0" width="100" height="30" rx="4" class="box-step-highlight"/>
+      <text x="330" y="20" class="text-center text-body text-label-bold text-header-blue">价值链重组</text>
+    </g>
+  </g>
+
+  <!-- 连接线：从核心向下分发 -->
+  <g class="line-flow line-dashed">
+    <path d="M600,230 L600,280" /> <!-- 中间 -->
+    <path d="M600,230 L250,230 L250,280" /> <!-- 左侧 -->
+    <path d="M600,230 L950,230 L950,280" /> <!-- 右侧 -->
+  </g>
+
+  <!-- ==================== 3. 三大领域迁移 (The Domains) ==================== -->
+
+  <!-- 3.1 领域一：个人成长与学习 -->
+  <g id="domain-personal" transform="translate(100, 280)">
+    <!-- 容器背景 -->
+    <rect x="0" y="0" width="300" height="400" rx="8" class="container-bg"/>
+
+    <!-- 标题 -->
+    <rect x="0" y="0" width="300" height="50" rx="8" class="header-personal"/>
+    <text x="150" y="32" class="text-center text-header-green">1. 个人成长与学习</text>
+
+    <!-- Old Way -->
+    <g transform="translate(25, 80)">
+      <text x="0" y="0" class="text-body text-label-bold" fill="#6B7280">Before: 收藏家谬误</text>
+      <rect x="0" y="10" width="250" height="60" rx="4" class="box-old"/>
+      <text x="125" y="45" class="text-center text-body">静态囤积 (Static Hoarding)</text>
+    </g>
+
+    <!-- Transformation Arrow (Green to match stroke) -->
+    <g transform="translate(150, 180)">
+      <line x1="0" y1="-20" x2="0" y2="35" class="line-flow" stroke="#34D399" marker-end="url(#arrow-green)"/>
+    </g>
+
+    <!-- New Way (Agentic) -->
+    <g transform="translate(25, 220)">
+      <text x="0" y="0" class="text-body text-label-bold" fill="#059669">After: 主动第二大脑</text>
+      <rect x="0" y="10" width="250" height="140" rx="4" class="box-new-personal"/>
+
+      <!-- Feature 1 -->
+      <g transform="translate(20, 30)">
+        <rect x="0" y="0" width="210" height="30" rx="4" class="item-personal"/>
+        <text x="105" y="20" class="text-center text-body-small text-header-green">MCP协议连接知识库</text>
+      </g>
+      <!-- Feature 2 -->
+      <g transform="translate(20, 70)">
+        <rect x="0" y="0" width="210" height="30" rx="4" class="item-personal"/>
+        <text x="105" y="20" class="text-center text-body-small text-header-green">生成式教学 (Socratic)</text>
+      </g>
+
+      <text x="125" y="130" class="text-center text-body-small text-label-bold" fill="#059669">被动记录 -> 主动内化</text>
+    </g>
+  </g>
+
+  <!-- 3.2 领域二：科研探索 -->
+  <g id="domain-research" transform="translate(450, 280)">
+    <!-- 容器背景 -->
+    <rect x="0" y="0" width="300" height="400" rx="8" class="container-bg"/>
+
+    <!-- 标题 -->
+    <rect x="0" y="0" width="300" height="50" rx="8" class="header-research"/>
+    <text x="150" y="32" class="text-center text-header-research">2. 科研探索</text>
+
+    <!-- Old Way -->
+    <g transform="translate(25, 80)">
+      <text x="0" y="0" class="text-body text-label-bold" fill="#6B7280">Before: 辅助工具</text>
+      <rect x="0" y="10" width="250" height="60" rx="4" class="box-old"/>
+      <text x="125" y="45" class="text-center text-body">Copilot (副驾驶)</text>
+    </g>
+
+    <!-- Transformation Arrow (Research Blue to match stroke) -->
+    <g transform="translate(150, 180)">
+      <line x1="0" y1="-20" x2="0" y2="35" class="line-flow" stroke="#3B82F6" marker-end="url(#arrow-research-blue)"/>
+    </g>
+
+    <!-- New Way (Agentic) -->
+    <g transform="translate(25, 220)">
+      <text x="0" y="0" class="text-body text-label-bold" fill="#2563EB">After: 独立科学家</text>
+      <rect x="0" y="10" width="250" height="140" rx="4" class="box-new-research"/>
+
+      <!-- Feature 1 -->
+      <g transform="translate(20, 30)">
+        <rect x="0" y="0" width="210" height="30" rx="4" class="item-research"/>
+        <text x="105" y="20" class="text-center text-body-small text-header-research">递归式探索 (DeepResearch)</text>
+      </g>
+      <!-- Feature 2 -->
+      <g transform="translate(20, 70)">
+        <rect x="0" y="0" width="210" height="30" rx="4" class="item-research"/>
+        <text x="105" y="20" class="text-center text-body-small text-header-research">自驱动实验室 (Self-driving)</text>
+      </g>
+
+      <text x="125" y="130" class="text-center text-body-small text-label-bold" fill="#2563EB">假设 -> 实验 -> 论文闭环</text>
+    </g>
+  </g>
+
+  <!-- 3.3 领域三：商业运营 -->
+  <g id="domain-business" transform="translate(800, 280)">
+    <!-- 容器背景 -->
+    <rect x="0" y="0" width="300" height="400" rx="8" class="container-bg"/>
+
+    <!-- 标题 -->
+    <rect x="0" y="0" width="300" height="50" rx="8" class="header-business"/>
+    <text x="150" y="32" class="text-center text-header-business">3. 商业运营</text>
+
+    <!-- Old Way -->
+    <g transform="translate(25, 80)">
+      <text x="0" y="0" class="text-body text-label-bold" fill="#6B7280">Before: 僵化流程</text>
+      <rect x="0" y="10" width="250" height="60" rx="4" class="box-old"/>
+      <text x="125" y="45" class="text-center text-body">传统 ERP 自动化</text>
+    </g>
+
+    <!-- Transformation Arrow (Yellow to match stroke) -->
+    <g transform="translate(150, 180)">
+      <line x1="0" y1="-20" x2="0" y2="35" class="line-flow" stroke="#FACC15" style="stroke-width: 3px;" marker-end="url(#arrow-yellow)"/>
+    </g>
+
+    <!-- New Way (Agentic) -->
+    <g transform="translate(25, 220)">
+      <text x="0" y="0" class="text-body text-label-bold" fill="#B45309">After: 自适应运营</text>
+      <rect x="0" y="10" width="250" height="140" rx="4" class="box-new-business"/>
+
+      <!-- Feature 1 -->
+      <g transform="translate(20, 30)">
+        <rect x="0" y="0" width="210" height="30" rx="4" class="item-business"/>
+        <text x="105" y="20" class="text-center text-body-small text-header-business">感知-决策-行动循环</text>
+      </g>
+      <!-- Feature 2 -->
+      <g transform="translate(20, 70)">
+        <rect x="0" y="0" width="210" height="30" rx="4" class="item-business"/>
+        <text x="105" y="20" class="text-center text-body-small text-header-business">跨系统全自动协同</text>
+      </g>
+
+      <text x="125" y="130" class="text-center text-body-small text-label-bold" fill="#B45309">毫秒级响应 / 实时闭环</text>
+    </g>
+  </g>
+
+  <!-- ==================== 4. 底部总结与许可 ==================== -->
+
+  <g transform="translate(100, 700)">
+    <line x1="0" y1="0" x2="1000" y2="0" stroke="#E5E7EB" stroke-width="2"/>
+    <text x="500" y="30" class="text-center text-body">
+      核心启示：工作流思维将模糊的认知任务重构为可流动、可计算的智能价值链
+    </text>
+  </g>
+
+  <text x="600" y="780" class="text-center license-text" font-size="12" fill="#64748B">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

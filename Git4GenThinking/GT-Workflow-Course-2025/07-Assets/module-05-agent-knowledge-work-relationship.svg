@@ -1,0 +1,208 @@
+<!--
+  文件名：module-05-agent-knowledge-work-relationship.svg
+  图表名称：智能体与知识工作的关系
+  描述：展示智能体作为“中间层”，如何连接人类意图与知识生态，实现从“被动检索”到“主动执行”的工作流重构。
+
+  核心关系：
+  1. 人类 (Human): 设定目标，提供反馈，进行决策。
+  2. 智能体 (Agent): 感知意图，规划路径，调用工具，反思结果。
+  3. 知识生态 (Knowledge): 提供数据支撑，作为行动的载体。
+
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+-->
+<svg width="1200" height="720" viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义样式与标记 -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+
+      /* 文本样式 */
+      .main-title { font-family: 'Noto Sans', sans-serif; font-size: 24px; font-weight: 800; fill: #111827; text-anchor: middle; }
+      .sub-title { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: normal; fill: #6B7280; text-anchor: middle; }
+
+      .role-title { font-family: 'Noto Sans', sans-serif; font-size: 18px; font-weight: 700; text-anchor: middle; }
+      .card-title { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: 700; fill: #111827; text-anchor: middle; }
+      .desc-text { font-family: 'Noto Sans', sans-serif; font-size: 11px; font-weight: 400; fill: #374151; text-anchor: middle; }
+
+      /* 区域背景 */
+      .bg-human { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; rx: 12; }
+      .bg-agent { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; rx: 12; }
+      .bg-knowledge { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2px; rx: 12; }
+
+      /* 模块样式 */
+      .box-white { fill: white; stroke-width: 2px; rx: 6; }
+      .stroke-blue { stroke: #2563EB; }
+      .stroke-green { stroke: #059669; }
+      .stroke-yellow { stroke: #D97706; }
+
+      /* 文字背景框 */
+      .box-inner-blue { rx: 4; fill: #DBEAFE; }
+      .box-inner-green { rx: 4; fill: #DCFCE7; }
+      .box-inner-yellow { rx: 4; fill: #FEF3C7; }
+
+      /* 连接线 */
+      .connector { fill: none; stroke: #94A3B8; stroke-width: 2px; marker-end: url(#arrow-gray); }
+      .flow-main { fill: none; stroke: #2563EB; stroke-width: 2px; marker-end: url(#arrow-blue); }
+      .feedback-loop { fill: none; stroke: #059669; stroke-width: 2px; stroke-dasharray: 5,5; marker-end: url(#arrow-green); }
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow-gray" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#94A3B8"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="#2563EB"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#059669"/>
+    </marker>
+  </defs>
+
+  <!-- 1. 标题区域 -->
+  <text x="600" y="50" class="main-title">智能体与知识工作的关系</text>
+  <text x="600" y="80" class="sub-title">重构工作流：从“人找信息”到“智能体执行任务”</text>
+
+  <!-- ================================================================================== -->
+  <!-- 左侧：知识工作者 (Human) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(100, 150)">
+    <rect x="0" y="0" width="280" height="450" class="bg-human"/>
+    <text x="140" y="40" class="role-title" fill="#1E40AF">知识工作者 (Human)</text>
+
+    <!-- Role Icon -->
+    <g transform="translate(140, 80)">
+        <circle r="30" fill="white" stroke="#2563EB" stroke-width="2"/>
+        <text x="0" y="5" text-anchor="middle" font-size="24">🧑‍💻</text>
+    </g>
+
+    <!-- Module 1: Goal Setting -->
+    <g transform="translate(40, 140)">
+        <rect x="0" y="0" width="200" height="70" class="box-white stroke-blue"/>
+        <text x="100" y="25" class="card-title">Goal Setting</text>
+        <text x="100" y="52" class="desc-text">设定目标与意图</text>
+    </g>
+
+    <!-- Module 2: Context -->
+    <g transform="translate(40, 230)">
+        <rect x="0" y="0" width="200" height="70" class="box-white stroke-blue"/>
+        <text x="100" y="25" class="card-title">Context</text>
+        <text x="100" y="52" class="desc-text">提供背景与约束</text>
+    </g>
+
+    <!-- Module 3: Decision -->
+    <g transform="translate(40, 320)">
+        <rect x="0" y="0" width="200" height="70" class="box-white stroke-blue"/>
+        <text x="100" y="25" class="card-title">Final Decision</text>
+        <text x="100" y="52" class="desc-text">最终决策与验收</text>
+    </g>
+  </g>
+
+  <!-- 连接 Human -> Agent -->
+  <g transform="translate(380, 300)">
+    <line x1="0" y1="0" x2="75" y2="0" class="flow-main"/>
+    <text x="35" y="-15" class="desc-text" fill="#2563EB" font-weight="bold">Prompt/Intent</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 中间：智能体 (Agent) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(460, 120)">
+    <rect x="0" y="0" width="300" height="510" class="bg-agent"/>
+    <text x="150" y="40" class="role-title" fill="#065F46">智能体 (Agent)</text>
+
+    <!-- Role Icon -->
+    <g transform="translate(150, 80)">
+        <circle r="30" fill="white" stroke="#059669" stroke-width="2"/>
+        <text x="0" y="5" text-anchor="middle" font-size="24">🤖</text>
+    </g>
+
+    <!-- Module 1: Perceive -->
+    <g transform="translate(50, 140)">
+        <rect x="0" y="0" width="200" height="70" class="box-white stroke-green"/>
+        <text x="100" y="25" class="card-title">Perceive (感知)</text>
+        <text x="100" y="52" class="desc-text">理解意图与环境</text>
+    </g>
+
+    <!-- Module 2: Plan -->
+    <g transform="translate(50, 230)">
+        <rect x="0" y="0" width="200" height="70" class="box-white stroke-green"/>
+        <text x="100" y="25" class="card-title">Plan (规划)</text>
+        <text x="100" y="52" class="desc-text">拆解任务与路径</text>
+    </g>
+
+    <!-- Module 3: Act -->
+    <g transform="translate(50, 320)">
+        <rect x="0" y="0" width="200" height="70" class="box-white stroke-green"/>
+        <text x="100" y="25" class="card-title">Act (行动)</text>
+        <text x="100" y="52" class="desc-text">调用工具与执行</text>
+    </g>
+
+    <!-- Module 4: Reflect -->
+    <g transform="translate(50, 410)">
+        <rect x="0" y="0" width="200" height="70" class="box-white stroke-green"/>
+        <text x="100" y="25" class="card-title">Reflect (反思)</text>
+        <text x="100" y="52" class="desc-text">自我修正与总结</text>
+    </g>
+
+    <!-- Internal Flow -->
+    <line x1="150" y1="210" x2="150" y2="230" class="connector"/>
+    <line x1="150" y1="300" x2="150" y2="320" class="connector"/>
+    <line x1="150" y1="390" x2="150" y2="410" class="connector"/>
+
+    <!-- Loop Back -->
+    <path d="M 250 445 L 280 445 L 280 175 L 250 175" class="feedback-loop"/>
+  </g>
+
+  <!-- 连接 Agent -> Knowledge -->
+  <g transform="translate(760, 300)">
+    <line x1="0" y1="0" x2="75" y2="0" class="flow-main"/>
+    <text x="40" y="-15" class="desc-text" fill="#2563EB" font-weight="bold">Action/Query</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 右侧：知识生态 (Knowledge Ecosystem) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(840, 150)">
+    <rect x="0" y="0" width="280" height="450" class="bg-knowledge"/>
+    <text x="140" y="40" class="role-title" fill="#B45309">知识生态 (Ecosystem)</text>
+
+    <!-- Role Icon -->
+    <g transform="translate(140, 80)">
+        <circle r="30" fill="white" stroke="#FACC15" stroke-width="2"/>
+        <text x="0" y="5" text-anchor="middle" font-size="24">📚</text>
+    </g>
+
+    <!-- Module 1: Documents -->
+    <g transform="translate(40, 140)">
+        <rect x="0" y="0" width="200" height="70" class="box-white stroke-yellow"/>
+        <text x="100" y="25" class="card-title">Documents</text>
+        <text x="100" y="52" class="desc-text">笔记 / 文档 / 论文</text>
+    </g>
+
+    <!-- Module 2: Tools & APIs -->
+    <g transform="translate(40, 230)">
+        <rect x="0" y="0" width="200" height="70" class="box-white stroke-yellow"/>
+        <text x="100" y="25" class="card-title">Tools &amp; APIs</text>
+        <text x="100" y="52" class="desc-text">外部服务 / 计算能力</text>
+    </g>
+
+    <!-- Module 3: Databases -->
+    <g transform="translate(40, 320)">
+        <rect x="0" y="0" width="200" height="70" class="box-white stroke-yellow"/>
+        <text x="100" y="25" class="card-title">Databases</text>
+        <text x="100" y="52" class="desc-text">向量库 / 图谱 / SQL</text>
+    </g>
+  </g>
+
+  <!-- 反馈回路 (Global Feedback) -->
+  <path d="M 960 600 L 960 650 L 240 650 L 240 600" class="feedback-loop" stroke-width="3"/>
+  <rect x="460" y="635" width="300" height="30" rx="4" fill="white" stroke="#059669"/>
+  <text x="600" y="655" class="desc-text" fill="#059669" font-weight="bold">系统反馈 / 结果验证 (Feedback Loop)</text>
+
+  <!-- 底部许可 -->
+  <text x="600" y="700" font-family="Noto Sans" font-size="12" fill="#9CA3AF" text-anchor="middle">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

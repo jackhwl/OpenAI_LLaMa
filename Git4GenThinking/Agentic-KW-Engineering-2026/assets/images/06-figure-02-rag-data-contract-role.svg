@@ -1,0 +1,298 @@
+<svg viewBox="0 0 800 800" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+<!--
+================================================================================
+图表名称：数据契约在 RAG 系统中的作用示意图
+文件命名：06-figure-01-data-contracts-rag.svg
+用途：展示数据契约（元数据）如何将全文本的高熵混沌检索转化为结构化的低熵精准检索
+版本：v1.0.0
+作者：Gitconomy Research-郭晧
+SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+创建日期：2026-02-20
+================================================================================
+-->
+  <!-- Background: Solid White -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+
+  <defs>
+    <style>
+      :root {
+        /* Semantic Colors */
+        --c-cloud-blue: #0052CC;
+        --c-local-green: #00875A;
+        --c-risk-amber: #FF991F;
+        --c-neutral-gray: #64748B;
+        --c-local-green-light: #E3FCEF;
+        --c-cloud-blue-light: #DEEBFF;
+        --c-risk-amber-light: #FFFBEB;
+        --c-gray-light: #F8FAFC;
+
+        /* Typography */
+        --font-sans: "Noto Sans SC", "Noto Sans", system-ui, sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+
+      /* Text Styles */
+      text { font-family: var(--font-sans); }
+      .text-title-main { font-family: var(--font-sans); font-weight: 700; font-size: 24px; fill: #000; }
+      .text-breadcrumbs { font-family: var(--font-mono); font-size: 14px; fill: var(--c-neutral-gray); }
+      .text-fig-id { font-family: var(--font-mono); font-size: 12px; fill: var(--c-neutral-gray); letter-spacing: 1px; }
+
+      .text-region-title { font-family: var(--font-sans); font-weight: 700; font-size: 16px; fill: #000; }
+      .text-region-sub { font-family: var(--font-mono); font-size: 12px; }
+
+      .text-node-title { font-family: var(--font-sans); font-weight: 700; font-size: 14px; fill: #000; }
+      .text-node-sub { font-family: var(--font-mono); font-size: 11px; fill: var(--c-neutral-gray); }
+      .text-yaml { font-family: var(--font-mono); font-size: 10px; fill: var(--c-cloud-blue); }
+      .text-link { font-family: var(--font-sans); font-size: 11px; font-weight: 700; }
+      .text-legend { font-family: var(--font-mono); font-size: 11px; fill: var(--c-neutral-gray); }
+
+      /* Boundary Boxes */
+      .boundary-before { fill: var(--c-risk-amber-light); fill-opacity: 0.4; stroke: var(--c-risk-amber); stroke-width: 1.5; stroke-dasharray: 6 4; }
+      .boundary-after { fill: var(--c-local-green-light); fill-opacity: 0.4; stroke: var(--c-local-green); stroke-width: 2; }
+
+      /* Node Shapes */
+      .node-query { fill: #FFF; stroke: var(--c-cloud-blue); stroke-width: 2; }
+      .node-db-amber { fill: #FFF; stroke: var(--c-risk-amber); stroke-width: 2; }
+      .node-db-green { fill: #FFF; stroke: var(--c-local-green); stroke-width: 2; }
+      .node-chunk-noise { fill: #FFF; stroke: var(--c-neutral-gray); stroke-width: 1.5; stroke-dasharray: 2 2; }
+      .node-chunk-target { fill: #FFF; stroke: var(--c-local-green); stroke-width: 2.5; }
+
+      /* Connectors */
+      .connector-amber { fill: none; stroke: var(--c-risk-amber); stroke-width: 2; }
+      .connector-green { fill: none; stroke: var(--c-local-green); stroke-width: 2; }
+      .connector-blue { fill: none; stroke: var(--c-cloud-blue); stroke-width: 2; stroke-dasharray: 4 2;}
+    </style>
+
+    <!-- Node Drop Shadow -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.05"/>
+    </filter>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-risk-amber)" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-local-green)" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-cloud-blue)" />
+    </marker>
+  </defs>
+
+<!--
+===========================================================================
+     TITLE BLOCK (Standardized Layout)
+     Center X = 400
+===========================================================================
+-->
+  <g id="title-block" transform="translate(400, 40)">
+
+    <!-- Main Title (Baseline y=20) -->
+    <text y="20" text-anchor="middle" class="text-title-main">数据契约在 RAG 系统中的作用</text>
+
+    <!-- Breadcrumbs (25px below title baseline) -->
+    <text y="45" text-anchor="middle" class="text-breadcrumbs">第 6 天 > 基础原理</text>
+
+    <!-- Context Indicator (15px below breadcrumbs, y=60) -->
+    <!-- Absolute Canvas Y for Indicator = 40 + 60 = 100 -->
+    <line x1="-30" y1="60" x2="30" y2="60" stroke="var(--c-local-green)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+<!--
+===========================================================================
+     DIAGRAM CONTENT
+     Start Y = 150 (Ensures exactly 50px Gap from Title Block Indicator)
+     Absolute Y start = 150. Indicator absolute Y = 100. Gap = 50px.
+===========================================================================
+-->
+  <g id="diagram-content" transform="translate(0, 150)">
+
+    <!-- ===================================================================
+         LEFT REGION: 无数据契约 (Unstructured / High Entropy RAG)
+         Center X = 210
+    ==================================================================== -->
+    <g id="region-before">
+      <rect x="40" y="0" width="340" height="520" rx="12" class="boundary-before" />
+      <text x="210" y="30" text-anchor="middle" class="text-region-title">传统 RAG (无数据契约)</text>
+      <text x="210" y="50" text-anchor="middle" class="text-region-sub" fill="var(--c-risk-amber)">全文暴力检索 / 高熵混沌 (High Entropy)</text>
+
+      <!-- 1. User Query -->
+      <g transform="translate(210, 100)" filter="url(#shadow)">
+        <rect x="-100" y="-20" width="200" height="40" rx="20" class="node-query" />
+        <text y="4" text-anchor="middle" class="text-node-title" font-size="12">用户问: "什么是语义切片?"</text>
+      </g>
+
+      <path d="M 210,120 L 210,165" class="connector-amber" marker-end="url(#arrow-amber)" />
+      <text x="220" y="145" class="text-link" fill="var(--c-risk-amber)">纯向量相似度匹配</text>
+
+      <!-- 2. Unstructured Database -->
+      <g transform="translate(210, 240)" filter="url(#shadow)">
+        <rect x="-120" y="-60" width="240" height="120" rx="8" class="node-db-amber" />
+        <text y="-40" text-anchor="middle" class="text-node-title">无结构大文档库 (Vector DB)</text>
+        <line x1="-120" y1="-25" x2="120" y2="-25" stroke="var(--c-risk-amber)" stroke-dasharray="2 2"/>
+
+        <!-- Chaotic internal chunks -->
+        <rect x="-100" y="-10" width="80" height="20" rx="2" fill="var(--c-gray-light)" stroke="var(--c-neutral-gray)" stroke-width="1"/>
+        <text x="-60" y="4" text-anchor="middle" font-size="9" fill="var(--c-neutral-gray)">第1章背景...</text>
+
+        <rect x="-10" y="-10" width="110" height="20" rx="2" fill="var(--c-risk-amber-light)" stroke="var(--c-risk-amber)" stroke-width="1"/>
+        <text x="45" y="4" text-anchor="middle" font-size="9" fill="var(--c-risk-amber)">包含部分相关词汇...</text>
+
+        <rect x="-80" y="20" width="100" height="20" rx="2" fill="var(--c-local-green-light)" stroke="var(--c-local-green)" stroke-width="1"/>
+        <text x="-30" y="34" text-anchor="middle" font-size="9" fill="var(--c-local-green)">语义切片定义...</text>
+
+        <rect x="30" y="20" width="70" height="20" rx="2" fill="var(--c-gray-light)" stroke="var(--c-neutral-gray)" stroke-width="1"/>
+        <text x="65" y="34" text-anchor="middle" font-size="9" fill="var(--c-neutral-gray)">结尾总结...</text>
+      </g>
+
+      <path d="M 210,300 L 210,345" class="connector-amber" marker-end="url(#arrow-amber)" />
+      <text x="220" y="325" class="text-link" fill="var(--c-risk-amber)">返回 Top-K (易受干扰)</text>
+
+      <!-- 3. Output Context Window (Lost in the middle / Noisy) -->
+      <g transform="translate(210, 420)" filter="url(#shadow)">
+        <rect x="-130" y="-60" width="260" height="120" rx="4" class="node-chunk-noise" />
+        <text x="-120" y="-40" text-anchor="start" font-family="var(--font-mono)" font-size="10" fill="var(--c-risk-amber)">[Chunk 1] 噪音数据...</text>
+        <text x="-120" y="-15" text-anchor="start" font-family="var(--font-mono)" font-size="10" fill="var(--c-local-green)">[Chunk 2] 语义切片是基于模型理解...</text>
+        <text x="-120" y="10" text-anchor="start" font-family="var(--font-mono)" font-size="10" fill="var(--c-risk-amber)">[Chunk 3] 更多无关背景段落...</text>
+        <text x="-120" y="35" text-anchor="start" font-family="var(--font-mono)" font-size="10" fill="var(--c-neutral-gray)">[Chunk 4] 总结...</text>
+
+        <rect x="-140" y="-80" width="70" height="20" rx="10" fill="var(--c-risk-amber)"/>
+        <text x="-105" y="-66" text-anchor="middle" font-size="10" fill="#FFF" font-weight="bold">AI 上下文</text>
+      </g>
+      <text x="210" y="500" text-anchor="middle" class="text-node-sub" fill="var(--c-risk-amber)">问题：信噪比低，容易发生“中间迷失”</text>
+    </g>
+
+
+    <!-- ===================================================================
+         RIGHT REGION: 有数据契约 (Structured / Low Entropy RAG)
+         Center X = 590
+    ==================================================================== -->
+    <g id="region-after">
+      <rect x="420" y="0" width="340" height="520" rx="12" class="boundary-after" />
+      <text x="590" y="30" text-anchor="middle" class="text-region-title">契约化 RAG (Data Contracts)</text>
+      <text x="590" y="50" text-anchor="middle" class="text-region-sub" fill="var(--c-local-green)">元数据预过滤 + 向量检索 / 低熵 (Low Entropy)</text>
+
+      <!-- 1. User Query & Agent Router -->
+      <g transform="translate(590, 100)" filter="url(#shadow)">
+        <rect x="-100" y="-20" width="200" height="40" rx="20" class="node-query" />
+        <text y="4" text-anchor="middle" class="text-node-title" font-size="12">用户问: "什么是语义切片?"</text>
+      </g>
+
+      <!-- Model converting query to Contract -->
+      <path d="M 590,120 L 590,145" class="connector-blue" marker-end="url(#arrow-blue)" />
+
+      <g transform="translate(590, 165)">
+        <rect x="-110" y="-15" width="220" height="30" rx="4" fill="var(--c-cloud-blue-light)" stroke="var(--c-cloud-blue)" stroke-width="1"/>
+        <text y="4" text-anchor="middle" class="text-yaml" font-weight="bold">SELECT * WHERE type='algorithm'</text>
+      </g>
+
+      <path d="M 590,180 L 590,215" class="connector-green" marker-end="url(#arrow-green)" />
+      <text x="600" y="205" class="text-link" fill="var(--c-local-green)">带过滤条件的精准匹配</text>
+
+      <!-- 2. Structured Database (Data Contracts applied) -->
+      <g transform="translate(590, 270)" filter="url(#shadow)">
+        <rect x="-130" y="-50" width="260" height="100" rx="8" class="node-db-green" />
+        <text y="-30" text-anchor="middle" class="text-node-title">契约化原子知识库 (Metadata + Vector)</text>
+        <line x1="-130" y1="-15" x2="130" y2="-15" stroke="var(--c-local-green)" stroke-dasharray="2 2"/>
+
+        <!-- Structured chunks representing YAML frontmatter -->
+        <!-- Irrelevant Chunk but structured -->
+        <g transform="translate(-85, 15)">
+          <rect x="-35" y="-20" width="70" height="40" rx="4" fill="var(--c-gray-light)" stroke="var(--c-neutral-gray)" stroke-width="1" opacity="0.5"/>
+          <text x="0" y="-8" text-anchor="middle" font-size="8" fill="var(--c-cloud-blue)" font-family="var(--font-mono)">type: concept</text>
+          <line x1="-25" y1="-2" x2="25" y2="-2" stroke="var(--c-neutral-gray)" stroke-width="0.5"/>
+          <text x="0" y="10" text-anchor="middle" font-size="9" fill="var(--c-neutral-gray)">上下文极限...</text>
+        </g>
+
+        <!-- Target Chunk matching Metadata -->
+        <g transform="translate(0, 15)">
+          <rect x="-35" y="-20" width="70" height="40" rx="4" fill="var(--c-local-green-light)" stroke="var(--c-local-green)" stroke-width="2"/>
+          <text x="0" y="-8" text-anchor="middle" font-size="8" fill="var(--c-local-green)" font-weight="bold" font-family="var(--font-mono)">type: algorithm</text>
+          <line x1="-25" y1="-2" x2="25" y2="-2" stroke="var(--c-local-green)" stroke-width="1"/>
+          <text x="0" y="10" text-anchor="middle" font-size="9" fill="var(--c-local-green)" font-weight="bold">语义切片...</text>
+        </g>
+
+        <!-- Irrelevant Chunk but structured -->
+        <g transform="translate(85, 15)">
+          <rect x="-35" y="-20" width="70" height="40" rx="4" fill="var(--c-gray-light)" stroke="var(--c-neutral-gray)" stroke-width="1" opacity="0.5"/>
+          <text x="0" y="-8" text-anchor="middle" font-size="8" fill="var(--c-cloud-blue)" font-family="var(--font-mono)">type: author</text>
+          <line x1="-25" y1="-2" x2="25" y2="-2" stroke="var(--c-neutral-gray)" stroke-width="0.5"/>
+          <text x="0" y="10" text-anchor="middle" font-size="9" fill="var(--c-neutral-gray)">郭晧 履历...</text>
+        </g>
+      </g>
+
+      <path d="M 590,320 L 590,365" class="connector-green" marker-end="url(#arrow-green)" />
+      <text x="600" y="345" class="text-link" fill="var(--c-local-green)">硬过滤阻挡噪音，仅返回精准命中</text>
+
+      <!-- 3. Output Context Window (Clean / High SNR) -->
+      <g transform="translate(590, 420)" filter="url(#shadow)">
+        <rect x="-130" y="-50" width="260" height="100" rx="4" class="node-chunk-target" />
+
+        <!-- YAML Frontmatter representation in the output -->
+        <text x="-110" y="-30" text-anchor="start" class="text-yaml">---</text>
+        <text x="-110" y="-18" text-anchor="start" class="text-yaml">type: algorithm</text>
+        <text x="-110" y="-6" text-anchor="start" class="text-yaml">topic: Chunking Strategies</text>
+        <text x="-110" y="6" text-anchor="start" class="text-yaml">---</text>
+        <text x="-110" y="24" text-anchor="start" font-family="var(--font-sans)" font-size="11" fill="var(--c-local-green)" font-weight="bold">【定义】语义切片是一种基于 Embedding...</text>
+        <text x="-110" y="40" text-anchor="start" font-family="var(--font-sans)" font-size="11" fill="var(--c-local-green)" font-weight="bold">【原理】利用余弦相似度计算边界...</text>
+
+        <rect x="-140" y="-70" width="100" height="20" rx="10" fill="var(--c-local-green)"/>
+        <text x="-90" y="-56" text-anchor="middle" font-size="10" fill="#FFF" font-weight="bold">高信噪比上下文</text>
+      </g>
+      <text x="590" y="500" text-anchor="middle" class="text-node-sub" fill="var(--c-local-green)">优势：彻底解决“中间迷失”，降低算力浪费</text>
+    </g>
+
+    <!-- Center Transformation Bridge (Arrow) -->
+    <g transform="translate(380, 270)">
+      <path d="M 0 0 L 40 0 L 40 -15 L 60 10 L 40 35 L 40 20 L 0 20 Z" fill="var(--c-cloud-blue-light)" stroke="var(--c-cloud-blue)" stroke-width="1.5" opacity="0.8"/>
+      <text x="30" y="-20" text-anchor="middle" class="text-link" fill="var(--c-cloud-blue)">构建契约</text>
+      <text x="30" y="45" text-anchor="middle" class="text-yaml">YAML Frontmatter</text>
+    </g>
+
+  </g>
+
+<!--
+===========================================================================
+     LEGEND BLOCK (Horizontal Structured Layout)
+     Center X = 400, strictly at the bottom
+===========================================================================
+-->
+  <g id="legend-block" transform="translate(400, 720)">
+    <!-- 图例背景：半透明白色容器，统一圆角边框 -->
+    <rect x="-380" y="-20" width="760" height="40" rx="4" fill="rgba(255,255,255,0.9)" stroke="var(--c-neutral-gray)" stroke-width="0.5"/>
+
+    <g transform="translate(-360, 0)">
+      <!-- 图例标题 -->
+      <text x="0" y="4" font-family="var(--font-sans)" font-weight="700" font-size="12" fill="#64748B">图例语义:</text>
+
+      <!-- Item 1: 无序数据/风险 -->
+      <g transform="translate(110, 0)">
+        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="var(--c-risk-amber)" />
+        <text x="12" y="4" class="text-legend">高熵混沌数据 (Noisy/Unstructured)</text>
+      </g>
+
+      <!-- Item 2: 云端推理处理 -->
+      <g transform="translate(350, 0)">
+        <polygon points="-6,-5 0,-10 6,-5 6,5 0,10 -6,5" fill="var(--c-cloud-blue)" />
+        <text x="12" y="4" class="text-legend">LLM 将自然语言转为契约查询</text>
+      </g>
+
+      <!-- Item 3: 契约化/低熵 -->
+      <g transform="translate(560, 0)">
+        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="var(--c-local-green)" />
+        <text x="12" y="4" class="text-legend">低熵精准命中 (Data Contract/YAML)</text>
+      </g>
+    </g>
+  </g>
+
+<!--
+===========================================================================
+     LICENSE FOOTER
+===========================================================================
+-->
+  <text x="400" y="760" text-anchor="middle" font-family="var(--font-sans)" font-size="10" fill="var(--c-neutral-gray)">
+    本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+  </text>
+
+</svg>

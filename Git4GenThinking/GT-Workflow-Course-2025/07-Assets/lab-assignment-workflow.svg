@@ -1,0 +1,249 @@
+<!--
+  图表名称：Git作业协作泳道流程图 (Assignment Flow Swimlane Diagram) - 兼容版（优化）
+  描述：以泳道图形式展示 Gitconomy 课程中，上游仓库、组长与组员在作业全生命周期中的交互流程。
+  优化点：
+  1) 字体改为系统字体栈，确保 GitLink/GitHub 预览一致
+  2) Step 3 与 Step 4 之间新增 “先 git pull” 提示（降低无分支协作冲突）
+  3) Step 4 明确目录规则：08-Workspace/Assignment-Mx/Team-Name/
+  4) “定期同步课程更新” 增加真实白底标签（SVG text 无 background）
+  5) marker 增加 markerUnits=strokeWidth，缩放更稳定
+-->
+<svg width="1000" height="920" viewBox="0 0 1000 920"
+     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+  <!-- 背景 -->
+  <rect width="100%" height="100%" fill="#FFFFFF"/>
+
+  <!-- 箭头标记 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5"
+            orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563EB"/>
+    </marker>
+    <marker id="arrowhead-highlight" markerWidth="10" markerHeight="7" refX="9" refY="3.5"
+            orient="auto" markerUnits="strokeWidth">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#FACC15"/>
+    </marker>
+  </defs>
+
+  <!-- 标题 -->
+  <text x="500" y="40" text-anchor="middle"
+        font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+        font-size="22" font-weight="800" fill="#111827">
+    Git作业协作泳道流程图
+  </text>
+  <text x="500" y="65" text-anchor="middle"
+        font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+        font-size="11" font-weight="400" fill="#6B7280">
+    基于 5人小组协作模式 (Fork &amp; Pull Request) · 简化协作（无分支）
+  </text>
+
+  <!-- ======================== 泳道背景 ======================== -->
+
+  <!-- 泳道1: 上游仓库 -->
+  <rect x="50" y="90" width="300" height="780" fill="#F9FAFB" rx="5"/>
+  <text x="200" y="120" text-anchor="middle"
+        font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+        font-size="16" font-weight="700" fill="#111827">上游仓库 / 课程组</text>
+  <text x="200" y="140" text-anchor="middle"
+        font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+        font-size="11" font-weight="400" fill="#6B7280">(Gitconomy/Git4GenThinking)</text>
+
+  <!-- 泳道2: 组长 -->
+  <rect x="350" y="90" width="300" height="780" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1" rx="5"/>
+  <text x="500" y="120" text-anchor="middle"
+        font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+        font-size="16" font-weight="700" fill="#111827">组长 (Team Leader)</text>
+  <text x="500" y="140" text-anchor="middle"
+        font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+        font-size="11" font-weight="400" fill="#6B7280">(仓库Owner: 负责 Fork &amp; PR)</text>
+
+  <!-- 泳道3: 组员 -->
+  <rect x="650" y="90" width="300" height="780" fill="#F9FAFB" rx="5"/>
+  <text x="800" y="120" text-anchor="middle"
+        font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+        font-size="16" font-weight="700" fill="#111827">组员 (Members)</text>
+  <text x="800" y="140" text-anchor="middle"
+        font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+        font-size="11" font-weight="400" fill="#6B7280">(Maintainer: 协作提交)</text>
+
+  <!-- ======================== 流程节点 ======================== -->
+
+  <!-- Node 0: 上游发布 -->
+  <g transform="translate(100, 180)">
+    <rect width="200" height="60" rx="4" fill="#EFF6FF" stroke="#60A5FA" stroke-width="2"/>
+    <text x="100" y="25" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="700" fill="#111827">上游发布 (Main)</text>
+    <text x="100" y="45" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="400" fill="#374151" letter-spacing="0.02em">提供实验模板与说明</text>
+  </g>
+
+  <!-- Node 1: 组长 Fork -->
+  <g transform="translate(400, 220)">
+    <rect width="200" height="60" rx="4" fill="#F0FDF4" stroke="#34D399" stroke-width="2"/>
+    <text x="100" y="25" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="700" fill="#111827">Step 1: Fork 仓库</text>
+    <text x="100" y="45" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="400" fill="#374151" letter-spacing="0.02em">Fork 到组长个人账号</text>
+  </g>
+
+  <!-- Node 2: 成员管理 -->
+  <g transform="translate(400, 320)">
+    <rect width="200" height="60" rx="4" fill="#F0FDF4" stroke="#34D399" stroke-width="2"/>
+    <text x="100" y="25" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="700" fill="#111827">Step 2: 成员管理</text>
+    <text x="100" y="45" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="400" fill="#374151" letter-spacing="0.02em">添加组员为 Maintainer</text>
+  </g>
+
+  <!-- Node 3: 组员 Clone -->
+  <g transform="translate(700, 320)">
+    <rect width="200" height="60" rx="4" fill="#F0FDF4" stroke="#34D399" stroke-width="2"/>
+    <text x="100" y="25" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="700" fill="#111827">Step 3: Clone &amp; Setup</text>
+    <text x="100" y="45" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="400" fill="#374151" letter-spacing="0.02em">git clone 组长Fork仓库</text>
+  </g>
+
+  <!-- Mini Node: 先 Pull（新增） -->
+  <g transform="translate(700, 395)">
+    <rect width="200" height="42" rx="4" fill="#FFF7ED" stroke="#FB923C" stroke-width="2"/>
+    <text x="100" y="18" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="700" fill="#111827">Step 3.5: 先拉取更新</text>
+    <text x="100" y="34" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="11" font-weight="400" fill="#374151">git pull origin main</text>
+  </g>
+
+  <!-- Node 4: 组员作业（补充目录规则） -->
+  <g transform="translate(700, 460)">
+    <rect width="200" height="96" rx="4" fill="#F0FDF4" stroke="#34D399" stroke-width="2"/>
+    <text x="100" y="22" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="700" fill="#111827">Step 4: 完成作业</text>
+    <text x="100" y="44" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="11" font-weight="400" fill="#374151">目录：08-Workspace/Assignment-Mx/</text>
+    <text x="100" y="62" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="11" font-weight="400" fill="#374151">Team-Name/（个人 + 团队报告）</text>
+    <text x="100" y="84" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="400" fill="#374151">git push origin main</text>
+  </g>
+
+  <!-- Node 5: 综合报告 -->
+  <g transform="translate(400, 560)">
+    <rect width="200" height="80" rx="4" fill="#EFF6FF" stroke="#60A5FA" stroke-width="2"/>
+    <text x="100" y="25" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="700" fill="#111827">Step 5: 小组综合报告</text>
+    <text x="100" y="45" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="400" fill="#374151" letter-spacing="0.02em">team-report.md</text>
+    <text x="100" y="65" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="11" font-weight="400" fill="#6B7280">(组长统筹 / 全员协作)</text>
+  </g>
+
+  <!-- Node 6: 同步上游 -->
+  <g transform="translate(400, 680)">
+    <rect width="200" height="60" rx="4" fill="#F0FDF4" stroke="#34D399" stroke-width="2"/>
+    <text x="100" y="25" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="700" fill="#111827">Step 6.1: 同步上游</text>
+    <text x="100" y="45" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="400" fill="#374151" letter-spacing="0.02em">git merge upstream/main</text>
+  </g>
+
+  <!-- Node 7: 提交 PR（高亮） -->
+  <g transform="translate(400, 780)">
+    <rect width="200" height="60" rx="4" fill="#FEF9C3" stroke="#FACC15" stroke-width="2"/>
+    <text x="100" y="25" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="700" fill="#111827">Step 6.2: 提交 PR</text>
+    <text x="100" y="45" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="400" fill="#374151" letter-spacing="0.02em">发起 Pull Request</text>
+  </g>
+
+  <!-- Node 8: 上游审核 -->
+  <g transform="translate(100, 780)">
+    <rect width="200" height="60" rx="4" fill="#EFF6FF" stroke="#60A5FA" stroke-width="2"/>
+    <text x="100" y="25" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="700" fill="#111827">审核与合并</text>
+    <text x="100" y="45" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="12" font-weight="400" fill="#374151" letter-spacing="0.02em">Review &amp; Merge</text>
+  </g>
+
+  <!-- ======================== 连接线 ======================== -->
+
+  <!-- 1. 上游 -> 组长 Fork -->
+  <path d="M300,210 L350,210 L350,250 L400,250"
+        fill="none" stroke="#2563EB" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- 2. 组长 Fork -> 成员管理 -->
+  <path d="M500,280 L500,320"
+        fill="none" stroke="#2563EB" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- 3. 成员管理 -> 组员 Clone (虚线通知) -->
+  <path d="M600,350 L700,350"
+        fill="none" stroke="#64748B" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrowhead)"/>
+
+  <!-- 4. 组员 Clone -> 先 Pull -->
+  <path d="M800,380 L800,395"
+        fill="none" stroke="#2563EB" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- 4.5 先 Pull -> 完成作业 -->
+  <path d="M800,437 L800,460"
+        fill="none" stroke="#2563EB" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- 5. 完成作业 -> 综合报告 -->
+  <path d="M800,556 L800,600 L600,600"
+        fill="none" stroke="#2563EB" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- 6. 综合报告 -> 同步上游 -->
+  <path d="M500,640 L500,680"
+        fill="none" stroke="#2563EB" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- 7. 同步上游 -> 提交 PR -->
+  <path d="M500,740 L500,780"
+        fill="none" stroke="#2563EB" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- 8. 提交 PR -> 上游审核（高亮） -->
+  <path d="M400,810 L300,810"
+        fill="none" stroke="#FACC15" stroke-width="3" marker-end="url(#arrowhead-highlight)"/>
+
+  <!-- 辅助连线：上游更新流（虚线 + 半透明） -->
+  <path d="M200,240 L200,710 L400,710"
+        fill="none" stroke="#64748B" stroke-width="1.5" stroke-dasharray="4,4"
+        marker-end="url(#arrowhead)" opacity="0.5"/>
+
+  <!-- 虚线标注文字（加白底） -->
+  <g>
+    <rect x="235" y="694" width="130" height="18" fill="#FFFFFF" opacity="0.92" rx="3"/>
+    <text x="300" y="707" text-anchor="middle"
+          font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+          font-size="11" font-weight="400" fill="#6B7280">定期同步课程更新</text>
+  </g>
+
+  <!-- 许可声明 -->
+  <text x="500" y="900" text-anchor="middle"
+        font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif"
+        font-size="12" font-weight="400" fill="#64748B">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

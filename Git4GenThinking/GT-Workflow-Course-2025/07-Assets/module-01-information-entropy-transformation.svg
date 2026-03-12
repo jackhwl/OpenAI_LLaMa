@@ -1,0 +1,135 @@
+<svg width="900" height="520" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+
+      :root {
+        --color-main-fill: #EFF6FF;      /* Blue - Structured */
+        --color-main-stroke: #60A5FA;
+        --color-chaos-fill: #F3F4F6;     /* Grey - Chaos */
+        --color-chaos-stroke: #9CA3AF;
+        --color-process-fill: #FEF9C3;   /* Yellow - Process */
+        --color-process-stroke: #FACC15;
+        --color-text-main: #111827;
+        --color-text-body: #374151;
+        --color-text-dim: #9CA3AF;
+        --color-connector: #2563EB;
+      }
+
+      text { font-family: 'Noto Sans', sans-serif; }
+
+      /* Shapes */
+      .chaos-box { fill: var(--color-chaos-fill); stroke: var(--color-chaos-stroke); stroke-width: 1px; rx: 4; }
+      .structure-box { fill: var(--color-main-fill); stroke: var(--color-main-stroke); stroke-width: 2px; rx: 4; }
+      .process-shape { fill: var(--color-process-fill); stroke: var(--color-process-stroke); stroke-width: 2px; filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.05)); }
+
+      /* Typography */
+      .title-main { font-size: 24px; font-weight: 800; fill: var(--color-text-main); }
+      .subtitle-main { font-size: 14px; font-weight: 400; fill: var(--color-text-dim); }
+
+      .label-chaos { font-size: 16px; font-weight: 700; fill: #4B5563; }
+      .label-order { font-size: 16px; font-weight: 700; fill: #2563EB; }
+      .label-process { font-size: 14px; font-weight: 700; fill: #B45309; }
+
+      .chaos-text { font-size: 12px; fill: #6B7280; font-family: monospace; }
+      .struct-text { font-size: 10px; fill: #1E40AF; }
+
+      .bottom-caption { font-size: 16px; font-weight: 700; fill: var(--color-text-main); text-anchor: middle; letter-spacing: 1px; }
+      .license-text { font-size: 12px; font-weight: 400; fill: #64748B; text-anchor: middle; }
+
+      /* Decorative Lines */
+      .swirl-line { fill: none; stroke: #D1D5DB; stroke-width: 2px; stroke-linecap: round; }
+    </style>
+
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563EB" />
+    </marker>
+
+    <marker id="arrow-bg" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#E5E7EB" />
+    </marker>
+  </defs>
+
+  <text x="450" y="50" class="title-main" text-anchor="middle">信息熵状态转化图</text>
+  <text x="450" y="80" class="subtitle-main" text-anchor="middle">从混沌到结构：生成式工作流的核心价值</text>
+
+  <line x1="200" y1="280" x2="700" y2="280" stroke="#E5E7EB" stroke-width="6" marker-end="url(#arrow-bg)" />
+  <line x1="200" y1="280" x2="690" y2="280" stroke="#2563EB" stroke-width="2" stroke-dasharray="8,8" opacity="0.6" />
+
+  <g transform="translate(50, 130)">
+    <text x="150" y="20" class="label-chaos" text-anchor="middle">高熵 (High Entropy)</text>
+    <text x="150" y="40" class="subtitle-main" text-anchor="middle">混沌、模糊、不可操作</text>
+
+    <g transform="translate(150, 150)">
+      <path d="M-100,-50 Q-50,-100 0,-50 T100,-50" class="swirl-line" />
+      <path d="M-80,80 Q-20,20 50,80" class="swirl-line" />
+      <path d="M-60,0 C-60,-40 -20,-60 20,-40 S80,0 40,40" class="swirl-line" opacity="0.6"/>
+
+      <g transform="rotate(-15) translate(-80, -60)">
+        <rect width="60" height="40" class="chaos-box" />
+        <text x="30" y="25" class="chaos-text" text-anchor="middle">Raw Data</text>
+      </g>
+      <g transform="rotate(10) translate(40, -80)">
+        <rect width="50" height="30" class="chaos-box" />
+        <text x="25" y="20" class="chaos-text" text-anchor="middle">???</text>
+      </g>
+      <g transform="rotate(25) translate(-40, 50)">
+        <text x="0" y="0" class="chaos-text" font-size="20">Blurry</text>
+      </g>
+      <g transform="rotate(-30) translate(60, 40)">
+        <rect width="70" height="20" class="chaos-box" />
+        <text x="35" y="15" class="chaos-text" text-anchor="middle">Unstructured</text>
+      </g>
+    </g>
+  </g>
+
+  <g transform="translate(350, 180)">
+    <path d="M0,0 L200,60 L200,140 L0,200 Z" class="process-shape" />
+
+    <line x1="60" y1="50" x2="60" y2="150" stroke="#FACC15" stroke-width="4" stroke-dasharray="8,4" />
+    <line x1="100" y1="70" x2="100" y2="130" stroke="#FACC15" stroke-width="4" stroke-dasharray="8,4" />
+    <line x1="140" y1="80" x2="140" y2="120" stroke="#FACC15" stroke-width="4" stroke-dasharray="8,4" />
+
+    <text x="100" y="105" class="label-process" text-anchor="middle">结构化处理</text>
+    <text x="100" y="125" class="subtitle-main" text-anchor="middle" font-size="10" fill="#B45309">(Structuring)</text>
+  </g>
+
+  <g transform="translate(600, 130)">
+    <text x="150" y="20" class="label-order" text-anchor="middle">低熵 (Low Entropy)</text>
+    <text x="150" y="40" class="subtitle-main" text-anchor="middle">清晰、有序、可操作</text>
+
+    <g transform="translate(50, 80)">
+      <g transform="translate(0, 0)">
+        <rect x="80" y="0" width="40" height="20" class="structure-box" /> <line x1="100" y1="20" x2="100" y2="40" stroke="#60A5FA" stroke-width="2" />
+        <line x1="100" y1="40" x2="40" y2="40" stroke="#60A5FA" stroke-width="2" />
+        <line x1="100" y1="40" x2="160" y2="40" stroke="#60A5FA" stroke-width="2" />
+
+        <rect x="20" y="50" width="40" height="20" class="structure-box" />
+        <rect x="140" y="50" width="40" height="20" class="structure-box" />
+      </g>
+
+      <g transform="translate(40, 100)">
+        <rect x="0" y="0" width="120" height="80" class="structure-box" fill="#FFFFFF" />
+        <rect x="10" y="15" width="10" height="10" fill="#34D399" rx="2" />
+        <line x1="30" y1="20" x2="100" y2="20" stroke="#E5E7EB" stroke-width="2" />
+
+        <rect x="10" y="35" width="10" height="10" fill="#34D399" rx="2" />
+        <line x1="30" y1="40" x2="80" y2="40" stroke="#E5E7EB" stroke-width="2" />
+
+        <rect x="10" y="55" width="10" height="10" fill="#34D399" rx="2" />
+        <line x1="30" y1="60" x2="90" y2="60" stroke="#E5E7EB" stroke-width="2" />
+      </g>
+    </g>
+  </g>
+
+  <line x1="100" y1="400" x2="800" y2="400" stroke="#E5E7EB" stroke-width="1" />
+
+  <text x="450" y="440" class="bottom-caption">
+    结构化输入 = 低熵化处理 = 可操作性增强
+  </text>
+
+  <text x="450" y="500" class="license-text">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+</svg>

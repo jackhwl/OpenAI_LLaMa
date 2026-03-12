@@ -1,0 +1,154 @@
+<!--
+  文件名：module-06-action-chain-sustainability.svg
+  图表名称：行动链如何支撑“可持续运行”的示意图
+  描述：展示行动链 (Action Chain) 通过内环（执行）和外环（进化）的双重机制，结合状态持久化，实现智能体系统的长期、稳定与自我优化运行。
+
+  核心逻辑：
+  1. 内环 (Execution Loop): 确保任务能跑通 (Evaluate -> Act -> Result)。
+  2. 外环 (Evolution Loop): 确保系统能成长 (Result -> Reflect -> Update -> Evaluate)。
+  3. 基座 (Persistence): 状态与记忆的持久化存储，是“可持续”的物质基础。
+
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+-->
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义样式与标记 -->
+  <defs>
+    <style>
+      /* 文本样式 */
+      .main-title { font-family: 'Noto Sans', sans-serif; font-size: 24px; font-weight: 800; fill: #111827; text-anchor: middle; }
+      .sub-title { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: normal; fill: #6B7280; text-anchor: middle; }
+
+      .box-title { font-family: 'Noto Sans', sans-serif; font-size: 16px; font-weight: 700; fill: #111827; text-anchor: middle; }
+      .box-desc { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 400; fill: #4B5563; text-anchor: middle; }
+      .loop-label { font-family: 'Noto Sans', sans-serif; font-size: 13px; font-weight: 700; text-anchor: middle; }
+
+      /* 模块背景 */
+      .box-evaluate { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; rx: 12; } /* Blue */
+      .box-act { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; rx: 12; } /* Green */
+      .box-reflect { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2px; rx: 12; } /* Yellow */
+      .box-state { fill: #F3E8FF; stroke: #A855F7; stroke-width: 2px; rx: 12; } /* Purple */
+
+      /* 连接线 */
+      .flow-arrow { fill: none; stroke: #374151; stroke-width: 2px; marker-end: url(#arrow-dark); }
+      .loop-arrow { fill: none; stroke: #A855F7; stroke-width: 2px; stroke-dasharray: 6,4; marker-end: url(#arrow-purple); }
+      .state-arrow { fill: none; stroke: #6B7280; stroke-width: 2px; marker-end: url(#arrow-gray); }
+
+      /* 装饰 */
+      .loop-bg { fill: none; stroke: #E5E7EB; stroke-width: 150px; opacity: 0.3; }
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow-dark" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="#374151"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="#A855F7"/>
+    </marker>
+    <marker id="arrow-gray" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#6B7280"/>
+    </marker>
+  </defs>
+
+  <!-- 1. 标题区域 -->
+  <text x="600" y="50" class="main-title">行动链支撑“可持续运行”的双环机制</text>
+  <text x="600" y="80" class="sub-title">内环负责执行 (Execution)，外环负责进化 (Evolution)，基座负责记忆 (Persistence)</text>
+
+  <!-- ================================================================================== -->
+  <!-- 核心结构布局 -->
+  <!-- ================================================================================== -->
+
+  <!-- 内环背景暗示 -->
+  <ellipse cx="600" cy="350" rx="400" ry="180" fill="none" stroke="#E5E7EB" stroke-width="2" stroke-dasharray="10,10"/>
+  <text x="600" y="150" class="loop-label" fill="#374151">🔄 系统运行闭环 (System Loop)</text>
+
+  <!-- 1. Evaluate (Decision) - Top -->
+  <g transform="translate(480, 180)">
+    <rect x="0" y="0" width="240" height="100" class="box-evaluate"/>
+    <text x="120" y="35" class="box-title">Evaluate (决策)</text>
+    <text x="120" y="60" class="box-desc">目标对齐 &amp; 路径规划</text>
+    <text x="120" y="80" class="box-desc" fill="#1E40AF" font-weight="bold">"做什么？"</text>
+  </g>
+
+  <!-- 2. Act (Execution) - Right -->
+  <g transform="translate(850, 350)">
+    <rect x="0" y="0" width="200" height="100" class="box-act"/>
+    <text x="100" y="35" class="box-title">Act (执行)</text>
+    <text x="100" y="60" class="box-desc">工具调用 &amp; 产生副作用</text>
+    <text x="100" y="80" class="box-desc" fill="#059669" font-weight="bold">"怎么做？"</text>
+  </g>
+
+  <!-- 3. Result (Observation) - Bottom Right -->
+  <g transform="translate(850, 550)">
+    <circle cx="100" cy="0" r="40" fill="#F9FAFB" stroke="#9CA3AF" stroke-width="2"/>
+    <text x="100" y="5" font-size="24" text-anchor="middle">👁️</text>
+    <text x="100" y="60" class="box-desc" font-weight="bold">Result</text>
+  </g>
+
+  <!-- 4. Reflect (Correction) - Bottom -->
+  <g transform="translate(480, 500)">
+    <rect x="0" y="0" width="240" height="100" class="box-reflect"/>
+    <text x="120" y="35" class="box-title">Reflect (反思)</text>
+    <text x="120" y="60" class="box-desc">结果校验 &amp; 错误归因</text>
+    <text x="120" y="80" class="box-desc" fill="#B45309" font-weight="bold">"做得怎样？"</text>
+  </g>
+
+  <!-- 5. State (Persistence) - Left -->
+  <g transform="translate(150, 350)">
+    <rect x="0" y="0" width="200" height="100" class="box-state"/>
+    <text x="100" y="35" class="box-title">State (状态)</text>
+    <text x="100" y="60" class="box-desc">记忆更新 &amp; 上下文维护</text>
+    <text x="100" y="80" class="box-desc" fill="#6B21A8" font-weight="bold">"现在在哪？"</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 连接与流向 (Flow Arrows) -->
+  <!-- ================================================================================== -->
+
+  <!-- Evaluate -> Act (内环：执行) -->
+  <path d="M 720 230 L 950 230 L 950 350" class="flow-arrow"/>
+  <text x="850" y="220" class="box-desc" fill="#374151">下达指令 (Instruction)</text>
+
+  <!-- Act -> Result -->
+  <line x1="950" y1="450" x2="950" y2="510" class="flow-arrow"/>
+  module-06-action-chain-sustainable-operation.svg
+  <!-- Result -> Reflect (外环：反馈) -->
+  <path d="M 910 550 L 720 550" class="loop-arrow"/>
+  <text x="815" y="540" class="box-desc" fill="#A855F7">反馈信号 (Feedback)</text>
+
+  <!-- Reflect -> State (外环：沉淀) -->
+  <path d="M 480 550 L 250 550 L 250 450" class="loop-arrow"/>
+  <text x="415" y="580" class="box-desc" fill="#A855F7">经验/修正 (Update)</text>
+
+  <!-- State -> Evaluate (外环：闭环) -->
+  <path d="M 250 350 L 250 230 L 480 230" class="loop-arrow"/>
+  <text x="300" y="220" class="box-desc" fill="#A855F7">新上下文 (New Context)</text>
+
+  <!-- ================================================================================== -->
+  <!-- 底部：基座 (Persistence Layer) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(150, 680)">
+    <rect x="0" y="0" width="900" height="60" rx="8" fill="#F3F4F6" stroke="#E5E7EB" stroke-width="2"/>
+    <text x="500" y="35" class="box-title" font-size="14" fill="#4B5563">
+      💾 持久化基座 (Persistence Layer): 文件系统 / 向量数据库 / Git 仓库
+    </text>
+
+    <!-- 连接到 State -->
+    <path d="M 0 25 L -40 25 L -40 -280 L 0 -280" class="state-arrow" stroke-dasharray="4,4"/>
+    <text x="0" y="-70" class="box-desc" text-anchor="start" fill="#6B7280">Load / Save</text>
+  </g>
+
+  <!-- 右侧说明：可持续性机制 -->
+  <g transform="translate(830, 620)">
+      <text x="0" y="-30" class="box-desc" fill="#059669" font-weight="bold" text-anchor="start">✅ 为什么可持续？</text>
+      <text x="0" y="-10" class="box-desc" text-anchor="start">1. 出错有修正 (Reflect)</text>
+      <text x="0" y="10" class="box-desc" text-anchor="start">2. 进程有记忆 (State)</text>
+      <text x="0" y="30" class="box-desc" text-anchor="start">3. 数据不丢失 (Persistence)</text>
+  </g>
+
+  <!-- 底部许可 -->
+  <text x="600" y="770" class="box-desc" fill="#9CA3AF">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

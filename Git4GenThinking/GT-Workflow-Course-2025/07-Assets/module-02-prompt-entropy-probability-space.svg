@@ -1,0 +1,246 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000" role="img" aria-label="图5：高熵 Prompt vs 低熵 Prompt 的概率空间示意图" style="background-color: white; font-family: 'Noto Sans', sans-serif;">
+  <!--
+    图表名称：高熵 Prompt vs 低熵 Prompt 的概率空间示意图
+    描述：展示结构化提示工程（Prompt Engineering）本质是一场熵减运动。
+    对比维度：概率分布形态、搜索空间范围、输出确定性。
+    设计规范参考：Gitconomy社区图形即代码设计规范指南
+  -->
+  <defs>
+    <style>
+      :root{
+        /* 基础色板 - 浅色模式适配 */
+        --bg: #ffffff;
+        --panel: #F8FAFC;       /* Slate-50 */
+        --card: #FFFFFF;        /* White */
+        --card2: #F1F5F9;       /* Slate-100 */
+        --stroke: #CBD5E1;      /* Slate-300 */
+        --text: #1E293B;        /* Slate-800 */
+        --muted: #64748B;       /* Slate-500 */
+
+        /* 语义色 */
+        --human: #3B82F6;       /* Blue */
+        --ai: #10B981;          /* Green */
+
+        --good: #10B981;        /* 低熵强调 (Emerald) */
+        --bad: #EF4444;         /* 高熵警示 (Red) */
+        --warn: #F59E0B;        /* 关键提示 (Amber) */
+
+        --cloud-bad-fill: rgba(239, 68, 68, 0.1);
+        --cloud-good-fill: rgba(16, 185, 129, 0.1);
+      }
+
+      .bg { fill: var(--bg); }
+      .panel { fill: var(--panel); stroke: var(--stroke); stroke-width: 1.4; }
+      .card { fill: var(--card); stroke: var(--stroke); stroke-width: 1.4; }
+      .card2 { fill: var(--card2); stroke: var(--stroke); stroke-width: 1.4; }
+
+      .title { font-size: 34px; font-weight: 800; fill: var(--text); }
+      .sub { font-size: 16px; font-weight: 500; fill: var(--muted); }
+
+      .h { font-size: 18px; font-weight: 800; fill: var(--text); }
+      .b { font-size: 14px; font-weight: 500; fill: var(--muted); }
+      .mono { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; font-weight: 700; fill: var(--muted); }
+
+      .tagBad { fill: var(--bad); }
+      .tagGood { fill: var(--good); }
+      .tagText { font-size: 12px; font-weight: 800; fill: white; }
+
+      .axis { stroke: var(--stroke); stroke-width: 1.2; opacity: 0.85; }
+      .grid { stroke: var(--stroke); stroke-width: 1; opacity: 0.35; stroke-dasharray: 4 4; }
+
+      /* 云图样式 */
+      .cloudBad { fill: var(--cloud-bad-fill); }
+      .cloudGood { fill: var(--cloud-good-fill); }
+      .outlineBad { fill: none; stroke: var(--bad); stroke-width: 2; stroke-dasharray: 6 4; }
+      .outlineGood { fill: none; stroke: var(--good); stroke-width: 2; }
+
+      /* 散点样式 */
+      .dotBad { fill: var(--bad); opacity: 0.6; }
+      .dotGood { fill: var(--good); opacity: 0.8; }
+      .dotMut { fill: var(--stroke); opacity: 0.5; }
+
+      /* 箭头 */
+      .arrowBad { fill: none; stroke: var(--bad); stroke-width: 3; stroke-linecap: round; marker-end: url(#ab); }
+      .arrowGood { fill: none; stroke: var(--good); stroke-width: 3; stroke-linecap: round; marker-end: url(#ag); }
+      .arrowWarn { fill: none; stroke: var(--warn); stroke-width: 3; stroke-linecap: round; marker-end: url(#aw); stroke-dasharray: 6 4; }
+
+      .note { fill: #FFFFFF; stroke: var(--stroke); stroke-width: 1.2; filter: url(#shadow); }
+    </style>
+
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10Z" fill="#EF4444"/>
+    </marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10Z" fill="#10B981"/>
+    </marker>
+    <marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10Z" fill="#F59E0B"/>
+    </marker>
+
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#64748B" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect class="bg" x="0" y="0" width="1400" height="950"/>
+
+  <!-- 标题 (已居中) -->
+  <text class="title" x="700" y="82" text-anchor="middle">高熵Prompt vs 低熵Prompt ——“概率空间”对比</text>
+  <text class="sub" x="700" y="112" text-anchor="middle">直觉：Prompt 越模糊，模型可选路径越多（高熵 → 不稳定）；Prompt 越结构化，路径越收敛（低熵 → 可控）</text>
+
+  <!-- 主面板 (高度增加至 740) -->
+  <rect class="panel" x="50" y="150" width="1300" height="740" rx="22" />
+
+  <!-- 顶部图例 -->
+  <g transform="translate(90,185)">
+    <rect class="note" x="0" y="0" width="1220" height="86" rx="18"/>
+    <text class="h" x="24" y="34">图例与解释</text>
+    <text class="b" x="24" y="60">“概率空间”表示模型在当前语境下可能生成的输出集合：空间越大，输出差异越大；空间越小，输出越稳定。</text>
+
+    <circle cx="980" cy="46" r="6" fill="var(--bad)"/>
+    <text class="b" x="996" y="50">高熵（模糊、约束少）</text>
+
+    <circle cx="1125" cy="46" r="6" fill="var(--good)"/>
+    <text class="b" x="1141" y="50">低熵（结构化、约束清晰）</text>
+  </g>
+
+  <!-- 分栏标题 -->
+  <g transform="translate(90,290)">
+    <rect class="card2" x="0" y="0" width="595" height="64" rx="18"/>
+    <rect class="card2" x="625" y="0" width="595" height="64" rx="18"/>
+
+    <rect class="tagBad" x="18" y="20" width="108" height="24" rx="12"/>
+    <text class="tagText" x="72" y="37" text-anchor="middle">高熵 Prompt</text>
+    <text class="h" x="140" y="40">模糊 · 语境不足 · 约束缺失</text>
+
+    <rect class="tagGood" x="643" y="20" width="108" height="24" rx="12"/>
+    <text class="tagText" x="697" y="37" text-anchor="middle">低熵 Prompt</text>
+    <text class="h" x="765" y="40">结构清晰 · 语境充分 · 约束明确</text>
+  </g>
+
+  <!-- 中线分割 -->
+  <line class="axis" x1="700" y1="370" x2="700" y2="805" stroke-dasharray="4 4"/>
+
+  <!-- 左：高熵概率空间 -->
+  <g transform="translate(90,370)">
+    <!-- 坐标区域 -->
+    <rect class="card" x="0" y="0" width="595" height="420" rx="18"/>
+    <text class="mono" x="22" y="34">概率空间（输出可能性）</text>
+
+    <!-- 网格 -->
+    <g transform="translate(40,60)">
+      <rect x="0" y="0" width="515" height="300" fill="none" stroke="var(--stroke)" stroke-width="1.2" opacity=".65"/>
+      <line class="grid" x1="103" y1="0" x2="103" y2="300"/>
+      <line class="grid" x1="206" y1="0" x2="206" y2="300"/>
+      <line class="grid" x1="309" y1="0" x2="309" y2="300"/>
+      <line class="grid" x1="412" y1="0" x2="412" y2="300"/>
+
+      <line class="grid" x1="0" y1="60" x2="515" y2="60"/>
+      <line class="grid" x1="0" y1="120" x2="515" y2="120"/>
+      <line class="grid" x1="0" y1="180" x2="515" y2="180"/>
+      <line class="grid" x1="0" y1="240" x2="515" y2="240"/>
+
+      <!-- 概率云（大而散） -->
+      <path class="cloudBad" d="M85,185 C40,120 95,55 175,75 C200,35 270,35 300,75
+                               C380,45 440,95 420,150 C475,185 450,255 380,260
+                               C345,305 250,300 225,265 C155,295 95,260 105,220
+                               C70,215 65,200 85,185 Z"/>
+      <path class="outlineBad" d="M85,185 C40,120 95,55 175,75 C200,35 270,35 300,75
+                                  C380,45 440,95 420,150 C475,185 450,255 380,260
+                                  C345,305 250,300 225,265 C155,295 95,260 105,220
+                                  C70,215 65,200 85,185 Z"/>
+
+      <!-- 分散点 -->
+      <circle class="dotBad" cx="110" cy="90" r="5"/>
+      <circle class="dotBad" cx="180" cy="210" r="5"/>
+      <circle class="dotBad" cx="260" cy="140" r="5"/>
+      <circle class="dotBad" cx="330" cy="80" r="5"/>
+      <circle class="dotBad" cx="390" cy="210" r="5"/>
+      <circle class="dotBad" cx="430" cy="160" r="5"/>
+      <circle class="dotMut" cx="140" cy="260" r="4"/>
+      <circle class="dotMut" cx="310" cy="250" r="4"/>
+      <circle class="dotMut" cx="470" cy="240" r="4"/>
+
+      <!-- 典型现象标注 -->
+      <path class="arrowBad" d="M520,20 C470,35 440,60 410,85"/>
+      <text class="b" x="310" y="28" fill="#EF4444">输出差异大</text>
+      <text class="b" x="310" y="48" fill="#EF4444">容易跑偏</text>
+    </g>
+
+    <!-- Prompt 示例 -->
+    <g transform="translate(22,380)">
+      <rect class="note" x="0" y="0" width="551" height="98" rx="16"/>
+      <text class="h" x="18" y="30">Prompt 特征（高熵）</text>
+      <text class="mono" x="18" y="54">• “写一份分析 / 给点建议 / 总结一下”</text>
+      <text class="mono" x="18" y="76">• 缺少目标、边界、格式、评价标准</text>
+    </g>
+  </g>
+
+  <!-- 右：低熵概率空间 -->
+  <g transform="translate(715,370)">
+    <!-- 坐标区域 -->
+    <rect class="card" x="0" y="0" width="595" height="420" rx="18"/>
+    <text class="mono" x="22" y="34">概率空间（输出可能性）</text>
+
+    <!-- 网格 -->
+    <g transform="translate(40,60)">
+      <rect x="0" y="0" width="515" height="300" fill="none" stroke="var(--stroke)" stroke-width="1.2" opacity=".65"/>
+      <line class="grid" x1="103" y1="0" x2="103" y2="300"/>
+      <line class="grid" x1="206" y1="0" x2="206" y2="300"/>
+      <line class="grid" x1="309" y1="0" x2="309" y2="300"/>
+      <line class="grid" x1="412" y1="0" x2="412" y2="300"/>
+
+      <line class="grid" x1="0" y1="60" x2="515" y2="60"/>
+      <line class="grid" x1="0" y1="120" x2="515" y2="120"/>
+      <line class="grid" x1="0" y1="180" x2="515" y2="180"/>
+      <line class="grid" x1="0" y1="240" x2="515" y2="240"/>
+
+      <!-- 概率云（小而集中） -->
+      <path class="cloudGood" d="M215,165 C200,135 225,110 260,120 C275,95 315,95 330,120
+                                 C365,115 385,145 370,170 C392,190 382,220 350,225
+                                 C340,250 300,255 285,235 C250,245 220,225 225,200
+                                 C205,195 205,178 215,165 Z"/>
+      <path class="outlineGood" d="M215,165 C200,135 225,110 260,120 C275,95 315,95 330,120
+                                   C365,115 385,145 370,170 C392,190 382,220 350,225
+                                   C340,250 300,255 285,235 C250,245 220,225 225,200
+                                   C205,195 205,178 215,165 Z"/>
+
+      <!-- 集中点 -->
+      <circle class="dotGood" cx="265" cy="160" r="5"/>
+      <circle class="dotGood" cx="295" cy="175" r="5"/>
+      <circle class="dotGood" cx="320" cy="155" r="5"/>
+      <circle class="dotMut" cx="285" cy="205" r="4"/>
+      <circle class="dotMut" cx="340" cy="195" r="4"/>
+
+      <!-- 收敛标注 -->
+      <path class="arrowGood" d="M520,20 C470,35 430,60 365,120"/>
+      <text class="b" x="318" y="28" fill="#10B981">输出更稳定</text>
+      <text class="b" x="318" y="48" fill="#10B981">可控可复现</text>
+
+      <!-- “结构化”到“收敛”的解释箭头（黄色） -->
+      <path class="arrowWarn" d="M60,285 C150,260 200,250 240,235"/>
+      <text class="b" x="12" y="296" fill="#F59E0B">结构化 + 约束</text>
+    </g>
+
+    <!-- Prompt 示例 -->
+    <g transform="translate(22,380)">
+      <rect class="note" x="0" y="0" width="551" height="98" rx="16"/>
+      <text class="h" x="18" y="30">Prompt 特征（低熵）</text>
+      <text class="mono" x="18" y="54">• 明确目标 + 输入语境 + 负面约束 + 输出格式</text>
+      <text class="mono" x="18" y="76">• 给步骤 / 检查点（例如分步推理、自检清单）</text>
+    </g>
+  </g>
+
+  <!-- 底部总结 -->
+  <g transform="translate(90,865)">
+    <rect class="card2" x="0" y="0" width="1220" height="78" rx="18"/>
+    <text class="h" x="24" y="32">结论</text>
+    <text class="b" x="24" y="56">降低 Prompt 熵值的本质：减少不确定性（目标/边界/格式/评价标准），让模型在更小的概率空间内生成，从而提高一致性与可靠性。</text>
+  </g>
+
+  <!-- 许可声明 -->
+  <text x="50%" y="970" text-anchor="middle" font-size="10" fill="#94A3B8">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+</svg>

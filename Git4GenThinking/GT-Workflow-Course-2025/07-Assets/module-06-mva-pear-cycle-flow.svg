@@ -1,0 +1,218 @@
+<!--
+  ================================================================================
+  图表名称：MVA PEAR 循环流程图 (The PEAR Cycle) - 兼容性修复版
+  文件命名：module-06-mva-pear-cycle-flow.svg
+  描述：展示 MVA 架构中核心的 PEARmodule-06-minimum-viable-agent-architecture (Perceive-Evaluate-Act-Reflect) 运行闭环。
+        
+  参考文档：
+  - 《06-智能体运行环境：构建最小可行跨工具Agent》
+  - 《Gitconomy社区图形即代码设计规范指南》
+  ================================================================================
+-->
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background-color: white;">
+  <defs>
+    <style>
+      /* 兼容性说明：移除 Google Fonts @import，使用系统字体栈。
+         这可以防止 GitHub/GitLab 等平台的图像代理拦截请求导致图片无法加载。
+      */
+
+      /* 文本样式 */
+      .main-title-text { font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 800; fill: #111827; }
+      .sub-title-text { font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; fill: #6B7280; }
+      .step-title { font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 800; fill: #1F2937; }
+      .step-desc { font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 400; fill: #4B5563; line-height: 1.4; }
+      .label-text { font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 700; fill: #374151; }
+      .small-text { font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 11px; font-weight: 400; fill: #6B7280; }
+      .license-text { font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 400; fill: #64748B; }
+
+      /* 模块配色 - 遵循 Gitconomy 规范 */
+      /* Perceive - Blue (Input/State) */
+      .box-perceive { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; rx: 12; ry: 12; }
+      /* Evaluate - Yellow (Process/Decision) */
+      .box-evaluate { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2px; rx: 12; ry: 12; }
+      /* Act - Green (Output/Action) */
+      .box-act { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; rx: 12; ry: 12; }
+      /* Reflect - Purple/Blue (Feedback/Update) */
+      .box-reflect { fill: #F3F0FF; stroke: #818CF8; stroke-width: 2px; rx: 12; ry: 12; }
+
+      /* 连接线 */
+      .connector-main { fill: none; stroke: #2563EB; stroke-width: 3px; }
+      .connector-feedback { fill: none; stroke: #818CF8; stroke-width: 3px; stroke-dasharray: 6,4; }
+
+      .badge-bg { fill: white; stroke: #E5E7EB; stroke-width: 1px; rx: 4; ry: 4; }
+      .icon-circle { fill: white; stroke: #E5E7EB; stroke-width: 1px; }
+    </style>
+
+    <!-- 箭头标记 -->
+    <marker id="arrow-main" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto">
+      <path d="M0,0 L0,8 L10,4 z" fill="#2563EB" />
+    </marker>
+    <marker id="arrow-feedback" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto">
+      <path d="M0,0 L0,8 L10,4 z" fill="#818CF8" />
+    </marker>
+
+    <!-- 图标定义 (简化的 SVG 路径) -->
+    <g id="icon-eye"> <!-- Perceive -->
+      <path d="M15,25 C15,25 20,15 30,15 C40,15 45,25 45,25 C45,25 40,35 30,35 C20,35 15,25 15,25 Z M30,30 C33,30 35,28 35,25 C35,22 33,20 30,20 C27,20 25,22 25,25 C25,28 27,30 30,30 Z" fill="none" stroke="#2563EB" stroke-width="2"/>
+    </g>
+    <g id="icon-brain"> <!-- Evaluate -->
+      <path d="M20,25 C20,15 40,15 40,25 C40,30 35,35 30,40 C25,35 20,30 20,25" fill="none" stroke="#B45309" stroke-width="2"/>
+      <path d="M30,15 L30,10 M20,18 L15,13 M40,18 L45,13" stroke="#B45309" stroke-width="2"/>
+    </g>
+    <g id="icon-hand"> <!-- Act -->
+      <path d="M20,35 L20,25 C20,22 22,20 25,20 L35,20 C38,20 40,22 40,25 L40,35 L20,35 Z" fill="none" stroke="#059669" stroke-width="2"/>
+      <rect x="25" y="35" width="10" height="10" stroke="#059669" fill="none"/>
+    </g>
+    <g id="icon-loop"> <!-- Reflect -->
+      <path d="M20,25 C20,15 40,15 40,25 M40,25 L35,20 M40,25 L45,20" fill="none" stroke="#4F46E5" stroke-width="2"/>
+      <path d="M40,35 C40,45 20,45 20,35 M20,35 L25,40 M20,35 L15,40" fill="none" stroke="#4F46E5" stroke-width="2"/>
+    </g>
+    <g id="icon-user-check"> <!-- Human in loop -->
+      <circle cx="15" cy="15" r="5" stroke="#059669" fill="none"/>
+      <path d="M5,30 C5,20 25,20 25,30" stroke="#059669" fill="none"/>
+      <path d="M30,15 L35,20 L45,10" stroke="#059669" fill="none" stroke-width="2"/>
+    </g>
+
+  </defs>
+
+  <!-- 标题区 -->
+  <text x="600" y="50" class="main-title-text" text-anchor="middle">MVA 核心机制：PEAR 循环流程</text>
+  <text x="600" y="80" class="sub-title-text" text-anchor="middle">Perceive • Evaluate • Act • Reflect: From Static Logic to Dynamic Runtime</text>
+
+  <!--
+    ================================================================================
+    核心循环布局 (Diamond/Circular Layout)
+    Center: (600, 400)
+    Perceive: Left (200, 400)
+    Evaluate: Top (600, 200)
+    Act: Right (1000, 400)
+    Reflect: Bottom (600, 600)
+    ================================================================================
+  -->
+
+  <!-- 1. Perceive (Left) -->
+  <g transform="translate(150, 325)">
+    <rect x="0" y="0" width="220" height="150" class="box-perceive" />
+    <circle cx="40" cy="40" r="24" class="icon-circle" />
+    <use xlink:href="#icon-eye" x="10" y="15" />
+
+    <text x="75" y="45" class="step-title" fill="#1E3A8A">1. Perceive</text>
+    <text x="75" y="65" class="label-text" fill="#2563EB">感知与上下文</text>
+
+    <line x1="20" y1="80" x2="200" y2="80" stroke="#BFDBFE" stroke-width="1" />
+
+    <g transform="translate(20, 95)">
+      <text x="0" y="0" class="step-desc">• Fetch Local State</text>
+      <text x="0" y="20" class="step-desc">• User Input</text>
+      <text x="0" y="40" class="step-desc" font-weight="bold" fill="#2563EB">→ Context Prompt</text>
+    </g>
+  </g>
+
+  <!-- 2. Evaluate (Top) -->
+  <g transform="translate(490, 150)">
+    <rect x="0" y="0" width="220" height="150" class="box-evaluate" />
+    <circle cx="40" cy="40" r="24" class="icon-circle" />
+    <use xlink:href="#icon-brain" x="10" y="15" />
+
+    <text x="75" y="45" class="step-title" fill="#92400E">2. Evaluate</text>
+    <text x="75" y="65" class="label-text" fill="#B45309">评估与规划</text>
+
+    <line x1="20" y1="80" x2="200" y2="80" stroke="#FDE68A" stroke-width="1" />
+
+    <g transform="translate(20, 95)">
+      <text x="0" y="0" class="step-desc">• Inference (LLM)</text>
+      <text x="0" y="20" class="step-desc">• Reason &amp; Plan</text>
+      <text x="0" y="40" class="step-desc" font-weight="bold" fill="#B45309">→ Action Plan</text>
+    </g>
+  </g>
+
+  <!-- 3. Act (Right) -->
+  <g transform="translate(830, 325)">
+    <rect x="0" y="0" width="240" height="160" class="box-act" /> <!-- Slightly larger for HITL -->
+    <circle cx="40" cy="40" r="24" class="icon-circle" />
+    <use xlink:href="#icon-hand" x="10" y="15" />
+
+    <text x="75" y="45" class="step-title" fill="#065F46">3. Act</text>
+    <text x="75" y="65" class="label-text" fill="#059669">行动与执行</text>
+
+    <line x1="20" y1="80" x2="220" y2="80" stroke="#A7F3D0" stroke-width="1" />
+
+    <g transform="translate(20, 95)">
+      <text x="0" y="0" class="step-desc">• Tool Trigger</text>
+
+      <!-- Human in the loop highlight -->
+      <g transform="translate(0, 25)">
+        <rect x="-2" y="-12" width="140" height="24" fill="#ECFDF5" stroke="#34D399" rx="4" />
+        <use xlink:href="#icon-user-check" x="0" y="-10" transform="scale(0.7) translate(5,5)" />
+        <text x="35" y="4" class="step-desc" font-weight="bold" fill="#059669" style="font-size: 11px;">Human-in-the-loop</text>
+      </g>
+
+      <text x="0" y="55" class="step-desc" font-weight="bold" fill="#059669">→ Execution Result</text>
+    </g>
+  </g>
+
+  <!-- 4. Reflect (Bottom) -->
+  <g transform="translate(490, 550)">
+    <rect x="0" y="0" width="220" height="150" class="box-reflect" />
+    <circle cx="40" cy="40" r="24" class="icon-circle" />
+    <use xlink:href="#icon-loop" x="10" y="15" />
+
+    <text x="75" y="45" class="step-title" fill="#3730A3">4. Reflect</text>
+    <text x="75" y="65" class="label-text" fill="#4F46E5">反思与更新</text>
+
+    <line x1="20" y1="80" x2="200" y2="80" stroke="#C7D2FE" stroke-width="1" />
+
+    <g transform="translate(20, 95)">
+      <text x="0" y="0" class="step-desc">• Format Outcome</text>
+      <text x="0" y="20" class="step-desc">• Update Memory</text>
+      <text x="0" y="40" class="step-desc" font-weight="bold" fill="#4F46E5">→ New Context</text>
+    </g>
+  </g>
+
+  <!--
+    ================================================================================
+    Flow Connectors (Clockwise Loop)
+    ================================================================================
+  -->
+
+  <!-- Path 1: Perceive -> Evaluate -->
+  <path d="M 260 325 L 260 225 L 490 225" class="connector-main" marker-end="url(#arrow-main)" />
+  <g transform="translate(300, 210)">
+    <rect x="0" y="0" width="110" height="24" class="badge-bg" />
+    <text x="55" y="16" class="small-text" text-anchor="middle">Context Prompt</text>
+  </g>
+
+  <!-- Path 2: Evaluate -> Act -->
+  <path d="M 710 225 L 950 225 L 950 325" class="connector-main" marker-end="url(#arrow-main)" />
+  <g transform="translate(790, 210)">
+    <rect x="0" y="0" width="110" height="24" class="badge-bg" />
+    <text x="55" y="16" class="small-text" text-anchor="middle">Action Plan</text>
+  </g>
+
+  <!-- Path 3: Act -> Reflect -->
+  <path d="M 950 485 L 950 625 L 710 625" class="connector-main" marker-end="url(#arrow-main)" />
+  <g transform="translate(790, 610)">
+    <rect x="0" y="0" width="110" height="24" class="badge-bg" />
+    <text x="55" y="16" class="small-text" text-anchor="middle">Result / Feedback</text>
+  </g>
+
+  <!-- Path 4: Reflect -> Perceive (The Loop) -->
+  <path d="M 490 625 L 260 625 L 260 475" class="connector-feedback" marker-end="url(#arrow-feedback)" />
+  <g transform="translate(300, 610)">
+    <rect x="0" y="0" width="110" height="24" class="badge-bg" stroke="#818CF8" />
+    <text x="55" y="16" class="small-text" text-anchor="middle" fill="#4F46E5">Update State</text>
+  </g>
+
+  <!-- Center Hub text -->
+  <g transform="translate(600, 425)">
+    <circle cx="0" cy="0" r="50" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="2" />
+    <text x="0" y="5" class="label-text" text-anchor="middle" font-size="14">Dynamic</text>
+    <text x="0" y="20" class="small-text" text-anchor="middle">Runtime</text>
+  </g>
+
+  <!-- 许可声明 -->
+  <text x="600" y="770" class="license-text" text-anchor="middle">
+    本作品采用 CC-BY-SA 4.0 国际许可协议进行许可，© 2025 Gitconomy Research 社区
+  </text>
+
+</svg>

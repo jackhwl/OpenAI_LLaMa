@@ -1,0 +1,192 @@
+<!--
+================================================================================
+图表名称：Day 02 实验流程：用 SCORE 重构会议记录
+文件命名：02-figure-03-lab-workflow.svg
+用途：展示从混乱输入到 SCORE 处理再到结构化输出的完整流程
+版本：v1.0.0
+作者：Gitconomy Research-郭晧
+SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+创建日期：2026-02-01
+================================================================================
+-->
+<svg width="900" height="520" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background: Solid White -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+  <defs>
+    <style>
+      :root {
+        /* 语义色定义*/
+        --c-cloud-blue: #0052CC;
+        --c-chaos: #FFC107;
+        --c-logic: #2196F3;
+        --c-result: #4CAF50;
+        --c-action: #FF5722;
+        --c-neutral-gray: #64748B;
+        --c-bg-light: #F8F9FA;
+
+        /* 字体规范*/
+        --font-sans: 'Noto Sans SC', sans-serif;
+        --font-mono: 'JetBrains Mono', monospace;
+      }
+
+      text { font-family: var(--font-sans); }
+      .text-mono { font-family: var(--font-mono); }
+
+      /* 模块样式 */
+      .title-main { font-weight: bold; font-size: 24px; fill: #000000; }
+      .title-sub { font-size: 14px; fill: var(--c-neutral-gray); }
+
+      .node-chaos { fill: rgba(255, 193, 7, 0.05); stroke: var(--c-chaos); stroke-width: 2; }
+      .node-logic { fill: #FFFFFF; stroke: var(--c-logic); stroke-width: 2; }
+      .node-result { fill: rgba(76, 175, 80, 0.05); stroke: var(--c-result); stroke-width: 2; }
+
+      .score-block { stroke-width: 1; stroke: #FFFFFF; }
+      .score-text { font-size: 11px; fill: #FFFFFF; font-weight: bold; }
+
+      .btn-action { fill: var(--c-action); cursor: pointer; }
+      .label-state { font-family: var(--font-mono); font-size: 10px; font-weight: bold; text-transform: uppercase; }
+
+      .connector { stroke: var(--c-neutral-gray); stroke-width: 2; stroke-dasharray: 4 4; fill: none; }
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-neutral-gray)" />
+    </marker>
+  </defs>
+
+  <!-- MODULE: Header (标题区) -->
+  <g id="header" transform="translate(450, 40)">
+    <text y="20" text-anchor="middle" class="title-main">用 SCORE 重构会议记录</text>
+    <text y="45" text-anchor="middle" class="title-sub">第二天 > 实验演练</text>
+    <line x1="-30" y1="60" x2="30" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- MODULE: Main Content (流程主体) -->
+  <g id="diagram-body" transform="translate(0, 140)">
+
+    <!-- NODE A: 输入区 (Input State) -->
+    <g id="node-a" transform="translate(60, 20)">
+      <!-- 边缘粗糙的纸张感 -->
+      <path d="M10,0 L180,5 L190,180 L5,190 Z" class="node-chaos" />
+      <text x="20" y="30" font-weight="bold" font-size="14" fill="#5F4B09">原始素材 (Context)</text>
+
+      <g transform="translate(20, 55)" fill="var(--c-neutral-gray)">
+        <text y="0" font-size="11">那个...下周会议室...</text>
+        <text y="20" font-size="11">小王去定一下...</text>
+        <text y="40" font-size="11">重复了三遍那个...</text>
+        <text y="60" font-size="11">口语化非常严重...</text>
+      </g>
+
+      <rect x="20" y="155" width="80" height="20" rx="4" fill="var(--c-chaos)" opacity="0.2" />
+      <text x="60" y="169" text-anchor="middle" class="label-state" fill="#5F4B09">High Entropy</text>
+    </g>
+
+    <!-- CONNECTOR A-B -->
+    <path d="M 260,115 L 310,115" class="connector" marker-end="url(#arrow)" />
+
+    <!-- NODE B: 编写区 (The Protocol) -->
+    <g id="node-b" transform="translate(330, 0)">
+      <!-- 编辑器窗口 -->
+      <rect width="240" height="240" rx="8" class="node-logic" />
+      <!-- 窗口标题栏 -->
+      <path d="M0,8 Q0,0 8,0 L232,0 Q240,0 240,8 L240,30 L0,30 Z" fill="var(--c-logic)" />
+      <text x="12" y="19" font-size="10" fill="white" class="text-mono">SCORE_Editor.prompt</text>
+
+      <!-- SCORE Stack (积木堆叠) -->
+      <g transform="translate(20, 45)">
+        <rect width="200" height="30" rx="2" fill="var(--c-logic)" class="score-block" />
+        <text x="10" y="20" class="score-text">[S] 角色: 敏捷专家</text>
+
+        <rect y="35" width="200" height="30" rx="2" fill="var(--c-logic)" class="score-block" />
+        <text x="10" y="55" class="score-text">[C] 引用: ((原始素材))</text>
+
+        <rect y="70" width="200" height="30" rx="2" fill="var(--c-logic)" class="score-block" />
+        <text x="10" y="90" class="score-text">[O] 目标: 提取任务</text>
+
+        <rect y="105" width="200" height="30" rx="2" fill="var(--c-logic)" class="score-block" />
+        <text x="10" y="125" class="score-text">[R] 要求: Markdown表格</text>
+
+        <rect y="140" width="200" height="30" rx="2" fill="var(--c-logic)" class="score-block" />
+        <text x="10" y="160" class="score-text">[E] 评估: 自检遗漏</text>
+      </g>
+
+      <!-- Action Trigger Button -->
+      <g id="action-btn" transform="translate(190, 195)">
+        <circle cx="20" cy="20" r="20" class="btn-action" />
+        <!-- 闪电图标 -->
+        <path d="M22,10 L15,22 L20,22 L18,30 L25,18 L20,18 Z" fill="white" />
+        <text x="-5" y="60" text-anchor="middle" font-size="9" font-weight="bold" fill="var(--c-action)">Generate</text>
+      </g>
+      <text x="60" y="225" font-size="10" fill="var(--c-neutral-gray)" font-weight="bold" class="text-mono">Text Generator</text>
+    </g>
+
+    <!-- CONNECTOR B-C -->
+    <path d="M 580,115 L 630,115" class="connector" marker-end="url(#arrow)" />
+
+    <!-- NODE C: 输出区 (Output State) -->
+    <g id="node-c" transform="translate(650, 20)">
+      <rect width="190" height="190" rx="8" class="node-result" />
+      <text x="20" y="30" font-weight="bold" font-size="14" fill="#1B5E20">结构化交付物</text>
+
+      <!-- 微型表格示意图 -->
+      <g transform="translate(25, 50)">
+        <rect width="140" height="90" rx="2" fill="white" stroke="var(--c-result)" stroke-width="1" />
+        <!-- 表格线条 -->
+        <line x1="0" y1="30" x2="140" y2="30" stroke="var(--c-result)" stroke-width="0.5" />
+        <line x1="0" y1="60" x2="140" y2="60" stroke="var(--c-result)" stroke-width="0.5" />
+        <line x1="45" y1="0" x2="45" y2="90" stroke="var(--c-result)" stroke-width="0.5" />
+        <line x1="95" y1="0" x2="95" y2="90" stroke="var(--c-result)" stroke-width="0.5" />
+        <!-- 表格填充色块 -->
+        <rect x="5" y="5" width="35" height="20" fill="var(--c-result)" opacity="0.1" />
+        <rect x="50" y="5" width="40" height="20" fill="var(--c-result)" opacity="0.1" />
+      </g>
+
+      <rect x="20" y="155" width="80" height="20" rx="4" fill="var(--c-result)" opacity="0.2" />
+      <text x="60" y="169" text-anchor="middle" class="label-state" fill="#1B5E20">Low Entropy</text>
+    </g>
+  </g>
+
+  <!-- 底部图例说明 -->
+ <g id="legend-block" transform="translate(450, 430)">
+   <rect x="-330" y="0" width="660" height="40" rx="20" fill="rgba(255, 255, 255, 0.9)" stroke="#E2E8F0" stroke-width="0.5"/>
+   <g transform="translate(-310, 25)">
+     <text x="0" y="0" font-weight="bold" font-size="10" fill="#64748B">图例说明</text>
+
+     <!-- 高熵素材 -->
+     <g transform="translate(70, -10)">
+       <circle cx="5" cy="5" r="5" fill="var(--c-chaos)" />
+       <text x="15" y="9" class="text-mono" font-size="10" fill="#334155">高熵素材</text>
+     </g>
+
+     <!-- 结构化逻辑 -->
+     <g transform="translate(180, -10)">
+       <circle cx="5" cy="5" r="5" fill="var(--c-logic)" />
+       <text x="15" y="9" class="text-mono" font-size="10" fill="#334155">结构化逻辑</text>
+     </g>
+
+     <!-- 动作触发 -->
+     <g transform="translate(300, -10)">
+       <circle cx="5" cy="5" r="5" fill="var(--c-action)" />
+       <text x="15" y="9" class="text-mono" font-size="10" fill="#334155">动作触发</text>
+     </g>
+
+     <!-- 低熵产出 -->
+     <g transform="translate(420, -10)">
+       <circle cx="5" cy="5" r="5" fill="var(--c-result)" />
+       <text x="15" y="9" class="text-mono" font-size="10" fill="#334155">低熵产出</text>
+     </g>
+
+     <!-- 描述文字 -->
+     <text x="530" y="-1" font-size="10" fill="var(--c-neutral-gray)" font-style="italic">熵减过程：无序 -> 有序</text>
+   </g>
+ </g>
+
+ <!-- 版权信息 -->
+ <g id="footer" transform="translate(450, 500)">
+   <text text-anchor="middle" font-size="11" fill="var(--c-neutral-gray)">
+     本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+   </text>
+ </g>
+
+</svg>

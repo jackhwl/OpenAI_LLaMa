@@ -1,0 +1,168 @@
+<!--
+  文件名：module-04-knowledge-as-code-git-workflow.svg
+  图表名称：知识即代码：分布式版本控制与协作范式的认知解析
+  描述：展示 Git 工作流如何映射到知识生产的认知过程，包括时间溯源、思维分叉（发散）与合并（收敛）的机制。
+
+  核心逻辑：
+  1. 主分支 (Main): 代表稳定的、共识性的知识基座。
+  2. 功能分支 (Feature): 代表探索性的、发散的思维实验。
+  3. 提交节点 (Commit): 代表原子化的思维快照。
+  4. 合并请求 (PR): 代表基于对话和评审的知识整合过程。
+
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+-->
+<svg width="1200" height="650" viewBox="0 0 1200 650" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义样式与标记 -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+      .main-title { font-family: 'Noto Sans', sans-serif; font-size: 24px; font-weight: 800; fill: #111827; text-anchor: middle; }
+      .sub-title { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: normal; fill: #6B7280; text-anchor: middle; }
+      .branch-label { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: 800; text-anchor: end; }
+      .commit-text { font-family: 'Noto Sans', sans-serif; font-size: 11px; font-weight: bold; text-anchor: middle; fill: white; }
+      .desc-text { font-family: 'Noto Sans', sans-serif; font-size: 11px; fill: #4B5563; }
+      .cognitive-label { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: bold; fill: #6B7280; text-anchor: middle; font-style: italic; }
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563EB" />
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#059669" />
+    </marker>
+    <marker id="arrow-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9CA3AF" />
+    </marker>
+  </defs>
+
+  <!-- 1. 标题区域 -->
+  <text x="600" y="50" class="main-title">知识即代码：分布式版本控制与认知协作</text>
+  <text x="600" y="80" class="sub-title">将思维过程映射为 Git 拓扑结构：溯源、发散与收敛</text>
+
+  <!-- ================================================================================== -->
+  <!-- 核心结构：主分支 (Main Branch - Blue) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(100, 450)">
+    <!-- 轨道线 -->
+    <line x1="0" y1="0" x2="1000" y2="0" stroke="#BFDBFE" stroke-width="6" stroke-linecap="round"/>
+    <text x="-20" y="5" class="branch-label" fill="#1E40AF">main</text>
+
+    <!-- 认知标签 -->
+    <text x="500" y="30" class="cognitive-label">共识性知识基座 (Stable Knowledge Base)</text>
+
+    <!-- 节点 C1 -->
+    <circle cx="50" cy="0" r="15" fill="#2563EB" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="50" y="40" class="desc-text" text-anchor="middle">v1.0</text>
+
+    <!-- 节点 C2 -->
+    <circle cx="200" cy="0" r="15" fill="#2563EB" stroke="#FFFFFF" stroke-width="2"/>
+
+    <!-- 节点 C3 (Merge Point) -->
+    <circle cx="850" cy="0" r="18" fill="#1E40AF" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="850" y="40" class="desc-text" text-anchor="middle" font-weight="bold">v1.1 (Merge)</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 核心结构：功能分支 (Feature Branch - Green) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(100, 250)">
+    <!-- 轨道线 -->
+    <line x1="200" y1="0" x2="800" y2="0" stroke="#BBF7D0" stroke-width="6" stroke-linecap="round"/>
+    <text x="180" y="5" class="branch-label" fill="#065F46">feat/concept-x</text>
+
+    <!-- 认知标签 -->
+    <text x="500" y="-20" class="cognitive-label">探索性思维实验 (Exploratory Thought Experiment)</text>
+
+    <!-- 分叉路径 (Checkout) -->
+    <path d="M 200 200 Q 250 200 250 10 L 250 0" fill="none" stroke="#9CA3AF" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow-gray)"/>
+    <text x="260" y="100" class="desc-text" transform="rotate(-90, 260, 100)">Checkout (分叉)</text>
+
+    <!-- 节点 F1 -->
+    <circle cx="350" cy="0" r="15" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="350" y="35" class="desc-text" text-anchor="middle">Draft</text>
+
+    <!-- 节点 F2 -->
+    <circle cx="500" cy="0" r="15" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="500" y="35" class="desc-text" text-anchor="middle">Refine</text>
+
+    <!-- 节点 F3 -->
+    <circle cx="650" cy="0" r="15" fill="#10B981" stroke="#FFFFFF" stroke-width="2"/>
+    <text x="650" y="35" class="desc-text" text-anchor="middle">Finalize</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 协作层：Pull Request & Review (Yellow) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(700, 250)">
+    <!-- PR 区域背景 -->
+    <rect x="-20" y="-60" width="200" height="280" rx="12" fill="#FEF9C3" stroke="#FACC15" stroke-width="2" stroke-dasharray="5,5" opacity="0.6"/>
+
+    <!-- PR 标题 -->
+    <rect x="20" y="-75" width="120" height="30" rx="15" fill="#FACC15"/>
+    <text x="80" y="-55" class="commit-text">Pull Request</text>
+
+    <!-- 交互：同行评审 -->
+    <g transform="translate(80, 50)">
+        <circle cx="0" cy="0" r="25" fill="white" stroke="#EAB308" stroke-width="2"/>
+        <text x="0" y="5" text-anchor="middle" font-size="20">💬</text>
+        <text x="0" y="40" class="desc-text" text-anchor="middle" font-weight="bold" fill="#B45309">同行评审</text>
+        <text x="0" y="55" class="desc-text" text-anchor="middle" fill="#B45309">(Peer Review)</text>
+    </g>
+
+    <!-- 合并路径 -->
+    <path d="M 0 0 L 150 200" transform="translate(0, 0)" fill="none" stroke="#FACC15" stroke-width="3" marker-end="url(#arrow-green)"/>
+    <text x="100" y="150" class="desc-text" font-weight="bold" fill="#B45309" transform="rotate(53, 100, 150)">Merge (融合)</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 详细认知映射说明 -->
+  <!-- ================================================================================== -->
+
+  <!-- 1. 时间维度 (Time Dimension) -->
+  <g transform="translate(100, 550)">
+    <line x1="0" y1="0" x2="1000" y2="0" stroke="#E5E7EB" stroke-width="2" marker-end="url(#arrow-gray)"/>
+    <text x="1085" y="3" text-anchor="end" font-family="Noto Sans" font-size="12" fill="#6B7280" font-weight="bold">时间轴 (Time)</text>
+
+    <text x="50" y="25" text-anchor="middle" class="desc-text">过去</text>
+    <text x="500" y="25" text-anchor="middle" class="desc-text">思维演进</text>
+    <text x="950" y="25" text-anchor="middle" class="desc-text">现在</text>
+  </g>
+
+  <!-- 2. 原子化提交 (Atomic Commit) -->
+  <g transform="translate(100, 100)">
+    <rect x="0" y="0" width="220" height="80" rx="8" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1.5"/>
+    <text x="20" y="25" font-family="Noto Sans" font-size="12" font-weight="bold" fill="#374151">认知价值：可追溯性</text>
+    <text x="20" y="45" class="desc-text">• 记录“为什么这么改”</text>
+    <text x="20" y="60" class="desc-text">• 允许思维的回滚与重构</text>
+    <!-- 连接线指向 C1 -->
+    <path d="M 110 80 L 50 435" fill="none" stroke="#9CA3AF" stroke-width="1" stroke-dasharray="2,2"/>
+  </g>
+
+  <!-- 3. 分支隔离 (Branching) -->
+  <g transform="translate(380, 100)">
+    <rect x="0" y="0" width="220" height="80" rx="8" fill="#ECFDF5" stroke="#34D399" stroke-width="1.5"/>
+    <text x="20" y="25" font-family="Noto Sans" font-size="12" font-weight="bold" fill="#065F46">认知价值：心理安全区</text>
+    <text x="20" y="45" class="desc-text" fill="#064E3B">• 低成本的试错空间</text>
+    <text x="20" y="60" class="desc-text" fill="#064E3B">• 保护主线思维不被打断</text>
+    <!-- 连接线指向 F1 -->
+    <path d="M 110 80 L 450 235" fill="none" stroke="#34D399" stroke-width="1" stroke-dasharray="2,2"/>
+  </g>
+
+  <!-- 4. 冲突解决 (Conflict Resolution) -->
+  <g transform="translate(900, 100)">
+    <rect x="0" y="0" width="220" height="80" rx="8" fill="#FEF2F2" stroke="#F87171" stroke-width="1.5"/>
+    <text x="20" y="25" font-family="Noto Sans" font-size="12" font-weight="bold" fill="#991B1B">认知价值：辩证统合</text>
+    <text x="20" y="45" class="desc-text" fill="#7F1D1D">• 显性化观点差异</text>
+    <text x="20" y="60" class="desc-text" fill="#7F1D1D">• 强迫进行高阶反思</text>
+    <!-- 连接线指向 Merge -->
+    <path d="M 110 80 L 950 435" fill="none" stroke="#F87171" stroke-width="1" stroke-dasharray="2,2"/>
+  </g>
+
+  <!-- 底部许可 -->
+  <text x="600" y="630" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="12" fill="#64748B">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

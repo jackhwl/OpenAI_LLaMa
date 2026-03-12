@@ -1,0 +1,250 @@
+<svg viewBox="0 0 1000 680" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+<!--
+================================================================================
+图表名称：分级风险控制模型 (Risk Grading Matrix)
+文件命名：12-figure-01-risk-grading-matrix.svg
+用途：展示智能体工程中不同 MCP 工具操作的风险分级，以及对应的安全防御策略（自动放行、沙箱限制、人机协同）。
+版本：v1.0.0
+作者：Gitconomy Research-郭晧
+SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+创建日期：2026-02-21
+================================================================================
+-->
+  <!-- Background: Solid White (强兼容模式) -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+
+  <defs>
+    <style>
+      :root {
+        /* Semantic Colors */
+        --c-cloud-blue: #0052CC;
+        --c-local-green: #00875A;
+        --c-risk-amber: #FF991F;
+        --c-neutral-gray: #64748B;
+        --c-local-green-light: #E3FCEF;
+        --c-cloud-blue-light: #DEEBFF;
+        --c-risk-amber-light: #FFFBEB;
+        --c-gray-light: #F8FAFC;
+
+        /* Typography */
+        --font-sans: "Noto Sans SC", "Noto Sans", system-ui, sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+
+      /* Text Styles */
+      text { font-family: var(--font-sans); }
+      .text-title-main { font-weight: 700; font-size: 26px; fill: #000; }
+      .text-breadcrumbs { font-family: var(--font-mono); font-size: 14px; fill: var(--c-neutral-gray); }
+      .text-fig-id { font-family: var(--font-mono); font-size: 12px; fill: var(--c-neutral-gray); letter-spacing: 1px; }
+
+      .text-header { font-weight: 700; font-size: 16px; fill: var(--c-neutral-gray); }
+      .text-node-title { font-weight: 700; font-size: 14px; fill: #000; }
+      .text-node-sub { font-family: var(--font-sans); font-size: 11px; fill: var(--c-neutral-gray); }
+      .text-desc { font-size: 12px; }
+      .text-legend { font-family: var(--font-mono); font-size: 12px; fill: var(--c-neutral-gray); }
+
+      /* Specific Block Fonts */
+      .font-mono { font-family: var(--font-mono); }
+      .font-sans { font-family: var(--font-sans); }
+      .text-xs { font-size: 11px; }
+      .text-sm { font-size: 13px; }
+      .text-bold { font-weight: bold; }
+    </style>
+
+    <!-- Node Drop Shadow -->
+    <filter id="drop-shadow" x="-5%" y="-5%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.06" />
+    </filter>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-cloud-blue)" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-local-green)" />
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-risk-amber)" />
+    </marker>
+  </defs>
+
+<!--
+===========================================================================
+     TITLE BLOCK (Standardized Layout)
+     Center X = 500
+===========================================================================
+-->
+  <g id="title-block" transform="translate(500, 40)">
+
+    <!-- Main Title -->
+    <text y="20" text-anchor="middle" class="text-title-main">智能体Prmopt分级风险控制模型</text>
+
+    <!-- Breadcrumbs -->
+    <text y="45" text-anchor="middle" class="text-breadcrumbs">第 12 天> 基础原理</text>
+
+    <!-- Context Indicator (Absolute Y = 100) -->
+    <line x1="-30" y1="60" x2="30" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+<!--
+===========================================================================
+     DIAGRAM CONTENT
+     Start Y = 150 (Ensures exactly 50px Gap from Title Block Indicator)
+===========================================================================
+-->
+  <g id="diagram-content" transform="translate(0, 150)">
+
+    <!-- Table Headers -->
+    <g id="matrix-headers" transform="translate(0, 20)">
+      <text x="160" y="0" text-anchor="middle" class="text-header">风险等级 (Risk Level)</text>
+      <text x="460" y="0" text-anchor="middle" class="text-header">工具调用示例 (MCP Tools)</text>
+      <text x="800" y="0" text-anchor="middle" class="text-header">系统防御策略 (Defense Strategy)</text>
+      <!-- Separator Line -->
+      <line x1="40" y1="15" x2="960" y2="15" stroke="var(--c-neutral-gray)" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.5"/>
+    </g>
+
+    <!-- ===================================================================
+         Row 1: L1 低风险区 (Read-Only)
+    ==================================================================== -->
+    <g id="row-l1" transform="translate(0, 50)">
+      <!-- Row Background -->
+      <rect x="40" y="0" width="920" height="100" rx="12" fill="var(--c-local-green-light)" fill-opacity="0.4" stroke="var(--c-local-green)" stroke-width="1.5" stroke-dasharray="6 4" />
+
+      <!-- 1. Risk Level -->
+      <rect x="90" y="20" width="140" height="28" rx="6" fill="var(--c-local-green)" />
+      <text x="160" y="39" text-anchor="middle" class="font-sans text-sm text-bold" fill="#FFFFFF">L1 低风险区</text>
+      <text x="160" y="70" text-anchor="middle" class="font-sans text-xs text-bold" fill="var(--c-local-green)">只读操作 (Read-Only)</text>
+      <text x="160" y="86" text-anchor="middle" class="font-sans text-xs" fill="var(--c-neutral-gray)">不改变物理世界状态</text>
+
+      <!-- 2. Tool Examples -->
+      <g transform="translate(300, 30)" filter="url(#drop-shadow)">
+        <rect x="0" y="0" width="140" height="40" rx="6" fill="#FFFFFF" stroke="var(--c-local-green)" stroke-width="1.5" />
+        <text x="70" y="24" text-anchor="middle" class="font-mono text-sm" fill="var(--c-local-green)">📄 read_note()</text>
+      </g>
+      <g transform="translate(460, 30)" filter="url(#drop-shadow)">
+        <rect x="0" y="0" width="140" height="40" rx="6" fill="#FFFFFF" stroke="var(--c-local-green)" stroke-width="1.5" />
+        <text x="70" y="24" text-anchor="middle" class="font-mono text-sm" fill="var(--c-local-green)">📁 list_files()</text>
+      </g>
+
+      <!-- Connection Arrow -->
+      <path d="M 620 50 L 670 50" fill="none" stroke="var(--c-local-green)" stroke-width="2.5" marker-end="url(#arrow-green)" />
+
+      <!-- 3. Defense Strategy -->
+      <g transform="translate(690, 20)" filter="url(#drop-shadow)">
+        <rect x="0" y="0" width="240" height="60" rx="8" fill="var(--c-local-green)" />
+        <text x="120" y="26" text-anchor="middle" class="font-sans text-sm text-bold" fill="#FFFFFF">✅ 自动放行 (Auto-Approve)</text>
+        <text x="120" y="46" text-anchor="middle" class="font-sans text-xs" fill="#FFFFFF" opacity="0.9">无需人工干预，系统默认允许执行</text>
+      </g>
+    </g>
+
+    <!-- ===================================================================
+         Row 2: L2 中风险区 (Sandboxed Write)
+    ==================================================================== -->
+    <g id="row-l2" transform="translate(0, 165)">
+      <!-- Row Background -->
+      <rect x="40" y="0" width="920" height="100" rx="12" fill="var(--c-cloud-blue-light)" fill-opacity="0.4" stroke="var(--c-cloud-blue)" stroke-width="1.5" stroke-dasharray="6 4" />
+
+      <!-- 1. Risk Level -->
+      <rect x="90" y="20" width="140" height="28" rx="6" fill="var(--c-cloud-blue)" />
+      <text x="160" y="39" text-anchor="middle" class="font-sans text-sm text-bold" fill="#FFFFFF">L2 中风险区</text>
+      <text x="160" y="70" text-anchor="middle" class="font-sans text-xs text-bold" fill="var(--c-cloud-blue)">受限写入 (Sandboxed)</text>
+      <text x="160" y="86" text-anchor="middle" class="font-sans text-xs" fill="var(--c-neutral-gray)">增量写入，风险可控</text>
+
+      <!-- 2. Tool Examples -->
+      <g transform="translate(300, 30)" filter="url(#drop-shadow)">
+        <rect x="0" y="0" width="140" height="40" rx="6" fill="#FFFFFF" stroke="var(--c-cloud-blue)" stroke-width="1.5" />
+        <text x="70" y="24" text-anchor="middle" class="font-mono text-sm" fill="var(--c-cloud-blue)">✍️ append_note()</text>
+      </g>
+      <g transform="translate(460, 30)" filter="url(#drop-shadow)">
+        <rect x="0" y="0" width="140" height="40" rx="6" fill="#FFFFFF" stroke="var(--c-cloud-blue)" stroke-width="1.5" />
+        <text x="70" y="24" text-anchor="middle" class="font-mono text-sm" fill="var(--c-cloud-blue)">✨ create_file()</text>
+      </g>
+
+      <!-- Connection Arrow -->
+      <path d="M 620 50 L 670 50" fill="none" stroke="var(--c-cloud-blue)" stroke-width="2.5" marker-end="url(#arrow-blue)" />
+
+      <!-- 3. Defense Strategy -->
+      <g transform="translate(690, 20)" filter="url(#drop-shadow)">
+        <rect x="0" y="0" width="240" height="60" rx="8" fill="var(--c-cloud-blue)" />
+        <text x="120" y="26" text-anchor="middle" class="font-sans text-sm text-bold" fill="#FFFFFF">📦 沙箱限制 (Sandboxing)</text>
+        <text x="120" y="46" text-anchor="middle" class="font-sans text-xs" fill="#FFFFFF" opacity="0.9">严格限制在 /Inbox 等白名单目录内</text>
+      </g>
+    </g>
+
+    <!-- ===================================================================
+         Row 3: L3 高风险区 (Destructive)
+    ==================================================================== -->
+    <g id="row-l3" transform="translate(0, 280)">
+      <!-- Row Background -->
+      <rect x="40" y="0" width="920" height="110" rx="12" fill="var(--c-risk-amber-light)" fill-opacity="0.4" stroke="var(--c-risk-amber)" stroke-width="2" />
+
+      <!-- 1. Risk Level -->
+      <rect x="90" y="20" width="140" height="28" rx="6" fill="var(--c-risk-amber)" />
+      <text x="160" y="39" text-anchor="middle" class="font-sans text-sm text-bold" fill="#FFFFFF">L3 高风险区</text>
+      <text x="160" y="70" text-anchor="middle" class="font-sans text-xs text-bold" fill="var(--c-risk-amber)">破坏性操作 (Destructive)</text>
+      <text x="160" y="86" text-anchor="middle" class="font-sans text-xs" fill="var(--c-neutral-gray)">不可逆删除或涉及敏感隐私</text>
+
+      <!-- 2. Tool Examples -->
+      <g transform="translate(300, 35)" filter="url(#drop-shadow)">
+        <rect x="0" y="0" width="140" height="40" rx="6" fill="#FFFFFF" stroke="var(--c-risk-amber)" stroke-width="1.5" />
+        <text x="70" y="24" text-anchor="middle" class="font-mono text-sm" fill="var(--c-risk-amber)">🗑️ delete_note()</text>
+      </g>
+      <g transform="translate(460, 35)" filter="url(#drop-shadow)">
+        <rect x="0" y="0" width="140" height="40" rx="6" fill="#FFFFFF" stroke="var(--c-risk-amber)" stroke-width="1.5" />
+        <text x="70" y="24" text-anchor="middle" class="font-mono text-sm" fill="var(--c-risk-amber)">⚠️ overwrite()</text>
+      </g>
+
+      <!-- Connection Arrow with Intercept Gate -->
+      <path d="M 615 55 L 670 55" fill="none" stroke="var(--c-risk-amber)" stroke-width="2.5" stroke-dasharray="4 2" marker-end="url(#arrow-amber)" />
+      <!-- Intercept Barrier -->
+      <rect x="635" y="35" width="8" height="40" rx="2" fill="var(--c-risk-amber)" />
+
+      <!-- 3. Defense Strategy -->
+      <g transform="translate(690, 20)" filter="url(#drop-shadow)">
+        <rect x="0" y="0" width="240" height="70" rx="8" fill="var(--c-risk-amber)" />
+        <text x="120" y="26" text-anchor="middle" class="font-sans text-sm text-bold" fill="#FFFFFF">🛑 人机协同 (HITL 物理拦截)</text>
+        <text x="120" y="46" text-anchor="middle" class="font-sans text-xs" fill="#FFFFFF" opacity="0.9">强制挂起进程并触发系统弹窗</text>
+        <text x="120" y="60" text-anchor="middle" class="font-sans text-xs" fill="#FFFFFF" opacity="0.9">等待人类明确指令 ( [Y] / [N] )</text>
+      </g>
+    </g>
+
+  </g>
+
+<!--
+===========================================================================
+     底部图例与注释块 (Legend & Key Block)
+===========================================================================
+-->
+  <g id="legend" transform="translate(500, 580)">
+    <rect x="-350" y="-16" width="700" height="32" rx="4" fill="rgba(255, 255, 255, 0.9)" stroke="var(--c-neutral-gray)" stroke-width="0.5"/>
+
+    <g transform="translate(-330, 0)">
+      <text x="0" y="4" class="font-sans text-xs text-bold" fill="var(--c-neutral-gray)">图例说明:</text>
+
+      <g transform="translate(100, 0)">
+        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="var(--c-local-green)" />
+        <text x="12" y="4" class="text-legend">L1：安全放行区 (Safe)</text>
+      </g>
+
+      <g transform="translate(300, 0)">
+        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="var(--c-cloud-blue)" />
+        <text x="12" y="4" class="text-legend">L2：沙箱受控区 (Controlled)</text>
+      </g>
+
+      <g transform="translate(500, 0)">
+        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="var(--c-risk-amber)" />
+        <text x="12" y="4" class="text-legend">L3：高危拦截区 (Dangerous)</text>
+      </g>
+    </g>
+  </g>
+
+<!--
+===========================================================================
+     底部许可注释 (License)
+===========================================================================
+-->
+  <text x="500" y="640" text-anchor="middle" class="font-sans text-xs" fill="#94A3B8">
+    本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+  </text>
+
+</svg>

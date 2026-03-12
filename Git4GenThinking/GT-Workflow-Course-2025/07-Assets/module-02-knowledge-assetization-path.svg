@@ -1,0 +1,284 @@
+<svg width="1000" height="800" viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- GitLink兼容版：无<style>、无CSS变量、无filter；全部样式内联 -->
+
+  <!-- Title -->
+  <text x="500" y="50" text-anchor="middle"
+        font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+        font-size="22" font-weight="800" fill="#111827">从“原始信息”到“知识资产”的转化路径</text>
+
+  <text x="500" y="75" text-anchor="middle"
+        font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+        font-size="12" font-weight="400" fill="#374151">
+    把“碎片内容”加工成可复用、可检索、可协作、可复利的资产（文档 / 模板 / 数据包 / Prompt 包 / 工作流）
+  </text>
+
+  <!-- Arrow markers (keep simple) -->
+  <defs>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0 L10 5 L0 10Z" fill="#2563EB"/>
+    </marker>
+    <marker id="arrowGray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10Z" fill="#9CA3AF"/>
+    </marker>
+  </defs>
+
+  <!-- Legend -->
+  <g transform="translate(50,110)">
+    <!-- Human -->
+    <rect x="0" y="0" width="80" height="24" rx="4" fill="#EFF6FF" stroke="#60A5FA" stroke-width="2"/>
+    <text x="40" y="17" text-anchor="middle"
+          font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+          font-size="12" font-weight="700" fill="#1D4ED8">人类主导</text>
+
+    <!-- AI -->
+    <rect x="100" y="0" width="80" height="24" rx="4" fill="#F0FDF4" stroke="#34D399" stroke-width="2"/>
+    <text x="140" y="17" text-anchor="middle"
+          font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+          font-size="12" font-weight="700" fill="#059669">AI 协作</text>
+
+    <!-- Asset -->
+    <rect x="200" y="0" width="80" height="24" rx="4" fill="#FEF9C3" stroke="#FACC15" stroke-width="2"/>
+    <text x="240" y="17" text-anchor="middle"
+          font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+          font-size="12" font-weight="700" fill="#D97706">知识资产</text>
+
+    <!-- Risk -->
+    <rect x="300" y="0" width="80" height="24" rx="4" fill="#FEF2F2" stroke="#F87171" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="340" y="17" text-anchor="middle"
+          font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+          font-size="12" font-weight="700" fill="#DC2626">风险预警</text>
+  </g>
+
+  <!-- Lanes wrapper -->
+  <g transform="translate(50,160)">
+
+    <!-- Lane A -->
+    <rect x="0" y="0" width="900" height="150" rx="8" fill="#FAFAFA" stroke="#E5E7EB" stroke-width="1"/>
+    <text x="15" y="25"
+          font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+          font-size="16" font-weight="700" fill="#111827">A. 原始信息层 (Input)</text>
+
+    <!-- A1 -->
+    <g transform="translate(30,45)">
+      <rect x="0" y="0" width="200" height="90" rx="6" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+      <text x="15" y="25"
+            font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+            font-size="12" font-weight="700" fill="#111827">碎片化信息源</text>
+      <text x="15" y="45"
+            font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+            font-size="12" font-weight="400" fill="#374151">• 网页 / 报告 / 论文</text>
+      <text x="15" y="60"
+            font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+            font-size="12" font-weight="400" fill="#374151">• 会议纪要 / 聊天记录</text>
+      <text x="15" y="75"
+            font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+            font-size="12" font-weight="400" fill="#374151">• 灵感 / 口头需求</text>
+    </g>
+
+    <!-- A2 Risk -->
+    <g transform="translate(260,45)">
+      <rect x="0" y="0" width="180" height="90" rx="6" fill="#FEF2F2" stroke="#F87171" stroke-width="2" stroke-dasharray="6 4"/>
+      <text x="15" y="25"
+            font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+            font-size="12" font-weight="700" fill="#DC2626">⚠️ “收集癖”陷阱</text>
+      <text x="15" y="45"
+            font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+            font-size="12" font-weight="400" fill="#7F1D1D">• 只堆积，不整理</text>
+      <text x="15" y="60"
+            font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+            font-size="12" font-weight="400" fill="#7F1D1D">• 信噪比极低</text>
+      <text x="15" y="75"
+            font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+            font-size="12" font-weight="400" fill="#7F1D1D">• 检索成本 &gt; 获取成本</text>
+    </g>
+
+    <!-- Down arrow to B -->
+    <line x1="130" y1="135" x2="130" y2="170" stroke="#2563EB" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <text x="140" y="160"
+          font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+          font-size="11" font-weight="400" fill="#6B7280">人工精选 / 去噪</text>
+
+    <!-- Lane B -->
+    <g transform="translate(0,180)">
+      <rect x="0" y="0" width="900" height="150" rx="8" fill="#FAFAFA" stroke="#E5E7EB" stroke-width="1"/>
+      <text x="15" y="25"
+            font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+            font-size="16" font-weight="700" fill="#111827">B. 结构化加工层 (Process)</text>
+
+      <!-- B1 -->
+      <g transform="translate(30,45)">
+        <rect x="0" y="0" width="180" height="90" rx="6" fill="#EFF6FF" stroke="#60A5FA" stroke-width="2"/>
+        <text x="15" y="25"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="700" fill="#111827">1) 精选与标注</text>
+        <text x="15" y="45"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 提取关键事实</text>
+        <text x="15" y="60"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 标注来源/可信度</text>
+        <text x="15" y="75"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 明确目标边界</text>
+      </g>
+
+      <!-- dim connector -->
+      <line x1="210" y1="90" x2="240" y2="90" stroke="#9CA3AF" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arrowGray)"/>
+
+      <!-- B2 -->
+      <g transform="translate(240,45)">
+        <rect x="0" y="0" width="180" height="90" rx="6" fill="#EFF6FF" stroke="#60A5FA" stroke-width="2"/>
+        <text x="15" y="25"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="700" fill="#111827">2) 结构化编码</text>
+        <text x="15" y="45"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 提纲 / 表格 / 清单</text>
+        <text x="15" y="60"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 参数化 / JSON</text>
+        <text x="15" y="75"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 任务拆解</text>
+      </g>
+
+      <!-- dim connector -->
+      <line x1="420" y1="90" x2="450" y2="90" stroke="#9CA3AF" stroke-width="1.5" stroke-dasharray="4 4" marker-end="url(#arrowGray)"/>
+
+      <!-- B3 -->
+      <g transform="translate(450,45)">
+        <rect x="0" y="0" width="180" height="90" rx="6" fill="#F0FDF4" stroke="#34D399" stroke-width="2"/>
+        <text x="15" y="25"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="700" fill="#111827">3) 语境包封装</text>
+        <text x="15" y="45"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 目标 + 背景 (Context)</text>
+        <text x="15" y="60"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 约束 + 示例 (Few-shot)</text>
+        <text x="15" y="75"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 输出格式规范</text>
+      </g>
+
+      <!-- connector -->
+      <line x1="630" y1="90" x2="660" y2="90" stroke="#2563EB" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+      <!-- B4 -->
+      <g transform="translate(660,45)">
+        <rect x="0" y="0" width="180" height="90" rx="6" fill="#F0FDF4" stroke="#34D399" stroke-width="2"/>
+        <text x="15" y="25"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="700" fill="#111827">4) 资产生成</text>
+        <text x="15" y="45"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 扩写 / 归纳 / 润色</text>
+        <text x="15" y="60"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 分步推理 (CoT)</text>
+        <text x="15" y="75"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 形成迭代版本</text>
+      </g>
+    </g>
+
+    <!-- Down arrow to C -->
+    <line x1="750" y1="315" x2="750" y2="360" stroke="#2563EB" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <text x="760" y="345"
+          font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+          font-size="11" font-weight="400" fill="#6B7280">版本化沉淀</text>
+
+    <!-- Lane C -->
+    <g transform="translate(0,360)">
+      <rect x="0" y="0" width="900" height="150" rx="8" fill="#FAFAFA" stroke="#E5E7EB" stroke-width="1"/>
+      <text x="15" y="25"
+            font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+            font-size="16" font-weight="700" fill="#111827">C. 知识资产层 (Asset)</text>
+
+      <!-- Assets -->
+      <g transform="translate(30,45)">
+        <rect x="0" y="0" width="150" height="80" rx="6" fill="#FEF9C3" stroke="#FACC15" stroke-width="2"/>
+        <text x="15" y="25"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="700" fill="#111827">知识结论卡</text>
+        <text x="15" y="45"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 可检索 / 可引用</text>
+        <text x="15" y="60"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 带来源溯源</text>
+      </g>
+
+      <g transform="translate(200,45)">
+        <rect x="0" y="0" width="150" height="80" rx="6" fill="#FEF9C3" stroke="#FACC15" stroke-width="2"/>
+        <text x="15" y="25"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="700" fill="#111827">结构模板</text>
+        <text x="15" y="45"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• SOP / 清单骨架</text>
+        <text x="15" y="60"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 拿来即用</text>
+      </g>
+
+      <g transform="translate(370,45)">
+        <rect x="0" y="0" width="150" height="80" rx="6" fill="#FEF9C3" stroke="#FACC15" stroke-width="2"/>
+        <text x="15" y="25"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="700" fill="#111827">Prompt 语境包</text>
+        <text x="15" y="45"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 固化优秀指令</text>
+        <text x="15" y="60"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 团队共享复用</text>
+      </g>
+
+      <g transform="translate(540,45)">
+        <rect x="0" y="0" width="150" height="80" rx="6" fill="#FEF9C3" stroke="#FACC15" stroke-width="2"/>
+        <text x="15" y="25"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="700" fill="#111827">可交付成果</text>
+        <text x="15" y="45"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 报告 / 方案 / 代码</text>
+        <text x="15" y="60"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 直接创造价值</text>
+      </g>
+
+      <g transform="translate(710,45)">
+        <rect x="0" y="0" width="150" height="80" rx="6" fill="#FEF9C3" stroke="#FACC15" stroke-width="2"/>
+        <text x="15" y="25"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="700" fill="#111827">自动化工作流</text>
+        <text x="15" y="45"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• Agent 配置</text>
+        <text x="15" y="60"
+              font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+              font-size="12" font-weight="400" fill="#374151">• 规模化生产</text>
+      </g>
+    </g>
+
+    <!-- Summary -->
+    <g transform="translate(0,530)">
+      <rect x="0" y="0" width="900" height="50" rx="6" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2"/>
+      <text x="15" y="30"
+            font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+            font-size="12" font-weight="400" fill="#374151">
+        <tspan font-weight="700">总结：</tspan>
+        <tspan>信息不会自动变资产。必须经过“精选 → 结构化 → 语境包 → 生成 → 沉淀”的工程化链路，才能实现知识复利。</tspan>
+      </text>
+    </g>
+  </g>
+
+  <!-- License -->
+  <text x="500" y="780" text-anchor="middle"
+        font-family="Noto Sans, Microsoft YaHei, Arial, sans-serif"
+        font-size="12" font-weight="400" fill="#64748B">
+    本作品采用 CC-BY-SA 4.0 国际许可协议进行许可，© 2025 Gitconomy Research 社区
+  </text>
+</svg>

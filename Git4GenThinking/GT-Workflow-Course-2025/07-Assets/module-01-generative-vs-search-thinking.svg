@@ -1,0 +1,138 @@
+<svg width="1000" height="720" viewBox="0 0 1000 720" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+
+      :root {
+        --color-main-fill: #EFF6FF;      /* Blue - Generative */
+        --color-main-stroke: #60A5FA;
+        --color-std-fill: #F0FDF4;       /* Green - Search */
+        --color-std-stroke: #34D399;
+        --color-highlight-fill: #FEF9C3; /* Yellow - Process Flow */
+        --color-highlight-stroke: #FACC15;
+        --color-connector: #2563EB;
+        --color-text-main: #111827;
+        --color-text-body: #374151;
+        --color-text-small: #6B7280;
+      }
+
+      text { font-family: 'Noto Sans', sans-serif; }
+
+      /* Box Styles */
+      .box { fill: var(--color-std-fill); stroke: var(--color-std-stroke); stroke-width: 2px; }
+      .main-box { fill: var(--color-main-fill); stroke: var(--color-main-stroke); stroke-width: 2px; }
+      .highlight-box { fill: var(--color-highlight-fill); stroke: var(--color-highlight-stroke); stroke-width: 2px; }
+      .process-node { fill: white; stroke: var(--color-connector); stroke-width: 2px; rx: 4; }
+
+      /* Text Styles */
+      .main-title-text { font-size: 24px; font-weight: 800; fill: var(--color-text-main); }
+      .header-text { font-size: 18px; font-weight: 700; fill: var(--color-text-main); }
+      .dim-text { font-size: 14px; font-weight: 700; fill: #6B7280; letter-spacing: 0.05em; }
+      .body-text { font-size: 14px; font-weight: 400; fill: var(--color-text-body); }
+      .body-bold { font-size: 14px; font-weight: 700; fill: var(--color-text-main); }
+      .license-text { font-size: 12px; font-weight: 400; fill: #64748B; text-anchor: middle; }
+
+      /* Connectors */
+      .connector-line { stroke: #9CA3AF; stroke-width: 1px; stroke-dasharray: 4,4; }
+      .flow-line { stroke: var(--color-connector); stroke-width: 2px; marker-end: url(#arrow); }
+    </style>
+
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563EB" />
+    </marker>
+  </defs>
+
+  <text x="500" y="50" class="main-title-text" text-anchor="middle">思维模式对比：搜索式 vs. 生成式</text>
+  <text x="500" y="80" class="body-text" text-anchor="middle" fill="#6B7280">Cognitive Shift: From Search-Oriented to Generative Thinking</text>
+
+  <g transform="translate(100, 120)">
+    <rect x="0" y="0" width="350" height="380" rx="8" class="box" />
+    <text x="175" y="40" class="header-text" text-anchor="middle" fill="#047857">🔍 搜索式思维 (Search)</text>
+
+    <g transform="translate(20, 80)">
+      <text x="0" y="0" class="body-bold">已知问题 + 找已有答案</text>
+      <text x="0" y="20" class="body-text" font-size="12">基于存量信息的检索与匹配</text>
+
+      <text x="0" y="70" class="body-bold">关键词查询 (Keywords)</text>
+      <text x="0" y="90" class="body-text" font-size="12">依赖精准的术语匹配</text>
+
+      <text x="0" y="140" class="body-bold">静态碎片 (Fragments)</text>
+      <text x="0" y="160" class="body-text" font-size="12">链接列表、文档片段、孤立数据</text>
+
+      <text x="0" y="210" class="body-bold">线性 + 经验依赖</text>
+      <text x="0" y="230" class="body-text" font-size="12">Input -&gt; Search -&gt; Result (单向)</text>
+    </g>
+  </g>
+
+  <g transform="translate(450, 120)">
+    <text x="50" y="85" class="dim-text" text-anchor="middle">起点</text>
+    <line x1="-30" y1="80" x2="130" y2="80" class="connector-line" opacity="0.3"/>
+
+    <text x="50" y="155" class="dim-text" text-anchor="middle">工具</text>
+    <line x1="-30" y1="150" x2="130" y2="150" class="connector-line" opacity="0.3"/>
+
+    <text x="50" y="225" class="dim-text" text-anchor="middle">产出</text>
+    <line x1="-30" y1="220" x2="130" y2="220" class="connector-line" opacity="0.3"/>
+
+    <text x="50" y="295" class="dim-text" text-anchor="middle">形态</text>
+    <line x1="-30" y1="290" x2="130" y2="290" class="connector-line" opacity="0.3"/>
+  </g>
+
+  <g transform="translate(550, 120)">
+    <rect x="0" y="0" width="350" height="380" rx="8" class="main-box" />
+    <text x="175" y="40" class="header-text" text-anchor="middle" fill="#1D4ED8">✨ 生成式思维 (Generative)</text>
+
+    <g transform="translate(30, 80)">
+      <text x="0" y="0" class="body-bold">模糊意图 + 生成路径</text>
+      <text x="0" y="20" class="body-text" font-size="12">将抽象想法转化为具体方案</text>
+
+      <text x="0" y="70" class="body-bold">Prompt 构建 + 多轮交互</text>
+      <text x="0" y="90" class="body-text" font-size="12">结构化指令与上下文引导</text>
+
+      <text x="0" y="140" class="body-bold">结构化成果 (Structured)</text>
+      <text x="0" y="160" class="body-text" font-size="12">完整的方案、代码库、逻辑图谱</text>
+
+      <text x="0" y="210" class="body-bold">发散 + 结构引导</text>
+      <text x="0" y="230" class="body-text" font-size="12">Loop: Generate &lt;-&gt; Iterate (循环)</text>
+    </g>
+  </g>
+
+  <g transform="translate(100, 530)">
+    <rect x="0" y="0" width="800" height="120" rx="8" class="highlight-box" />
+    <text x="20" y="30" class="dim-text" fill="#B45309">生成式工作流闭环：</text>
+
+    <g transform="translate(60, 50)">
+      <rect x="0" y="0" width="140" height="50" class="process-node"/>
+      <text x="70" y="30" class="body-bold" text-anchor="middle" font-size="13">1. 模糊意图</text>
+
+      <line x1="140" y1="25" x2="180" y2="25" class="flow-line"/>
+
+      <g transform="translate(180, 0)">
+        <rect x="0" y="0" width="140" height="50" class="process-node"/>
+        <text x="70" y="30" class="body-bold" text-anchor="middle" font-size="13">2. Prompt构建</text>
+      </g>
+
+      <line x1="320" y1="25" x2="360" y2="25" class="flow-line"/>
+
+      <g transform="translate(360, 0)">
+        <rect x="0" y="0" width="140" height="50" class="process-node" style="stroke:#60A5FA; fill:#EFF6FF"/>
+        <text x="70" y="30" class="body-bold" text-anchor="middle" font-size="13">3. AI 推理生成</text>
+      </g>
+
+      <line x1="500" y1="25" x2="540" y2="25" class="flow-line"/>
+
+      <g transform="translate(540, 0)">
+        <rect x="0" y="0" width="140" height="50" class="process-node" style="stroke-dasharray: 4,2"/>
+        <text x="70" y="30" class="body-bold" text-anchor="middle" font-size="13">4. 评估与重构</text>
+      </g>
+
+      <path d="M610,50 Q610,75 580,75 L390,75 Q360,75 360,57" fill="none" stroke="#B45309" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="3,3"/>
+      <text x="485" y="90" class="body-text" font-size="11" fill="#B45309" text-anchor="middle">批判性迭代 (Iteration)</text>
+    </g>
+  </g>
+
+  <text x="500" y="700" class="license-text">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+</svg>

@@ -1,0 +1,221 @@
+<!--
+================================================================================
+图表名称：少样本学习：系统架构与映射流程 (DaC 规范重构版)
+文件命名：04-figure-01-few-shot-learning-architecture.svg
+用途：展示 Few-Shot 学习在训练阶段（特征提取）与推理阶段（最近邻预测）的架构
+版本：v1.0.0
+作者：Gitconomy Research-郭晧
+SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+创建日期：2026-02-02
+================================================================================
+-->
+<svg width="900" height="900" viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background: Solid White -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+  <defs>
+    <style>
+      :root {
+        /* 语义色系统 */
+        --c-cloud-blue: #2472c8;  /* 特征提取器/预训练逻辑 */
+        --c-local-green: #0d9d57; /* 本地数据/支持集 */
+        --c-risk-amber: #d97706;  /* 查询输入/输入混沌 */
+        --c-neutral-gray: #5f6368; /* 背景/点阵/元数据 */
+        --c-bg-light: #f8f9fa;
+
+        /* 字体规范 */
+        --font-sans: "Noto Sans SC", "Inter", system-ui, sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+
+      /* 通用文字属性 */
+      text { font-family: var(--font-sans); }
+      .text-mono { font-family: var(--font-mono); font-size: 11px; }
+
+      /* 架构组件样式 */
+      .node-logic { fill: #fff; stroke: var(--c-cloud-blue); stroke-width: 2; rx: 4; }
+      .node-data { fill: #fff; stroke: var(--c-local-green); stroke-width: 2; rx: 4; }
+      .node-input { fill: #fff; stroke: var(--c-risk-amber); stroke-width: 2; rx: 4; }
+
+      .hexagon-icon { fill: var(--c-cloud-blue); opacity: 0.15; stroke: var(--c-cloud-blue); stroke-width: 1; }
+      .latent-dot { fill: var(--c-neutral-gray); opacity: 0.3; }
+
+      .stroke-line { stroke: var(--c-neutral-gray); stroke-width: 1.5; fill: none; }
+      .label-phase { font-weight: bold; font-size: 16px; fill: #1e293b; }
+      .phase-container { fill: rgba(95, 99, 104, 0.02); stroke: #eef0f2; stroke-width: 1; }
+    </style>
+
+    <!-- 标准箭头定义 -->
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-neutral-gray)" />
+    </marker>
+  </defs>
+
+  <!-- 1. 标题块规范 -->
+  <g id="title-block" transform="translate(450, 40)">
+    <!-- Main Title  -->
+    <text y="20" text-anchor="middle" font-weight="bold" font-size="24" fill="black">少样本学习原理示意图</text>
+    <!-- Breadcrumbs -->
+    <text y="45" text-anchor="middle" class="text-mono" fill="var(--c-neutral-gray)">第四天 > 基础原理</text>
+    <!-- Context Indicator  -->
+    <line x1="-30" y1="60" x2="30" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- 2. 图形主体 -->
+  <g id="diagram-content" transform="translate(0, 140)">
+
+    <!-- === 训练阶段 (训练特征提取与支持集构建) === -->
+    <g id="phase-training" transform="translate(50, 0)">
+      <rect width="800" height="280" rx="12" class="phase-container" />
+      <text x="25" y="35" class="label-phase">训练阶段</text>
+
+      <!-- 基础数据集 -->
+      <g transform="translate(40, 80)">
+        <rect width="140" height="140" class="node-input" stroke-dasharray="4 2" />
+        <text x="70" y="30" text-anchor="middle" font-weight="bold" font-size="13">基础数据集</text>
+        <g transform="translate(25, 55)" opacity="0.4">
+            <rect width="25" height="25" rx="3" fill="var(--c-risk-amber)" />
+            <rect x="35" width="25" height="25" rx="3" fill="var(--c-risk-amber)" />
+            <rect x="70" width="25" height="25" rx="3" fill="var(--c-risk-amber)" />
+            <rect y="35" width="25" height="25" rx="3" fill="var(--c-risk-amber)" />
+            <rect x="35" y="35" width="25" height="25" rx="3" fill="var(--c-risk-amber)" />
+        </g>
+        <text x="70" y="125" text-anchor="middle" class="text-mono">Base Dataset</text>
+      </g>
+
+      <path d="M 195,150 L 235,150" class="stroke-line" marker-end="url(#arrow-gray)" />
+
+      <!-- 特征提取器 -->
+      <g transform="translate(250, 80)">
+        <rect width="180" height="140" class="node-logic" />
+        <text x="90" y="30" text-anchor="middle" font-weight="bold" font-size="13">特征提取器</text>
+        <text x="90" y="48" text-anchor="middle" class="text-mono">(神经网络内核)</text>
+        <!-- 逻辑核心图标 -->
+        <g transform="translate(90, 100)">
+            <polygon points="24,0 12,20.8 -12,20.8 -24,0 -12,-20.8 12,-20.8" class="hexagon-icon" />
+            <circle cx="0" cy="0" r="10" fill="var(--c-cloud-blue)" opacity="0.1" />
+        </g>
+      </g>
+
+      <path d="M 445,150 L 485,150" class="stroke-line" marker-end="url(#arrow-gray)" />
+
+      <!-- 向量空间 -->
+      <g transform="translate(500, 80)">
+        <text x="75" y="165" text-anchor="middle" class="text-mono" font-weight="bold">EMBEDDING SPACE</text>
+        <!-- 特征点云 -->
+        <circle cx="30" cy="50" r="2.5" class="latent-dot" />
+        <circle cx="60" cy="30" r="2.5" class="latent-dot" />
+        <circle cx="90" cy="70" r="2.5" class="latent-dot" />
+        <circle cx="110" cy="40" r="2.5" class="latent-dot" />
+        <circle cx="130" cy="90" r="2.5" class="latent-dot" />
+        <circle cx="60" cy="100" r="2.5" class="latent-dot" />
+        <text x="75" y="125" text-anchor="middle" font-size="12" fill="var(--c-neutral-gray)">特征分布</text>
+      </g>
+
+      <path d="M 645,150 L 685,150" class="stroke-line" marker-end="url(#arrow-gray)" />
+
+      <!-- 支持集 -->
+      <g transform="translate(700, 80)">
+        <rect width="140" height="140" class="node-data" />
+        <text x="70" y="-12" text-anchor="middle" font-weight="bold" font-size="12" fill="var(--c-local-green)">支持集构建 (Support Set)</text>
+        <!-- 样本卡片 -->
+        <g transform="translate(15, 20)">
+            <rect width="50" height="45" rx="2" fill="#E3FCEF" stroke="var(--c-local-green)" stroke-width="0.5" />
+            <text x="25" y="28" text-anchor="middle" font-size="18">🌸</text>
+            <rect x="60" width="50" height="45" rx="2" fill="#E3FCEF" stroke="var(--c-local-green)" stroke-width="0.5" />
+            <text x="85" y="28" text-anchor="middle" font-size="18">🐦</text>
+            <rect y="55" width="50" height="45" rx="2" fill="#E3FCEF" stroke="var(--c-local-green)" stroke-width="0.5" />
+            <text x="25" y="83" text-anchor="middle" font-size="18">🍀</text>
+            <rect x="60" y="55" width="50" height="45" rx="2" fill="#E3FCEF" stroke="var(--c-local-green)" stroke-width="0.5" />
+            <text x="85" y="83" text-anchor="middle" font-size="18">🦅</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- === 推理阶段 (查询映射与分类识别) === -->
+    <g id="phase-inference" transform="translate(50, 340)">
+      <rect width="800" height="280" rx="12" class="phase-container" />
+      <text x="25" y="35" class="label-phase">推理阶段</text>
+
+      <!-- 查询输入 -->
+      <g transform="translate(40, 80)">
+        <rect width="140" height="140" class="node-input" />
+        <text x="70" y="30" text-anchor="middle" font-weight="bold" font-size="13">查询输入</text>
+        <rect x="40" y="45" width="60" height="60" rx="6" fill="white" stroke="var(--c-risk-amber)" stroke-dasharray="3" />
+        <text x="70" y="85" text-anchor="middle" font-size="32">🦁</text>
+        <text x="70" y="125" text-anchor="middle" class="text-mono">Query Input</text>
+      </g>
+
+      <path d="M 195,150 L 235,150" class="stroke-line" marker-end="url(#arrow-gray)" />
+
+      <!-- 特征提取器 (复用) -->
+      <g transform="translate(250, 80)">
+        <rect width="180" height="140" class="node-logic" />
+        <text x="90" y="30" text-anchor="middle" font-weight="bold" font-size="13">特征映射</text>
+        <g transform="translate(90, 95)">
+            <polygon points="18,0 9,15.6 -9,15.6 -18,0 -9,-15.6 9,-15.6" class="hexagon-icon" />
+        </g>
+      </g>
+
+      <path d="M 445,150 L 485,150" class="stroke-line" marker-end="url(#arrow-gray)" />
+
+      <!-- 向量比对 -->
+      <g transform="translate(500, 80)">
+        <!-- 映射后的支持集样本点 -->
+        <circle cx="35" cy="90" r="5" fill="var(--c-local-green)" />
+        <!-- 映射后的查询点 -->
+        <circle cx="110" cy="35" r="5" fill="var(--c-risk-amber)" />
+        <path d="M 110,35 L 140,15" class="stroke-line" stroke-dasharray="3 3" marker-end="url(#arrow-gray)" />
+        <text x="145" y="10" class="text-mono" font-weight="bold" fill="var(--c-risk-amber)">Query</text>
+        <text x="145" y="25" class="text-mono" font-weight="bold" fill="var(--c-risk-amber)">Vector</text>
+        <path d="M 45,85 L 100,45" stroke="var(--c-neutral-gray)" stroke-width="1.5" stroke-dasharray="4 2" />
+        <text x="72" y="165" text-anchor="middle" class="text-mono" font-size="10">Similarity Measurement</text>
+      </g>
+
+      <path d="M 645,150 L 685,150" class="stroke-line" marker-end="url(#arrow-gray)" />
+
+      <!-- 预测分类 -->
+      <g transform="translate(700, 80)">
+        <rect width="140" height="140" rx="8" fill="rgba(13, 157, 87, 0.05)" stroke="var(--c-local-green)" stroke-width="2" />
+        <text x="70" y="45" text-anchor="middle" font-weight="bold" font-size="13">分类决策</text>
+        <text x="70" y="65" text-anchor="middle" class="text-mono">(k-NN 最近邻)</text>
+
+        <text x="70" y="100" text-anchor="middle" font-weight="bold" font-size="11" fill="var(--c-local-green)">预测结果:</text>
+        <text x="70" y="120" text-anchor="middle" class="text-mono" font-weight="bold">[Nearest Class]</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- 3. 图例规范 -->
+  <g id="legend-block" transform="translate(450, 780)">
+    <rect x="-320" y="0" width="640" height="40" rx="20" fill="rgba(255,255,255,0.9)" stroke="#E2E8F0" stroke-width="0.5"/>
+    <g transform="translate(-290, 25)">
+      <text x="0" y="0" font-weight="bold" font-size="11" fill="#64748B">图例说明</text>
+
+      <!-- 逻辑核 -->
+      <g transform="translate(75, -11)">
+        <path d="M6,0 L12,3.5 L12,10.5 L6,14 L0,10.5 L0,3.5 Z" fill="var(--c-cloud-blue)" opacity="0.3" stroke="var(--c-cloud-blue)" stroke-width="1"/>
+        <text x="20" y="10" class="text-mono" font-size="10" fill="#334155">特征提取器 (逻辑内核)</text>
+      </g>
+
+      <!-- 支持集 -->
+      <g transform="translate(250, -11)">
+        <rect x="0" y="2" width="12" height="12" rx="2" fill="var(--c-local-green)" />
+        <text x="18" y="11" class="text-mono" font-size="10" fill="#334155">支持集 (本地参考样本)</text>
+      </g>
+
+      <!-- 查询 -->
+      <g transform="translate(440, -11)">
+        <circle cx="6" cy="8" r="6" fill="var(--c-risk-amber)" />
+        <text x="18" y="11" class="text-mono" font-size="10" fill="#334155">待识别查询 (外部输入)</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- 4. 底部许可注释 -->
+  <g id="footer" transform="translate(450, 860)">
+    <text text-anchor="middle" font-size="11" fill="var(--c-neutral-gray)">
+      本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+    </text>
+  </g>
+
+</svg>

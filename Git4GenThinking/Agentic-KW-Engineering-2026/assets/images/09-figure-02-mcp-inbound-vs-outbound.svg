@@ -1,0 +1,242 @@
+<!--
+================================================================================
+图表名称：MCP 连接模式对比：Inbound vs Outbound
+文件命名：09-figure-02-mcp-inbound-vs-outbound.svg
+用途：对比展示 MCP 协议中智能体的两种核心交互模式（被动读取 vs 主动执行）
+版本：v1.1.0
+作者：Gitconomy Research-郭晧
+SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+创建日期：2026-02-09
+更新日期：2026-02-22（版本1.1.0，更新试图图例说明部分内容）
+================================================================================
+-->
+
+<svg width="900" height="600" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background: Solid White -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+  <defs>
+    <!-- 引入字体 -->
+    <style>
+      :root {
+        /* 2. 语义色系统 (Semantic Colors) */
+        --c-cloud-blue: #0052CC;      /* Brain Blue: Inbound/Reasoning */
+        --c-cloud-bg: #F0F7FF;
+        --c-local-green: #00875A;     /* Body Green: Outbound/Execution */
+        --c-local-bg: #E3FCEF;
+        --c-risk-amber: #FF991F;      /* State Amber: Wait/Latency */
+        --c-neutral-gray: #64748B;    /* Meta Gray: Storage/Text */
+        --c-text-dark: #1E293B;
+        --c-bg-white: #FFFFFF;
+
+        /* 字体定义 */
+        --font-sans: "Noto Sans SC", "Noto Sans", sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+
+      text { font-family: var(--font-sans); }
+      .font-mono { font-family: var(--font-mono); }
+
+      /* 3.3 标题样式 */
+      .text-id { font-family: var(--font-mono); font-size: 12px; fill: var(--c-neutral-gray); letter-spacing: 1px; }
+      .text-title { font-family: var(--font-sans); font-weight: 700; font-size: 24px; fill: #000000; }
+      .text-breadcrumbs { font-family: var(--font-mono); font-size: 14px; fill: var(--c-neutral-gray); }
+
+      /* 面板样式 */
+      .panel-inbound { fill: var(--c-cloud-bg); stroke: var(--c-cloud-blue); stroke-width: 1.5; rx: 8; stroke-dasharray: 6 4; }
+      .panel-outbound { fill: var(--c-local-bg); stroke: var(--c-local-green); stroke-width: 2; rx: 8; }
+      .header-inbound { font-size: 16px; font-weight: 700; fill: var(--c-cloud-blue); }
+      .header-outbound { font-size: 16px; font-weight: 700; fill: var(--c-local-green); }
+
+      /* 节点样式 */
+      .node-base { fill: var(--c-bg-white); stroke-width: 2; }
+      .node-user { stroke: var(--c-text-dark); rx: 20; }
+      .node-agent { rx: 6; }
+      .node-store { stroke: var(--c-neutral-gray); }
+
+      /* 线条样式 */
+      .conn-read { stroke: var(--c-cloud-blue); stroke-width: 2; fill: none; }
+      .conn-write { stroke: var(--c-local-green); stroke-width: 2; fill: none; }
+      .conn-dashed { stroke-dasharray: 4 4; }
+
+      /* 标签样式 */
+      .label-node { font-size: 12px; font-weight: 700; fill: var(--c-text-dark); }
+      .label-desc { font-size: 10px; fill: var(--c-neutral-gray); }
+      .label-action { font-family: var(--font-mono); font-size: 10px; font-weight: 700; }
+      .tag-bg { rx: 4; }
+      .tag-text { font-family: var(--font-mono); font-size: 10px; font-weight: 700; fill: #FFFFFF; }
+
+      /* 3.4 图例样式 */
+      .legend-bg { fill: rgba(255,255,255,0.9); stroke: #E2E8F0; stroke-width: 0.5; }
+      .legend-title { font-weight: 700; font-size: 10px; fill: var(--c-neutral-gray); }
+      .legend-item { font-family: var(--font-mono); font-size: 10px; fill: #334155; }
+    </style>
+
+    <marker id="head-read" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="var(--c-cloud-blue)" />
+    </marker>
+    <marker id="head-write" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="var(--c-local-green)" />
+    </marker>
+  </defs>
+
+  <!--
+  ===========================================================================
+     1. Title Block
+  ===========================================================================
+  -->
+  <g id="title-block" transform="translate(450, 40)">
+    <text y="20" text-anchor="middle" class="text-title">MCP 架构模式对比： Inbound vs Outbound</text>
+    <text y="45" text-anchor="middle" class="text-breadcrumbs">第九天 > 基础理论 </text>
+    <line x1="-30" y1="60" x2="30" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!--
+  ===========================================================================
+     2. Content: Left Panel (Inbound/Cloud Logic)
+  ===========================================================================
+  -->
+  <g transform="translate(50, 120)">
+    <!-- Container (Dashed for Cloud influence) -->
+    <rect x="0" y="0" width="380" height="400" class="panel-inbound" />
+
+    <!-- Header -->
+    <text x="190" y="40" text-anchor="middle" class="header-inbound">1. Inbound 模式 (入站)</text>
+    <rect x="150" y="55" width="80" height="20" class="tag-bg" fill="var(--c-cloud-blue)"/>
+    <text x="190" y="68" text-anchor="middle" class="tag-text">PASSIVE</text>
+
+    <!-- 1. User -->
+    <g transform="translate(190, 110)">
+       <rect x="-60" y="-20" width="120" height="40" class="node-base node-user"/>
+       <text x="0" y="5" text-anchor="middle" class="label-node">用户 / User</text>
+    </g>
+
+    <!-- Arrow: Request -->
+    <path d="M190,130 L190,170" class="conn-read" marker-end="url(#head-read)"/>
+    <text x="200" y="155" class="label-action" fill="var(--c-cloud-blue)">"提取信息"</text>
+
+    <!-- 2. Agent (Receiver - Blue Border) -->
+    <g transform="translate(190, 200)">
+       <rect x="-70" y="-30" width="140" height="60" class="node-base node-agent" stroke="var(--c-cloud-blue)"/>
+       <text x="0" y="-5" text-anchor="middle" class="label-node">智能体 (接收器)</text>
+       <text x="0" y="15" text-anchor="middle" class="label-desc">Context Aware</text>
+    </g>
+
+    <!-- Arrow: Query -->
+    <path d="M170,230 L170,290" class="conn-read" marker-end="url(#head-read)"/>
+    <text x="125" y="265" class="label-action" fill="var(--c-cloud-blue)">Query</text>
+
+    <!-- Arrow: Return -->
+    <path d="M210,290 L210,230" class="conn-read conn-dashed" marker-end="url(#head-read)"/>
+    <text x="220" y="265" class="label-action" fill="var(--c-cloud-blue)">Return</text>
+
+    <!-- 3. Obsidian (Source - Cylinder) -->
+    <g transform="translate(190, 310)">
+       <path d="M-50,0 Q-50,-10 0,-10 Q50,-10 50,0 L50,40 Q50,50 0,50 Q-50,50 -50,40 Z" class="node-base node-store" fill="#FFFFFF"/>
+       <ellipse cx="0" cy="0" rx="50" ry="10" fill="none" stroke="var(--c-neutral-gray)" stroke-width="2"/>
+       <text x="0" y="25" text-anchor="middle" class="label-node">Obsidian 知识库</text>
+    </g>
+
+    <text x="190" y="385" text-anchor="middle" class="label-desc" fill="var(--c-cloud-blue)">"依赖外部输入，只读反馈"</text>
+  </g>
+
+  <!--
+  ===========================================================================
+     3. Content: Right Panel (Outbound/Local Execution)
+  ===========================================================================
+  -->
+  <g transform="translate(470, 120)">
+    <!-- Container (Solid for Local execution) -->
+    <rect x="0" y="0" width="380" height="400" class="panel-outbound" />
+
+    <!-- Header -->
+    <text x="190" y="40" text-anchor="middle" class="header-outbound">2. Outbound 模式 (出站)</text>
+    <rect x="150" y="55" width="80" height="20" class="tag-bg" fill="var(--c-local-green)"/>
+    <text x="190" y="68" text-anchor="middle" class="tag-text">ACTIVE</text>
+
+    <!-- 1. User -->
+    <g transform="translate(190, 110)">
+       <rect x="-60" y="-20" width="120" height="40" class="node-base node-user"/>
+       <text x="0" y="5" text-anchor="middle" class="label-node">用户 / User</text>
+    </g>
+
+    <!-- Arrow: Command -->
+    <path d="M190,130 L190,170" class="conn-write" marker-end="url(#head-write)"/>
+    <text x="200" y="155" class="label-action" fill="var(--c-local-green)">"添加待办"</text>
+
+    <!-- 2. Agent (Actor - Green Border) -->
+    <g transform="translate(190, 200)">
+       <rect x="-70" y="-30" width="140" height="60" class="node-base node-agent" stroke="var(--c-local-green)"/>
+       <text x="0" y="-5" text-anchor="middle" class="label-node">智能体 (执行者)</text>
+       <text x="0" y="15" text-anchor="middle" class="label-desc">Decision Maker</text>
+    </g>
+
+    <!-- Arrow: Action -->
+    <path d="M190,230 L190,290" class="conn-write" stroke-width="3" marker-end="url(#head-write)"/>
+    <text x="200" y="265" class="label-action" fill="var(--c-local-green)">Write / Exec</text>
+
+    <!-- 3. Obsidian (Target - Rect File) -->
+    <g transform="translate(190, 320)">
+       <rect x="-60" y="-20" width="120" height="60" class="node-base node-store" rx="4"/>
+       <text x="0" y="5" text-anchor="middle" class="label-node">Obsidian 文件</text>
+       <text x="0" y="25" text-anchor="middle" class="label-desc">(被修改/Update)</text>
+
+       <!-- Status Change Icon -->
+       <g transform="translate(45, -25)">
+          <circle cx="0" cy="0" r="10" fill="var(--c-local-green)"/>
+          <path d="M-3,0 L-1,2 L3,-2" stroke="white" stroke-width="2" fill="none"/>
+       </g>
+    </g>
+
+    <text x="190" y="385" text-anchor="middle" class="label-desc" fill="var(--c-local-green)">"主动发起请求，改变环境"</text>
+  </g>
+
+  <!--
+  ===========================================================================
+     4. Legend Block
+  ===========================================================================
+  -->
+  <g id="legend-block" transform="translate(150, 530)">
+
+    <!-- Background: Capsule shape -->
+    <rect x="0" y="0" width="600" height="30" rx="15" class="legend-bg"/>
+
+    <!-- Content -->
+    <g transform="translate(20, 19)">
+      <text x="0" y="0" class="legend-title">图例说明</text>
+
+      <!-- Item 1: Inbound/Read -->
+      <g transform="translate(70, 0)">
+        <circle cx="0" cy="-4" r="4" fill="var(--c-cloud-blue)" />
+        <text x="10" y="0" class="legend-item">Passive (Read)</text>
+      </g>
+
+      <!-- Item 2: Outbound/Write -->
+      <g transform="translate(190, 0)">
+        <rect x="-5" y="-9" width="10" height="10" rx="2" fill="var(--c-local-green)" />
+        <text x="10" y="0" class="legend-item">Active (Write)</text>
+      </g>
+
+      <!-- Item 3: Return Data -->
+      <g transform="translate(310, 0)">
+        <line x1="-5" y1="-4" x2="10" y2="-4" stroke="var(--c-cloud-blue)" stroke-width="2" stroke-dasharray="2 2"/>
+        <text x="15" y="0" class="legend-item">Data Return</text>
+      </g>
+
+      <!-- Item 4: Action -->
+      <g transform="translate(440, 0)">
+        <line x1="-5" y1="-4" x2="10" y2="-4" stroke="var(--c-local-green)" stroke-width="2"/>
+        <text x="15" y="0" class="legend-item">Execute Action</text>
+      </g>
+    </g>
+  </g>
+
+  <!--
+  ===========================================================================
+     5. Footer License
+  ===========================================================================
+  -->
+  <text x="450" y="580" text-anchor="middle" class="font-mono label-desc" fill="#94A3B8">
+    本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+  </text>
+
+</svg>

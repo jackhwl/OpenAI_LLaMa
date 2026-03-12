@@ -1,0 +1,194 @@
+<!--
+  ================================================================================
+  图表名称：从“角色扮演”到“协作网络”演进示意图
+  文件命名：module-07-role-to-network.svg
+  描述：
+    展示智能体协作模式的三个演进阶段：
+    1. Role Playing (单体): 靠 Prompt 区分角色，共享上下文 (Yellow - 拥挤/风险).
+    2. Structured MAS (多智能体): 靠 SOP 连接独立智能体 (Green - 秩序/稳定).
+    3. Collaboration Network (网络): 靠协议总线(MCP)实现生态互联 (Blue - 扩展/生态).
+
+  遵循 Gitconomy 社区 DaC 设计规范 (Git 兼容版)：
+  - 样式：全内联属性 (No <style> blocks)
+  - 字体：Noto Sans / sans-serif
+  - 配色：黄 -> 绿 -> 蓝 演进逻辑
+  ================================================================================
+-->
+<svg width="1200" height="650" viewBox="0 0 1200 650" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="1200" height="650" fill="#FFFFFF"/>
+
+  <!-- ========================================================================= -->
+  <!-- DEFINITIONS -->
+  <!-- ========================================================================= -->
+  <defs>
+    <marker id="arrow-gray" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9CA3AF" />
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#34D399" />
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#60A5FA" />
+    </marker>
+  </defs>
+
+  <!-- ========================================================================= -->
+  <!-- Header -->
+  <!-- ========================================================================= -->
+  <text x="600" y="50" font-family="'Noto Sans', sans-serif" font-size="24" font-weight="800" fill="#111827" text-anchor="middle">
+    演进路径：从“角色扮演 (Role Playing)” 到 “协作网络 (Network)”
+  </text>
+  <text x="600" y="80" font-family="'Noto Sans', sans-serif" font-size="16" font-weight="400" fill="#6B7280" text-anchor="middle">
+    Evolution Path: From Internal Monologue to Protocol-Based Ecosystem
+  </text>
+
+  <!-- ========================================================================= -->
+  <!-- STAGE 1: ROLE PLAYING (Single Context) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(60, 160)">
+    <!-- Title -->
+    <text x="140" y="-20" font-family="'Noto Sans', sans-serif" font-size="18" font-weight="700" fill="#B45309" text-anchor="middle">Stage 1: 角色扮演</text>
+    <text x="140" y="0" font-family="'Noto Sans', sans-serif" font-size="12" fill="#B45309" text-anchor="middle">(Single Context Window)</text>
+
+    <!-- Container (Yellow - Bottleneck) -->
+    <rect x="0" y="20" width="280" height="300" rx="16" fill="#FEF9C3" stroke="#FACC15" stroke-width="3"/>
+
+    <!-- Internal Roles (Crowded) -->
+    <g transform="translate(40, 60)">
+      <!-- Role 1 -->
+      <rect x="0" y="0" width="200" height="50" rx="4" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="100" y="30" font-family="'Noto Sans', sans-serif" font-size="14" fill="#92400E" text-anchor="middle">Role: Planner</text>
+
+      <!-- Role 2 -->
+      <rect x="0" y="60" width="200" height="50" rx="4" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="100" y="90" font-family="'Noto Sans', sans-serif" font-size="14" fill="#92400E" text-anchor="middle">Role: Executor</text>
+
+      <!-- Role 3 -->
+      <rect x="0" y="120" width="200" height="50" rx="4" fill="#FFFFFF" stroke="#F59E0B" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="100" y="150" font-family="'Noto Sans', sans-serif" font-size="14" fill="#92400E" text-anchor="middle">Role: Critic</text>
+    </g>
+
+    <!-- Conflict Annotation -->
+    <text x="140" y="260" font-family="'Noto Sans', sans-serif" font-size="12" font-weight="700" fill="#B45309" text-anchor="middle">⚠ Context Pollution</text>
+    <text x="140" y="280" font-family="'Noto Sans', sans-serif" font-size="11" fill="#92400E" text-anchor="middle">所有角色共享同一记忆空间</text>
+  </g>
+
+  <!-- Transition Arrow 1 -->
+  <g transform="translate(360, 300)">
+    <line x1="0" y1="0" x2="60" y2="0" stroke="#9CA3AF" stroke-width="2" marker-end="url(#arrow-gray)"/>
+    <text x="30" y="-10" font-family="'Noto Sans', sans-serif" font-size="12" font-weight="700" fill="#4B5563" text-anchor="middle">拆分 (Decouple)</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- STAGE 2: STRUCTURED MAS (Pipeline) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(440, 160)">
+    <!-- Title -->
+    <text x="160" y="-20" font-family="'Noto Sans', sans-serif" font-size="18" font-weight="700" fill="#047857" text-anchor="middle">Stage 2: 结构化协作</text>
+    <text x="160" y="0" font-family="'Noto Sans', sans-serif" font-size="12" fill="#047857" text-anchor="middle">(SOP / Pipeline)</text>
+
+    <!-- Boundary (Green - Stable) -->
+    <rect x="0" y="20" width="320" height="300" rx="16" fill="#F0FDF4" stroke="#34D399" stroke-width="2" stroke-dasharray="8,4"/>
+
+    <!-- Pipeline Structure -->
+    <g transform="translate(110, 50)">
+      <!-- Agent A -->
+      <rect x="0" y="0" width="100" height="60" rx="8" fill="#FFFFFF" stroke="#34D399" stroke-width="2"/>
+      <text x="50" y="35" font-family="'Noto Sans', sans-serif" font-size="13" font-weight="700" fill="#065F46" text-anchor="middle">Agent A</text>
+
+      <!-- Arrow Down -->
+      <line x1="50" y1="60" x2="50" y2="90" stroke="#34D399" stroke-width="2" marker-end="url(#arrow-green)"/>
+      <text x="60" y="80" font-family="'Noto Sans', sans-serif" font-size="10" fill="#059669">SOP</text>
+
+      <!-- Agent B -->
+      <rect x="0" y="90" width="100" height="60" rx="8" fill="#FFFFFF" stroke="#34D399" stroke-width="2"/>
+      <text x="50" y="125" font-family="'Noto Sans', sans-serif" font-size="13" font-weight="700" fill="#065F46" text-anchor="middle">Agent B</text>
+
+      <!-- Arrow Down -->
+      <line x1="50" y1="150" x2="50" y2="180" stroke="#34D399" stroke-width="2" marker-end="url(#arrow-green)"/>
+      <text x="60" y="170" font-family="'Noto Sans', sans-serif" font-size="10" fill="#059669">SOP</text>
+
+      <!-- Agent C -->
+      <rect x="0" y="180" width="100" height="60" rx="8" fill="#FFFFFF" stroke="#34D399" stroke-width="2"/>
+      <text x="50" y="215" font-family="'Noto Sans', sans-serif" font-size="13" font-weight="700" fill="#065F46" text-anchor="middle">Agent C</text>
+    </g>
+
+    <!-- Annotation -->
+    <text x="160" y="305" font-family="'Noto Sans', sans-serif" font-size="11" fill="#047857" text-anchor="middle">独立状态 + 标准接口</text>
+  </g>
+
+  <!-- Transition Arrow 2 -->
+  <g transform="translate(780, 300)">
+    <line x1="0" y1="0" x2="60" y2="0" stroke="#9CA3AF" stroke-width="2" marker-end="url(#arrow-gray)"/>
+    <text x="30" y="-10" font-family="'Noto Sans', sans-serif" font-size="12" font-weight="700" fill="#4B5563" text-anchor="middle">互联 (Networking)</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- STAGE 3: COLLABORATION NETWORK (Ecosystem) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(860, 160)">
+    <!-- Title -->
+    <text x="160" y="-20" font-family="'Noto Sans', sans-serif" font-size="18" font-weight="700" fill="#1E40AF" text-anchor="middle">Stage 3: 协作网络</text>
+    <text x="160" y="0" font-family="'Noto Sans', sans-serif" font-size="12" fill="#1E40AF" text-anchor="middle">(Protocol Bus / Ecosystem)</text>
+
+    <!-- Boundary (Blue - Scalable) -->
+    <rect x="0" y="20" width="320" height="300" rx="16" fill="#EFF6FF" stroke="#60A5FA" stroke-width="2"/>
+
+    <!-- The Bus (Protocol Layer) -->
+    <rect x="30" y="140" width="260" height="40" rx="6" fill="#1E3A8A" stroke="#1E40AF" stroke-width="1"/>
+    <text x="160" y="165" font-family="'Noto Sans', sans-serif" font-size="12" font-weight="700" fill="#FFFFFF" text-anchor="middle">Protocol Bus / MCP</text>
+
+    <!-- Nodes -->
+    <!-- Node 1 -->
+    <circle cx="60" cy="80" r="25" fill="#FFFFFF" stroke="#3B82F6" stroke-width="2"/>
+    <text x="60" y="85" font-family="'Noto Sans', sans-serif" font-size="12" font-weight="700" fill="#1E40AF" text-anchor="middle">A</text>
+    <line x1="60" y1="105" x2="60" y2="140" stroke="#3B82F6" stroke-width="2"/>
+
+    <!-- Node 2 -->
+    <circle cx="160" cy="80" r="25" fill="#FFFFFF" stroke="#3B82F6" stroke-width="2"/>
+    <text x="160" y="85" font-family="'Noto Sans', sans-serif" font-size="12" font-weight="700" fill="#1E40AF" text-anchor="middle">B</text>
+    <line x1="160" y1="105" x2="160" y2="140" stroke="#3B82F6" stroke-width="2"/>
+
+    <!-- Node 3 -->
+    <circle cx="260" cy="80" r="25" fill="#FFFFFF" stroke="#3B82F6" stroke-width="2"/>
+    <text x="260" y="85" font-family="'Noto Sans', sans-serif" font-size="12" font-weight="700" fill="#1E40AF" text-anchor="middle">C</text>
+    <line x1="260" y1="105" x2="260" y2="140" stroke="#3B82F6" stroke-width="2"/>
+
+    <!-- Node 4 (External Tool) -->
+    <rect x="110" y="230" width="100" height="40" rx="4" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2"/>
+    <text x="160" y="255" font-family="'Noto Sans', sans-serif" font-size="12" fill="#1E40AF" text-anchor="middle">3rd Party Tool</text>
+    <line x1="160" y1="230" x2="160" y2="180" stroke="#3B82F6" stroke-width="2" stroke-dasharray="4,2"/>
+
+    <!-- Annotation -->
+    <text x="160" y="305" font-family="'Noto Sans', sans-serif" font-size="11" fill="#1E40AF" text-anchor="middle">动态发现 · 权限治理 · 任意连接</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- Bottom Summary -->
+  <!-- ========================================================================= -->
+  <g transform="translate(100, 520)">
+    <rect x="0" y="0" width="1000" height="80" rx="12" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="2"/>
+
+    <text x="30" y="30" font-family="'Noto Sans', sans-serif" font-size="14" font-weight="700" fill="#1F2937">关键跃迁点：</text>
+
+    <!-- Point 1 -->
+    <circle cx="40" cy="55" r="4" fill="#F59E0B"/>
+    <text x="55" y="60" font-family="'Noto Sans', sans-serif" font-size="13" fill="#374151">
+      <tspan font-weight="bold">Phase 1 -> 2:</tspan> 解决“脑力过载”，通过拆分角色实现专注。
+    </text>
+
+    <!-- Point 2 -->
+    <circle cx="500" cy="55" r="4" fill="#3B82F6"/>
+    <text x="515" y="60" font-family="'Noto Sans', sans-serif" font-size="13" fill="#374151">
+      <tspan font-weight="bold">Phase 2 -> 3:</tspan> 解决“连接成本”，通过协议(Protocol)实现规模化扩展。
+    </text>
+  </g>
+
+  <!-- License -->
+  <text x="600" y="650" font-family="'Noto Sans', sans-serif" font-size="12" fill="#64748B" text-anchor="middle">
+    本作品采用 CC-BY-SA 4.0 国际许可协议进行许可，© 2025 Gitconomy Research 社区
+  </text>
+
+</svg>

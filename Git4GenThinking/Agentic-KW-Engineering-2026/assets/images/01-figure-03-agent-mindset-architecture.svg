@@ -1,0 +1,161 @@
+<!--
+================================================================================
+图表名称：智力进阶心法与工坊架构图
+文件命名：agent-mindset-architecture.svg
+用途：展示 SCORE, PEAR, ReAct 心法如何驱动三体工坊架构
+版本：v1.1.0
+作者：Gitconomy Research
+SPDX-License-Identifier: CC-BY-SA-4.0
+创建日期：2026-01-30
+================================================================================
+-->
+<svg viewBox="0 0 800 850" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background: Solid White -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+  <defs>
+    <style>
+      :root {
+        --c-cloud-blue: #0052CC;
+        --c-local-green: #00875A;
+        --c-risk-amber: #FF991F;
+        --c-neutral-gray: #64748B;
+        --c-local-green-light: #E3FCEF;
+        --c-cloud-blue-light: #DEEBFF;
+        --font-sans: "Noto Sans SC", "Noto Sans", system-ui, sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+      text { font-family: var(--font-sans); }
+      .text-mono { font-family: var(--font-mono); font-size: 11px; }
+      .text-title { font-family: var(--font-sans); font-weight: bold; }
+      .text-mindset { font-family: var(--font-sans); font-weight: bold; fill: var(--c-risk-amber); font-size: 14px; }
+
+      /* 架构组件 */
+      .node-brain { fill: #fff; stroke: var(--c-cloud-blue); stroke-width: 2.5; }
+      .node-body { fill: #fff; stroke: var(--c-local-green); stroke-width: 2.5; }
+      .node-interface { fill: #fff; stroke: var(--c-risk-amber); stroke-width: 2.5; }
+
+      /* 连线样式 */
+      .line-async { stroke: var(--c-cloud-blue); stroke-dasharray: 4 2; fill: none; stroke-width: 2; }
+      .line-sync { stroke: var(--c-local-green); fill: none; stroke-width: 2; }
+      .line-pear { stroke: var(--c-neutral-gray); stroke-dasharray: 8 4; fill: none; stroke-width: 1.5; stroke-opacity: 0.5; }
+    </style>
+
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-cloud-blue)" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-local-green)" />
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-risk-amber)" />
+    </marker>
+  </defs>
+
+  <!-- 1. 标题块 -->
+  <g id="title-block" transform="translate(400, 40)">
+    <text y="20" text-anchor="middle" class="text-title" font-size="24" fill="black">智能体工坊进阶心法</text>
+    <text y="45" text-anchor="middle" class="text-mono" font-size="14" fill="var(--c-neutral-gray)">第一天 > 基础理论</text>
+    <line x1="-30" y1="60" x2="30" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- 2. 图形主体 (PEAR 大闭环背景) -->
+  <g id="diagram-content" transform="translate(0, 160)">
+
+    <!-- PEAR 外部生命周期闭环 (环绕整个系统) -->
+    <rect x="40" y="-40" width="720" height="580" rx="30" class="line-pear" />
+    <text x="70" y="-15" class="text-mindset" style="fill: var(--c-neutral-gray)">PEAR 架构 (系统生命周期)</text>
+
+    <!-- PEAR 节点标注 -->
+    <g font-size="11" fill="var(--c-neutral-gray)" font-weight="bold">
+      <text x="50" y="20" text-anchor="start">Perceive 感知</text>
+      <text x="750" y="20" text-anchor="end">Evaluate 评估</text>
+      <text x="750" y="520" text-anchor="end">Act 行动</text>
+      <text x="50" y="520" text-anchor="start">Reflect 反思</text>
+    </g>
+
+    <!-- 核心架构：三角形布局 -->
+
+    <!-- A. 云端大脑 (顶点) -->
+    <g transform="translate(400, 100)">
+      <polygon points="0,-50 43,-25 43,25 0,50 -43,25 -43,-25" class="node-brain" />
+      <text y="5" text-anchor="middle" font-weight="bold" font-size="14">云端大脑</text>
+      <text y="22" text-anchor="middle" class="text-mono" font-size="9" fill="var(--c-neutral-gray)">Reasoning</text>
+
+      <!-- ReAct 推理标注 -->
+      <text x="-160" y="0" class="text-mindset" font-size="12">ReAct: 推理</text>
+      <text x="-160" y="15" class="text-mindset" font-size="12">(Reasoning)</text>
+    </g>
+
+    <!-- B. 本地身体 (左底) -->
+    <g transform="translate(180, 380)">
+      <rect x="-70" y="-45" width="140" height="90" rx="8" class="node-body" />
+      <text y="-5" text-anchor="middle" font-weight="bold" font-size="14">本地身体</text>
+      <text y="15" text-anchor="middle" class="text-mono" font-size="10" fill="var(--c-neutral-gray)">Obsidian Vault</text>
+      <text y="30" text-anchor="middle" font-size="9" fill="var(--c-local-green)">海马体：长期记忆</text>
+    </g>
+
+    <!-- C. 神经接口 (右底) -->
+    <g transform="translate(620, 380)">
+      <rect x="-70" y="-45" width="140" height="90" rx="20" class="node-interface" />
+      <text y="-5" text-anchor="middle" font-weight="bold" font-size="14">神经接口</text>
+      <text y="15" text-anchor="middle" class="text-mono" font-size="10" fill="var(--c-neutral-gray)">Text Generator</text>
+      <text y="30" text-anchor="middle" font-size="9" fill="var(--c-risk-amber)">触角：执行与注入</text>
+
+      <!-- S.C.O.R.E 提示词标注 -->
+      <text  x="0" y="-220" text-anchor="middle" class="text-mindset">S.C.O.R.E 模型</text>
+      <text  x="0" y="-200" text-anchor="middle" class="text-mindset" font-size="9">设定、背景、目标、要求、评估</text>
+
+      <!-- ReAct 行动标注 -->
+      <text x="0" y="70" text-anchor="middle" class="text-mindset" font-size="12">ReAct: 行动 </text>
+      <text x="0" y="70" text-anchor="middle" class="text-mindset" font-size="12">(Acting)</text>
+    </g>
+
+    <!-- 连接线与交互 -->
+
+    <!-- 身体 -> 接口 (数据流) -->
+    <path d="M 250,380 L 550,380" class="line-sync" marker-end="url(#arrow-green)" />
+    <text x="400" y="370" text-anchor="middle" font-size="10" fill="var(--c-local-green)">读取上下文 / 写入记录</text>
+
+    <!-- 接口 -> 大脑 (请求：发送 SCORE 提示词) -->
+    <path d="M 620,335 C 620,260 500,160 450,130" class="line-async" marker-end="url(#arrow-blue)" />
+    <text x="560" y="210" text-anchor="start" font-size="10" fill="var(--c-cloud-blue)">1. 发送 SCORE 提示词</text>
+
+    <!-- 大脑 -> 接口 (注入：推理回传 Result) -->
+    <path d="M 420,150 C 500,200 550,260 550,335" class="line-async" marker-end="url(#arrow-blue)" />
+    <text x="500" y="250" text-anchor="start" font-size="10" fill="var(--c-cloud-blue)">2. 推理回传 (Result)</text>
+
+    <!-- 中心区域文字 -->
+    <text x="400" y="260" text-anchor="middle" class="text-mindset" font-size="18" style="fill: var(--c-cloud-blue); opacity: 0.2;">ReAct 引擎</text>
+
+  </g>
+
+  <!-- 3. 图例 (底部水平布局) -->
+  <g id="legend-block" transform="translate(40, 750)">
+    <rect x="0" y="0" width="720" height="40" rx="4" fill="rgba(255,255,255,0.9)" stroke="#E2E8F0" stroke-width="0.5"/>
+    <g transform="translate(15, 24)">
+      <text x="0" y="0" class="text-title" font-size="10" fill="#64748B">图例说明：</text>
+      <g transform="translate(70, -5)">
+        <polygon points="5,0 10,3 10,8 5,11 0,8 0,3" fill="var(--c-cloud-blue)" />
+        <text x="18" y="8" font-size="10" fill="#334155">架构：大脑 (Brain)</text>
+      </g>
+      <g transform="translate(190, -5)">
+        <rect width="10" height="10" rx="2" fill="var(--c-local-green)" />
+        <text x="18" y="8" font-size="10" fill="#334155">架构：身体 (Body)</text>
+      </g>
+      <g transform="translate(310, -5)">
+        <circle cx="5" cy="5" r="5" fill="var(--c-risk-amber)" />
+        <text x="18" y="8" font-size="10" fill="#334155">心法：算法/控制层</text>
+      </g>
+      <g transform="translate(440, -5)">
+        <line x1="0" y1="5" x2="15" y2="5" class="line-pear" />
+        <text x="22" y="8" font-size="10" fill="#334155">心法：系统大闭环</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- 4. 底部许可注释 -->
+  <text x="400" y="830" text-anchor="middle" font-size="10" fill="var(--c-neutral-gray)">
+    本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+  </text>
+
+</svg>

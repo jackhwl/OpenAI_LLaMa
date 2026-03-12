@@ -1,0 +1,183 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+  <!--
+    图表名称：User Journey × 15天课程全流程时间轴（鱼骨图 v2.0）
+    描述：整合了 Module 01-07 的完整路径，涵盖从认知重构到 MCP 多智能体协同的能力跃迁。
+    更新说明：新增 Module 06，重新校准 Day 10-15 时间分配，优化 7 模块布局。
+  -->
+
+  <defs>
+    <style>
+      /* --- 1. Typography (Gitconomy Standards) --- */
+      .main-title-text { font-family: "Noto Sans", "Microsoft YaHei", sans-serif; font-size: 22px; font-weight: 800; fill: #111827; }
+      .title-text      { font-family: "Noto Sans", "Microsoft YaHei", sans-serif; font-size: 15px; font-weight: 700; fill: #111827; }
+      .body-text       { font-family: "Noto Sans", "Microsoft YaHei", sans-serif; font-size: 11px; font-weight: 400; fill: #374151; letter-spacing: 0.01em; }
+      .highlight-text  { font-family: "Noto Sans", "Microsoft YaHei", sans-serif; font-size: 11px; font-weight: 700; fill: #111827; }
+      .small-text      { font-family: "Noto Sans", "Microsoft YaHei", sans-serif; font-size: 11px; font-weight: 400; fill: #6B7280; }
+      .license-text    { font-family: "Noto Sans", "Microsoft YaHei", sans-serif; font-size: 12px; font-weight: 400; fill: #64748B; }
+
+      /* --- 2. Color Scheme --- */
+      .main-box        { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2; }
+      .box             { fill: #F0FDF4; stroke: #34D399; stroke-width: 2; }
+      .card-background { fill: #DBEAFE; stroke: #3B82F6; stroke-width: 2; }
+      .highlight-box   { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2; }
+
+      /* --- 3. Connectors &amp; Nodes --- */
+      .elbow-connector { fill: none; stroke: #2563EB; stroke-width: 1.5; }
+      .spine           { stroke: #2563EB; stroke-width: 4; }
+      .spine-ai        { stroke: #34D399; stroke-width: 2.5; stroke-dasharray: 8 6; }
+      .chipbox         { fill: #FFFFFF; stroke: #E5E7EB; stroke-width: 1; }
+      .node            { fill: #2563EB; stroke: #FFFFFF; stroke-width: 2.5; }
+
+      /* --- 4. Special Highlights --- */
+      .highlight-connector { fill: none; stroke: #FACC15; stroke-width: 2; }
+    </style>
+
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#2563EB"/>
+    </marker>
+
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#111827" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+
+  <!-- Title Section -->
+  <text x="50%" y="50" text-anchor="middle" class="main-title-text">GT-Workflow 15天课程全流程时间轴</text>
+  <text x="50%" y="75" text-anchor="middle" class="small-text">能力进阶核心任务与 Lab 交付物总览</text>
+
+  <!-- Central Backbone -->
+  <line x1="60" y1="330" x2="1020" y2="330" class="spine" marker-end="url(#arrowhead)"/>
+  <line x1="60" y1="350" x2="1020" y2="350" class="spine-ai"/>
+
+  <circle cx="60" cy="330" r="7" class="node"/>
+  <text x="40" y="310" class="small-text">Start</text>
+
+  <!-- Final Outcome -->
+  <g transform="translate(1030,265)" filter="url(#shadow)">
+    <rect x="0" y="0" width="160" height="130" class="main-box" rx="16"/>
+    <text x="15" y="32" class="title-text">完成态</text>
+    <text x="15" y="56" class="body-text">多智能体系统编排者</text>
+    <text x="15" y="74" class="body-text">生态级协作方法论</text>
+    <rect x="15" y="88" width="130" height="22" class="chipbox" rx="10"/>
+    <text x="25" y="104" class="highlight-text" style="font-size: 10px;">Orchestrator Plus</text>
+  </g>
+
+  <!-- Backbone Nodes (7 Chapters) -->
+  <circle cx="120" cy="330" r="6" class="node"/> <!-- M1 -->
+  <circle cx="260" cy="330" r="6" class="node"/> <!-- M2 -->
+  <circle cx="400" cy="330" r="6" class="node"/> <!-- M3 -->
+  <circle cx="540" cy="330" r="6" class="node"/> <!-- M4 -->
+  <circle cx="680" cy="330" r="6" class="node"/> <!-- M5 -->
+  <circle cx="820" cy="330" r="6" class="node"/> <!-- M6 -->
+  <circle cx="950" cy="330" r="6" class="node"/> <!-- M7 -->
+
+  <!-- Timeline Labels -->
+  <text x="105" y="385" class="small-text">Day 1</text>
+  <text x="240" y="385" class="small-text">Day 2–3</text>
+  <text x="380" y="385" class="small-text">Day 4–5</text>
+  <text x="520" y="385" class="small-text">Day 6–7</text>
+  <text x="660" y="385" class="small-text">Day 8–9</text>
+  <text x="800" y="385" class="small-text">Day 10–12</text>
+  <text x="930" y="385" class="small-text">Day 13–15</text>
+
+  <!-- MODULE 01 (Top) -->
+  <path class="elbow-connector" d="M120 330 L120 280 L80 280 L80 265"/>
+  <g transform="translate(10,100)" filter="url(#shadow)">
+    <rect width="210" height="165" class="card-background" rx="12"/>
+    <text x="12" y="25" class="title-text">M01 · 认知重构</text>
+    <text x="12" y="45" class="body-text">从 Search → Generate</text>
+    <rect x="12" y="55" width="186" height="20" class="chipbox" rx="10"/>
+    <text x="20" y="69" class="highlight-text" style="font-size: 10px;">识别边界 · 建立反思习惯</text>
+    <text x="12" y="95" class="small-text" style="font-weight:700;">Lab01 交付物：</text>
+    <text x="12" y="112" class="body-text">• lab01-Log.md</text>
+    <text x="12" y="128" class="body-text">• Search vs Gen 对比</text>
+    <text x="12" y="144" class="body-text">• Vault (00–04) 截图</text>
+  </g>
+
+  <!-- MODULE 02 (Bottom) -->
+  <path class="elbow-connector" d="M260 330 L260 450 L220 450 L220 470"/>
+  <g transform="translate(120,470)" filter="url(#shadow)">
+    <rect width="210" height="145" class="main-box" rx="12"/>
+    <text x="12" y="25" class="title-text">M02 · 工作流起步</text>
+    <text x="12" y="45" class="body-text">Prompt → MVW (最小流程)</text>
+    <rect x="12" y="55" width="186" height="20" class="chipbox" rx="10"/>
+    <text x="20" y="69" class="highlight-text" style="font-size: 10px;">输入/结构/输出分离</text>
+    <text x="12" y="95" class="small-text" style="font-weight:700;">Lab02 交付物：</text>
+    <text x="12" y="112" class="body-text">• GroupName-MVW.md</text>
+    <text x="12" y="128" class="body-text">• 初始流程路径</text>
+  </g>
+
+  <!-- MODULE 03 (Top) -->
+  <path class="elbow-connector" d="M400 330 L400 280 L360 280 L360 265"/>
+  <g transform="translate(260,100)" filter="url(#shadow)">
+    <rect width="210" height="165" class="main-box" rx="12"/>
+    <text x="12" y="25" class="title-text">M03 · 结构化迭代</text>
+    <text x="12" y="45" class="body-text">S.C.O.R.E 模型引入</text>
+    <rect x="12" y="55" width="186" height="20" class="chipbox" rx="10"/>
+    <text x="20" y="69" class="highlight-text" style="font-size: 10px;">评估与迭代 (Evaluate)</text>
+    <text x="12" y="95" class="small-text" style="font-weight:700;">Lab03 交付物：</text>
+    <text x="12" y="112" class="body-text">• 结构化 Prompt</text>
+    <text x="12" y="128" class="body-text">• 迭代日志 (≥2轮)</text>
+    <text x="12" y="144" class="body-text">• 评估打分表</text>
+  </g>
+
+  <!-- MODULE 04 (Bottom) -->
+  <path class="elbow-connector" d="M540 330 L540 450 L500 450 L500 470"/>
+  <g transform="translate(410,470)" filter="url(#shadow)">
+    <rect width="210" height="145" class="card-background" rx="12"/>
+    <text x="12" y="25" class="title-text">M04 · 工程化思维</text>
+    <text x="12" y="45" class="body-text">知识即代码 (Knowledge as Code)</text>
+    <rect x="12" y="55" width="186" height="20" class="chipbox" rx="10"/>
+    <text x="20" y="69" class="highlight-text" style="font-size: 10px;">版本化、协作与规范</text>
+    <text x="12" y="95" class="small-text" style="font-weight:700;">Lab04 交付物：</text>
+    <text x="12" y="112" class="body-text">• Git 化知识仓库</text>
+    <text x="12" y="128" class="body-text">• Commit 提交记录</text>
+  </g>
+
+  <!-- MODULE 05 (Top) -->
+  <path class="elbow-connector" d="M680 330 L680 280 L640 280 L640 265"/>
+  <g transform="translate(560,100)" filter="url(#shadow)">
+    <rect width="210" height="165" class="box" rx="12"/>
+    <text x="12" y="25" class="title-text">M05 · 智能知识系统</text>
+    <text x="12" y="45" class="body-text">RAG / GraphRAG 架构</text>
+    <rect x="12" y="55" width="186" height="20" class="chipbox" rx="10"/>
+    <text x="20" y="69" class="highlight-text" style="font-size: 10px;">元数据与概念网络</text>
+    <text x="12" y="95" class="small-text" style="font-weight:700;">Lab05 交付物：</text>
+    <text x="12" y="112" class="body-text">• 知识结构说明</text>
+    <text x="12" y="128" class="body-text">• 行动链设计 (Action Chain)</text>
+    <text x="12" y="144" class="body-text">• Graph 关系视图</text>
+  </g>
+
+  <!-- MODULE 06 (Bottom) - NEW! -->
+  <path class="elbow-connector" d="M820 330 L820 450 L780 450 L780 470"/>
+  <g transform="translate(680,470)" filter="url(#shadow)">
+    <rect width="210" height="165" class="box" rx="12"/>
+    <text x="12" y="25" class="title-text">M06 · 运行环境与受控</text>
+    <text x="12" y="45" class="body-text">状态记忆与出口闭环</text>
+    <rect x="12" y="55" width="186" height="20" class="chipbox" rx="10"/>
+    <text x="20" y="69" class="highlight-text" style="font-size: 10px;">本地优先与反馈机制</text>
+    <text x="12" y="95" class="small-text" style="font-weight:700;">Lab06 交付物：</text>
+    <text x="12" y="112" class="body-text">• Agent-Config.json</text>
+    <text x="12" y="128" class="body-text">• 运行日志与 Action 记录</text>
+    <text x="12" y="144" class="body-text">• 关键运行截图</text>
+  </g>
+
+  <!-- MODULE 07 (Top) -->
+  <path class="highlight-connector" d="M950 330 L950 280 L910 280 L910 265"/>
+  <g transform="translate(840,100)" filter="url(#shadow)">
+    <rect width="220" height="165" class="highlight-box" rx="12"/>
+    <text x="12" y="25" class="title-text">M07 · 协议协同生态</text>
+    <text x="12" y="45" class="body-text">多 Agent 分工与 MCP 治理</text>
+    <rect x="12" y="55" width="196" height="20" class="chipbox" rx="10"/>
+    <text x="20" y="69" class="highlight-text" style="font-size: 10px;">上下文交换与角色分工</text>
+    <text x="12" y="95" class="small-text" style="font-weight:700;">Lab07 交付物：</text>
+    <text x="12" y="112" class="body-text">• MCP 角色/工具清单</text>
+    <text x="12" y="128" class="body-text">• 协作流程说明文档</text>
+    <text x="12" y="144" class="body-text">• 系统演示关键截图</text>
+  </g>
+
+  <!-- Footer / License -->
+  <text x="50%" y="700" text-anchor="middle" class="license-text">
+    本作品采用 CC-BY-SA 4.0 国际许可协议进行许可，© 2025 Gitconomy Research 社区
+  </text>
+</svg>

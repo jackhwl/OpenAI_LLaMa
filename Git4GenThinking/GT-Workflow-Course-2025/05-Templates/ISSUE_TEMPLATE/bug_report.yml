@@ -1,0 +1,34 @@
+name: 📚 Content/Doc Feedback
+description: 报告课程内容、文档或教程中的错误
+title: "[Doc]: "
+labels: ["documentation", "good-first-issue"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        帮助我们完善课程内容和文档！
+  - type: input
+    id: location
+    attributes:
+      label: 位置
+      description: 指出具体的章节、文件名或 URL。
+    validations:
+      required: true
+  - type: dropdown
+    id: type
+    attributes:
+      label: 错误类型
+      options:
+        - "错别字 / 格式错误"
+        - "技术解释有误"
+        - "示例代码无法运行"
+        - "链接失效"
+        - "翻译建议"
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: 修改建议
+      description: 你认为应该如何修改？
+      placeholder: 原文是 "..."，建议修改为 "..."，因为...
+    validations:
+      required: true

@@ -1,0 +1,258 @@
+<svg viewBox="0 0 1000 850" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+<!--
+================================================================================
+图表名称：知识图谱多跳推理示意图
+文件命名：07-figure-04-multi-hop-reasoning.svg
+用途：展示智能体如何通过知识图谱中的双向链接，执行多跳（Multi-hop）路径寻优与逻辑推理
+版本：v1.0.0
+作者：Gitconomy Research
+SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+创建日期：2026-02-20
+================================================================================
+-->
+  <!--
+  ===========================================================================
+       背景声明：纯白背景 (Solid White) - 免疫 Git 平台深色模式干扰
+  ===========================================================================
+  -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+
+  <defs>
+    <!-- CSS 变量与基础样式 -->
+    <style>
+      :root {
+        --c-cloud-blue: #0052CC;
+        --c-cloud-blue-light: #DEEBFF;
+        --c-local-green: #00875A;
+        --c-local-green-light: #E3FCEF;
+        --c-risk-amber: #FF991F;
+        --c-risk-amber-light: #FFF7ED;
+        --c-neutral-gray: #64748B;
+        --c-neutral-light: #F1F5F9;
+        --c-text-main: #0F172A;
+
+        --font-sans: "Noto Sans SC", "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+        --font-mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+      }
+
+      text { font-family: var(--font-sans); }
+      .text-mono { font-family: var(--font-mono); }
+      .text-title { font-weight: bold; }
+
+      /* 容器样式 */
+      .box-query { fill: var(--c-cloud-blue-light); stroke: var(--c-cloud-blue); stroke-width: 2px; }
+      .box-answer { fill: #FFFFFF; stroke: var(--c-cloud-blue); stroke-width: 2.5px; }
+      .box-node { fill: #FFFFFF; stroke: var(--c-local-green); stroke-width: 2px; }
+
+      /* 背景图谱样式 */
+      .bg-node { fill: var(--c-neutral-light); stroke: #CBD5E1; stroke-width: 1px; }
+      .bg-edge { stroke: #F1F5F9; fill: none; stroke-width: 2px; }
+
+      /* 多跳推理路径样式 (琥珀色代表异步网络请求与 Agent 思考) */
+      .path-hop { stroke: var(--c-risk-amber); fill: none; stroke-width: 3.5px; stroke-dasharray: 8 6; stroke-linecap: round; }
+      .hop-label-bg { fill: #FFFFFF; stroke: var(--c-risk-amber); stroke-width: 1.5px; rx: 16px; ry: 16px; }
+    </style>
+
+    <!-- 箭头标记定义 -->
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-risk-amber)" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-cloud-blue)" />
+    </marker>
+  </defs>
+
+  <!--
+  ===========================================================================
+       1. 标题块 (Title Block)
+  ===========================================================================
+  -->
+  <g id="title-block" transform="translate(500, 40)">
+    <text y="20" text-anchor="middle" class="text-title" font-size="24" fill="#000000">知识图谱多跳推理示意图</text>
+    <text y="45" text-anchor="middle" class="text-mono" font-size="14" fill="var(--c-neutral-gray)">第 7 天 > 基础原理</text>
+    <line x1="-50" y1="60" x2="50" y2="60" stroke="var(--c-risk-amber)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!--
+  ===========================================================================
+       2. 隐喻背景：全量知识图谱 (Background Knowledge Graph)
+  ===========================================================================
+  -->
+  <g id="background-network" transform="translate(0, 100)">
+    <path d="M 100,200 L 250,150 L 450,80 L 600,120 L 750,80 L 900,150" class="bg-edge" />
+    <path d="M 100,200 L 200,350 L 400,280 L 650,220 L 850,300" class="bg-edge" />
+    <path d="M 200,350 L 150,550 L 350,600 L 550,500 L 750,600 L 900,450" class="bg-edge" />
+    <path d="M 450,80 L 400,280 L 350,600" class="bg-edge" />
+    <path d="M 600,120 L 650,220 L 550,500" class="bg-edge" />
+    <path d="M 750,80 L 850,300 L 750,600" class="bg-edge" />
+    <path d="M 900,150 L 850,300 L 900,450" class="bg-edge" />
+
+    <!-- 绘制大量失焦背景节点 -->
+    <circle cx="100" cy="200" r="10" class="bg-node" />
+    <circle cx="250" cy="150" r="15" class="bg-node" />
+    <circle cx="450" cy="80" r="12" class="bg-node" />
+    <circle cx="600" cy="120" r="18" class="bg-node" />
+    <circle cx="750" cy="80" r="10" class="bg-node" />
+    <circle cx="900" cy="150" r="14" class="bg-node" />
+    <circle cx="200" cy="350" r="12" class="bg-node" />
+    <circle cx="400" cy="280" r="16" class="bg-node" />
+    <circle cx="650" cy="220" r="12" class="bg-node" />
+    <circle cx="850" cy="300" r="20" class="bg-node" />
+    <circle cx="150" cy="550" r="14" class="bg-node" />
+    <circle cx="350" cy="600" r="12" class="bg-node" />
+    <circle cx="550" cy="500" r="18" class="bg-node" />
+    <circle cx="750" cy="600" r="15" class="bg-node" />
+    <circle cx="900" cy="450" r="12" class="bg-node" />
+  </g>
+
+  <!--
+  ===========================================================================
+       3. 多跳推理路径线 (Agent CoT Hops) - 底层绘制以防遮挡节点
+  ===========================================================================
+  -->
+  <g id="reasoning-paths">
+    <!-- Hop 1: Query -> Node 1 -->
+    <path d="M 320,240 C 350,240 360,180 390,180" class="path-hop" marker-end="url(#arrow-amber)" />
+
+    <!-- Hop 2: Node 1 -> Node 2 -->
+    <path d="M 620,180 C 720,180 810,210 810,285" class="path-hop" marker-end="url(#arrow-amber)" />
+
+    <!-- Hop 3: Node 2 -> Node 3 -->
+    <path d="M 810,425 C 810,510 750,580 680,580" class="path-hop" marker-end="url(#arrow-amber)" />
+
+    <!-- Hop 4: Node 3 -> Output Answer -->
+    <path d="M 450,580 L 330,580" class="path-hop" marker-end="url(#arrow-amber)" />
+  </g>
+
+  <!--
+  ===========================================================================
+       4. 核心图谱节点与载体 (Foreground Nodes)
+  ===========================================================================
+  -->
+  <g id="foreground-nodes">
+
+    <!-- 1. 起点：User Query (大脑输入) -->
+    <g transform="translate(80, 200)">
+      <rect x="0" y="0" width="240" height="80" rx="10" class="box-query" />
+      <polygon points="15,20 25,12 25,28 15,36 5,28 5,12" fill="var(--c-cloud-blue)" />
+      <text x="35" y="25" class="text-title" font-size="14" fill="var(--c-cloud-blue)">起始问题 (Agent Query)</text>
+      <text x="15" y="55" font-size="13" font-weight="bold" fill="var(--c-text-main)">"如何解决大模型处理</text>
+      <text x="15" y="72" font-size="13" font-weight="bold" fill="var(--c-text-main)">长文本时的遗忘问题？"</text>
+    </g>
+
+    <!-- 2. 图谱节点 A (命中问题) -->
+    <g transform="translate(400, 120)">
+      <rect x="-6" y="-6" width="232" height="132" rx="12" fill="var(--c-local-green)" fill-opacity="0.1" />
+      <rect x="0" y="0" width="220" height="120" rx="10" class="box-node" />
+      <rect x="0" y="0" width="220" height="30" rx="10" fill="var(--c-local-green-light)" />
+
+      <text x="10" y="20" class="text-title" font-size="13" fill="var(--c-local-green)">🧠 节点 A (Problem)</text>
+      <text x="10" y="50" class="text-mono" font-size="14" fill="var(--c-text-main)">lost-in-the-middle.md</text>
+      <text x="10" y="75" font-size="12" fill="var(--c-neutral-gray)">定义：长文本中间信息极易丢失</text>
+
+      <!-- 突触链接：指向 B -->
+      <rect x="10" y="90" width="200" height="20" rx="4" fill="var(--c-neutral-light)" />
+      <text x="15" y="104" class="text-mono" font-size="11" fill="var(--c-cloud-blue)">依赖解决: [[chunking-strategy]]</text>
+    </g>
+
+    <!-- 3. 图谱节点 B (寻找策略) -->
+    <g transform="translate(700, 305)">
+      <rect x="-6" y="-6" width="232" height="132" rx="12" fill="var(--c-local-green)" fill-opacity="0.1" />
+      <rect x="0" y="0" width="220" height="120" rx="10" class="box-node" />
+      <rect x="0" y="0" width="220" height="30" rx="10" fill="var(--c-local-green-light)" />
+
+      <text x="10" y="20" class="text-title" font-size="13" fill="var(--c-local-green)">🧠 节点 B (Strategy)</text>
+      <text x="10" y="50" class="text-mono" font-size="14" fill="var(--c-text-main)">chunking-strategy.md</text>
+      <text x="10" y="75" font-size="12" fill="var(--c-neutral-gray)">策略：将长文本物理切分为短片段</text>
+
+      <!-- 突触链接：指向 C -->
+      <rect x="10" y="90" width="200" height="20" rx="4" fill="var(--c-neutral-light)" />
+      <text x="15" y="104" class="text-mono" font-size="11" fill="var(--c-cloud-blue)">关联架构: [[graph-rag]]</text>
+    </g>
+
+    <!-- 4. 图谱节点 C (架构落地) -->
+    <g transform="translate(450, 520)">
+      <rect x="-6" y="-6" width="232" height="132" rx="12" fill="var(--c-local-green)" fill-opacity="0.1" />
+      <rect x="0" y="0" width="220" height="120" rx="10" class="box-node" />
+      <rect x="0" y="0" width="220" height="30" rx="10" fill="var(--c-local-green-light)" />
+
+      <text x="10" y="20" class="text-title" font-size="13" fill="var(--c-local-green)">🧠 节点 C (Architecture)</text>
+      <text x="10" y="50" class="text-mono" font-size="14" fill="var(--c-text-main)">graph-rag.md</text>
+      <text x="10" y="75" font-size="12" fill="var(--c-neutral-gray)">架构：利用图谱维护切片间的逻辑</text>
+
+      <rect x="10" y="90" width="200" height="20" rx="4" fill="var(--c-neutral-light)" />
+      <text x="15" y="104" class="text-mono" font-size="11" fill="var(--c-local-green)">反向链接: [[chunking-strategy]]</text>
+    </g>
+
+    <!-- 5. 终点：Final Answer (大脑输出) -->
+    <g transform="translate(80, 520)">
+      <!-- 辐射发光 -->
+      <rect x="-6" y="-6" width="252" height="132" rx="12" fill="var(--c-cloud-blue)" fill-opacity="0.1" />
+      <rect x="0" y="0" width="240" height="120" rx="10" class="box-answer" />
+      <rect x="0" y="0" width="240" height="35" rx="10" fill="var(--c-cloud-blue-light)" />
+
+      <text x="120" y="23" text-anchor="middle" class="text-title" font-size="14" fill="var(--c-cloud-blue)">✨ 综合解答 (Final Answer)</text>
+      <text x="15" y="60" font-size="12" fill="var(--c-text-main)">基于提取的完整上下文脉络：</text>
+      <text x="15" y="80" font-size="12" fill="var(--c-text-main)">解决“中间迷失”需要采用 <tspan font-weight="bold" fill="var(--c-cloud-blue)">切片策略</tspan></text>
+      <text x="15" y="100" font-size="12" fill="var(--c-text-main)">并辅以 <tspan font-weight="bold" fill="var(--c-cloud-blue)">GraphRAG</tspan> 架构恢复关联上下文。</text>
+    </g>
+  </g>
+
+  <!--
+  ===========================================================================
+       5. Agent 推理链批注 (Chain of Thought Callouts)
+  ===========================================================================
+  -->
+  <g id="cot-callouts">
+
+    <!-- Hop 1 Callout -->
+    <rect x="220" y="125" width="160" height="45" class="hop-label-bg" />
+    <text x="300" y="142" text-anchor="middle" font-weight="bold" font-size="12" fill="var(--c-risk-amber)">Hop 1: 语义检索</text>
+    <text x="300" y="158" text-anchor="middle" font-size="11" fill="var(--c-neutral-gray)">精准命中“症状”节点</text>
+
+    <!-- Hop 2 Callout -->
+    <rect x="670" y="145" width="170" height="45" class="hop-label-bg" />
+    <text x="755" y="162" text-anchor="middle" font-weight="bold" font-size="12" fill="var(--c-risk-amber)">Hop 2: 顺藤摸瓜 (突触传递)</text>
+    <text x="755" y="178" text-anchor="middle" font-size="11" fill="var(--c-neutral-gray)">读取 YAML 双向链接寻找解法</text>
+
+    <!-- Hop 3 Callout -->
+    <rect x="740" y="490" width="160" height="45" class="hop-label-bg" />
+    <text x="820" y="507" text-anchor="middle" font-weight="bold" font-size="12" fill="var(--c-risk-amber)">Hop 3: 深度拓展</text>
+    <text x="820" y="523" text-anchor="middle" font-size="11" fill="var(--c-neutral-gray)">追溯底层架构落地方案</text>
+
+    <!-- Hop 4 Callout -->
+    <rect x="290" y="630" width="160" height="45" class="hop-label-bg" stroke="var(--c-cloud-blue)" />
+    <text x="370" y="647" text-anchor="middle" font-weight="bold" font-size="12" fill="var(--c-cloud-blue)">Hop 4: 逻辑合成 (Synthesis)</text>
+    <text x="370" y="663" text-anchor="middle" font-size="11" fill="var(--c-neutral-gray)">整合路径上的3个节点生成答案</text>
+  </g>
+
+  <!--
+  ===========================================================================
+       6. 底部图例与许可 (Legend & License)
+  ===========================================================================
+  -->
+  <g id="legend-block" transform="translate(150, 720)">
+    <rect x="0" y="0" width="700" height="45" rx="6" fill="rgba(255,255,255,0.9)" stroke="var(--c-neutral-gray)" stroke-width="0.5"/>
+    <g transform="translate(20, 26)">
+      <text x="0" y="0" class="text-title" font-size="12" fill="var(--c-neutral-gray)">图例说明：</text>
+
+      <!-- 图例 1: 云端输入输出 -->
+      <rect x="110" y="-8" width="12" height="12" rx="2" fill="var(--c-cloud-blue-light)" stroke="var(--c-cloud-blue)" stroke-width="1.5" />
+      <text x="128" y="2" font-size="11" fill="var(--c-text-main)">Agent / 检索大脑 (IO)</text>
+
+      <!-- 图例 2: 本地图谱节点 -->
+      <rect x="270" y="-8" width="12" height="12" rx="2" fill="#FFFFFF" stroke="var(--c-local-green)" stroke-width="1.5" />
+      <text x="288" y="2" font-size="11" fill="var(--c-text-main)">图谱实体节点 (原子笔记)</text>
+
+      <!-- 图例 3: 多跳推理路径 -->
+      <line x1="430" y1="-2" x2="460" y2="-2" class="path-hop" stroke-width="2" />
+      <text x="470" y="2" font-size="11" fill="var(--c-text-main)">多跳推理路径 (Multi-hop Reasoning)</text>
+    </g>
+  </g>
+
+  <!-- CC 版权声明 -->
+  <text x="500" y="800" text-anchor="middle" font-size="11" fill="var(--c-neutral-gray)">
+    本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+  </text>
+
+</svg>

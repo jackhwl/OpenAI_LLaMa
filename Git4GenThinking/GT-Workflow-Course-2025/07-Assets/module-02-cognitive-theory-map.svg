@@ -1,0 +1,162 @@
+<!--
+  图表名称：人机协作认知理论地图 (Cognitive Theory Map)
+  描述：该图表展示了如何通过整合Shannon信息论、Sweller认知负荷理论和Shneiderman人本AI理论，
+       衍生出S.C.O.R.E和MVW这两个新的实操理论框架。
+-->
+<svg width="1060" height="660" viewBox="0 0 1060 660" xmlns="http://www.w3.org/2000/svg" style="background-color: white; font-family: 'Noto Sans', sans-serif;">
+
+  <!-- 样式定义：遵循 DaC 规范 -->
+  <defs>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563EB" />
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <!-- 标题区域 (中心点平移至 530) -->
+  <text x="530" y="50" text-anchor="middle" font-size="22" font-weight="800" fill="#111827">人机协作认知理论地图 (Cognitive Theory Map)</text>
+  <text x="530" y="75" text-anchor="middle" font-size="12" font-weight="normal" fill="#6B7280">Gitconomy DaC Standard: Theoretical Integration Framework</text>
+
+  <!-- ==================== 第一层：基础理论 (Foundation Layer) ==================== -->
+
+  <!-- 1. Shannon (左侧 - 问题域) -->
+  <g transform="translate(50, 165)">
+    <rect x="0" y="0" width="240" height="220" rx="8" fill="#EFF6FF" stroke="#60A5FA" stroke-width="2" filter="url(#shadow)" />
+    <!-- 标题区 -->
+    <text x="120" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="#111827">Claude Shannon</text>
+    <text x="120" y="55" text-anchor="middle" font-size="12" fill="#3B82F6">(1948)</text>
+    <text x="120" y="80" text-anchor="middle" font-size="14" font-weight="bold" fill="#1D4ED8">信息论 (Information Theory)</text>
+
+    <!-- 内容区 -->
+    <foreignObject x="20" y="90" width="200" height="120">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="font-size:11px; color:#374151; line-height:1.6; font-family: sans-serif;">
+        <p style="margin:0; padding-top:5px;"><strong>核心定义：</strong></p>
+        <ul style="margin:0; padding-left:15px;">
+          <li>信息熵 (Entropy) = 不确定性</li>
+          <li>自然语言具有高冗余性</li>
+        </ul>
+        <p style="margin:0; padding-top:8px;"><strong>痛点：</strong></p>
+        <p style="margin:0;">模型在无限的可能性空间中进行"概率盲猜" (Guessing Game)。</p>
+      </div>
+    </foreignObject>
+  </g>
+
+  <!-- 2. Shneiderman (右侧 - 目标域) -->
+  <g transform="translate(770, 165)">
+    <rect x="0" y="0" width="240" height="220" rx="8" fill="#EFF6FF" stroke="#60A5FA" stroke-width="2" filter="url(#shadow)" />
+    <text x="120" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="#111827">Ben Shneiderman</text>
+    <text x="120" y="55" text-anchor="middle" font-size="12" fill="#3B82F6">(2022)</text>
+    <text x="120" y="80" text-anchor="middle" font-size="14" font-weight="bold" fill="#1D4ED8">人本人工智能 (HCAI)</text>
+
+    <foreignObject x="20" y="90" width="200" height="120">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="font-size:11px; color:#374151; line-height:1.6; font-family: sans-serif;">
+        <p style="margin:0; padding-top:5px;"><strong>核心定义：</strong></p>
+        <ul style="margin:0; padding-left:15px;">
+          <li>Human-Centered AI</li>
+          <li>双重目标：高自动化 + 高控制</li>
+        </ul>
+        <p style="margin:0; padding-top:8px;"><strong>愿景：</strong></p>
+        <p style="margin:0;">建立可靠(Reliable)、安全(Safe)、可信(Trustworthy)的协作系统。</p>
+      </div>
+    </foreignObject>
+  </g>
+
+  <!-- 3. Sweller (底部 - 限制域/基石) -->
+  <g transform="translate(410, 445)">
+    <rect x="0" y="0" width="240" height="150" rx="8" fill="#EFF6FF" stroke="#60A5FA" stroke-width="2" filter="url(#shadow)" />
+    <text x="120" y="35" text-anchor="middle" font-size="16" font-weight="bold" fill="#111827">John Sweller</text>
+    <text x="120" y="55" text-anchor="middle" font-size="12" fill="#3B82F6">(1988)</text>
+    <text x="120" y="80" text-anchor="middle" font-size="14" font-weight="bold" fill="#1D4ED8">认知负荷理论 (CLT)</text>
+
+    <foreignObject x="20" y="90" width="200" height="50">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="font-size:11px; color:#374151; line-height:1.6; font-family: sans-serif; text-align:center;">
+        <p style="margin:0;"><strong>工作记忆资源是有限的</strong></p>
+        <p style="margin:0; color:#DC2626;">需减少无效负荷 (Extraneous)</p>
+      </div>
+    </foreignObject>
+  </g>
+
+  <!-- ==================== 第二层：整合衍生框架 (New Synthesis Layer) ==================== -->
+
+  <g transform="translate(360, 125)">
+    <!-- 背景容器 -->
+    <rect x="0" y="0" width="340" height="260" rx="8" fill="#F0FDF4" stroke="#34D399" stroke-width="2" filter="url(#shadow)" />
+
+    <!-- 标题 -->
+    <text x="170" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#065F46">整合衍生理论框架</text>
+    <text x="170" y="50" text-anchor="middle" font-size="12" fill="#059669">Cognitive Engineering Framework</text>
+
+    <!-- 工具 1: S.C.O.R.E -->
+    <g transform="translate(20, 70)">
+      <rect x="0" y="0" width="140" height="170" rx="6" fill="#FEF9C3" stroke="#FACC15" stroke-width="2" />
+      <text x="70" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#854D0E">S.C.O.R.E 模型</text>
+      <text x="70" y="40" text-anchor="middle" font-size="10" fill="#A16207">(结构化提示)</text>
+
+      <foreignObject x="10" y="50" width="120" height="110">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="font-size:10px; color:#4B5563; line-height:1.4;">
+          <p style="margin:0 0 5px 0;"><strong>理论原理：</strong></p>
+          <ul style="margin:0; padding-left:12px;">
+            <li>通过Context约束，主动<b>剪枝</b> (对抗Shannon熵)</li>
+            <li>结构化输入，降低模型<b>无效负荷</b> (应用Sweller)</li>
+          </ul>
+        </div>
+      </foreignObject>
+    </g>
+
+    <!-- 工具 2: MVW -->
+    <g transform="translate(180, 70)">
+      <rect x="0" y="0" width="140" height="170" rx="6" fill="#FEF9C3" stroke="#FACC15" stroke-width="2" />
+      <text x="70" y="25" text-anchor="middle" font-size="14" font-weight="bold" fill="#854D0E">MVW 工作流</text>
+      <text x="70" y="40" text-anchor="middle" font-size="10" fill="#A16207">(最小可行链路)</text>
+
+      <!-- MVW 5步流程微缩图 -->
+      <g transform="translate(10, 55)">
+         <rect x="0" y="0" width="20" height="12" rx="2" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1"/>
+         <rect x="25" y="0" width="20" height="12" rx="2" fill="#DCFCE7" stroke="#22C55E" stroke-width="1"/>
+         <rect x="50" y="0" width="20" height="12" rx="2" fill="#F3E8FF" stroke="#A855F7" stroke-width="1"/>
+         <rect x="75" y="0" width="20" height="12" rx="2" fill="#FEF3C7" stroke="#EAB308" stroke-width="1"/>
+         <rect x="100" y="0" width="20" height="12" rx="2" fill="#FFE4E6" stroke="#F43F5E" stroke-width="1"/>
+         <text x="60" y="22" text-anchor="middle" font-size="8" fill="#4B5563">In -> Str -> Gen -> Itr -> Exp</text>
+      </g>
+
+      <foreignObject x="10" y="85" width="120" height="80">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="font-size:10px; color:#4B5563; line-height:1.4;">
+          <p style="margin:0 0 5px 0;"><strong>理论原理：</strong></p>
+          <ul style="margin:0; padding-left:12px;">
+            <li>将复杂任务拆解，适配有限<b>工作记忆</b></li>
+            <li>增加中间检查点，实现<b>过程控制</b> (达成HCAI)</li>
+          </ul>
+        </div>
+      </foreignObject>
+    </g>
+  </g>
+
+  <!-- ==================== 连接线 (Connectors) ==================== -->
+
+  <!-- Shannon -> Synthesis -->
+
+  <path d="M290 255 L360 255" fill="none" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <!-- 文本居中 x=325, y微调 -->
+  <text x="325" y="245" text-anchor="middle" font-size="10" fill="#2563EB">输入: 高熵问题</text>
+
+  <!-- Synthesis -> Shneiderman -->
+
+  <path d="M700 255 L770 255" fill="none" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <!-- 文本居中 x=735 -->
+  <text x="735" y="245" text-anchor="middle" font-size="10" fill="#2563EB">输出: 可控结果</text>
+
+  <!-- Sweller -> Synthesis (向上支撑) -->
+
+  <path d="M530 445 L530 385" fill="none" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow-blue)" />
+  <!-- 文本右移 -->
+  <text x="575" y="425" text-anchor="middle" font-size="10" fill="#2563EB">约束: 认知负荷</text>
+
+  <!-- ==================== 许可声明 (License) ==================== -->
+
+  <text x="530" y="625" text-anchor="middle" font-size="12" fill="#64748B">
+      本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

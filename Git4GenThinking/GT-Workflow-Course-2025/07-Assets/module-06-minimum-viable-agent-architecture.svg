@@ -1,0 +1,233 @@
+<!--
+  ================================================================================
+  图表名称：MVA (Minimum Viable Agent) 系统架构图 - 纵向分层版
+  文件命名：module-06-minimum-viable-agent-architecture.svg
+  描述：基于“本地优先”原则的纵向分层架构，展示 MVA 的系统边界与数据流向。
+        遵循 Gitconomy 社区 DaC 设计规范 (Blue/Green/Yellow 配色体系)。
+
+  核心逻辑：
+  1. 顶层：云端推理层 (Remote Inference) - 蓝色系 (Core)
+  2. 中层：运行环境层 (Agent Runtime) - 绿色/深蓝系 (Local/State)
+  3. 底层：受控行动层 (Controlled Action) - 黄色系 (Highlight/Risk)
+
+  参考文档：
+  - 《06-智能体运行环境：构建最小可行跨工具Agent》
+  - 《Gitconomy社区图形即代码设计规范指南》
+  ================================================================================
+-->
+<svg width="1200" height="900" viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+  <defs>
+    <style>
+      /* 字体规范 */
+      .main-title-text { font-family: 'Noto Sans', sans-serif; font-size: 22px; font-weight: 800; fill: #111827; }
+      .sub-title-text { font-family: 'Noto Sans', sans-serif; font-size: 16px; font-weight: 400; fill: #6B7280; }
+      .title-text { font-family: 'Noto Sans', sans-serif; font-size: 16px; font-weight: 700; fill: #111827; }
+      .body-text { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 400; fill: #374151; line-height: 1.5; }
+      .small-text { font-family: 'Noto Sans', sans-serif; font-size: 11px; font-weight: 400; fill: #6B7280; }
+      .highlight-text { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 700; fill: #B45309; }
+      .license-text { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 400; fill: #64748B; }
+
+      /* 配色方案 - 遵循指南 */
+      /* 核心概念框 (Main Concept) - 蓝色系 */
+      .main-box { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; rx: 8; ry: 8; }
+
+      /* 标准信息框 (Standard Info) - 绿色系 */
+      .box { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; rx: 6; ry: 6; }
+
+      /* 分组/卡片背景 (Grouping) - 柔和蓝 */
+      .card-background { fill: #DBEAFE; stroke: #3B82F6; stroke-width: 2px; rx: 6; ry: 6; }
+
+      /* 高亮/强调框 (Highlight) - 黄色系 */
+      .highlight-box { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2px; rx: 8; ry: 8; }
+
+      /* 边界与特殊样式 */
+      .dashed-boundary { fill: none; stroke: #10B981; stroke-width: 2px; stroke-dasharray: 8,8; rx: 16; ry: 16; }
+      .label-bg { fill: white; stroke: #E5E7EB; stroke-width: 1px; rx: 4; ry: 4; }
+
+      /* 连接线 */
+      .connector { fill: none; stroke: #2563EB; stroke-width: 2px; }
+      .connector-dashed { fill: none; stroke: #2563EB; stroke-width: 2px; stroke-dasharray: 6,4; }
+      .connector-loop { fill: none; stroke: #059669; stroke-width: 2px; }
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563EB" />
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#059669" />
+    </marker>
+
+    <!-- 图标定义 (简化版，颜色跟随类) -->
+    <!-- Cloud -->
+    <g id="icon-cloud">
+      <path d="M25,30 C25,38 32,45 40,45 L70,45 C78,45 85,38 85,30 C85,23 80,18 74,16 C73,10 68,5 60,5 C53,5 48,9 46,14 C40,12 35,15 32,19 C28,19 25,24 25,30 Z" fill="none" stroke="#2563EB" stroke-width="2"/>
+    </g>
+    <!-- DB -->
+    <g id="icon-db">
+      <path d="M20,15 C20,7 80,7 80,15 C80,23 20,23 20,15 Z M20,15 L20,45 C20,53 80,53 80,45 L80,15 M20,30 C20,38 80,38 80,30" fill="none" stroke="#34D399" stroke-width="2"/>
+    </g>
+    <!-- Gear -->
+    <g id="icon-gear">
+      <circle cx="50" cy="50" r="15" fill="none" stroke="#2563EB" stroke-width="2"/>
+      <path d="M50,20 L50,10 M50,80 L50,90 M80,50 L90,50 M10,50 L20,50 M71,29 L78,22 M29,71 L22,78 M71,71 L78,78 M29,29 L22,22" stroke="#2563EB" stroke-width="3"/>
+    </g>
+    <!-- Gate/Action -->
+    <g id="icon-gate">
+      <rect x="20" y="20" width="60" height="40" fill="none" stroke="#B45309" stroke-width="2"/>
+      <line x1="50" y1="20" x2="50" y2="60" stroke="#B45309" stroke-width="2"/>
+      <line x1="20" y1="40" x2="80" y2="40" stroke="#B45309" stroke-width="2"/>
+    </g>
+    <!-- User -->
+    <g id="icon-user">
+      <circle cx="20" cy="15" r="8" fill="none" stroke="#059669" stroke-width="2"/>
+      <path d="M10,35 C10,25 30,25 30,35" fill="none" stroke="#059669" stroke-width="2"/>
+    </g>
+  </defs>
+
+  <!-- 标题区 -->
+  <text x="600" y="50" class="main-title-text" text-anchor="middle">MVA架构：本地优先与层级解耦设计</text>
+  <text x="600" y="80" class="sub-title-text" text-anchor="middle">Local-First MVA Architecture: Inference Outsourced, State Internalized</text>
+
+  <!-- ========================================================================= -->
+  <!-- 1. Top Layer: Remote Inference (Cloud) -->
+  <!-- 样式：Main Box (Blue) - 代表核心计算资源 -->
+  <!-- ========================================================================= -->
+  <g transform="translate(300, 110)">
+    <rect x="0" y="0" width="600" height="120" class="main-box" />
+    <text x="300" y="30" class="title-text" text-anchor="middle">云端推理层 (Remote Inference)</text>
+
+    <!-- Cloud Icon -->
+    <use href="#icon-cloud" x="180" y="50" transform="scale(0.8)"/>
+    <use href="#icon-cloud" x="450" y="50" transform="scale(0.8)"/>
+
+    <text x="300" y="60" class="body-text" text-anchor="middle" font-weight="bold">External LLM / Brain</text>
+    <text x="300" y="80" class="body-text" text-anchor="middle">Pure Calculation (Stateless)</text>
+    <text x="300" y="100" class="small-text" text-anchor="middle">Reasoning • Planning • Generation</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- Local Boundary Container -->
+  <!-- ========================================================================= -->
+  <rect x="50" y="260" width="1100" height="580" class="dashed-boundary" />
+  <g transform="translate(80, 290)">
+    <text x="0" y="0" class="title-text" fill="#059669">本地安全边界</text>
+    <text x="120" y="0" class="small-text" fill="#059669"> (State, Identity, and Actions stay here)</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 2. Middle Layer: Agent Runtime (Local Core) -->
+  <!-- ========================================================================= -->
+
+  <!-- Left: Local State Layer -->
+  <!-- 样式：Standard Box (Green) - 代表标准信息与状态存储 -->
+  <g transform="translate(100, 330)">
+    <rect x="0" y="0" width="350" height="220" class="box" />
+    <text x="175" y="30" class="title-text" text-anchor="middle">本地状态层</text>
+
+    <!-- Icon -->
+    <use href="#icon-db" x="30" y="60" transform="scale(0.8)" />
+
+    <!-- Content List -->
+    <g transform="translate(120, 70)">
+      <text x="0" y="0" class="body-text" font-weight="bold">• System Anchor (锚点)</text>
+      <text x="0" y="25" class="body-text">• Short-term Context (短期)</text>
+      <text x="0" y="50" class="body-text">• RAG / Knowledge (长期)</text>
+      <text x="0" y="75" class="body-text">• Task Goals (目标)</text>
+      <text x="0" y="100" class="body-text">• History &amp; Logs (历史)</text>
+    </g>
+  </g>
+
+  <!-- Center: Orchestration Layer -->
+  <!-- 样式：Card Background (Soft Blue) - 代表功能分组与调度中心 -->
+  <g transform="translate(550, 330)">
+    <rect x="0" y="0" width="350" height="220" class="card-background" />
+    <text x="175" y="30" class="title-text" text-anchor="middle">调度层 (Orchestration)</text>
+
+    <!-- Icon -->
+    <use href="#icon-gear" x="125" y="30" />
+
+    <text x="175" y="140" class="highlight-text" text-anchor="middle" fill="#2563EB" style="font-size: 14px;">PEAR Controller</text>
+    <text x="175" y="165" class="body-text" text-anchor="middle">Perceive • Evaluate • Act • Reflect</text>
+    <text x="175" y="190" class="small-text" text-anchor="middle">Parsing &amp; Dispatching Hub</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 3. Bottom Layer: Controlled Action (Physical) -->
+  <!-- 样式：Highlight Box (Yellow) - 代表高价值/高风险操作 -->
+  <!-- ========================================================================= -->
+  <g transform="translate(300, 650)">
+    <rect x="0" y="0" width="600" height="150" class="highlight-box" />
+    <text x="300" y="30" class="title-text" text-anchor="middle">受控行动层 (Controlled Action)</text>
+
+    <!-- Icon -->
+    <use href="#icon-gate" x="50" y="50" transform="scale(0.8)" />
+    <use href="#icon-gate" x="500" y="50" transform="scale(0.8)" />
+
+    <!-- Action Types -->
+    <g transform="translate(150, 60)">
+      <!-- Type A -->
+      <rect x="0" y="0" width="90" height="60" fill="white" stroke="#F97316" rx="4"/>
+      <text x="45" y="25" class="body-text" text-anchor="middle" font-weight="bold">Type A</text>
+      <text x="45" y="45" class="small-text" text-anchor="middle">Read Only</text>
+
+      <!-- Type B -->
+      <rect x="110" y="0" width="90" height="60" fill="white" stroke="#F97316" rx="4"/>
+      <text x="155" y="25" class="body-text" text-anchor="middle" font-weight="bold">Type B</text>
+      <text x="155" y="45" class="small-text" text-anchor="middle">Suggest</text>
+
+      <!-- Type C -->
+      <rect x="220" y="0" width="90" height="60" fill="#FFF7ED" stroke="#C2410C" stroke-width="2" rx="4"/>
+      <text x="265" y="25" class="body-text" text-anchor="middle" font-weight="bold" fill="#C2410C">Type C</text>
+      <text x="265" y="45" class="small-text" text-anchor="middle" fill="#C2410C">Confirm</text>
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- Data Flows & Connectors -->
+  <!-- ========================================================================= -->
+
+  <!-- 1. Perceive: State -> Orchestration -->
+  <path d="M450,440 L550,440" class="connector" marker-end="url(#arrow-blue)" />
+  <g transform="translate(470, 410)">
+    <rect x="0" y="0" width="60" height="20" class="label-bg"/>
+    <text x="30" y="14" class="small-text" text-anchor="middle">Context</text>
+  </g>
+
+  <!-- 2. Evaluate: Orchestration <-> Inference (Cloud) -->
+  <!-- Request -->
+  <path d="M680,330 L680,230" class="connector-dashed" marker-end="url(#arrow-blue)" />
+  <g transform="translate(690, 270)">
+    <rect x="0" y="0" width="50" height="20" class="label-bg"/>
+    <text x="25" y="14" class="small-text" text-anchor="middle">Prompt</text>
+  </g>
+  <!-- Response -->
+  <path d="M770,230 L770,330" class="connector-dashed" marker-end="url(#arrow-blue)" />
+  <g transform="translate(780, 270)">
+    <rect x="0" y="0" width="60" height="20" class="label-bg"/>
+    <text x="30" y="14" class="small-text" text-anchor="middle">Response</text>
+  </g>
+
+  <!-- 3. Act: Orchestration -> Action Layer -->
+  <path d="M725,550 L725,650" class="connector" marker-end="url(#arrow-blue)" />
+
+  <!-- Human-in-the-loop Icon on the Act line -->
+  <g transform="translate(705, 580)">
+    <rect x="0" y="0" width="40" height="40" fill="white" stroke="#059669" stroke-width="1" rx="20"/>
+    <use href="#icon-user" x="0" y="5" />
+  </g>
+  <text x="780" y="605" class="small-text" fill="#059669">Human Audit</text>
+
+  <!-- 4. Reflect: Action -> State (Feedback Loop) -->
+  <path d="M300,725 C150,725 150,650 150,550" class="connector-loop" marker-end="url(#arrow-green)" />
+  <g transform="translate(120, 650)">
+    <rect x="0" y="0" width="80" height="20" class="label-bg" stroke="#059669"/>
+    <text x="40" y="14" class="small-text" text-anchor="middle" fill="#047857">Reflect / Log</text>
+  </g>
+
+  <!-- 5. 许可声明 -->
+  <text x="600" y="870" class="license-text" text-anchor="middle">
+    本作品采用 CC-BY-SA 4.0 国际许可协议进行许可，© 2025 Gitconomy Research 社区
+  </text>
+
+</svg>

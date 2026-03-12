@@ -1,0 +1,220 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="950" viewBox="0 0 1400 950" role="img" aria-label="图4：Prompt 作为人机协作的通信协议层（接口位置示意）" style="background-color: white; font-family: 'Noto Sans', sans-serif;">
+  <!--
+    图表名称：Prompt 作为人机协作的通信协议层
+    描述：展示Prompt在知识工作流中作为“Structure”与“Generate”之间通信协议的角色。
+    核心隐喻：Human (Client) -> Protocol (Prompt/S.C.O.R.E) -> AI (Server).
+    设计规范参考：Gitconomy社区图形即代码设计规范指南
+  -->
+  <defs>
+    <style>
+      :root{
+        /* 基础色板 - 适配浅色模式 */
+        --bg: #ffffff;
+        --panel: #F8FAFC;       /* Slate-50 */
+        --card: #FFFFFF;        /* White */
+        --card2: #F1F5F9;       /* Slate-100 */
+        --stroke: #CBD5E1;      /* Slate-300 */
+        --text: #1E293B;        /* Slate-800 */
+        --muted: #64748B;       /* Slate-500 */
+
+        /* 语义色板 */
+        --human: #3B82F6;       /* 人类：蓝 */
+        --human-bg: #EFF6FF;    /* 淡蓝 */
+        --ai: #10B981;          /* AI：绿 */
+        --ai-bg: #F0FDF4;       /* 淡绿 */
+        --proto: #F59E0B;       /* 协议层：黄 */
+        --proto-bg: #FFFBEB;    /* 淡黄 */
+      }
+
+      .bg { fill: var(--bg); }
+      .panel { fill: var(--panel); stroke: var(--stroke); stroke-width: 1.4; }
+      .card { fill: var(--card); stroke: var(--stroke); stroke-width: 1.4; filter: url(#shadow); }
+      .card2 { fill: var(--card2); stroke: var(--stroke); stroke-width: 1.4; }
+
+      /* 字体样式 */
+      .title { font-size: 34px; font-weight: 800; fill: var(--text); }
+      .sub { font-size: 16px; font-weight: 500; fill: var(--muted); }
+      .h { font-size: 18px; font-weight: 800; fill: var(--text); }
+      .b { font-size: 14px; font-weight: 500; fill: var(--muted); }
+      .mono { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; font-weight: 700; fill: var(--muted); opacity: 0.8; }
+      .chipText { font-size: 12px; font-weight: 800; fill: white; }
+      .pillText { font-size: 13px; font-weight: 800; fill: var(--text); }
+
+      /* 线条与箭头 */
+      .arrowH { fill: none; stroke: var(--human); stroke-width: 4; stroke-linecap: round; marker-end: url(#ah); }
+      .arrowA { fill: none; stroke: var(--ai); stroke-width: 4; stroke-linecap: round; marker-end: url(#aa); }
+      .arrowP { fill: none; stroke: var(--proto); stroke-width: 4; stroke-linecap: round; marker-end: url(#ap); }
+      .dash { fill: none; stroke: var(--stroke); stroke-width: 2; stroke-dasharray: 8 10; opacity: 0.8; }
+
+      /* 内部容器 */
+      .pill { fill: white; stroke: var(--stroke); stroke-width: 1.2; }
+      .humanBox { fill: var(--human-bg); stroke: var(--human); stroke-width: 2; }
+      .aiBox { fill: var(--ai-bg); stroke: var(--ai); stroke-width: 2; }
+      .protoBox { fill: var(--proto-bg); stroke: var(--proto); stroke-width: 2; }
+
+      /* 小标签文字颜色特化 */
+      .text-proto { fill: #B45309; }
+      .text-human { fill: #1D4ED8; }
+      .text-ai { fill: #047857; }
+    </style>
+
+    <!-- 箭头尺寸调整：从 markerWidth="8" markerHeight="8" 调整为 "5" -->
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10Z" fill="#3B82F6"/>
+    </marker>
+    <marker id="aa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10Z" fill="#10B981"/>
+    </marker>
+    <marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0 L10 5 L0 10Z" fill="#F59E0B"/>
+    </marker>
+
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#64748B" flood-opacity="0.10"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect class="bg" x="0" y="0" width="1400" height="950"/>
+
+  <!-- 标题 -->
+  <text class="title" x="700" y="82" text-anchor="middle">Prompt 是人机协作的“通信协议层”</text>
+  <text class="sub" x="700" y="112" text-anchor="middle">它连接上游结构化与下游推理生成，并为迭代回路提供可控的接口（Interface）</text>
+
+  <!-- 主面板 -->
+  <rect class="panel" x="50" y="150" width="1300" height="740" rx="22" />
+
+  <!-- 顶部：工作流带（定位 Prompt） -->
+  <g transform="translate(90,185)">
+    <rect class="card2" x="0" y="0" width="1220" height="110" rx="18"/>
+    <text class="h" x="24" y="36">工作流定位</text>
+    <text class="b" x="24" y="62">Input → Structure → <tspan fill="#D97706" font-weight="800">Prompt（协议层）</tspan> → Generate → Iterate → Express</text>
+
+    <!-- pills -->
+    <g transform="translate(24,74)">
+      <rect class="pill" x="0" y="0" width="98" height="30" rx="15"/>
+      <text class="pillText" x="49" y="20" text-anchor="middle">Input</text>
+
+      <path class="dash" d="M110 15 L148 15"/>
+      <rect class="pill" x="160" y="0" width="120" height="30" rx="15"/>
+      <text class="pillText" x="220" y="20" text-anchor="middle">Structure</text>
+
+      <path class="dash" d="M292 15 L330 15"/>
+      <!-- Prompt Pill Highlighted -->
+      <rect class="pill" x="342" y="0" width="128" height="30" rx="15" stroke="var(--proto)" stroke-width="2" fill="#FFFBEB"/>
+      <text class="pillText" x="406" y="20" text-anchor="middle" fill="#B45309">Prompt</text>
+
+      <path class="dash" d="M482 15 L520 15"/>
+      <rect class="pill" x="532" y="0" width="115" height="30" rx="15"/>
+      <text class="pillText" x="589.5" y="20" text-anchor="middle">Generate</text>
+
+      <path class="dash" d="M659 15 L697 15"/>
+      <rect class="pill" x="709" y="0" width="105" height="30" rx="15"/>
+      <text class="pillText" x="761.5" y="20" text-anchor="middle">Iterate</text>
+
+      <path class="dash" d="M826 15 L864 15"/>
+      <rect class="pill" x="876" y="0" width="105" height="30" rx="15"/>
+      <text class="pillText" x="928.5" y="20" text-anchor="middle">Express</text>
+    </g>
+  </g>
+
+  <!-- 中部：三层架构（人类层 / 协议层 / 模型层） -->
+  <g transform="translate(90,320)">
+    <!-- 三列大卡片 -->
+    <rect class="card" x="0" y="0" width="360" height="380" rx="18"/>
+    <rect class="card" x="430" y="0" width="360" height="380" rx="18"/>
+    <rect class="card" x="860" y="0" width="450" height="380" rx="18"/>
+
+    <!-- 左：人类层 -->
+    <g transform="translate(24,24)">
+      <rect x="0" y="0" width="160" height="26" rx="13" fill="var(--human)"/>
+      <text class="chipText" x="80" y="18" text-anchor="middle">人类层（认知与结构）</text>
+
+      <text class="h" x="0" y="70">意图编码 (Encoding)</text>
+      <text class="b" x="0" y="96">将模糊需求转化为结构化意图</text>
+
+      <rect class="humanBox" x="0" y="120" width="312" height="90" rx="16"/>
+      <text class="h text-human" x="18" y="150">输入状态</text>
+      <text class="mono text-human" x="18" y="175">• 原始语料 (Context)</text>
+      <text class="mono text-human" x="18" y="197">• 模糊目标 (Intent)</text>
+
+      <rect class="humanBox" x="0" y="230" width="312" height="110" rx="16"/>
+      <text class="h text-human" x="18" y="262">关键动作</text>
+      <text class="mono text-human" x="18" y="287">• 熵减整理 (Structure)</text>
+      <text class="mono text-human" x="18" y="309">• 边界定义 (Constraints)</text>
+      <text class="mono text-human" x="18" y="331">• 质量评估 (Evaluate)</text>
+    </g>
+
+    <!-- 中：协议层 -->
+    <g transform="translate(454,24)">
+      <rect x="0" y="0" width="200" height="26" rx="13" fill="var(--proto)"/>
+      <text class="chipText" x="100" y="18" text-anchor="middle">协议层（Prompt）</text>
+
+      <text class="h" x="0" y="70">S.C.O.R.E 协议模型</text>
+      <text class="b" x="0" y="96">标准化接口封装，消除自然语言歧义</text>
+
+      <rect class="protoBox" x="0" y="120" width="312" height="150" rx="16"/>
+      <text class="h text-proto" x="18" y="152">负载结构 (Payload)</text>
+      <text class="mono text-proto" x="18" y="176">S - Setting (角色设定)</text>
+      <text class="mono text-proto" x="18" y="198">C - Context (语境/数据)</text>
+      <text class="mono text-proto" x="18" y="220">O - Objective (任务目标)</text>
+      <text class="mono text-proto" x="18" y="242">R - Requirement (约束)</text>
+      <text class="mono text-proto" x="18" y="264">E - Evaluation (自检)</text>
+
+      <rect class="protoBox" x="0" y="290" width="312" height="90" rx="16"/>
+      <text class="h text-proto" x="18" y="320">协议特性</text>
+      <text class="mono text-proto" x="18" y="344">• 显性化 (Explicit)</text>
+      <text class="mono text-proto" x="18" y="366">• 结构化 (Structured)</text>
+    </g>
+
+    <!-- 右：模型层 -->
+    <g transform="translate(884,24)">
+      <rect x="0" y="0" width="210" height="26" rx="13" fill="var(--ai)"/>
+      <text class="chipText" x="105" y="18" text-anchor="middle">模型层（推理与生成）</text>
+
+      <text class="h" x="0" y="70">解码与执行 (Decoding)</text>
+      <text class="b" x="0" y="96">概率预测 → 逻辑推理 → 反馈修正</text>
+
+      <rect class="aiBox" x="0" y="120" width="402" height="110" rx="16"/>
+      <text class="h text-ai" x="18" y="152">生成 (Generate)</text>
+      <text class="mono text-ai" x="18" y="176">• 概率解码 (Next-Token)</text>
+      <text class="mono text-ai" x="18" y="198">• 思维链推理 (CoT)</text>
+
+      <rect class="aiBox" x="0" y="248" width="402" height="132" rx="16"/>
+      <text class="h text-ai" x="18" y="280">迭代 (Iterate)</text>
+      <text class="mono text-ai" x="18" y="304">• 接收 Feedback Prompt</text>
+      <text class="mono text-ai" x="18" y="326">• 局部修正 / 风格对齐</text>
+      <text class="mono text-ai" x="18" y="348">• 最终交付 (Express)</text>
+    </g>
+  </g>
+
+  <!-- 层间箭头（人类层 → 协议层 → 模型层） -->
+  <g>
+    <!-- 人类到协议 -->
+    <path class="arrowH" d="M 370 505 C 420 505, 420 505, 520 505"/>
+    <text class="b" x="445" y="495" text-anchor="middle" fill="var(--human)">封装</text>
+
+    <!-- 协议到模型 -->
+    <path class="arrowP" d="M 810 505 C 860 505, 860 505, 950 505"/>
+    <text class="b" x="880" y="495" text-anchor="middle" fill="var(--proto)">传输</text>
+
+    <!-- 迭代回路：模型输出 → 人类评估 → 协议更新 → 再生成 -->
+    <path class="arrowA" d="M 1185 640 C 1185 710, 920 735, 700 720"/>
+    <path class="arrowH" d="M 700 720 C 460 705, 360 675, 280 640"/>
+    <path class="arrowP" d="M 280 640 C 420 610, 520 590, 620 565"/>
+
+    <text class="b" x="720" y="748" text-anchor="middle" fill="#B45309" font-weight="bold">Iterate 回路：评估 (Human) → 协议修正 (Prompt) → 再生成 (AI)</text>
+  </g>
+
+  <!-- 底部总结条  -->
+  <g transform="translate(90,775)">
+    <rect class="card2" x="0" y="0" width="1220" height="90" rx="18"/>
+    <text class="h" x="24" y="34">核心洞察</text>
+    <text class="b" x="24" y="60">Prompt 不是“一句话”，而是把人类的结构化思考转译为模型可执行的接口协议；协议越清晰，熵值越低，生成结果越可控。</text>
+  </g>
+
+  <!-- 许可声明 -->
+  <text x="700" y="920" text-anchor="middle" class="b" style="font-size: 12px; fill: #94A3B8;">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+</svg>

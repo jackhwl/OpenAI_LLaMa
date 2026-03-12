@@ -1,0 +1,233 @@
+<svg viewBox="0 0 1000 700" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+<!--
+================================================================================
+图表名称：YAML Frontmatter 结构示意图
+文件命名：06-figure-01-yaml-frontmatter-schema.svg
+用途：展示如何在 Markdown 顶部通过 YAML 建立数据契约，将非结构化文本转为机器可读对象
+版本：v1.0.0
+作者：Gitconomy Research-郭晧
+SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+创建日期：2026-02-20
+================================================================================
+-->
+
+  <!--
+  ===========================================================================
+       背景声明：纯白背景 (Solid White) - 免疫 Git 平台深色模式干扰
+  ===========================================================================
+  -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+
+  <defs>
+    <!-- CSS 变量与基础样式 -->
+    <style>
+      :root {
+        --c-cloud-blue: #0052CC;
+        --c-cloud-blue-light: #DEEBFF;
+        --c-local-green: #00875A;
+        --c-local-green-light: #E3FCEF;
+        --c-risk-amber: #FF991F;
+        --c-neutral-gray: #64748B;
+        --c-neutral-light: #F8FAFC;
+        --c-text-main: #0F172A;
+
+        --font-sans: "Noto Sans SC", "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+        --font-mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+      }
+
+      text { font-family: var(--font-sans); }
+      .text-mono { font-family: var(--font-mono); }
+      .text-title { font-weight: bold; }
+
+      .box-file { fill: #FFFFFF; stroke: var(--c-neutral-gray); stroke-width: 2px; }
+      .box-yaml { fill: var(--c-cloud-blue-light); fill-opacity: 0.3; stroke: var(--c-cloud-blue); stroke-dasharray: 4 4; stroke-width: 1.5px; }
+      .box-body { fill: #FFFFFF; }
+
+      .card-annotation { fill: #FFFFFF; stroke: #E2E8F0; stroke-width: 1.5px; }
+
+      .line-connector { stroke: var(--c-neutral-gray); fill: none; stroke-width: 1.5px; stroke-dasharray: 4 4; }
+      .line-flow { stroke: var(--c-cloud-blue); fill: none; stroke-width: 2px; }
+      .line-flow-green { stroke: var(--c-local-green); fill: none; stroke-width: 2px; }
+    </style>
+
+    <!-- 箭头标记定义 -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-cloud-blue)" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-local-green)" />
+    </marker>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-neutral-gray)" />
+    </marker>
+  </defs>
+
+  <!--
+  ===========================================================================
+       1. 标题块 (Title Block)
+  ===========================================================================
+  -->
+  <g id="title-block" transform="translate(500, 40)">
+    <text y="20" text-anchor="middle" class="text-title" font-size="24" fill="#000000">数据契约：YAML Frontmatter 结构示意图</text>
+    <text y="45" text-anchor="middle" class="text-mono" font-size="14" fill="var(--c-neutral-gray)">第 6 天 > 基础原理</text>
+    <line x1="-40" y1="60" x2="40" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!--
+  ===========================================================================
+       2. 中心主体：Markdown 文件模型
+  ===========================================================================
+  -->
+  <g id="markdown-file" transform="translate(300, 140)">
+    <!-- 外层文件容器 -->
+    <rect x="0" y="0" width="400" height="420" rx="12" class="box-file" />
+
+    <!-- 顶部装饰栏 (Mac 风格按钮) -->
+    <line x1="0" y1="30" x2="400" y2="30" stroke="#E2E8F0" stroke-width="1.5" />
+    <circle cx="20" cy="15" r="5" fill="#EF4444" />
+    <circle cx="35" cy="15" r="5" fill="#F59E0B" />
+    <circle cx="50" cy="15" r="5" fill="#10B981" />
+    <text x="200" y="20" text-anchor="middle" class="text-mono" font-size="11" fill="var(--c-neutral-gray)">lost-in-the-middle.md</text>
+
+    <!--
+      A. 机器可读区 (YAML Frontmatter)
+    -->
+    <rect x="15" y="45" width="370" height="205" rx="6" class="box-yaml" />
+
+    <!-- YAML 代码内容 -->
+    <g transform="translate(30, 70)">
+      <text x="0" y="0" class="text-mono" font-size="14" fill="var(--c-neutral-gray)">---</text>
+
+      <text x="0" y="25" class="text-mono" font-size="13" fill="var(--c-text-main)">uuid: <tspan fill="var(--c-cloud-blue)">"20231027-001"</tspan></text>
+
+      <!-- Schema 约束高亮 -->
+      <text x="0" y="50" class="text-mono" font-size="13" fill="var(--c-text-main)">type: <tspan fill="var(--c-cloud-blue)">"problem"</tspan></text>
+      <rect x="180" y="38" width="120" height="18" rx="4" fill="var(--c-cloud-blue)" fill-opacity="0.1" />
+      <text x="185" y="50" class="text-mono" font-size="10" fill="var(--c-cloud-blue)"># Enum 严格映射</text>
+
+      <text x="0" y="75" class="text-mono" font-size="13" fill="var(--c-text-main)">tags: <tspan fill="var(--c-cloud-blue)">["lost in the middle"]</tspan></text>
+
+      <text x="0" y="100" class="text-mono" font-size="13" fill="var(--c-text-main)">summary: <tspan fill="var(--c-cloud-blue)">"模型对中间事实提取较差"</tspan></text>
+
+      <text x="0" y="125" class="text-mono" font-size="13" fill="var(--c-text-main)">relevance: <tspan fill="#059669">5</tspan></text>
+
+      <text x="0" y="150" class="text-mono" font-size="13" fill="var(--c-text-main)">context_source: <tspan fill="var(--c-cloud-blue)">"2025 GenAI Report"</tspan></text>
+
+      <text x="0" y="175" class="text-mono" font-size="14" fill="var(--c-neutral-gray)">---</text>
+    </g>
+
+    <!--
+      B. 人类可读区 (Markdown Body)
+    -->
+    <g transform="translate(30, 280)">
+      <text x="0" y="0" class="text-title" font-size="16" fill="var(--c-text-main)">【定义/原理】</text>
+      <text x="0" y="25" font-size="13" fill="var(--c-neutral-gray)">斯坦福大学研究揭示的一种大模型认知偏差。</text>
+      <text x="0" y="48" font-size="13" fill="var(--c-neutral-gray)">模型对长文本开头（首因效应）和结尾</text>
+      <text x="0" y="71" font-size="13" fill="var(--c-neutral-gray)">（近因效应）的信息提取精度最高，而位于文档</text>
+      <text x="0" y="94" font-size="13" fill="var(--c-neutral-gray)">中间部分的关键信息极易被忽略或遗忘...</text>
+      <!-- 高亮文本片段以示意向量化 -->
+      <rect x="0" y="105" width="220" height="16" rx="2" fill="var(--c-local-green)" fill-opacity="0.1" />
+      <text x="0" y="117" font-size="13" fill="var(--c-local-green)"># 必须依赖精细化的知识切片策略...</text>
+    </g>
+  </g>
+
+  <!--
+  ===========================================================================
+       3. 左侧注记：本质区别剖析 (Nature Analysis)
+  ===========================================================================
+  -->
+  <g id="left-annotations">
+
+    <!-- YAML 注解 -->
+    <path d="M 230,245 L 300,245" class="line-connector" marker-start="url(#arrow-gray)" />
+    <rect x="50" y="195" width="180" height="100" rx="8" class="card-annotation" />
+    <path d="M 50,195 L 50,295" stroke="var(--c-cloud-blue)" stroke-width="8" stroke-linecap="round" />
+    <g transform="translate(65, 220)">
+      <text x="0" y="0" class="text-title" font-size="14" fill="var(--c-text-main)">结构化数据契约</text>
+      <text x="0" y="22" font-size="12" fill="var(--c-neutral-gray)">• 机器可读 (Machine Readable)</text>
+      <text x="0" y="42" font-size="12" fill="var(--c-neutral-gray)">• 属性对象 (Object Property)</text>
+      <text x="0" y="62" font-size="12" fill="var(--c-cloud-blue)" font-weight="bold">→ 低熵 / 确定性收敛</text>
+    </g>
+
+    <!-- Body 注解 -->
+    <path d="M 230,465 L 300,465" class="line-connector" marker-start="url(#arrow-gray)" />
+    <rect x="50" y="415" width="180" height="100" rx="8" class="card-annotation" />
+    <path d="M 50,415 L 50,515" stroke="var(--c-local-green)" stroke-width="8" stroke-linecap="round" />
+    <g transform="translate(65, 440)">
+      <text x="0" y="0" class="text-title" font-size="14" fill="var(--c-text-main)">非结构化正文</text>
+      <text x="0" y="22" font-size="12" fill="var(--c-neutral-gray)">• 人类可读 (Human Readable)</text>
+      <text x="0" y="42" font-size="12" fill="var(--c-neutral-gray)">• 字符流 (String Context)</text>
+      <text x="0" y="62" font-size="12" fill="var(--c-local-green)" font-weight="bold">→ 高熵 / 自然语言发散</text>
+    </g>
+  </g>
+
+  <!--
+  ===========================================================================
+       4. 右侧注记：RAG 系统的处理流向 (RAG Data Flow)
+  ===========================================================================
+  -->
+  <g id="right-dataflow">
+
+    <!-- 路由与数据库映射 (YAML -> Dataview/SQL) -->
+    <path d="M 700,245 L 750,245" class="line-flow" marker-end="url(#arrow-blue)" />
+    <rect x="760" y="195" width="190" height="100" rx="8" class="card-annotation" />
+    <!-- 数据库小图标 -->
+    <g transform="translate(775, 215)">
+      <ellipse cx="10" cy="5" rx="10" ry="3" fill="none" stroke="var(--c-cloud-blue)" stroke-width="1.5" />
+      <path d="M 0,5 L 0,15 A 10 3 0 0 0 20 15 L 20,5" fill="none" stroke="var(--c-cloud-blue)" stroke-width="1.5" />
+      <path d="M 0,10 A 10 3 0 0 0 20 10" fill="none" stroke="var(--c-cloud-blue)" stroke-width="1.5" />
+    </g>
+    <g transform="translate(805, 220)">
+      <text x="0" y="0" class="text-title" font-size="13" fill="var(--c-cloud-blue)">元数据缓存索引</text>
+      <text x="0" y="22" font-size="11" fill="var(--c-neutral-gray)">用于 Dataview/SQL 引擎</text>
+      <text x="0" y="40" font-size="11" fill="var(--c-neutral-gray)">执行 <tspan class="text-mono" fill="var(--c-text-main)">WHERE type='problem'</tspan></text>
+      <rect x="-2" y="50" width="150" height="18" rx="2" fill="var(--c-cloud-blue)" fill-opacity="0.1" />
+      <text x="5" y="63" font-size="11" fill="var(--c-cloud-blue)" font-weight="bold">🎯 RAG 精准路由与预过滤</text>
+    </g>
+
+    <!-- 文本切片与向量化 (Body -> VectorDB) -->
+    <path d="M 700,465 L 750,465" class="line-flow-green" marker-end="url(#arrow-green)" />
+    <rect x="760" y="415" width="190" height="100" rx="8" class="card-annotation" />
+    <!-- 向量切片小图标 -->
+    <g transform="translate(770, 435)">
+      <rect x="0" y="0" width="16" height="18" rx="2" fill="none" stroke="var(--c-local-green)" stroke-width="1.5" />
+      <line x1="4" y1="5" x2="12" y2="5" stroke="var(--c-local-green)" stroke-width="1.5" />
+      <line x1="4" y1="9" x2="12" y2="9" stroke="var(--c-local-green)" stroke-width="1.5" />
+      <line x1="4" y1="13" x2="8" y2="13" stroke="var(--c-local-green)" stroke-width="1.5" />
+    </g>
+    <g transform="translate(795, 440)">
+      <text x="0" y="0" class="text-title" font-size="13" fill="var(--c-local-green)">文档知识切片 (Chunk)</text>
+      <text x="0" y="22" font-size="11" fill="var(--c-neutral-gray)">转化为 Embedding 向量阵列</text>
+      <text x="0" y="40" class="text-mono" font-size="11" fill="var(--c-text-main)">[0.18, -0.45, 0.82, ...]</text>
+      <rect x="-2" y="50" width="150" height="18" rx="2" fill="var(--c-local-green)" fill-opacity="0.1" />
+      <text x="5" y="63" font-size="11" fill="var(--c-local-green)" font-weight="bold">🔍 语义相似度模糊检索</text>
+    </g>
+
+  </g>
+
+  <!--
+  ===========================================================================
+       5. 底部图例与许可 (Legend & License)
+  ===========================================================================
+  -->
+  <g id="legend-block" transform="translate(250, 580)">
+    <rect x="0" y="0" width="500" height="40" rx="4" fill="rgba(255,255,255,0.9)" stroke="var(--c-neutral-gray)" stroke-width="0.5"/>
+    <g transform="translate(20, 24)">
+      <text x="0" y="0" class="text-title" font-size="11" fill="var(--c-neutral-gray)">图例语义：</text>
+
+      <rect x="70" y="-8" width="12" height="12" rx="2" class="box-yaml" />
+      <text x="88" y="2" font-size="11" fill="var(--c-text-main)">机器层 (结构化控制)</text>
+
+      <rect x="230" y="-8" width="12" height="12" rx="2" fill="var(--c-local-green-light)" stroke="var(--c-local-green)" stroke-width="1.5" />
+      <text x="248" y="2" font-size="11" fill="var(--c-text-main)">人类层 (自然语言载体)</text>
+
+      <line x1="390" y1="-2" x2="410" y2="-2" class="line-flow" />
+      <text x="415" y="2" font-size="11" fill="var(--c-text-main)">解析链路</text>
+    </g>
+  </g>
+
+  <text x="500" y="660" text-anchor="middle" font-size="11" fill="var(--c-neutral-gray)">
+    本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+  </text>
+
+</svg>

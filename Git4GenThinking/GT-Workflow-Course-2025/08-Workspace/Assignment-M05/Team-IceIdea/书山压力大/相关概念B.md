@@ -1,0 +1,3 @@
+## 卷积神经网络CNN
+
+卷积神经网络（Convolutional Neural Network, CNN）是一种前馈神经网络（Feedforward Neural Networks），广泛应用于图像识别和视觉任务，是深度学习中的核心模型之一 [2-3]。它通过[卷积层](https://baike.baidu.com/item/卷积层/22701737?fromModule=lemma_inlink)、池化层和全连接层的层级结构，自动提取输入数据的局部特征，逐步压缩信息，减少冗余，并提升泛化能力。CNN 模仿生物视觉系统的工作方式，具备参数共享和局部连接的结构优势，能够高效处理格点状数据（如图像和语音），无需依赖额外的特征工程。相比传统的全连接网络，CNN在处理高维数据时具有更少的参数和更强的表现力，既可用于[监督学习](https://baike.baidu.com/item/监督学习/9820109?fromModule=lemma_inlink)，也可用于[非监督学习](https://baike.baidu.com/item/非监督学习/16588789?fromModule=lemma_inlink)。其对特征的提取具有平移不变性，也因此被称为“平移不变神经网络”（Shift-Invariant Neural Networks）

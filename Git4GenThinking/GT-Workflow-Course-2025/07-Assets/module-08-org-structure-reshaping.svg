@@ -1,0 +1,214 @@
+<!--
+  ================================================================================
+  图表名称：组织架构重塑趋势示意图
+  图表文件名：module-08-org-structure-reshaping.svg
+  描述：基于第八章8.2.2节，展示从传统科层制管理向AI混合管理（AI Management）的演变，突出管理者角色的技能重塑（Prompting, Evaluation）及人机协同结构。
+  SPDX-License-Identifier: MIT AND CC-BY-4.0
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+================================================================================
+-->
+<svg width="1200" height="720" viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" class="dac-chart">
+  <style>
+    /* 全局字体设置 */
+    .dac-chart {
+      background-color: white;
+      font-family: 'Noto Sans', sans-serif, Arial;
+    }
+
+    /* 文本样式 */
+    .text-title-main { font-size: 24px; font-weight: 800; fill: #111827; letter-spacing: 1px; }
+    .text-title-sub { font-size: 14px; font-weight: normal; fill: #6B7280; }
+
+    .text-header-box { font-size: 16px; font-weight: bold; text-anchor: middle; }
+
+    .text-node-main { font-size: 14px; font-weight: bold; fill: #111827; text-anchor: middle; }
+    .text-node-sub { font-size: 11px; fill: #4B5563; text-anchor: middle; }
+    .text-skill { font-size: 10px; fill: #B45309; font-weight: bold; text-anchor: middle; }
+
+    .text-label { font-size: 12px; fill: #6B7280; text-anchor: middle; }
+    .text-label-bold { font-size: 12px; fill: #1E40AF; font-weight: bold; text-anchor: middle; }
+
+    /* 容器与节点样式 */
+    .container-bg { fill: #F9FAFB; stroke: #E5E7EB; stroke-width: 1px; rx: 8; }
+    .header-bg-trad { fill: #F3F4F6; stroke: none; }
+    .header-bg-new { fill: #DBEAFE; stroke: none; }
+
+    /* 传统模式节点 */
+    .node-mgr-trad { fill: #EFF6FF; stroke: #93C5FD; stroke-width: 2px; }
+    .node-emp-trad { fill: #F0FDF4; stroke: #86EFAC; stroke-width: 2px; }
+    .node-tool-trad { fill: #F3F4F6; stroke: #D1D5DB; stroke-width: 1px; stroke-dasharray: 2; }
+
+    /* 新模式节点 */
+    .node-mgr-new { fill: #EFF6FF; stroke: #3B82F6; stroke-width: 3px; }
+    .node-human-new { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; }
+    .node-agent-new { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2px; }
+
+    .skill-tag { fill: #FFF7ED; stroke: #FDBA74; stroke-width: 1px; rx: 4; }
+
+    /* 线条样式 */
+    .line-hierarchy { stroke: #9CA3AF; stroke-width: 2px; fill: none; }
+    .line-network { stroke: #3B82F6; stroke-width: 2px; fill: none; }
+    .line-agent { stroke: #FACC15; stroke-width: 2px; fill: none; stroke-dasharray: 4; }
+
+    .arrow-transition { stroke: #FACC15; stroke-width: 2px; fill: none; }
+  </style>
+
+  <defs>
+    <!-- 灰色箭头 -->
+    <marker id="arrow-gray" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L0,10 L10,5 z" fill="#9CA3AF" />
+    </marker>
+    <!-- 蓝色箭头 -->
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L0,10 L10,5 z" fill="#3B82F6" />
+    </marker>
+    <!-- 黄色箭头 -->
+    <marker id="arrow-yellow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L0,12 L12,6 z" fill="#FACC15" />
+    </marker>
+  </defs>
+
+  <!-- ==================== 1. 标题区域 ==================== -->
+  <g transform="translate(600, 60)">
+    <text x="0" y="0" class="text-title-main" text-anchor="middle">组织架构重塑：从科层制到人机协同</text>
+  </g>
+
+  <!-- ==================== 2. 左侧：传统管理 (Before) ==================== -->
+  <g transform="translate(100, 130)">
+    <rect x="0" y="0" width="400" height="450" class="container-bg"/>
+
+    <!-- Header -->
+    <path d="M0,8 Q0,0 8,0 L392,0 Q400,0 400,8 L400,50 L0,50 Z" class="header-bg-trad"/>
+    <text x="200" y="32" class="text-header-box" fill="#4B5563">1. 传统科层制 (Traditional Hierarchy)</text>
+
+    <!-- Content Group -->
+    <g transform="translate(200, 80)">
+
+      <!-- Manager -->
+      <rect x="-60" y="0" width="120" height="60" rx="4" class="node-mgr-trad"/>
+      <text x="0" y="25" class="text-node-main">Manager</text>
+      <text x="0" y="45" class="text-node-sub">指令分发 / 监督</text>
+
+      <!-- Connections -->
+      <path d="M0,60 L0,100 L-100,100 L-100,140" class="line-hierarchy" marker-end="url(#arrow-gray)"/>
+      <path d="M0,60 L0,100 L100,100 L100,140" class="line-hierarchy" marker-end="url(#arrow-gray)"/>
+
+      <!-- Employees -->
+      <g transform="translate(-160, 140)">
+        <rect x="0" y="0" width="120" height="60" rx="4" class="node-emp-trad"/>
+        <text x="60" y="25" class="text-node-main">Employee A</text>
+        <text x="60" y="45" class="text-node-sub">执行任务</text>
+
+        <!-- Tool inside -->
+        <rect x="20" y="70" width="80" height="30" rx="2" class="node-tool-trad"/>
+        <text x="60" y="90" class="text-node-sub" font-size="10">Software/Tools</text>
+        <line x1="60" y1="60" x2="60" y2="70" stroke="#D1D5DB" stroke-width="1"/>
+      </g>
+
+      <g transform="translate(40, 140)">
+        <rect x="0" y="0" width="120" height="60" rx="4" class="node-emp-trad"/>
+        <text x="60" y="25" class="text-node-main">Employee B</text>
+        <text x="60" y="45" class="text-node-sub">执行任务</text>
+
+        <!-- Tool inside -->
+        <rect x="20" y="70" width="80" height="30" rx="2" class="node-tool-trad"/>
+        <text x="60" y="90" class="text-node-sub" font-size="10">Software/Tools</text>
+        <line x1="60" y1="60" x2="60" y2="70" stroke="#D1D5DB" stroke-width="1"/>
+      </g>
+
+      <!-- Summary Text -->
+      <text x="0" y="320" class="text-label">核心逻辑：人管理与流程管控</text>
+      <text x="0" y="340" class="text-label">Tool is Passive (工具是被动的)</text>
+    </g>
+  </g>
+
+  <!-- ==================== 3. 中间：演进趋势 ==================== -->
+  <g transform="translate(540, 350)">
+    <line x1="-10" y1="0" x2="130" y2="0" class="arrow-transition" marker-end="url(#arrow-yellow)"/>
+    <text x="60" y="-20" class="text-label-bold">职能位移</text>
+    <text x="60" y="30" class="text-skill">Skill Shift</text>
+  </g>
+
+  <!-- ==================== 4. 右侧：AI混合管理 (After) ==================== -->
+  <g transform="translate(700, 130)">
+    <rect x="0" y="0" width="400" height="450" class="container-bg"/>
+
+    <!-- Header -->
+    <path d="M0,8 Q0,0 8,0 L392,0 Q400,0 400,8 L400,50 L0,50 Z" class="header-bg-new"/>
+    <text x="200" y="32" class="text-header-box" fill="#1E40AF">2. AI 管理 (AI Management)</text>
+
+    <!-- Content Group -->
+    <g transform="translate(200, 80)">
+
+      <!-- AI Manager (Human) -->
+      <rect x="-70" y="0" width="140" height="70" rx="4" class="node-mgr-new"/>
+      <text x="0" y="25" class="text-node-main">AI Manager</text>
+      <text x="0" y="45" class="text-node-sub" fill="#1E40AF">人机协同指挥官</text>
+
+      <!-- Skills Badge -->
+      <g transform="translate(80, 0)">
+         <rect x="0" y="0" width="100" height="50" class="skill-tag"/>
+         <text x="50" y="15" class="text-skill" fill="#B45309">New Skills:</text>
+         <text x="50" y="30" class="text-skill">• System Prompting</text>
+         <text x="50" y="42" class="text-skill">• Evaluation</text>
+      </g>
+
+      <!-- Connections -->
+      <!-- To Humans -->
+      <path d="M-40,70 L-40,110 L-120,110 L-120,140" class="line-network" marker-end="url(#arrow-blue)"/>
+      <!-- To Agents -->
+      <path d="M40,70 L40,110 L120,110 L120,140" class="line-network" marker-end="url(#arrow-blue)" stroke-dasharray="0"/>
+
+      <!-- Branch Left: Human Team -->
+      <g transform="translate(-180, 140)">
+        <rect x="0" y="0" width="120" height="80" rx="4" class="node-human-new"/>
+        <text x="60" y="25" class="text-node-main">Human Experts</text>
+        <line x1="10" y1="35" x2="110" y2="35" stroke="#34D399" stroke-width="1"/>
+        <text x="60" y="55" class="text-node-sub">创新 / 策略</text>
+        <text x="60" y="70" class="text-node-sub">处理例外 (Edge Cases)</text>
+      </g>
+
+      <!-- Branch Right: Agent Team -->
+      <g transform="translate(60, 140)">
+        <rect x="0" y="0" width="140" height="130" rx="4" fill="#FFFBEB" stroke="#FACC15" stroke-width="1" stroke-dasharray="4"/>
+        <text x="70" y="20" class="text-node-main" fill="#B45309">Agent Squads</text>
+
+        <!-- Agent A -->
+        <rect x="10" y="35" width="50" height="30" rx="2" class="node-agent-new"/>
+        <text x="35" y="54" class="text-node-sub" font-size="10">Agent A</text>
+
+        <!-- Agent B -->
+        <rect x="80" y="35" width="50" height="30" rx="2" class="node-agent-new"/>
+        <text x="105" y="54" class="text-node-sub" font-size="10">Agent B</text>
+
+        <!-- Logic Conflict -->
+        <g transform="translate(25, 85)">
+           <rect x="0" y="0" width="90" height="30" rx="10" fill="white" stroke="#F59E0B" stroke-width="1"/>
+           <text x="45" y="18" class="text-skill">冲突化解逻辑</text>
+        </g>
+
+        <!-- Internal Lines -->
+        <line x1="35" y1="65" x2="60" y2="85" stroke="#FACC15" stroke-width="1"/>
+        <line x1="105" y1="65" x2="80" y2="85" stroke="#FACC15" stroke-width="1"/>
+      </g>
+
+      <!-- Summary Text -->
+      <text x="0" y="320" class="text-label-bold">核心逻辑：设定目标 &amp; 评估结果</text>
+      <text x="0" y="340" class="text-label">Agent is Active (智能体是行动者)</text>
+    </g>
+  </g>
+
+  <!-- ==================== 5. 底部说明 ==================== -->
+  <g transform="translate(100, 600)">
+    <rect x="0" y="0" width="1000" height="60" rx="4" fill="#F9FAFB" stroke="none"/>
+    <text x="500" y="35" class="text-node-main" fill="#4B5563">
+      未来管理者不仅仅是"管人"，更需要像架构师一样去"编排"(Orchestrate) 智能体团队，解决其逻辑冲突，并对最终交付结果负责。
+    </text>
+  </g>
+
+  <!-- 许可声明 -->
+  <text x="600" y="700" class="text-label" fill="#64748B">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

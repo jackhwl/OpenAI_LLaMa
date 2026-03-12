@@ -1,0 +1,280 @@
+<!--
+  ===========================================================================
+  图表名称：MVX 能力迭代环 (MVX Capability Loop Framework)
+  图表文件名：mvx-capability-loop-framework.svg
+  描述：采用敏捷开发无限循环布局，展示从 MVW 到 MVA 的能力进阶闭环。
+  设计逻辑：
+      1. 布局核心：∞ (Infinity Loop) 代表敏捷迭代。
+      2. 左环 (Foundation): Level 1 (MVW) -> Level 2 (MVR).
+      3. 右环 (Intelligence): Level 3 (MVG) -> Level 4 (MVA).
+      4. 输入/输出：Level 0 为起点，DIKWA 为终点。
+      5. 产出物 (Deliverables): 显示在 Loop 内部空白区域，带彩色图标。
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+  版本号：1.1.0
+  创建时间：2025-05-20
+  ===========================================================================
+-->
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    /* 全局字体 */
+    text { font-family: 'Noto Sans', 'Inter', Arial, sans-serif; }
+
+    /* 配色方案 (DaC Section 3) */
+    .box-core { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2; }
+    .box-standard { fill: #F0FDF4; stroke: #34D399; stroke-width: 2; }
+    .box-highlight { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2; }
+
+    /* 轨道样式 */
+    .loop-track {
+      fill: none;
+      stroke: #E2E8F0;
+      stroke-width: 20;
+      stroke-linecap: round;
+    }
+    .loop-track-overlay {
+      fill: none;
+      stroke: #2563EB;
+      stroke-width: 3;
+      stroke-dasharray: 10, 10;
+      opacity: 0.3;
+      animation: dash 30s linear infinite;
+    }
+
+    /* 节点样式 */
+    .node-bg { fill: #FFFFFF; stroke-width: 2; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05)); }
+    .tag-bg { fill: #FFFFFF; stroke: #CBD5E1; stroke-width: 1; } /* 白色背景 */
+
+    /* 产出物样式 (Artifacts) */
+    .artifact-box { fill: #F8FAFC; stroke: #94A3B8; stroke-width: 1; stroke-dasharray: 3, 3; }
+    .artifact-text { font-size: 12px; font-weight: 700; fill: #475569; text-anchor: middle; }
+
+    /* 字体样式 */
+    .title-main { font-size: 24px; font-weight: 800; fill: #1E293B; text-anchor: middle; }
+    .title-sub { font-size: 14px; font-weight: normal; fill: #64748B; text-anchor: middle; }
+    .desc-text { font-size: 14px; font-weight: normal; fill: #475569; text-anchor: middle; }
+
+    .level-label { font-size: 12px; font-weight: 800; letter-spacing: 1px; fill: #60A5FA; text-anchor: middle; }
+    .card-title { font-size: 18px; font-weight: 800; fill: #1E293B; text-anchor: middle; }
+    .capability-title { font-size: 12px; font-weight: 700; fill: #2563EB; text-anchor: middle; }
+    .card-body { font-size: 11px; fill: #64748B; text-anchor: middle; }
+
+    .legend-text { font-size: 12px; fill: #64748B; text-anchor: start; alignment-baseline: middle; }
+    .license-text { font-size: 11px; fill: #94A3B8; text-anchor: middle; }
+
+    @keyframes dash {
+      to { stroke-dashoffset: -1000; }
+    }
+  </style>
+
+  <defs>
+    <!-- 蓝色箭头 (默认/Core) -->
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563EB"/>
+    </marker>
+
+    <!-- 黄色箭头 (Level 0 Input) -->
+    <marker id="arrow-yellow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#FACC15"/>
+    </marker>
+
+    <!-- 绿色箭头 (Goal Output) -->
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34D399"/>
+    </marker>
+
+    <!-- 图标定义 (24x24 viewBox base, scaled down) -->
+    <g id="icon-doc"> <!-- Document Icon -->
+        <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2ZM13 9V3.5L18.5 9H13Z" />
+    </g>
+    <g id="icon-repo"> <!-- Database/Repo Icon -->
+        <path d="M12 2C6.48 2 2 4.02 2 6.5C2 8.98 6.48 11 12 11C17.52 11 22 8.98 22 6.5C22 4.02 17.52 2 12 2ZM2 6.5V17.5C2 19.98 6.48 22 12 22C17.52 22 22 19.98 22 17.5V6.5H2ZM12 13C6.48 13 2 11 2 11V14.5C2 17 6.5 19 12 19C17.5 19 22 17 22 14.5V11C22 11 17.5 13 12 13Z" />
+    </g>
+    <g id="icon-graph"> <!-- Network/Graph Icon -->
+        <circle cx="6" cy="17" r="3"/>
+        <circle cx="18" cy="17" r="3"/>
+        <circle cx="12" cy="7" r="3"/>
+        <line x1="12" y1="7" x2="6" y2="17" stroke-width="2" stroke="currentColor"/>
+        <line x1="12" y1="7" x2="18" y2="17" stroke-width="2" stroke="currentColor"/>
+        <line x1="6" y1="17" x2="18" y2="17" stroke-width="2" stroke="currentColor"/>
+    </g>
+    <g id="icon-bot"> <!-- Robot Icon -->
+         <path d="M12 2C10.9 2 10 2.9 10 4V6H8C6.9 6 6 6.9 6 8V18C6 19.1 6.9 20 8 20H16C17.1 20 18 19.1 18 18V8C18 6.9 17.1 6 16 6H14V4C14 2.9 13.1 2 12 2ZM9 11C9 10.45 9.45 10 10 10C10.55 10 11 10.45 11 11C11 11.55 10.55 12 10 12C9.45 12 9 11.55 9 11ZM13 11C13 10.45 13.45 10 14 10C14.55 10 15 10.45 15 11C15 11.55 14.55 12 14 12C13.45 12 13 11.55 13 11Z" />
+    </g>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="1200" height="720" fill="#FFFFFF"/>
+
+  <!-- 标题与描述 (所有 Y 坐标保持原始相对位置，整体内容下移需要调整主体图) -->
+  <g transform="translate(600, 50)">
+    <text class="title-main" y="0">MVX能力迭代学习方法</text>
+    <text class="title-sub" y="30">基于敏捷闭环的学习与能力演进模型</text>
+
+    <!-- 新增设计理念描述 (分两行) -->
+    <text class="desc-text" y="70">MVX学习框架在设计上借鉴了敏捷开发（Agile）与精益方法（Lean）的核心思想，</text>
+    <text class="desc-text" y="95">将“快速验证—持续反馈—渐进升级”的工程思想，迁移为一套面向生成式思维的学习与能力跃迁框架。</text>
+  </g>
+
+  <!--
+    ===========================================================================
+    GRAPH CONTENT (Shifted down by ~80px to accommodate text)
+    Old Loop Center Y: 320 -> New: 400
+    Old Top Lobe Y: 170 -> New: 250
+    Old Bottom Lobe Y: 470 -> New: 550
+    ===========================================================================
+  -->
+
+  <g transform="translate(0, 80)"> <!-- Group wrap to shift everything -->
+
+    <!-- LOOP TRACK (Infinity Symbol) -->
+    <path d="M 350 170
+             A 150 150 0 1 0 350 470
+             C 500 470 700 170 850 170
+             A 150 150 0 1 1 850 470
+             C 700 470 500 170 350 170 Z"
+          class="loop-track"/>
+    <path d="M 350 170
+             A 150 150 0 1 0 350 470
+             C 500 470 700 170 850 170
+             A 150 150 0 1 1 850 470
+             C 700 470 500 170 350 170 Z"
+          class="loop-track-overlay"/>
+
+    <!-- DELIVERABLES (Outputs) - No English Labels, Centered -->
+
+    <!-- L1 Output (Top Left) -->
+    <g transform="translate(350, 280)">
+      <rect x="-60" y="-20" width="120" height="40" rx="4" class="artifact-box"/>
+      <!-- Icon Left, Text Right, Centered Vertically -->
+      <use href="#icon-doc" x="-45" y="-7" width="14" height="14" fill="#2563EB"/>
+      <text x="10" y="5" class="artifact-text">提示词协议</text>
+    </g>
+
+    <!-- L2 Output (Bottom Left) -->
+    <g transform="translate(350, 580)">
+      <rect x="-60" y="-20" width="120" height="40" rx="4" class="artifact-box"/>
+      <use href="#icon-repo" x="-45" y="-7" width="14" height="14" fill="#9333EA"/>
+      <text x="10" y="5" class="artifact-text">知识资产库</text>
+    </g>
+
+    <!-- L3 Output (Top Right) -->
+    <g transform="translate(850, 280)">
+      <rect x="-60" y="-20" width="120" height="40" rx="4" class="artifact-box"/>
+      <use href="#icon-graph" x="-45" y="-7" width="14" height="14" stroke="#E11D48" fill="none"/>
+      <text x="10" y="5" class="artifact-text">可视化图谱</text>
+    </g>
+
+    <!-- L4 Output (Bottom Right) -->
+    <g transform="translate(850, 580)">
+      <rect x="-60" y="-20" width="120" height="40" rx="4" class="artifact-box"/>
+      <use href="#icon-bot" x="-45" y="-7" width="14" height="14" fill="#EA580C"/>
+      <text x="10" y="5" class="artifact-text">运行智能体</text>
+    </g>
+
+    <!-- NODES & CONNECTIONS -->
+
+    <!-- Input Path -->
+    <line x1="150" y1="320" x2="200" y2="320" stroke="#FACC15" stroke-width="2" stroke-dasharray="4" marker-end="url(#arrow-yellow)"/>
+
+    <!-- Level 0 -->
+    <g transform="translate(90, 320)">
+      <rect x="-60" y="-40" width="120" height="80" rx="40" class="box-highlight"/>
+      <text x="0" y="-10" class="card-title" font-size="14">Level 0</text>
+      <text x="0" y="10" class="card-body" fill="#B45309" font-weight="bold">Ad-hoc</text>
+      <text x="0" y="25" class="card-body">随机交互</text>
+    </g>
+
+    <!-- Level 1 -->
+    <g transform="translate(350, 170)">
+      <circle r="70" class="box-core" fill="#FFFFFF"/>
+      <text x="0" y="-45" class="level-label">LEVEL 1</text>
+      <text x="0" y="-15" class="card-title">MVW</text>
+      <text x="0" y="5" class="card-body">最小可行工作流</text>
+      <rect x="-50" y="20" width="100" height="24" rx="12" class="tag-bg"/>
+      <text x="0" y="37" class="capability-title">结构化思维</text>
+      <text x="0" y="85" class="card-body" font-size="10">I-S-G-I-E / S.C.O.R.E</text>
+    </g>
+
+    <!-- Level 2 -->
+    <g transform="translate(350, 470)">
+      <circle r="70" class="box-core" fill="#FFFFFF"/>
+      <text x="0" y="-45" class="level-label">LEVEL 2</text>
+      <text x="0" y="-15" class="card-title">MVR</text>
+      <text x="0" y="5" class="card-body">最小可行知识库</text>
+      <rect x="-50" y="20" width="100" height="24" rx="12" class="tag-bg"/>
+      <text x="0" y="37" class="capability-title">知识工程</text>
+      <text x="0" y="85" class="card-body" font-size="10">GitOps / RAG</text>
+    </g>
+
+    <!-- Cross Text -->
+    <text x="600" y="325" class="card-body" font-weight="bold" fill="#CBD5E1">ITERATION</text>
+
+    <!-- Level 3 -->
+    <g transform="translate(850, 170)">
+      <circle r="70" class="box-core" fill="#FFFFFF"/>
+      <text x="0" y="-45" class="level-label">LEVEL 3</text>
+      <text x="0" y="-15" class="card-title">MVG</text>
+      <text x="0" y="5" class="card-body">最小可行图谱</text>
+      <rect x="-50" y="20" width="100" height="24" rx="12" class="tag-bg"/>
+      <text x="0" y="37" class="capability-title">全景洞察</text>
+      <text x="0" y="85" class="card-body" font-size="10">Graph / Visualization</text>
+    </g>
+
+    <!-- Level 4 -->
+    <g transform="translate(850, 470)">
+      <circle r="70" class="box-core" fill="#FFFFFF"/>
+      <text x="0" y="-45" class="level-label">LEVEL 4</text>
+      <text x="0" y="-15" class="card-title">MVA</text>
+      <text x="0" y="5" class="card-body">最小可行智能体</text>
+      <rect x="-50" y="20" width="100" height="24" rx="12" class="tag-bg"/>
+      <text x="0" y="37" class="capability-title">系统行动</text>
+      <text x="0" y="85" class="card-body" font-size="10">PEAR Loop / Runtime</text>
+    </g>
+
+    <!-- Output Path -->
+    <line x1="1000" y1="320" x2="1050" y2="320" stroke="#34D399" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+    <!-- Goal -->
+    <g transform="translate(1090, 320)">
+      <circle cx="0" cy="0" r="40" class="box-standard"/>
+      <text x="0" y="-5" class="card-title" font-size="14">Goal</text>
+      <text x="0" y="15" class="card-body" fill="#059669" font-weight="bold">Action</text>
+    </g>
+
+  </g> <!-- End Shift Group -->
+
+  <!--
+    ===========================================================================
+    LEGEND (Bottom)
+    ===========================================================================
+  -->
+  <g transform="translate(240, 720)">
+     <!-- Item 1: Input -->
+     <rect x="0" y="-6" width="20" height="12" rx="4" class="box-highlight"/>
+     <text x="26" y="2" class="legend-text">起点/输入</text>
+
+     <!-- Item 2: Core -->
+     <circle cx="120" cy="0" r="6" class="box-core" fill="#FFFFFF"/>
+     <text x="132" y="2" class="legend-text">核心阶段 (MVX)</text>
+
+     <!-- Item 3: Output -->
+     <rect x="250" y="-6" width="20" height="12" rx="2" class="artifact-box"/>
+     <text x="276" y="2" class="legend-text">阶段产出物</text>
+
+     <!-- Item 4: Goal -->
+     <circle cx="380" cy="0" r="6" class="box-standard" fill="#FFFFFF"/>
+     <text x="392" y="2" class="legend-text">终点/目标</text>
+
+     <!-- Item 5: Loop -->
+     <path d="M 500 0 L 530 0" stroke="#2563EB" stroke-width="2" stroke-dasharray="4"/>
+     <text x="540" y="2" class="legend-text">敏捷迭代流</text>
+  </g>
+
+  <!-- License -->
+  <g transform="translate(600, 780)">
+    <text class="license-text">
+      本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+    </text>
+  </g>
+
+</svg>

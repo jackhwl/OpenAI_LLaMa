@@ -1,0 +1,230 @@
+<!--
+  文件名：module-05-local-knowledge-agent-architecture.svg
+  图表名称：本地智能知识助手总体架构图
+  描述：展示基于 Obsidian + GraphRAG 的本地智能体分层架构，涵盖交互、编排、行动、记忆与治理五大层级。
+
+  核心层级：
+  1. 交互层 (Interaction): Obsidian UI, User Intent.
+  2. 编排层 (Orchestration): Planner, Router, State Manager (Evaluate).
+  3. 行动层 (Action): Tool Runtime, Sandbox (Act).
+  4. 记忆层 (Memory): Vector Store, Graph Store (Memory).
+  5. 治理层 (Governance): Audit Log, Risk Control (Reflect).
+
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+-->
+<svg width="1200" height="900" viewBox="0 0 1200 900" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义样式与标记 -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+      .layer-label { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: 800; text-anchor: start; opacity: 0.6; }
+      .box-title { font-family: 'Noto Sans', sans-serif; font-size: 16px; font-weight: 800; text-anchor: middle; }
+      .box-desc { font-family: 'Noto Sans', sans-serif; font-size: 11px; font-weight: normal; text-anchor: middle; fill: #4B5563; }
+      .tech-text { font-family: 'Noto Sans', sans-serif; font-size: 10px; font-weight: bold; text-anchor: middle; fill: white; }
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563EB" />
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#059669" />
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#F59E0B" />
+    </marker>
+    <marker id="arrow-gray" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#9CA3AF" />
+    </marker>
+  </defs>
+
+  <!-- 1. 标题区域 -->
+  <text x="600" y="50" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="24" font-weight="800" fill="#111827">
+    本地知识工作流行动链架构图
+  </text>
+  <text x="600" y="80" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="14" fill="#6B7280">
+    Obsidian + GraphRAG Stack
+  </text>
+
+  <!-- ================================================================================== -->
+  <!-- 左侧边栏：治理与安全层 (Governance Layer) - 纵向贯穿 -->
+  <!-- ================================================================================== -->
+  <g transform="translate(20, 120)">
+    <rect x="0" y="0" width="200" height="710" rx="12" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="2" stroke-dasharray="5,5"/>
+    <text x="100" y="40" class="box-title" fill="#374151">🛡️ 治理与安全层</text>
+    <text x="100" y="60" class="box-desc">(Governance &amp; Security)</text>
+
+    <!-- 模块 1: 审计日志 -->
+    <g transform="translate(20, 100)">
+        <rect x="0" y="0" width="160" height="100" rx="8" fill="white" stroke="#9CA3AF"/>
+        <text x="80" y="45" class="box-title" font-size="14" fill="#4B5563">审计日志 (Audit)</text>
+        <text x="80" y="65" class="box-desc">Trace ID / Diff 记录</text>
+    </g>
+
+    <!-- 模块 2: 风险控制 -->
+    <g transform="translate(20, 300)">
+        <rect x="0" y="0" width="160" height="100" rx="8" fill="white" stroke="#EF4444" stroke-width="1.5"/>
+        <text x="80" y="45" class="box-title" font-size="14" fill="#B91C1C">风险控制 (Risk)</text>
+        <text x="80" y="65" class="box-desc">敏感操作阻断 / HITL</text>
+    </g>
+
+    <!-- 模块 3: 质量评估 -->
+    <g transform="translate(20, 500)">
+        <rect x="0" y="0" width="160" height="100" rx="8" fill="white" stroke="#F59E0B" stroke-width="1.5"/>
+        <text x="80" y="45" class="box-title" font-size="14" fill="#B45309">质量评估 (Eval)</text>
+        <text x="80" y="65" class="box-desc">LLM-as-a-Judge</text>
+    </g>
+
+    <!-- 监控连接线 -->
+    <line x1="200" y1="350" x2="280" y2="350" stroke="#9CA3AF" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow-gray)"/>
+    <text x="240" y="340" font-size="10" fill="#6B7280" text-anchor="middle">监控系统状态</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 主体部分：自上而下的分层 -->
+  <!-- ================================================================================== -->
+
+  <!-- 1. 交互层 (Interaction Layer) -->
+  <g transform="translate(280, 120)">
+    <text x="0" y="-10" class="layer-label" fill="#1E40AF">1. 交互层 (Perceive)</text>
+    <rect x="0" y="0" width="850" height="100" rx="12" fill="#EFF6FF" stroke="#60A5FA" stroke-width="2"/>
+
+    <!-- Obsidian UI -->
+    <g transform="translate(325, 20)">
+        <rect x="0" y="0" width="200" height="60" rx="8" fill="white" stroke="#60A5FA"/>
+        <text x="100" y="25" class="box-title" fill="#1E40AF">Obsidian Interface</text>
+        <text x="100" y="45" class="box-desc">Chat Panel / Commands / Canvas</text>
+    </g>
+
+    <!-- 箭头向下 -->
+    <line x1="425" y1="100" x2="425" y2="150" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow-blue)"/>
+    <text x="440" y="125" font-size="11" fill="#2563EB" font-weight="bold">User Intent</text>
+  </g>
+
+  <!-- 2. 编排层 (Orchestration Layer) -->
+  <g transform="translate(280, 275)">
+    <text x="0" y="-10" class="layer-label" fill="#B45309">2. 编排层 (Evaluate / Decide)</text>
+    <rect x="0" y="0" width="850" height="180" rx="12" fill="#FFFBEB" stroke="#F59E0B" stroke-width="2"/>
+
+    <!-- Router -->
+    <g transform="translate(50, 50)">
+        <polygon points="70,0 140,40 70,80 0,40" fill="white" stroke="#F59E0B" stroke-width="2"/>
+        <text x="70" y="35" class="box-title" font-size="14" fill="#B45309">Router</text>
+        <text x="70" y="55" class="box-desc">意图分类</text>
+    </g>
+
+    <!-- Planner -->
+    <g transform="translate(250, 40)">
+        <rect x="0" y="0" width="160" height="100" rx="8" fill="white" stroke="#F59E0B" stroke-width="2"/>
+        <text x="80" y="30" class="box-title" fill="#B45309">Planner (Core)</text>
+        <line x1="20" y1="45" x2="140" y2="45" stroke="#FDE68A"/>
+        <text x="80" y="65" class="box-desc">任务拆解 (Decompose)</text>
+        <text x="80" y="85" class="box-desc">上下文组装 (Context)</text>
+    </g>
+
+    <!-- State Manager -->
+    <g transform="translate(480, 40)">
+        <rect x="0" y="0" width="160" height="100" rx="8" fill="white" stroke="#F59E0B" stroke-width="2"/>
+        <text x="80" y="30" class="box-title" fill="#B45309">State Machine</text>
+        <line x1="20" y1="45" x2="140" y2="45" stroke="#FDE68A"/>
+        <text x="80" y="65" class="box-desc">任务状态管理</text>
+        <text x="80" y="85" class="box-desc">(Pending/Running/Done)</text>
+    </g>
+
+    <!-- Response Generator -->
+    <g transform="translate(680, 50)">
+        <rect x="0" y="0" width="140" height="80" rx="8" fill="white" stroke="#F59E0B"/>
+        <text x="70" y="35" class="box-title" font-size="14" fill="#B45309">Generator</text>
+        <text x="70" y="55" class="box-desc">最终回复生成</text>
+    </g>
+
+    <!-- 内部连接 -->
+    <path d="M 180 90 L 250 90" stroke="#F59E0B" stroke-width="2" marker-end="url(#arrow-orange)"/>
+    <path d="M 410 90 L 480 90" stroke="#F59E0B" stroke-width="2" marker-end="url(#arrow-orange)"/>
+
+    <!-- 箭头向下 -->
+    <line x1="425" y1="180" x2="425" y2="235" stroke="#F59E0B" stroke-width="2" marker-end="url(#arrow-orange)"/>
+    <text x="440" y="205" font-size="11" fill="#D97706" font-weight="bold">Action Plan</text>
+  </g>
+
+  <!-- 3. 行动层 (Action Layer) -->
+  <g transform="translate(280, 510)">
+    <text x="0" y="-10" class="layer-label" fill="#047857">3. 行动层 (Act)</text>
+    <rect x="0" y="0" width="850" height="140" rx="12" fill="#ECFDF5" stroke="#059669" stroke-width="2"/>
+
+    <!-- Tool Runtime Container -->
+    <g transform="translate(150, 30)">
+        <rect x="0" y="0" width="550" height="80" rx="8" fill="white" stroke="#059669" stroke-dasharray="2,2"/>
+        <text x="275" y="20" class="box-title" font-size="14" fill="#065F46">🛠️ Tool Runtime (工具运行时)</text>
+
+        <!-- Tools -->
+        <g transform="translate(30, 35)">
+            <rect x="0" y="0" width="100" height="30" rx="4" fill="#34D399"/>
+            <text x="50" y="20" class="tech-text">File Ops (读写)</text>
+        </g>
+        <g transform="translate(150, 35)">
+            <rect x="0" y="0" width="100" height="30" rx="4" fill="#34D399"/>
+            <text x="50" y="20" class="tech-text">Search (搜索)</text>
+        </g>
+        <g transform="translate(270, 35)">
+            <rect x="0" y="0" width="100" height="30" rx="4" fill="#34D399"/>
+            <text x="50" y="20" class="tech-text">Graph Ops (图谱)</text>
+        </g>
+        <g transform="translate(390, 35)">
+            <rect x="0" y="0" width="120" height="30" rx="4" fill="#10B981"/>
+            <text x="60" y="20" class="tech-text">Python Sandbox</text>
+        </g>
+    </g>
+
+    <!-- 箭头向下 -->
+    <line x1="425" y1="140" x2="425" y2="200" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)"/>
+    <text x="440" y="165" font-size="11" fill="#059669" font-weight="bold">I/O Operation</text>
+  </g>
+
+  <!-- 4. 记忆层 (Memory Layer) -->
+  <g transform="translate(280, 710)">
+    <text x="0" y="-10" class="layer-label" fill="#7C3AED">4. 记忆层 (Memory)</text>
+    <rect x="0" y="0" width="850" height="120" rx="12" fill="#F3E8FF" stroke="#8B5CF6" stroke-width="2"/>
+
+    <!-- Vector Store -->
+    <g transform="translate(100, 30)">
+        <rect x="0" y="0" width="200" height="60" rx="8" fill="white" stroke="#8B5CF6"/>
+        <text x="100" y="25" class="box-title" fill="#6B21A8">Vector Store</text>
+        <text x="100" y="45" class="box-desc">Chroma / Milvus</text>
+        <!-- 标签 -->
+        <rect x="150" y="5" width="40" height="15" rx="2" fill="#A855F7"/>
+        <text x="170" y="16" font-size="9" fill="white" text-anchor="middle">RAG</text>
+    </g>
+
+    <!-- Graph Store -->
+    <g transform="translate(350, 30)">
+        <rect x="0" y="0" width="200" height="60" rx="8" fill="white" stroke="#7C3AED" stroke-width="2"/>
+        <text x="100" y="25" class="box-title" fill="#5B21B6">Graph Store</text>
+        <text x="100" y="45" class="box-desc">Neo4j / NetworkX</text>
+        <!-- 标签 -->
+        <rect x="130" y="5" width="60" height="15" rx="2" fill="#7C3AED"/>
+        <text x="160" y="16" font-size="9" fill="white" text-anchor="middle">GraphRAG</text>
+    </g>
+
+    <!-- Raw Files -->
+    <g transform="translate(600, 30)">
+        <rect x="0" y="0" width="150" height="60" rx="8" fill="white" stroke="#9CA3AF" stroke-dasharray="2,2"/>
+        <text x="75" y="25" class="box-title" fill="#4B5563">File System</text>
+        <text x="75" y="45" class="box-desc">Obsidian Vault (.md)</text>
+    </g>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 侧边反馈闭环 (Feedback Loop) -->
+  <!-- ================================================================================== -->
+  <!-- 从 Memory 右侧回到 Orchestrator 右侧 -->
+  <path d="M 1130 760 L 1170 760 L 1170 350 L 1130 350" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrow-purple)"/>
+  <text x="1150" y="550" font-size="12" fill="#7C3AED" font-weight="bold" transform="rotate(90, 1150, 550)">Retrieve Context (Recall)</text>
+
+  <!-- 底部许可 -->
+  <text x="600" y="880" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="12" fill="#64748B">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

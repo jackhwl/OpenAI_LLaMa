@@ -1,0 +1,174 @@
+<!--
+  文件名：module-03-structured-vs-unstructured-prompt.svg
+  图表名称：结构化与非结构化提示对比图
+  描述：对比非结构化提示（自然语言、高熵）与结构化提示（机器协议、低熵）在输入模式、生成路径及输出结果上的区别。
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+  修改记录：
+-->
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义样式与标记 -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+      .mono-text { font-family: 'Courier New', monospace; }
+    </style>
+    <!-- 蓝色箭头 -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563EB" />
+    </marker>
+    <!-- 黄色箭头 -->
+    <marker id="arrowhead-yellow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#EAB308" />
+    </marker>
+     <!-- 绿色箭头 -->
+    <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#059669" />
+    </marker>
+  </defs>
+
+  <!-- 1. 标题区域 -->
+  <text x="600" y="50" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="24" font-weight="800" fill="#111827">
+    结构化提示词vs非结构化提示词对比
+  </text>
+  <text x="600" y="80" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="14" font-weight="normal" fill="#6B7280">
+    从“模糊自然语言”到“机器可执行协议”的演进
+  </text>
+
+  <!-- ================================================================================== -->
+  <!-- 左侧：非结构化提示 (Unstructured Prompt) - 黄色系 -->
+  <!-- ================================================================================== -->
+  <g transform="translate(50, 120)">
+    <!-- 背景容器 -->
+    <rect x="0" y="0" width="530" height="550" rx="12" fill="#FEFCE8" stroke="#FACC15" stroke-width="2"/>
+
+    <!-- 头部标签 -->
+    <rect x="0" y="0" width="530" height="60" rx="12" fill="#FEF9C3" stroke="none"/>
+    <path d="M 0 60 L 530 60" stroke="#FACC15" stroke-width="1"/>
+    <text x="265" y="40" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="18" font-weight="bold" fill="#854D0E">
+      非结构化提示 (Unstructured)
+    </text>
+
+    <!-- 1. 输入部分 -->
+    <g transform="translate(40, 90)">
+        <text x="0" y="-10" font-family="Noto Sans, sans-serif" font-size="14" font-weight="bold" fill="#854D0E">输入 (Input)</text>
+        <rect x="0" y="0" width="450" height="80" rx="8" fill="white" stroke="#FDE047" stroke-width="2"/>
+        <!-- 输入内容示例 -->
+        <text x="20" y="35" font-family="Noto Sans, sans-serif" font-size="14" fill="#111827">"请帮我分析一下这篇文章的主要内容，</text>
+        <text x="20" y="60" font-family="Noto Sans, sans-serif" font-size="14" fill="#111827">看看有没有什么风险。"</text>
+    </g>
+
+    <!-- 2. 处理过程 (Wavy Line = Random Walk) -->
+    <g transform="translate(265, 200)">
+        <text x="60" y="40" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="12" fill="#B45309" font-style="italic">高熵 / 随机游走</text>
+        <path d="M 0 0 Q -30 20, 0 40 Q 30 60, 0 80 Q -30 100, 0 120" fill="none" stroke="#EAB308" stroke-width="3" marker-end="url(#arrowhead-yellow)"/>
+    </g>
+
+    <!-- 3. 输出部分 -->
+    <g transform="translate(40, 350)">
+        <text x="0" y="-10" font-family="Noto Sans, sans-serif" font-size="14" font-weight="bold" fill="#854D0E">输出结果 (Output)</text>
+        <rect x="0" y="0" width="450" height="150" rx="8" fill="#FFFBEB" stroke="#FDE047" stroke-width="2" stroke-dasharray="5,5"/>
+        <!-- 输出内容示例 -->
+        <text x="20" y="30" font-family="Noto Sans, sans-serif" font-size="12" fill="#4B5563">这篇文章主要讨论了AI技术...</text>
+        <text x="20" y="55" font-family="Noto Sans, sans-serif" font-size="12" fill="#4B5563">我觉得其中提到的数据隐私可能是一个问题，</text>
+        <text x="20" y="80" font-family="Noto Sans, sans-serif" font-size="12" fill="#4B5563">另外技术成本也比较高...</text>
+        <text x="20" y="105" font-family="Noto Sans, sans-serif" font-size="12" fill="#4B5563">(格式不固定，难以被程序解析)</text>
+
+        <!-- 标签 -->
+        <rect x="350" y="110" width="80" height="25" rx="4" fill="#FEE2E2" stroke="#EF4444"/>
+        <text x="390" y="127" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="11" fill="#991B1B">机器不可读</text>
+    </g>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 右侧：结构化提示 (Structured Prompt) - 绿色系 -->
+  <!-- ================================================================================== -->
+  <g transform="translate(620, 120)">
+    <!-- 背景容器 -->
+    <rect x="0" y="0" width="530" height="550" rx="12" fill="#F0FDF4" stroke="#34D399" stroke-width="2"/>
+
+    <!-- 头部标签 -->
+    <rect x="0" y="0" width="530" height="60" rx="12" fill="#DCFCE7" stroke="none"/>
+    <path d="M 0 60 L 530 60" stroke="#34D399" stroke-width="1"/>
+    <text x="265" y="40" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="18" font-weight="bold" fill="#166534">
+      结构化提示 (Structured)
+    </text>
+
+    <!-- 1. 输入部分 -->
+    <g transform="translate(40, 90)">
+        <text x="0" y="-10" font-family="Noto Sans, sans-serif" font-size="14" font-weight="bold" fill="#166534">输入 (Input)</text>
+        <rect x="0" y="0" width="450" height="100" rx="8" fill="white" stroke="#86EFAC" stroke-width="2"/>
+        <!-- 输入内容示例 -->
+        <text x="20" y="25" class="mono-text" font-size="12" fill="#15803D"># Role: 风险分析专家</text>
+        <text x="20" y="45" class="mono-text" font-size="12" fill="#15803D"># Task: 提取文本中的风险点</text>
+        <text x="20" y="65" class="mono-text" font-size="12" fill="#15803D"># Format: JSON数据</text>
+        <text x="20" y="85" class="mono-text" font-size="12" fill="#15803D">{ "risk": "风险名称", "score": int }</text>
+    </g>
+
+    <!-- 2. 处理过程 (Straight Line = Constraints) -->
+    <g transform="translate(265, 200)">
+        <text x="60" y="40" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="12" fill="#15803D">低熵 / 协议约束</text>
+        <!-- 约束环 -->
+        <rect x="-20" y="40" width="40" height="10" rx="2" fill="#166534" opacity="0.2"/>
+        <rect x="-20" y="80" width="40" height="10" rx="2" fill="#166534" opacity="0.4"/>
+
+        <line x1="0" y1="0" x2="0" y2="120" stroke="#059669" stroke-width="3" marker-end="url(#arrowhead-green)"/>
+    </g>
+
+    <!-- 3. 输出部分 -->
+    <g transform="translate(40, 350)">
+        <text x="0" y="-10" font-family="Noto Sans, sans-serif" font-size="14" font-weight="bold" fill="#166534">输出结果 (Output)</text>
+        <rect x="0" y="0" width="450" height="150" rx="8" fill="#F0FDF4" stroke="#86EFAC" stroke-width="2"/>
+        <!-- 输出内容示例 -->
+        <text x="20" y="30" class="mono-text" font-size="12" fill="#111827">{</text>
+        <text x="35" y="50" class="mono-text" font-size="12" fill="#111827">"analysis_result": [</text>
+        <text x="50" y="70" class="mono-text" font-size="12" fill="#111827">{ "risk": "数据隐私", "score": 8 },</text>
+        <text x="50" y="90" class="mono-text" font-size="12" fill="#111827">{ "risk": "技术成本", "score": 5 }</text>
+        <text x="35" y="110" class="mono-text" font-size="12" fill="#111827">]</text>
+        <text x="20" y="130" class="mono-text" font-size="12" fill="#111827">}</text>
+
+        <!-- 标签 -->
+        <rect x="350" y="110" width="80" height="25" rx="4" fill="#BBF7D0" stroke="#15803D"/>
+        <text x="390" y="127" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="11" fill="#14532D">机器可执行</text>
+    </g>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 底部：关键指标对比 (Key Metrics) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(250, 700)">
+
+    <!-- 1. 稳定性 -->
+    <g transform="translate(0, 0)">
+        <text x="50" y="0" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="14" font-weight="bold" fill="#374151">稳定性</text>
+        <rect x="0" y="15" width="40" height="10" fill="#FCD34D"/> <!-- Low -->
+        <rect x="50" y="15" width="60" height="10" fill="#34D399"/> <!-- High -->
+        <text x="20" y="40" text-anchor="middle" font-size="10" fill="#6B7280">低</text>
+        <text x="80" y="40" text-anchor="middle" font-size="10" fill="#6B7280">高</text>
+    </g>
+
+    <!-- 2. 准确性 -->
+    <g transform="translate(300, 0)">
+        <text x="50" y="0" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="14" font-weight="bold" fill="#374151">准确性</text>
+        <rect x="0" y="15" width="50" height="10" fill="#FCD34D"/>
+        <rect x="60" y="15" width="50" height="10" fill="#34D399"/>
+        <text x="25" y="40" text-anchor="middle" font-size="10" fill="#6B7280">波动</text>
+        <text x="85" y="40" text-anchor="middle" font-size="10" fill="#6B7280">一致</text>
+    </g>
+
+    <!-- 3. 可执行性 -->
+    <g transform="translate(600, 0)">
+        <text x="50" y="0" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="14" font-weight="bold" fill="#374151">可执行性</text>
+        <rect x="0" y="15" width="20" height="10" fill="#FCD34D"/>
+        <rect x="30" y="15" width="80" height="10" fill="#34D399"/>
+        <text x="10" y="40" text-anchor="middle" font-size="10" fill="#6B7280">弱</text>
+        <text x="70" y="40" text-anchor="middle" font-size="10" fill="#6B7280">强</text>
+    </g>
+  </g>
+
+  <!-- 底部许可 -->
+  <text x="600" y="780" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="12" fill="#64748B">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

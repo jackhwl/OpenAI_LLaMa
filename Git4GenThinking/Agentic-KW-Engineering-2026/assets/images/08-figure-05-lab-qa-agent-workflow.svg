@@ -1,0 +1,267 @@
+<svg viewBox="0 0 1100 750" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+<!--
+================================================================================
+图表名称：实战演练：数据质检智能体工作流 (Data QA Agent Workflow)
+文件命名：08-figure-05-lab-qa-agent-workflow.svg
+用途：展示实验中如何利用 S.C.O.R.E 框架与 ReAct 范式，让智能体主动发现原子笔记的 YAML 缺陷并输出 JSON 修复指令。
+版本：v1.0.0
+作者：Gitconomy Research-郭晧
+SPDX-License-Identifier: CC-BY-SA-4.0
+创建日期：2026-02-20
+================================================================================
+-->
+  <!-- Background: Solid White (强兼容模式) -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+
+  <defs>
+    <style>
+      :root {
+        /* Semantic Colors */
+        --c-cloud-blue: #0052CC;
+        --c-local-green: #00875A;
+        --c-risk-amber: #FF991F;
+        --c-neutral-gray: #64748B;
+        --c-local-green-light: #E3FCEF;
+        --c-cloud-blue-light: #DEEBFF;
+        --c-risk-amber-light: #FFFBEB;
+        --c-gray-light: #F8FAFC;
+
+        /* Typography */
+        --font-sans: "Noto Sans SC", "Noto Sans", system-ui, sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+
+      /* Text Styles */
+      text { font-family: var(--font-sans); }
+      .text-title-main { font-weight: 700; font-size: 26px; fill: #000; }
+      .text-breadcrumbs { font-family: var(--font-mono); font-size: 14px; fill: var(--c-neutral-gray); }
+      .text-fig-id { font-family: var(--font-mono); font-size: 12px; fill: var(--c-neutral-gray); letter-spacing: 1px; }
+
+      .text-region { font-weight: 700; font-size: 16px; letter-spacing: 0.5px; }
+      .text-node-title { font-weight: 700; font-size: 14px; fill: #000; }
+      .text-node-sub { font-family: var(--font-mono); font-size: 12px; fill: var(--c-neutral-gray); }
+      .text-node-desc { font-size: 11px; font-weight: bold; }
+      .text-link { font-size: 13px; font-weight: 700; }
+      .text-legend { font-family: var(--font-mono); font-size: 12px; fill: var(--c-neutral-gray); }
+
+      /* Additional Helpers */
+      .font-mono { font-family: var(--font-mono); }
+      .font-sans { font-family: var(--font-sans); }
+      .text-xs { font-size: 11px; }
+      .text-sm { font-size: 13px; }
+
+      /* Connectors */
+      .connector-async { fill: none; stroke: var(--c-cloud-blue); stroke-width: 2.5; stroke-dasharray: 6 4; }
+      .connector-sync { fill: none; stroke: var(--c-local-green); stroke-width: 2.5; }
+      .connector-neutral { fill: none; stroke: var(--c-neutral-gray); stroke-width: 2; stroke-dasharray: 4 2; }
+    </style>
+
+    <!-- Node Drop Shadow -->
+    <filter id="drop-shadow" x="-5%" y="-5%" width="120%" height="120%">
+      <feDropShadow dx="2" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.08" />
+    </filter>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-cloud-blue)" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-local-green)" />
+    </marker>
+  </defs>
+
+<!--
+===========================================================================
+     TITLE BLOCK (Standardized Layout)
+     Center X = 550
+===========================================================================
+-->
+  <g id="title-block" transform="translate(550, 40)">
+    <!-- Main Title -->
+    <text y="20" text-anchor="middle" class="text-title-main">实战演练2：数据质检智能体工作流</text>
+
+    <!-- Breadcrumbs -->
+    <text y="45" text-anchor="middle" class="text-breadcrumbs">第 8 天 > 实战演练</text>
+
+    <!-- Context Indicator (Absolute Y = 100) -->
+    <line x1="-30" y1="60" x2="30" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+<!--
+===========================================================================
+     DIAGRAM CONTENT
+     Start Y = 150 (Ensures exactly 50px Gap from Title Block Indicator)
+===========================================================================
+-->
+  <g id="diagram-content" transform="translate(0, 150)">
+
+    <!-- ===================================================================
+         阶段 1: 本地缺陷数据输入 (Local Input)
+    ==================================================================== -->
+    <g id="region-input" transform="translate(40, 0)">
+      <rect x="0" y="0" width="280" height="420" fill="var(--c-local-green-light)" fill-opacity="0.3" stroke="var(--c-local-green)" stroke-width="1.5" rx="12"/>
+      <rect x="20" y="-15" width="240" height="30" fill="#FFFFFF"/>
+      <text x="140" y="5" text-anchor="middle" class="font-mono text-node-title" fill="var(--c-local-green)">1. Local Input (Obsidian)</text>
+
+      <!-- Defective Note Card -->
+      <g transform="translate(20, 60)" filter="url(#drop-shadow)">
+        <rect x="0" y="0" width="240" height="150" rx="6" fill="#FFFFFF" stroke="var(--c-risk-amber)" stroke-width="2" />
+        <rect x="0" y="0" width="240" height="30" rx="6" fill="var(--c-risk-amber-light)" />
+        <text x="10" y="20" class="font-sans text-sm text-bold" fill="var(--c-risk-amber)">📄 AI-agent-concept.md</text>
+
+        <text x="10" y="50" class="font-mono text-xs" fill="var(--c-cloud-blue)">---</text>
+        <text x="10" y="68" class="font-mono text-xs" fill="var(--c-cloud-blue)">type: concept</text>
+        <text x="10" y="86" class="font-mono text-xs" fill="var(--c-cloud-blue)">tags: [ai, workflow]</text>
+
+        <!-- Missing Fields Highlight -->
+        <rect x="10" y="94" width="220" height="16" fill="var(--c-risk-amber-light)" />
+        <text x="14" y="106" class="font-sans text-xs text-bold" fill="var(--c-risk-amber)">🚨 缺失: status, relevance</text>
+
+        <text x="10" y="128" class="font-mono text-xs" fill="var(--c-cloud-blue)">---</text>
+        <text x="10" y="142" class="font-sans text-xs" fill="var(--c-neutral-gray)">正文：智能体是一种具备...</text>
+      </g>
+
+      <text x="140" y="260" text-anchor="middle" class="font-sans text-sm text-bold" fill="var(--c-risk-amber)">缺陷状态：YAML 属性不完整</text>
+      <text x="140" y="280" text-anchor="middle" class="font-sans text-xs" fill="var(--c-neutral-gray)">无法满足系统 Schema 契约</text>
+    </g>
+
+
+    <!-- ===================================================================
+         阶段 2: 云端 ReAct 推理回路 (Cloud ReAct Agent)
+    ==================================================================== -->
+    <g id="region-agent" transform="translate(370, 0)">
+      <rect x="0" y="0" width="380" height="420" fill="var(--c-cloud-blue-light)" fill-opacity="0.15" stroke="var(--c-cloud-blue)" stroke-width="2" stroke-dasharray="8 4" rx="12"/>
+      <rect x="65" y="-15" width="250" height="30" fill="#FFFFFF"/>
+      <text x="190" y="5" text-anchor="middle" class="font-mono text-node-title" fill="var(--c-cloud-blue)">2. Cloud QA Agent (LLM Engine)</text>
+
+      <text x="190" y="35" text-anchor="middle" class="font-mono text-xs text-bold" fill="var(--c-neutral-gray)">执行 S.C.O.R.E. 契约内的 ReAct 步骤</text>
+
+      <!-- ReAct Step 1: Perceive -->
+      <g transform="translate(30, 60)" filter="url(#drop-shadow)">
+        <rect x="0" y="0" width="320" height="60" rx="6" fill="#FFFFFF" stroke="var(--c-cloud-blue)" stroke-width="1.5" />
+        <rect x="0" y="0" width="80" height="60" rx="6" fill="var(--c-cloud-blue-light)" />
+        <text x="40" y="35" text-anchor="middle" class="font-sans text-sm text-bold" fill="var(--c-cloud-blue)">[感知]</text>
+        <text x="95" y="25" class="font-sans text-sm" fill="#000">Perceive: 读取日志现状</text>
+        <text x="95" y="45" class="font-mono text-xs" fill="var(--c-neutral-gray)">"当前 YAML 仅包含 type 和 tags..."</text>
+      </g>
+
+      <path d="M 190 120 L 190 140" class="connector-neutral" marker-end="url(#arrow-blue)"/>
+
+      <!-- ReAct Step 2: Evaluate -->
+      <g transform="translate(30, 140)" filter="url(#drop-shadow)">
+        <rect x="0" y="0" width="320" height="60" rx="6" fill="#FFFFFF" stroke="var(--c-cloud-blue)" stroke-width="1.5" />
+        <rect x="0" y="0" width="80" height="60" rx="6" fill="var(--c-cloud-blue-light)" />
+        <text x="40" y="35" text-anchor="middle" class="font-sans text-sm text-bold" fill="var(--c-cloud-blue)">[评估]</text>
+        <text x="95" y="25" class="font-sans text-sm" fill="#000">Evaluate: 对比标准 Schema</text>
+        <text x="95" y="45" class="font-mono text-xs" fill="var(--c-risk-amber)">"缺失 status 和 relevance 字段..."</text>
+      </g>
+
+      <path d="M 190 200 L 190 220" class="connector-neutral" marker-end="url(#arrow-blue)"/>
+
+      <!-- ReAct Step 3: Act -->
+      <g transform="translate(30, 220)" filter="url(#drop-shadow)">
+        <rect x="0" y="0" width="320" height="60" rx="6" fill="#FFFFFF" stroke="var(--c-local-green)" stroke-width="2" />
+        <rect x="0" y="0" width="80" height="60" rx="6" fill="var(--c-local-green-light)" />
+        <text x="40" y="35" text-anchor="middle" class="font-sans text-sm text-bold" fill="var(--c-local-green)">[行动]</text>
+        <text x="95" y="25" class="font-sans text-sm" fill="#000">Act: 生成纯净修复指令</text>
+        <text x="95" y="45" class="font-mono text-xs text-bold" fill="var(--c-local-green)">"输出 {action: 'update_yaml'...}"</text>
+      </g>
+
+      <path d="M 190 280 L 190 300" class="connector-neutral" marker-end="url(#arrow-blue)"/>
+
+      <!-- ReAct Step 4: Reflect -->
+      <g transform="translate(30, 300)" filter="url(#drop-shadow)">
+        <rect x="0" y="0" width="320" height="60" rx="6" fill="#FFFFFF" stroke="var(--c-cloud-blue)" stroke-width="1.5" />
+        <rect x="0" y="0" width="80" height="60" rx="6" fill="var(--c-cloud-blue-light)" />
+        <text x="40" y="35" text-anchor="middle" class="font-sans text-sm text-bold" fill="var(--c-cloud-blue)">[反思]</text>
+        <text x="95" y="25" class="font-sans text-sm" fill="#000">Reflect: 自我检查格式合规性</text>
+        <text x="95" y="45" class="font-mono text-xs" fill="var(--c-neutral-gray)">"自检通过，未被代码块包裹，可执行。"</text>
+      </g>
+
+    </g>
+
+
+    <!-- ===================================================================
+         阶段 3: 本地自动执行输出 (Local Execution Ready)
+    ==================================================================== -->
+    <g id="region-output" transform="translate(800, 0)">
+      <rect x="0" y="0" width="260" height="420" fill="var(--c-local-green-light)" fill-opacity="0.3" stroke="var(--c-local-green)" stroke-width="1.5" rx="12"/>
+      <rect x="25" y="-15" width="210" height="30" fill="#FFFFFF"/>
+      <text x="130" y="5" text-anchor="middle" class="font-mono text-node-title" fill="var(--c-local-green)">3. Action Payload (Local)</text>
+
+      <!-- Clean JSON Payload Card -->
+      <g transform="translate(20, 140)" filter="url(#drop-shadow)">
+        <rect x="0" y="0" width="220" height="150" rx="6" fill="#1E293B" stroke="var(--c-local-green)" stroke-width="2" />
+        <rect x="0" y="0" width="220" height="25" rx="6" fill="#0F172A" />
+        <text x="10" y="17" class="font-mono text-xs text-bold" fill="var(--c-local-green)">payload.json (Ready for MCP)</text>
+
+        <text x="10" y="45" class="font-mono text-xs" fill="#38BDF8">{</text>
+        <text x="20" y="65" class="font-mono text-xs" fill="#9CDAF1">"file": <tspan fill="#A3E635">"AI-agent-concept.md"</tspan>,</text>
+        <text x="20" y="85" class="font-mono text-xs" fill="#9CDAF1">"action": <tspan fill="#A3E635">"update_yaml"</tspan>,</text>
+        <text x="20" y="105" class="font-mono text-xs" fill="#9CDAF1">"payload": {</text>
+        <text x="30" y="125" class="font-mono text-xs" fill="#FDE047">"status": "seed", "relevance": 4</text>
+        <text x="20" y="145" class="font-mono text-xs" fill="#9CDAF1">}</text>
+        <text x="10" y="165" class="font-mono text-xs" fill="#38BDF8">}</text>
+      </g>
+
+      <text x="130" y="340" text-anchor="middle" class="font-sans text-sm text-bold" fill="var(--c-local-green)">低熵机器指令</text>
+      <text x="130" y="360" text-anchor="middle" class="font-sans text-xs" fill="var(--c-neutral-gray)">下游 Python/MCP 工具可直接解析</text>
+    </g>
+
+
+    <!-- ===================================================================
+         跨区域网络连接线 (Cross-Region Connectors)
+    ==================================================================== -->
+
+    <!-- Input to Agent -->
+    <path d="M 320 210 L 360 210" class="connector-async" marker-end="url(#arrow-blue)"/>
+    <text x="340" y="195" text-anchor="middle" class="font-sans text-xs text-bold" fill="var(--c-cloud-blue)">API</text>
+
+    <!-- Agent to Output (From [Act] step) -->
+    <path d="M 750 250 L 790 250" class="connector-async" marker-end="url(#arrow-blue)"/>
+    <text x="770" y="235" text-anchor="middle" class="font-sans text-xs text-bold" fill="var(--c-cloud-blue)">Return</text>
+
+  </g>
+
+<!--
+===========================================================================
+     底部图例与注释块 (Legend & Key Block) - 遵循规范
+===========================================================================
+-->
+  <g id="legend" transform="translate(550, 640)">
+    <!-- 图例容器背景 -->
+    <rect x="-350" y="-16" width="700" height="32" rx="4" fill="rgba(255, 255, 255, 0.9)" stroke="var(--c-neutral-gray)" stroke-width="0.5"/>
+
+    <g transform="translate(-330, 0)">
+      <text x="0" y="4" class="text-node-desc" fill="var(--c-neutral-gray)">图例说明:</text>
+
+      <!-- Item 1: Local Vault -->
+      <g transform="translate(100, 0)">
+        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="var(--c-local-green)" />
+        <text x="12" y="4" class="text-legend">本地知识库/执行 (Local Body)</text>
+      </g>
+
+      <!-- Item 2: Cloud Agent -->
+      <g transform="translate(300, 0)">
+        <path d="M-6,-4 L0,-8 L6,-4 L6,4 L0,8 L-6,4 Z" fill="var(--c-cloud-blue)" />
+        <text x="12" y="4" class="text-legend">云端推理计算 (Cloud Brain)</text>
+      </g>
+
+      <!-- Item 3: Defect -->
+      <g transform="translate(480, 0)">
+        <circle cx="0" cy="0" r="5" fill="var(--c-risk-amber)" />
+        <text x="10" y="4" class="text-legend">缺陷数据/熔断预警 (Defect)</text>
+      </g>
+    </g>
+  </g>
+
+<!--
+===========================================================================
+     底部许可注释 (License)
+===========================================================================
+-->
+  <text x="550" y="700" text-anchor="middle" class="font-sans text-xs" fill="#94A3B8">
+    本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+  </text>
+
+</svg>

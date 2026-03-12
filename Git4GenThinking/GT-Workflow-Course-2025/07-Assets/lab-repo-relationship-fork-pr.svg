@@ -1,0 +1,164 @@
+<!--
+  图表名称：Git仓库拓扑与权限关系图 (Git Repository Topology & Permission Model)
+  描述：展示了课程作业中的核心仓库架构，重点解释了 Fork 模式下的 Maintainer 权限分配与 Pull Request 提交路径。
+  适用场景：解释为什么组员不需要 Fork，以及小组仓库如何作为协作中枢。
+
+  关键模块：
+  - 上游仓库 (Upstream)：公共只读源（对学员而言）。
+  - 小组仓库 (Team Fork)：小组的协作中枢，组长拥有Owner权限，组员拥有Maintainer权限。
+  - 本地仓库 (Local)：开发环境。
+
+  设计决策：
+  - 采用中心辐射布局，强调 "Team Fork" 的中枢地位。
+  - 使用绿色区域 (".permission-zone") 可视化 "Maintainer" 权限的覆盖范围。
+  - 区分实线（物理数据流）与虚线（逻辑/权限关系）。
+
+  参考文档：
+  - 学员Git作业提交操作指南 (README.md)
+  - Gitconomy社区图形即代码设计规范指南
+-->
+<svg width="900" height="700" viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义与样式 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563EB" />
+    </marker>
+    <marker id="arrowhead-highlight" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#FACC15" />
+    </marker>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+      .main-title-text { font-family: 'Noto Sans', sans-serif; font-size: 22px; font-weight: 800; fill: #111827; }
+      .title-text { font-family: 'Noto Sans', sans-serif; font-size: 16px; font-weight: 700; fill: #111827; }
+      .body-text { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 400; fill: #374151; }
+      .highlight-text { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 700; fill: #111827; }
+      .small-text { font-family: 'Noto Sans', sans-serif; font-size: 11px; font-weight: 400; fill: #6B7280; }
+      .license-text { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 400; fill: #64748B; }
+      .white-text { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 700; fill: #FFFFFF; }
+
+      /* 盒子样式 */
+      .upstream-box { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; } /* 蓝色系 */
+      .team-box { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2px; }     /* 黄色系 - 强调中枢 */
+      .local-box { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; }    /* 绿色系 */
+
+      /* 区域背景 */
+      .zone-bg { fill: #F3F4F6; stroke: #E5E7EB; stroke-width: 1px; rx: 10; }
+      .permission-zone { fill: rgba(52, 211, 153, 0.1); stroke: #34D399; stroke-width: 1.5px; stroke-dasharray: 5,5; rx: 10; }
+
+      /* 连接线 */
+      .connector { fill: none; stroke: #2563EB; stroke-width: 2px; marker-end: url(#arrowhead); }
+      .connector-highlight { fill: none; stroke: #FACC15; stroke-width: 3px; marker-end: url(#arrowhead-highlight); }
+      .connector-dashed { fill: none; stroke: #6B7280; stroke-width: 1.5px; stroke-dasharray: 4,4; marker-end: url(#arrowhead); }
+
+      /* 标签胶囊 */
+      .tag { fill: #2563EB; rx: 4; }
+      .tag-yellow { fill: #F59E0B; rx: 4; }
+    </style>
+  </defs>
+
+  <!-- 标题 -->
+  <text x="450" y="40" text-anchor="middle" class="main-title-text">Git仓库权限与协作拓扑图</text>
+  <text x="450" y="65" text-anchor="middle" class="small-text">Fork / Maintainer / PR 关系解析</text>
+
+  <!-- ======================== 区域划分 ======================== -->
+
+  <!-- 区域1：上游公共域 -->
+  <rect x="250" y="90" width="400" height="120" class="zone-bg" />
+  <text x="270" y="115" class="small-text" font-weight="bold">公共域 (Public)</text>
+
+  <!-- 区域2：小组协作域 (Team Scope) -->
+  <rect x="150" y="250" width="600" height="200" class="permission-zone" />
+  <text x="630" y="275" class="small-text" style="fill:#059669; font-weight:bold;">小组协作域 (Team Scope)</text>
+  <text x="630" y="295" class="small-text" style="fill:#059669;">Maintainer 权限生效区</text>
+
+  <!-- 区域3：本地工作域 -->
+  <rect x="50" y="490" width="800" height="150" class="zone-bg" />
+  <text x="70" y="515" class="small-text" font-weight="bold">本地工作域 (Local)</text>
+
+
+  <!-- ======================== 核心节点 ======================== -->
+
+  <!-- 节点1：上游仓库 -->
+  <g transform="translate(350, 120)">
+    <rect width="200" height="70" rx="4" class="upstream-box" />
+    <text x="100" y="30" text-anchor="middle" class="title-text">Upstream</text>
+    <text x="100" y="50" text-anchor="middle" class="body-text">Gitconomy/Git4GenThinking</text>
+    <!-- Tag -->
+    <rect x="160" y="-10" width="50" height="20" class="tag" />
+    <text x="185" y="4" text-anchor="middle" class="white-text" font-size="10">源头</text>
+  </g>
+
+  <!-- 节点2：小组仓库 (Fork) -->
+  <g transform="translate(350, 310)">
+    <rect width="200" height="80" rx="4" class="team-box" />
+    <text x="100" y="30" text-anchor="middle" class="title-text">Team Fork</text>
+    <text x="100" y="50" text-anchor="middle" class="body-text">Leader/Git4GenThinking</text>
+    <text x="100" y="68" text-anchor="middle" class="small-text" style="fill:#B45309;">(协作中枢 / Center)</text>
+  </g>
+
+  <!-- 节点3：组长本地 -->
+  <g transform="translate(150, 530)">
+    <rect width="180" height="70" rx="4" class="local-box" />
+    <text x="90" y="30" text-anchor="middle" class="title-text">组长 Local</text>
+    <text x="90" y="50" text-anchor="middle" class="body-text">git clone [fork_url]</text>
+  </g>
+
+  <!-- 节点4：组员A本地 -->
+  <g transform="translate(360, 530)">
+    <rect width="180" height="70" rx="4" class="local-box" />
+    <text x="90" y="30" text-anchor="middle" class="title-text">组员 A Local</text>
+    <text x="90" y="50" text-anchor="middle" class="body-text">git clone [fork_url]</text>
+  </g>
+
+  <!-- 节点5：组员B本地 -->
+  <g transform="translate(570, 530)">
+    <rect width="180" height="70" rx="4" class="local-box" />
+    <text x="90" y="30" text-anchor="middle" class="title-text">组员 B Local</text>
+    <text x="90" y="50" text-anchor="middle" class="body-text">git clone [fork_url]</text>
+  </g>
+
+
+  <!-- ======================== 连接线与关系 ======================== -->
+
+  <!-- 1. Fork 关系 -->
+  <path d="M450,190 L450,250 L450,300" class="connector" />
+  <rect x="420" y="220" width="60" height="20" rx="10" style="fill:white; stroke:#E5E7EB;"/>
+  <text x="450" y="234" text-anchor="middle" class="small-text" font-weight="bold">Fork</text>
+
+  <!-- 2. PR 关系 (回传) -->
+  <!-- 使用曲线绕开 Fork 线 -->
+  <path d="M550,350 L650,350 L650,155 L560,155" class="connector-highlight" fill="none" />
+  <rect x="610" y="240" width="100" height="24" class="tag-yellow" />
+  <text x="660" y="256" text-anchor="middle" class="white-text">Pull Request</text>
+
+  <!-- 3. 组员协作 (Push/Pull) -->
+  <!-- 组员A -> Team Fork -->
+  <path d="M450,530 L450,400" class="connector" />
+
+  <!-- 组员B -> Team Fork -->
+  <path d="M660,530 L660,460 L520,460 L520,400" class="connector" />
+
+  <!-- 组长 -> Team Fork -->
+  <path d="M240,530 L240,460 L380,460 L380,400" class="connector" />
+
+  <!-- 协作标签 -->
+  <rect x="380" y="445" width="140" height="20" rx="10" style="fill:white; stroke:#2563EB;"/>
+  <text x="450" y="459" text-anchor="middle" class="small-text" style="fill:#2563EB; font-weight:bold;">git push / pull</text>
+
+
+  <!-- 4. Maintainer 权限说明 -->
+  <!-- 连接小组协作域虚线框到组员 -->
+  <path d="M240,530 L240,450" class="connector-dashed" style="opacity:0.3"/>
+  <path d="M450,530 L450,450" class="connector-dashed" style="opacity:0.3"/>
+  <path d="M660,530 L660,450" class="connector-dashed" style="opacity:0.3"/>
+
+  <!-- 同步上游说明 -->
+  <path d="M350,155 L120,155 L120,565 L150,565" class="connector-dashed" style="stroke:#6B7280;"/>
+  <text x="130" y="350" text-anchor="middle" class="small-text" style="writing-mode: tb;">git fetch upstream (仅组长需做)</text>
+
+  <!-- 许可声明 -->
+  <text x="450" y="680" text-anchor="middle" class="license-text">本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区</text>
+
+</svg>

@@ -1,0 +1,233 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000" role="img" aria-label="图7：MVW 最小可行工作流（与理想复杂状态对照）" style="background-color: white; font-family: 'Noto Sans', sans-serif;">
+  <!--
+    图表名称：MVW 最小可行工作流（与理想复杂状态对照）
+    描述：展示如何将复杂的理想工作流“压缩”为最小可行版本（MVW），对比了5个环节中的常见误区与推荐做法。
+    对比维度：复杂误区 (Over-Engineering) vs 最小可行 (MVW).
+    设计规范参考：Gitconomy社区图形即代码设计规范指南
+  -->
+  <defs>
+    <style>
+      :root{
+        /* 基础色板 - 浅色模式 */
+        --bg: #ffffff;
+        --panel: #F8FAFC;       /* Slate-50 */
+        --card: #FFFFFF;        /* White */
+        --card2: #F1F5F9;       /* Slate-100 */
+        --stroke: #CBD5E1;      /* Slate-300 */
+        --text: #1E293B;        /* Slate-800 */
+        --muted: #64748B;       /* Slate-500 */
+
+        /* 语义色 */
+        --human: #3B82F6;       /* Blue */
+        --ai: #10B981;          /* Green */
+
+        --mvw: #3B82F6;         /* MVW 推荐色 (Blue) */
+        --mvw-bg: #EFF6FF;      /* MVW 背景 (Light Blue) */
+
+        --dim: #94A3B8;         /* 灰化线条 (Slate-400) */
+        --dim-bg: #F8FAFC;      /* 勿选背景 (Slate-50) */
+
+        --bad: #EF4444;         /* 勿选提示 (Red) */
+      }
+
+      .bg { fill: var(--bg); }
+      .panel { fill: var(--panel); stroke: var(--stroke); stroke-width: 1.4; }
+      .card { fill: var(--card); stroke: var(--stroke); stroke-width: 1.4; }
+      .card2 { fill: var(--card2); stroke: var(--stroke); stroke-width: 1.4; }
+
+      .title { font-size: 34px; font-weight: 800; fill: var(--text); }
+      .sub { font-size: 16px; font-weight: 500; fill: var(--muted); }
+
+      .h { font-size: 18px; font-weight: 800; fill: var(--text); }
+      .b { font-size: 14px; font-weight: 500; fill: var(--muted); }
+      .mono { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 12px; font-weight: 700; fill: var(--muted); }
+
+      .badge { fill: #FFFFFF; stroke: var(--stroke); stroke-width: 1.2; filter: url(#shadow); }
+
+      .colHead { font-size: 16px; font-weight: 800; fill: var(--text); }
+      .colSub { font-size: 12px; font-weight: 600; fill: var(--muted); }
+
+      /* 步骤盒子样式 */
+      .stepBoxBad { fill: var(--dim-bg); stroke: var(--stroke); stroke-width: 1.6; stroke-dasharray: 6 6; }
+      .stepBoxGood { fill: var(--mvw-bg); stroke: var(--mvw); stroke-width: 2; filter: url(#shadow-blue); }
+
+      .stepTitle { font-size: 15px; font-weight: 800; fill: var(--text); }
+      .stepBody { font-size: 13px; font-weight: 500; fill: #475569; }
+
+      /* 标签样式 */
+      .tagBad { fill: var(--bad); }
+      .tagGood { fill: var(--mvw); }
+      .tagText { font-size: 12px; font-weight: 800; fill: white; }
+
+      /* 线条与箭头 */
+      .arrowDim { fill: none; stroke: var(--stroke); stroke-width: 3; stroke-linecap: round; marker-end: url(#ad); stroke-dasharray: 4 4; }
+      .arrowGood { fill: none; stroke: var(--mvw); stroke-width: 4; stroke-linecap: round; marker-end: url(#ag); }
+      .loop { fill: none; stroke: var(--mvw); stroke-width: 4; stroke-linecap: round; marker-end: url(#ag); }
+
+      .divider { stroke: var(--stroke); stroke-width: 1.2; stroke-dasharray: 4 4; }
+      .hint { font-size: 12px; font-weight: 700; fill: var(--mvw); }
+    </style>
+
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10Z" fill="#3B82F6"/>
+    </marker>
+    <marker id="ad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10Z" fill="#CBD5E1"/>
+    </marker>
+
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#64748B" flood-opacity="0.10"/>
+    </filter>
+    <filter id="shadow-blue" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#3B82F6" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <!-- 背景 -->
+  <rect class="bg" x="0" y="0" width="1400" height="900"/>
+
+  <!-- 标题 -->
+  <text class="title" x="700" y="82" text-anchor="middle">MVW最小可行工作流 vs理想/复杂状态</text>
+  <text class="sub" x="700" y="112" text-anchor="middle">目的：避免“过度工程”导致启动失败，用最小投入完成可交付闭环，再逐步增强</text>
+
+  <!-- 主面板 -->
+  <rect class="panel" x="50" y="150" width="1300" height="690" rx="22" />
+
+  <!-- 顶部提示条 -->
+  <g transform="translate(90,185)">
+    <rect class="card2" x="0" y="0" width="1220" height="86" rx="18"/>
+    <text class="h" x="24" y="34">使用规则</text>
+    <text class="b" x="24" y="60">先跑通 MVW：少量高质量输入 → 一页结构 → 文本初稿 → 一轮修正 → 清晰交付；再按需升级复杂能力。</text>
+  </g>
+
+  <!-- 分栏标题 -->
+  <g transform="translate(90,295)">
+    <!-- 左侧标题栏 -->
+    <rect class="badge" x="0" y="0" width="595" height="54" rx="16"/>
+    <text class="colHead" x="22" y="30" fill="#64748B">理想/复杂状态（勿选）</text>
+    <text class="colSub" x="22" y="46">高成本 · 高不确定性 · 容易卡在前置工程</text>
+
+    <!-- 右侧标题栏 -->
+    <rect class="badge" x="625" y="0" width="595" height="54" rx="16" stroke="#3B82F6" stroke-width="2"/>
+    <text class="colHead" x="647" y="30" fill="#3B82F6">✅ MVW 最小可行状态（推荐）</text>
+    <text class="colSub" x="647" y="46" fill="#3B82F6">低门槛 · 快闭环 · 可持续迭代增强</text>
+  </g>
+
+  <!-- 中间分割线 -->
+  <line class="divider" x1="700" y1="360" x2="700" y2="810"/>
+
+  <!-- 左列：复杂路径（勿选） -->
+  <g transform="translate(90,360)">
+    <!-- Steps -->
+    <!-- 1 -->
+    <rect class="stepBoxBad" x="0" y="0" width="595" height="78" rx="16"/>
+    <rect class="tagBad" x="18" y="16" width="86" height="22" rx="11"/>
+    <text class="tagText" x="61" y="32" text-anchor="middle">勿选</text>
+    <text class="stepTitle" x="120" y="34">1. Input（输入）</text>
+    <text class="stepBody" x="120" y="58">编写爬虫抓全网 → 清洗 → 去重 → 入库</text>
+
+    <!-- arrow -->
+    <path class="arrowDim" d="M 520 39 C 560 39, 575 39, 595 39"/>
+
+    <!-- 2 -->
+    <rect class="stepBoxBad" x="0" y="98" width="595" height="78" rx="16"/>
+    <rect class="tagBad" x="18" y="114" width="86" height="22" rx="11"/>
+    <text class="tagText" x="61" y="130" text-anchor="middle">勿选</text>
+    <text class="stepTitle" x="120" y="132">2. Structure（结构化）</text>
+    <text class="stepBody" x="120" y="156">复杂思维导图，多级节点一次性“完备化”</text>
+
+    <path class="arrowDim" d="M 520 137 C 560 137, 575 137, 595 137"/>
+
+    <!-- 3 -->
+    <rect class="stepBoxBad" x="0" y="196" width="595" height="78" rx="16"/>
+    <rect class="tagBad" x="18" y="212" width="86" height="22" rx="11"/>
+    <text class="tagText" x="61" y="228" text-anchor="middle">勿选</text>
+    <text class="stepTitle" x="120" y="230">3. Generate（生成）</text>
+    <text class="stepBody" x="120" y="254">一次生成报告 + PPT + 摘要 + 自动配图</text>
+
+    <path class="arrowDim" d="M 520 235 C 560 235, 575 235, 595 235"/>
+
+    <!-- 4 -->
+    <rect class="stepBoxBad" x="0" y="294" width="595" height="88" rx="16"/>
+    <rect class="tagBad" x="18" y="310" width="86" height="22" rx="11"/>
+    <text class="tagText" x="61" y="326" text-anchor="middle">勿选</text>
+    <text class="stepTitle" x="120" y="328">4. Iterate（迭代）</text>
+    <text class="stepBody" x="120" y="352">多轮对话穷尽漏洞，追求“完美无瑕”</text>
+    <text class="stepBody" x="120" y="372" fill="#EF4444" style="font-weight: 700;">⚠ 结果：耗时爆炸，且难以收敛</text>
+
+    <path class="arrowDim" d="M 520 338 C 560 338, 575 338, 595 338"/>
+
+    <!-- 5 -->
+    <rect class="stepBoxBad" x="0" y="402" width="595" height="78" rx="16"/>
+    <rect class="tagBad" x="18" y="418" width="86" height="22" rx="11"/>
+    <text class="tagText" x="61" y="434" text-anchor="middle">勿选</text>
+    <text class="stepTitle" x="120" y="436">5. Express（表达）</text>
+    <text class="stepBody" x="120" y="460">自动生成排版精美 PDF / 海报 / 多渠道分发</text>
+
+    <!-- Bottom warning -->
+    <rect class="card2" x="0" y="505" width="595" height="78" rx="16" stroke="#EF4444" stroke-opacity="0.3"/>
+    <text class="h" x="18" y="536" fill="#EF4444">典型风险</text>
+    <text class="b" x="18" y="560">前置工程过重 → 启动失败；“一口吃成胖子”→ 质量不稳。</text>
+  </g>
+
+  <!-- 右列：MVW 推荐路径 -->
+  <g transform="translate(715,360)">
+    <!-- 1 -->
+    <rect class="stepBoxGood" x="0" y="0" width="595" height="78" rx="16"/>
+    <rect class="tagGood" x="18" y="16" width="86" height="22" rx="11"/>
+    <text class="tagText" x="61" y="32" text-anchor="middle">推荐</text>
+    <text class="stepTitle" x="120" y="34">1. Input（输入）</text>
+    <text class="stepBody" x="120" y="58">整理手头已有资料：列 3–5 条核心观点 / 粘贴 2–3 篇参考文章</text>
+
+    <path class="arrowGood" d="M 520 39 C 560 39, 575 39, 595 39"/>
+
+    <!-- 2 -->
+    <rect class="stepBoxGood" x="0" y="98" width="595" height="78" rx="16"/>
+    <rect class="tagGood" x="18" y="114" width="86" height="22" rx="11"/>
+    <text class="tagText" x="61" y="130" text-anchor="middle">推荐</text>
+    <text class="stepTitle" x="120" y="132">2. Structure（结构化）</text>
+    <text class="stepBody" x="120" y="156">一页要点列表：总分总 / 3–5 个 Bullet Points（够用即可）</text>
+
+    <path class="arrowGood" d="M 520 137 C 560 137, 575 137, 595 137"/>
+
+    <!-- 3 -->
+    <rect class="stepBoxGood" x="0" y="196" width="595" height="78" rx="16"/>
+    <rect class="tagGood" x="18" y="212" width="86" height="22" rx="11"/>
+    <text class="tagText" x="61" y="228" text-anchor="middle">推荐</text>
+    <text class="stepTitle" x="120" y="230">3. Generate（生成）</text>
+    <text class="stepBody" x="120" y="254">先生成“纯文本初稿”：一条 Prompt 完成结构确认 + 内容扩写</text>
+
+    <path class="arrowGood" d="M 520 235 C 560 235, 575 235, 595 235"/>
+
+    <!-- 4 -->
+    <rect class="stepBoxGood" x="0" y="294" width="595" height="88" rx="16"/>
+    <rect class="tagGood" x="18" y="310" width="120" height="22" rx="11"/>
+    <text class="tagText" x="78" y="326" text-anchor="middle">推荐（回环）</text>
+    <text class="stepTitle" x="150" y="328">4. Iterate（迭代）</text>
+    <text class="stepBody" x="150" y="352">只做一轮修正：聚焦 2–3 个关键问题（事实/语气/结构）</text>
+    <text class="hint" x="150" y="372">“少量高质量反馈”胜过“无限追求完美”</text>
+
+    <!-- 回环箭头：Iterate 回到 Generate -->
+    <path class="loop" d="M 520 340 C 620 340, 620 210, 520 210"/>
+    <text class="hint" x="555" y="250" text-anchor="middle" style="fill: #3B82F6;">回到生成</text>
+
+    <path class="arrowGood" d="M 520 338 C 560 338, 575 338, 595 338"/>
+
+    <!-- 5 -->
+    <rect class="stepBoxGood" x="0" y="402" width="595" height="78" rx="16"/>
+    <rect class="tagGood" x="18" y="418" width="86" height="22" rx="11"/>
+    <text class="tagText" x="61" y="434" text-anchor="middle">推荐</text>
+    <text class="stepTitle" x="120" y="436">5. Express（表达）</text>
+    <text class="stepBody" x="120" y="460">整洁的 Markdown/Word：标题分级清晰、结构正确即可交付</text>
+
+    <!-- Bottom benefits -->
+    <rect class="card2" x="0" y="505" width="595" height="78" rx="16" stroke="#3B82F6" stroke-opacity="0.3"/>
+    <text class="h" x="18" y="536" fill="#3B82F6">核心收益</text>
+    <text class="b" x="18" y="560">快速闭环 → 可复用模板 → 持续增强；把“复杂度”留给后续迭代。</text>
+  </g>
+
+  <!-- 许可声明 -->
+  <text x="700" y="980" text-anchor="middle" class="b" style="font-size: 12px; fill: #94A3B8;">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+</svg>

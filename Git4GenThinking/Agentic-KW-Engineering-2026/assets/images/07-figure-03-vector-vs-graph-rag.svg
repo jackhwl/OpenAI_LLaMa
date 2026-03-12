@@ -1,0 +1,285 @@
+<svg viewBox="0 0 800 800" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+<!--
+================================================================================
+图表名称：检索架构对比：向量检索 vs 图谱检索
+文件命名：07-figure-03-vector-vs-graph-rag.svg
+用途：展示传统向量检索在面对隐性关系时的局限性，以及 GraphRAG 多跳推理在跨文档检索中的优势。
+版本：v1.0.0
+作者：Gitconomy Research-郭晧
+SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+创建日期：2026-02-20
+================================================================================
+-->
+  <!-- Background: Solid White -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+
+  <defs>
+    <style>
+      :root {
+        /* Semantic Colors */
+        --c-cloud-blue: #0052CC;
+        --c-local-green: #00875A;
+        --c-risk-amber: #FF991F;
+        --c-neutral-gray: #64748B;
+        --c-local-green-light: #E3FCEF;
+        --c-cloud-blue-light: #DEEBFF;
+        --c-risk-amber-light: #FFFBEB;
+        --c-gray-light: #F8FAFC;
+
+        /* Typography */
+        --font-sans: "Noto Sans SC", "Noto Sans", system-ui, sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+      }
+
+      /* Text Styles */
+      text { font-family: var(--font-sans); }
+      .text-title-main { font-family: var(--font-sans); font-weight: 700; font-size: 24px; fill: #000; }
+      .text-breadcrumbs { font-family: var(--font-mono); font-size: 14px; fill: var(--c-neutral-gray); }
+      .text-fig-id { font-family: var(--font-mono); font-size: 12px; fill: var(--c-neutral-gray); letter-spacing: 1px; }
+
+      .text-region-title { font-family: var(--font-sans); font-weight: 700; font-size: 16px; fill: #000; }
+      .text-region-sub { font-family: var(--font-mono); font-size: 11px; }
+
+      .text-node-title { font-family: var(--font-sans); font-weight: 700; font-size: 12px; fill: #000; }
+      .text-node-sub { font-family: var(--font-mono); font-size: 10px; fill: var(--c-neutral-gray); }
+      .text-link { font-family: var(--font-mono); font-size: 10px; font-weight: 700; }
+      .text-legend { font-family: var(--font-mono); font-size: 11px; fill: var(--c-neutral-gray); }
+
+      /* Boundary Boxes */
+      .boundary-before { fill: var(--c-risk-amber-light); fill-opacity: 0.2; stroke: var(--c-risk-amber); stroke-width: 1.5; stroke-dasharray: 6 4; }
+      .boundary-after { fill: var(--c-local-green-light); fill-opacity: 0.2; stroke: var(--c-local-green); stroke-width: 1.5; }
+
+      /* Node Shapes */
+      .node-query { fill: #FFF; stroke: var(--c-cloud-blue); stroke-width: 2; rx: 20; }
+      .node-graph-entity { fill: #FFF; stroke: var(--c-cloud-blue); stroke-width: 2; rx: 6; }
+      .node-graph-target { fill: var(--c-local-green-light); stroke: var(--c-local-green); stroke-width: 2; rx: 6; }
+      .node-vector-target { fill: #FFF; stroke: var(--c-risk-amber); stroke-width: 2; rx: 6; }
+
+      /* Connectors */
+      .graph-edge { fill: none; stroke: var(--c-cloud-blue); stroke-width: 1.5; opacity: 0.6; }
+      .graph-edge-hop { fill: none; stroke: var(--c-local-green); stroke-width: 2.5; }
+      .vector-axis { fill: none; stroke: var(--c-neutral-gray); stroke-width: 1; opacity: 0.5; }
+    </style>
+
+    <!-- Node Drop Shadow -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.05"/>
+    </filter>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-cloud-blue)" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-local-green)" />
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-risk-amber)" />
+    </marker>
+  </defs>
+
+<!--
+===========================================================================
+     TITLE BLOCK (Standardized Layout)
+     Center X = 400
+===========================================================================
+-->
+  <g id="title-block" transform="translate(400, 40)">
+
+    <!-- Main Title (Baseline y=20) -->
+    <text y="20" text-anchor="middle" class="text-title-main">检索架构对比：向量检索 vs 图谱检索</text>
+
+    <!-- Breadcrumbs (25px below title baseline) -->
+    <text y="45" text-anchor="middle" class="text-breadcrumbs">第 7 天 > 基础原理</text>
+
+    <!-- Context Indicator (15px below breadcrumbs, y=60) -->
+    <!-- Absolute Canvas Y for Indicator = 40 + 60 = 100 -->
+    <line x1="-30" y1="60" x2="30" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+<!--
+===========================================================================
+     DIAGRAM CONTENT
+     Start Y = 150 (Ensures exactly 50px Gap from Title Block Indicator)
+     Absolute Y start = 150. Indicator absolute Y = 100. Gap = 50px.
+===========================================================================
+-->
+  <g id="diagram-content" transform="translate(0, 150)">
+
+    <!-- ===================================================================
+         LEFT REGION: 传统向量检索 (Vector RAG)
+         Center X = 205
+    ==================================================================== -->
+    <g id="region-vector-rag">
+      <rect x="30" y="0" width="350" height="520" rx="12" class="boundary-before" />
+      <text x="205" y="30" text-anchor="middle" class="text-region-title">传统向量检索 (Vector RAG)</text>
+      <text x="205" y="50" text-anchor="middle" class="text-region-sub" fill="var(--c-risk-amber)">基于余弦相似度 / 像“闻味道找东西”</text>
+
+      <!-- User Query -->
+      <g transform="translate(205, 100)" filter="url(#shadow)">
+        <rect x="-130" y="-20" width="260" height="40" class="node-query" />
+        <text y="4" text-anchor="middle" class="text-node-title" font-size="12">提问: "如何解决长文本的<tspan fill="var(--c-risk-amber)">遗忘</tspan>问题？"</text>
+      </g>
+
+      <!-- Connect to Vector Space -->
+      <path d="M 205,120 L 205,160" fill="none" stroke="var(--c-risk-amber)" stroke-width="2" marker-end="url(#arrow-amber)" />
+
+      <!-- Vector Space (2D representation) -->
+      <g transform="translate(205, 270)">
+        <!-- Axes -->
+        <line x1="-120" y1="0" x2="120" y2="0" class="vector-axis" marker-end="url(#arrow-gray)"/>
+        <line x1="0" y1="100" x2="0" y2="-100" class="vector-axis" marker-end="url(#arrow-gray)"/>
+
+        <!-- Search Radius (KNN area) -->
+        <circle cx="50" cy="-40" r="55" fill="var(--c-risk-amber)" opacity="0.1" stroke="var(--c-risk-amber)" stroke-dasharray="2 2" stroke-width="1.5" />
+
+        <!-- Query Vector -->
+        <path d="M 0,0 L 45,-35" fill="none" stroke="var(--c-risk-amber)" stroke-width="2" marker-end="url(#arrow-amber)" />
+        <text x="50" y="-45" font-family="var(--font-mono)" font-size="10" font-weight="bold" fill="var(--c-risk-amber)">Query Vector</text>
+
+        <!-- Matched Nodes (Noise) -->
+        <circle cx="35" cy="-60" r="6" fill="var(--c-neutral-gray)" />
+        <text x="45" y="-62" font-family="var(--font-sans)" font-size="9" fill="var(--c-neutral-gray)">"记忆机制导致...<tspan fill="var(--c-risk-amber)">遗忘</tspan>" (无用段落)</text>
+
+        <circle cx="70" cy="-20" r="6" fill="var(--c-neutral-gray)" />
+        <text x="80" y="-22" font-family="var(--font-sans)" font-size="9" fill="var(--c-neutral-gray)">"心理学中的<tspan fill="var(--c-risk-amber)">遗忘</tspan>..."</text>
+
+        <!-- Missed Target Node (Actual Solution but far in vector space) -->
+        <circle cx="-60" cy="50" r="8" fill="var(--c-local-green)" />
+        <rect x="-105" y="60" width="90" height="30" class="node-vector-target" />
+        <text x="-60" y="74" text-anchor="middle" font-family="var(--font-sans)" font-size="9" font-weight="bold" fill="var(--c-risk-amber)">方案：GraphRAG</text>
+        <text x="-60" y="85" text-anchor="middle" font-family="var(--font-sans)" font-size="8" fill="var(--c-neutral-gray)">(无"遗忘"关键字)</text>
+      </g>
+
+      <!-- Conclusion Box -->
+      <g transform="translate(205, 450)">
+        <rect x="-140" y="-30" width="280" height="60" rx="4" fill="#FFF" stroke="var(--c-risk-amber)" stroke-width="1.5" stroke-dasharray="4 2" />
+        <text x="0" y="-10" text-anchor="middle" font-family="var(--font-sans)" font-size="12" font-weight="bold" fill="var(--c-risk-amber)">❌ 检索失败：缺乏逻辑感知</text>
+        <text x="0" y="8" text-anchor="middle" font-family="var(--font-sans)" font-size="10" fill="var(--c-neutral-gray)">由于目标文档未包含“遗忘”二字</text>
+        <text x="0" y="20" text-anchor="middle" font-family="var(--font-sans)" font-size="10" fill="var(--c-neutral-gray)">向量空间中距离遥远，无法被召回</text>
+      </g>
+    </g>
+
+
+    <!-- ===================================================================
+         RIGHT REGION: 图谱增强检索 (GraphRAG)
+         Center X = 595
+    ==================================================================== -->
+    <g id="region-graph-rag">
+      <rect x="420" y="0" width="350" height="520" rx="12" class="boundary-after" />
+      <text x="595" y="30" text-anchor="middle" class="text-region-title">图谱增强检索 (GraphRAG)</text>
+      <text x="595" y="50" text-anchor="middle" class="text-region-sub" fill="var(--c-local-green)">显式突触关系 / 像“看地图找路线”</text>
+
+      <!-- User Query -->
+      <g transform="translate(595, 100)" filter="url(#shadow)">
+        <rect x="-130" y="-20" width="260" height="40" class="node-query" />
+        <text y="4" text-anchor="middle" class="text-node-title" font-size="12">提问: "如何解决长文本的<tspan fill="var(--c-cloud-blue)">遗忘</tspan>问题？"</text>
+      </g>
+
+      <!-- Connect to Graph Space -->
+      <path d="M 595,120 L 595,160" fill="none" stroke="var(--c-local-green)" stroke-width="2" marker-end="url(#arrow-green)" />
+
+      <!-- Graph Network Space -->
+      <g transform="translate(595, 270)">
+
+        <!-- Background Edges (Unrelated paths) -->
+        <path d="M -80,-50 L 0,-80" class="graph-edge" />
+        <path d="M 0,-80 L 80,-40" class="graph-edge" />
+        <path d="M 80,-40 L 90,40" class="graph-edge" />
+
+        <!-- Multi-hop Path (The actual reasoning route) -->
+        <!-- Hop 1: Enter graph via concept match -->
+        <path d="M 0,-100 L -80,-50" class="graph-edge-hop" marker-end="url(#arrow-green)" stroke-dasharray="2 2" />
+        <!-- Hop 2: Traverse explicitly defined relationship -->
+        <path d="M -80,-50 L 0,60" class="graph-edge-hop" marker-end="url(#arrow-green)" />
+
+        <!-- Hop Edge Labels -->
+        <rect x="-40" y="5" width="80" height="16" rx="2" fill="#FFF" stroke="var(--c-local-green)" stroke-width="1" />
+        <text x="0" y="16" text-anchor="middle" font-family="var(--font-mono)" font-size="9" font-weight="bold" fill="var(--c-local-green)">[SOLVES] 解决</text>
+
+        <!-- Node: Irrelevant Concept -->
+        <g transform="translate(0, -80)" filter="url(#shadow)">
+          <rect x="-45" y="-15" width="90" height="30" class="node-graph-entity" />
+          <text x="0" y="4" text-anchor="middle" class="text-node-title" font-size="10">上下文窗口</text>
+        </g>
+
+        <!-- Node: Entry Concept (Hop 1 Target) -->
+        <g transform="translate(-80, -50)" filter="url(#shadow)">
+          <rect x="-65" y="-20" width="130" height="40" class="node-graph-entity" stroke="var(--c-local-green)" stroke-width="2.5" />
+          <text x="0" y="-3" text-anchor="middle" class="text-node-title">概念：中间迷失</text>
+          <text x="0" y="11" text-anchor="middle" class="text-node-sub" fill="var(--c-neutral-gray)">(Lost in Middle / <tspan fill="var(--c-local-green)" font-weight="bold">包含遗忘</tspan>)</text>
+
+          <!-- Hop 1 Indicator -->
+          <rect x="-65" y="-32" width="40" height="14" rx="2" fill="var(--c-local-green)" />
+          <text x="-45" y="-22" text-anchor="middle" font-family="var(--font-mono)" font-size="9" font-weight="bold" fill="#FFF">Hop 1</text>
+        </g>
+
+        <!-- Node: Final Target Solution (Hop 2 Target) -->
+        <g transform="translate(0, 60)" filter="url(#shadow)">
+          <rect x="-65" y="-20" width="130" height="40" class="node-graph-target" />
+          <text x="0" y="-3" text-anchor="middle" class="text-node-title">方案：GraphRAG</text>
+          <text x="0" y="11" text-anchor="middle" class="text-node-sub">(跨文档多跳推理解决盲区)</text>
+
+          <!-- Hop 2 Indicator -->
+          <rect x="-65" y="-32" width="40" height="14" rx="2" fill="var(--c-local-green)" />
+          <text x="-45" y="-22" text-anchor="middle" font-family="var(--font-mono)" font-size="9" font-weight="bold" fill="#FFF">Hop 2</text>
+        </g>
+
+      </g>
+
+      <!-- Conclusion Box -->
+      <g transform="translate(595, 450)">
+        <rect x="-140" y="-30" width="280" height="60" rx="4" fill="#FFF" stroke="var(--c-local-green)" stroke-width="1.5" />
+        <text x="0" y="-10" text-anchor="middle" font-family="var(--font-sans)" font-size="12" font-weight="bold" fill="var(--c-local-green)">✅ 检索成功：多跳逻辑推理</text>
+        <text x="0" y="8" text-anchor="middle" font-family="var(--font-sans)" font-size="10" fill="var(--c-neutral-gray)">1. 命中关键词概念（中间迷失）</text>
+        <text x="0" y="20" text-anchor="middle" font-family="var(--font-sans)" font-size="10" fill="var(--c-neutral-gray)">2. 沿逻辑突触（解决）寻得最终方案</text>
+      </g>
+    </g>
+
+  </g>
+
+<!--
+===========================================================================
+     LEGEND BLOCK (Horizontal Structured Layout)
+     Center X = 400, strictly at the bottom
+===========================================================================
+-->
+  <g id="legend-block" transform="translate(380, 720)">
+    <!-- 图例背景：半透明白色容器，统一圆角边框 -->
+    <rect x="-380" y="-20" width="780" height="40" rx="4" fill="rgba(255,255,255,0.9)" stroke="var(--c-neutral-gray)" stroke-width="0.5"/>
+
+    <g transform="translate(-360, 0)">
+      <!-- 图例标题 -->
+      <text x="0" y="4" font-family="var(--font-sans)" font-weight="700" font-size="12" fill="#64748B">图例说明:</text>
+
+      <!-- Item 1: 语义模糊/失败 -->
+      <g transform="translate(80, 0)">
+        <circle cx="0" cy="0" r="5" fill="var(--c-risk-amber)" />
+        <text x="10" y="4" class="text-legend">语义模糊 / 词汇不匹配 (Vector Limitation)</text>
+      </g>
+
+      <!-- Item 2: 图谱实体节点 -->
+      <g transform="translate(350, 0)">
+        <rect x="-6" y="-6" width="12" height="12" rx="3" fill="#FFF" stroke="var(--c-cloud-blue)" stroke-width="2" />
+        <text x="12" y="4" class="text-legend">实体节点 (Graph Node)</text>
+      </g>
+
+      <!-- Item 3: 多跳逻辑推导 -->
+      <g transform="translate(510, 0)">
+        <line x1="-10" y1="0" x2="6" y2="0" stroke="var(--c-local-green)" stroke-width="2.5" />
+        <path d="M 6 0 L 2 -3 L 2 3 Z" fill="var(--c-local-green)" />
+        <text x="12" y="4" class="text-legend">显式多跳推导路径 (Multi-hop Reasoning)</text>
+      </g>
+    </g>
+  </g>
+
+<!--
+===========================================================================
+     LICENSE FOOTER
+===========================================================================
+-->
+  <text x="400" y="760" text-anchor="middle" font-family="var(--font-sans)" font-size="10" fill="var(--c-neutral-gray)">
+    本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+  </text>
+
+</svg>

@@ -1,0 +1,178 @@
+<!--
+================================================================================
+图表名称：上下文物理极限与计算“熵增” (FIG-05-01)
+文件命名：05-figure-01-context-window-entropy.svg
+用途：可视化 Transformer 计算复杂度 O(N^2) 与“中间迷失”导致的信噪比衰减
+版本：v1.0.0
+作者：Gitconomy Research-郭晧
+SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+创建日期：2026-02-02
+================================================================================
+-->
+<svg width="900" height="850" viewBox="0 0 900 850" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background: Solid White -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+  <defs>
+    <style>
+      :root {
+        /* 语义色系统 [规范 2] */
+        --c-cloud-blue: #0052CC;  /* 逻辑推理 / Transformer 内核 */
+        --c-local-green: #00875A; /* 原子切片 / 熵减优化 */
+        --c-risk-amber: #FF991F;  /* 计算开销 / 熵增风险 */
+        --c-neutral-gray: #64748B; /* 坐标轴 / 背景元数据 */
+        --c-bg-light: #F8FAFC;
+
+        /* 字体规范 [规范 3.2] */
+        --font-sans: "Noto Sans SC", "Inter", system-ui, sans-serif;
+        --font-mono: "JetBrains Mono", "Fira Code", monospace;
+      }
+
+      text { font-family: var(--font-sans); }
+      .text-mono { font-family: var(--font-mono); font-size: 11px; }
+      .text-math { font-family: var(--font-mono); font-style: italic; }
+
+      /* 架构组件 */
+      .axis-line { stroke: var(--c-neutral-gray); stroke-width: 1.5; opacity: 0.5; }
+      .curve-complexity { stroke: var(--c-risk-amber); stroke-width: 3; fill: none; stroke-linecap: round; }
+      .curve-accuracy { stroke: var(--c-cloud-blue); stroke-width: 3; fill: none; stroke-dasharray: 6 3; }
+      .node-brain { fill: #fff; stroke: var(--c-cloud-blue); stroke-width: 2; }
+      .region-box { fill: var(--c-bg-light); stroke: #E2E8F0; stroke-width: 1; rx: 8; }
+
+      .stress-area { fill: var(--c-risk-amber); }
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-neutral-gray)" />
+    </marker>
+  </defs>
+
+  <!-- 1. 标题块规范  -->
+
+  <g id="title-block" transform="translate(450, 40)">
+    <text y="20" text-anchor="middle" font-weight="bold" font-size="24" fill="black">上下文物理极限与计算“熵增”</text>
+    <text y="45" text-anchor="middle" font-size="14" fill="var(--c-neutral-gray)">第五天 > 基础理论</text>
+    <line x1="-30" y1="60" x2="30" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- 2. 图形主体 -->
+  <g id="diagram-content" transform="translate(0, 100)">
+
+    <!-- 左侧：O(N^2) 复杂度博弈图 -->
+    <g id="complexity-graph" transform="translate(100, 50)">
+      <rect width="320" height="280" class="region-box" />
+      <text x="10" y="25" font-weight="bold" font-size="14" fill="#1E293B">Transformer 的二次方魔咒</text>
+
+      <!-- 坐标轴 -->
+      <line x1="40" y1="240" x2="280" y2="240" class="axis-line" marker-end="url(#arrow-gray)" />
+      <line x1="40" y1="240" x2="40" y2="50" class="axis-line" marker-end="url(#arrow-gray)" />
+      <text x="280" y="255" text-anchor="end" class="text-mono" font-size="9">Token 序列长度 (N)</text>
+      <text x="35" y="45" text-anchor="start" class="text-mono" font-size="9">计算成本 (Entropy)</text>
+
+      <!-- 复杂度曲线 O(N^2) -->
+      <path d="M 40,240 Q 100,230 240,60" class="curve-complexity" />
+      <text x="110" y="100" class="text-math" fill="var(--c-risk-amber)" font-weight="bold">Complexity = O(N²)</text>
+
+      <!-- 风险警示区 -->
+      <path d="M 180,240 L 280,240 L 280,50 L 180,120 Z" class="stress-area" opacity="0.1" />
+      <text x="230" y="180" text-anchor="middle" font-size="10" fill="#92400E" font-weight="bold">成本爆炸区</text>
+    </g>
+
+    <!-- 右侧：中间迷失现象 (U-Curve) -->
+    <g id="lost-in-middle" transform="translate(480, 50)">
+      <rect width="320" height="280" class="region-box" />
+      <text x="10" y="25" font-weight="bold" font-size="14" fill="#1E293B">认知盲区：中间迷失 (Lost in Middle)</text>
+
+      <!-- 坐标轴 -->
+      <line x1="40" y1="240" x2="280" y2="240" class="axis-line" marker-end="url(#arrow-gray)" />
+      <line x1="40" y1="240" x2="40" y2="50" class="axis-line" marker-end="url(#arrow-gray)" />
+      <text x="280" y="255" text-anchor="end" class="text-mono" font-size="9">信息在 Prompt 中的位置</text>
+      <text x="35" y="45" text-anchor="start" class="text-mono" font-size="9">检索准确率 (SNR)</text>
+
+      <!-- U 型曲线 -->
+      <path d="M 40,70 Q 160,280 280,70" class="curve-accuracy" />
+
+      <!-- 标注点 -->
+      <circle cx="40" cy="70" r="4" fill="var(--c-cloud-blue)" />
+      <text x="45" y="60" font-size="10" fill="var(--c-cloud-blue)">开头 (首因效应)</text>
+
+      <circle cx="160" cy="175" r="4" fill="var(--c-risk-amber)" />
+      <text x="160" y="200" text-anchor="middle" font-size="11" font-weight="bold" fill="var(--c-risk-amber)">信息塌陷区</text>
+
+      <circle cx="280" cy="70" r="4" fill="var(--c-cloud-blue)" />
+      <text x="275" y="60" text-anchor="end" font-size="10" fill="var(--c-cloud-blue)">末尾 (近因效应)</text>
+    </g>
+
+    <!-- 下方：切片带来的熵减转换 -->
+    <g id="transformation-logic" transform="translate(100, 380)">
+      <rect width="700" height="260" rx="12" fill="#fff" stroke="var(--c-cloud-blue)" stroke-width="1.5" stroke-dasharray="4 4" />
+      <text x="350" y="30" text-anchor="middle" font-weight="bold" font-size="16" fill="var(--c-cloud-blue)">工程对策：人工制造“边缘”减少熵增</text>
+
+      <!-- 转换示意 -->
+      <g transform="translate(50, 80)">
+        <!-- 原始长文 (高熵) -->
+        <rect width="180" height="100" fill="rgba(255, 153, 31, 0.1)" stroke="var(--c-risk-amber)" stroke-width="2" rx="4" />
+        <text x="90" y="-10" text-anchor="middle" class="text-mono" fill="var(--c-risk-amber)">原始长文本 (High N)</text>
+        <line x1="20" y1="30" x2="160" y2="30" stroke="var(--c-risk-amber)" stroke-width="1.5" opacity="0.3" />
+        <line x1="20" y1="50" x2="160" y2="50" stroke="var(--c-risk-amber)" stroke-width="1.5" />
+        <line x1="20" y1="70" x2="160" y2="70" stroke="var(--c-risk-amber)" stroke-width="1.5" opacity="0.3" />
+        <text x="90" y="55" text-anchor="middle" font-size="10" fill="#92400E">中间信息极易丢失</text>
+      </g>
+
+      <!-- 演变箭头 -->
+      <g transform="translate(260, 130)">
+        <line x1="0" y1="0" x2="150" y2="0" stroke="var(--c-neutral-gray)" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrow-gray)" />
+        <text x="75" y="-10" text-anchor="middle" font-size="12" font-weight="bold" fill="#64748B">智能切片 (Chunking)</text>
+      </g>
+
+      <g transform="translate(440, 80)">
+        <!-- 原子化切片 (低熵) -->
+        <text x="100" y="-10" text-anchor="middle" class="text-mono" fill="var(--c-local-green)">原子化片段 (Optimized Top-K)</text>
+
+        <rect x="0" y="0" width="60" height="100" fill="rgba(0, 135, 90, 0.1)" stroke="var(--c-local-green)" stroke-width="2" rx="4" />
+        <rect x="70" y="0" width="60" height="100" fill="rgba(0, 135, 90, 0.1)" stroke="var(--c-local-green)" stroke-width="2" rx="4" />
+        <rect x="140" y="0" width="60" height="100" fill="rgba(0, 135, 90, 0.1)" stroke="var(--c-local-green)" stroke-width="2" rx="4" />
+
+        <text x="30" y="55" text-anchor="middle" font-size="10" fill="var(--c-local-green)" font-weight="bold">首/尾</text>
+        <text x="100" y="55" text-anchor="middle" font-size="10" fill="var(--c-local-green)" font-weight="bold">首/尾</text>
+        <text x="170" y="55" text-anchor="middle" font-size="10" fill="var(--c-local-green)" font-weight="bold">首/尾</text>
+
+        <text x="100" y="125" text-anchor="middle" font-size="11" fill="#065F46">每一个切片都是“核心区域”</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- 3. 图例规范 -->
+  <g id="legend-block" transform="translate(450, 770)">
+    <rect x="-350" y="0" width="700" height="40" rx="20" fill="rgba(255, 255, 255, 0.9)" stroke="#E2E8F0" stroke-width="0.5"/>
+    <g transform="translate(-320, 25)">
+      <text x="0" y="0" font-weight="bold" font-size="11" fill="#64748B">图例说明</text>
+
+      <!-- 计算复杂度 -->
+      <g transform="translate(80, -10)">
+        <line x1="0" y1="5" x2="15" y2="5" class="curve-complexity" stroke-width="2" />
+        <text x="20" y="9" class="text-mono" font-size="10" fill="#334155">计算复杂度增长 (O(N²))</text>
+      </g>
+
+      <!-- 检索准确率 -->
+      <g transform="translate(280, -10)">
+        <line x1="0" y1="5" x2="15" y2="5" class="curve-accuracy" stroke-width="2" />
+        <text x="20" y="9" class="text-mono" font-size="10" fill="#334155">检索准确率 (U 型曲线)</text>
+      </g>
+
+      <!-- 优化策略 -->
+      <g transform="translate(480, -10)">
+        <rect width="12" height="12" rx="2" fill="var(--c-local-green)" />
+        <text x="18" y="10" class="text-mono" font-size="10" fill="#334155">原子化切片 (低熵优化)</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- 4. 底部许可注释 -->
+  <g id="footer" transform="translate(450, 830)">
+    <text text-anchor="middle" font-size="11" fill="var(--c-neutral-gray)">
+      本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+    </text>
+  </g>
+
+</svg>

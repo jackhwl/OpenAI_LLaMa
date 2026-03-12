@@ -1,0 +1,268 @@
+<svg viewBox="0 0 1150 850" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+<!--
+================================================================================
+图表名称：从被动问答到主动行动的架构演进
+文件命名：08-figure-02-passive-to-active-agent.svg
+用途：对比传统 Chatbot (指令驱动) 与 Agentic Workflow (基于 PEAR/ReAct 的目标驱动闭环) 的本质差异
+版本：v1.0.0
+作者：Gitconomy Research-郭晧
+SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+创建日期：2026-02-20
+================================================================================
+-->
+  <!--
+  ===========================================================================
+       背景声明：纯白背景 (Solid White) - 免疫 Git 平台深色模式干扰
+  ===========================================================================
+  -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+
+  <defs>
+    <!-- CSS 变量与基础样式 -->
+    <style>
+      :root {
+        --c-cloud-blue: #0052CC;
+        --c-cloud-blue-light: #DEEBFF;
+        --c-local-green: #00875A;
+        --c-local-green-light: #E3FCEF;
+        --c-risk-amber: #FF991F;
+        --c-risk-amber-light: #FFF7ED;
+        --c-neutral-gray: #64748B;
+        --c-neutral-light: #F8FAFC;
+        --c-text-main: #0F172A;
+        --c-error-red: #EF4444;
+
+        --font-sans: "Noto Sans SC", "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+        --font-mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+      }
+
+      text { font-family: var(--font-sans); }
+      .text-mono { font-family: var(--font-mono); }
+      .text-title { font-weight: bold; }
+
+      /* 容器与节点样式 */
+      .box-passive { fill: #F8FAFC; stroke: #CBD5E1; stroke-width: 2px; }
+      .box-cloud { fill: var(--c-cloud-blue-light); fill-opacity: 0.15; stroke: var(--c-cloud-blue); stroke-dasharray: 6 6; stroke-width: 2px; rx: 16px; }
+      .box-local { fill: var(--c-local-green-light); fill-opacity: 0.15; stroke: var(--c-local-green); stroke-dasharray: 6 6; stroke-width: 2px; rx: 16px; }
+
+      .node-card { fill: #FFFFFF; stroke-width: 2px; rx: 10px; }
+      .node-blue { stroke: var(--c-cloud-blue); }
+      .node-green { stroke: var(--c-local-green); }
+      .node-amber { stroke: var(--c-risk-amber); }
+      .node-gray { stroke: var(--c-neutral-gray); }
+
+      /* 连线样式 */
+      .line-solid { stroke: var(--c-neutral-gray); fill: none; stroke-width: 2.5px; }
+      .line-dashed-blue { stroke: var(--c-cloud-blue); fill: none; stroke-width: 2.5px; stroke-dasharray: 6 4; }
+      .line-loop { stroke: var(--c-local-green); fill: none; stroke-width: 3px; }
+      .line-error { stroke: var(--c-error-red); fill: none; stroke-width: 2.5px; stroke-dasharray: 4 4; }
+    </style>
+
+    <!-- 箭头标记定义 -->
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-neutral-gray)" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-cloud-blue)" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-local-green)" />
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-error-red)" />
+    </marker>
+  </defs>
+
+  <!--
+  ===========================================================================
+       1. 标题块 (Title Block)
+  ===========================================================================
+  -->
+  <g id="title-block" transform="translate(575, 40)">
+    <text y="20" text-anchor="middle" class="text-title" font-size="24" fill="#000000">智能体从被动问答到主动行动的架构演进</text>
+    <text y="45" text-anchor="middle" class="text-mono" font-size="14" fill="var(--c-neutral-gray)">第 8 天 > 基础原理</text>
+    <line x1="-50" y1="60" x2="50" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- 中轴分割线 -->
+  <line x1="380" y1="130" x2="380" y2="720" stroke="#E2E8F0" stroke-width="2" stroke-dasharray="8 8" />
+  <rect x="350" y="420" width="60" height="24" rx="12" fill="#FFFFFF" stroke="#E2E8F0" />
+  <text x="380" y="436" text-anchor="middle" class="text-mono" font-size="12" fill="var(--c-neutral-gray)">VS</text>
+
+  <!--
+  ===========================================================================
+       2. 左侧：传统被动问答模式 (Passive Chatbot)
+  ===========================================================================
+  -->
+  <g id="left-passive" transform="translate(0, 140)">
+    <text x="190" y="0" text-anchor="middle" class="text-title" font-size="16" fill="var(--c-neutral-gray)">❌ 传统 Chatbot (指令驱动)</text>
+    <text x="190" y="25" text-anchor="middle" font-size="12" fill="var(--c-neutral-gray)">单向通信 / 缺乏记忆 / 缸中之脑</text>
+
+    <!-- 用户输入 -->
+    <rect x="70" y="80" width="240" height="60" rx="8" class="box-passive" />
+    <text x="190" y="105" text-anchor="middle" class="text-title" font-size="13" fill="var(--c-text-main)">👤 User Prompt (人工触发)</text>
+    <text x="190" y="125" text-anchor="middle" class="text-mono" font-size="11" fill="var(--c-neutral-gray)">"请帮我总结一下这篇文章..."</text>
+
+    <!-- 下行箭头 -->
+    <path d="M 190,140 L 190,240" class="line-solid" marker-end="url(#arrow-gray)" />
+    <text x="200" y="195" font-size="11" fill="var(--c-neutral-gray)">单次会话 (One-shot)</text>
+
+    <!-- LLM 大脑 -->
+    <polygon points="190,250 260,285 260,355 190,390 120,355 120,285" fill="#FFFFFF" stroke="var(--c-neutral-gray)" stroke-width="2" />
+    <text x="190" y="315" text-anchor="middle" class="text-title" font-size="14" fill="var(--c-text-main)">🧠 大语言模型</text>
+    <text x="190" y="335" text-anchor="middle" font-size="11" fill="var(--c-neutral-gray)">(被困在文本框内)</text>
+
+    <!-- 上行箭头 (返回) -->
+    <path d="M 190,390 L 190,490" class="line-solid" marker-end="url(#arrow-gray)" />
+    <text x="200" y="445" font-size="11" fill="var(--c-neutral-gray)">直接输出文本文本</text>
+
+    <!-- 输出结果 -->
+    <rect x="70" y="490" width="240" height="60" rx="8" class="box-passive" />
+    <text x="190" y="515" text-anchor="middle" class="text-title" font-size="13" fill="var(--c-text-main)">💬 文本响应 (Text Response)</text>
+    <text x="190" y="535" text-anchor="middle" class="text-mono" font-size="11" fill="var(--c-neutral-gray)">"好的，这篇文章讲了..."</text>
+
+    <!-- 断裂的反馈链 (人工纠错) -->
+    <path d="M 70,520 C -20,520 -20,110 60,110" class="line-error" marker-end="url(#arrow-red)" />
+    <rect x="-30" y="295" width="100" height="40" rx="4" fill="#FEF2F2" stroke="var(--c-error-red)" />
+    <text x="20" y="313" text-anchor="middle" font-size="11" fill="var(--c-error-red)">若出错或需要行动</text>
+    <text x="20" y="327" text-anchor="middle" font-size="11" fill="var(--c-error-red)">必须由人工重新输入</text>
+  </g>
+
+  <!--
+  ===========================================================================
+       3. 右侧：主动智能体模式 (Active Agent Workflow)
+  ===========================================================================
+  -->
+  <g id="right-active" transform="translate(420, 140)">
+    <text x="350" y="0" text-anchor="middle" class="text-title" font-size="16" fill="var(--c-local-green)">✅ 智能体模式 (目标与事件驱动)</text>
+    <text x="350" y="25" text-anchor="middle" font-size="12" fill="var(--c-neutral-gray)">跨端协作 / 拥有双手 / PEAR 闭环</text>
+
+    <!-- 算力边界背景框 (Architecture Explicit) -->
+    <!-- 云端区域 -->
+    <rect x="30" y="60" width="640" height="150" class="box-cloud" />
+    <text x="660" y="80" text-anchor="end" class="text-mono" font-size="12" fill="var(--c-cloud-blue)">[Cloud] 远程大模型算力 (Brain)</text>
+
+    <!-- 本地区域 -->
+    <rect x="30" y="230" width="640" height="350" class="box-local" />
+    <text x="660" y="255" text-anchor="end" class="text-mono" font-size="12" fill="var(--c-local-green)">[Local] 存算分离本地环境 (Body &amp; Tools)</text>
+
+    <!-- 长远目标注入 (Goal Input) -->
+    <rect x="60" y="-10" width="180" height="40" rx="6" fill="#1E293B" />
+    <text x="150" y="15" text-anchor="middle" font-weight="bold" font-size="13" fill="#FFFFFF">🎯 长期宏观目标 (Goal)</text>
+    <path d="M 150,30 L 150,300" class="line-dashed-blue" marker-end="url(#arrow-blue)" stroke-width="2" opacity="0.5"/>
+
+
+    <!-- ================= PEAR 循环核心节点 ================= -->
+
+    <!-- [P] 感知 (Perception) - 左侧 / 本地 -->
+    <g transform="translate(60, 310)">
+      <rect x="0" y="0" width="180" height="80" class="node-card node-gray" />
+      <rect x="0" y="0" width="180" height="28" fill="#F1F5F9" rx="10" />
+      <text x="90" y="19" text-anchor="middle" class="text-title" font-size="13" fill="var(--c-neutral-gray)">👁️ [P] 感知 (Perceive)</text>
+      <text x="10" y="45" font-size="11" fill="var(--c-text-main)">• 监听文件/系统事件</text>
+      <text x="10" y="62" font-size="11" fill="var(--c-text-main)">• 拉取本地最新状态</text>
+      <!-- ReAct 对齐 -->
+      <text x="170" y="75" text-anchor="end" class="text-mono" font-size="10" fill="var(--c-neutral-gray)">Event Trigger</text>
+    </g>
+
+    <!-- [E] 编码 (Encoding) / Thought - 顶部 / 云端 -->
+    <g transform="translate(260, 95)">
+      <rect x="0" y="0" width="180" height="80" class="node-card node-blue" />
+      <rect x="0" y="0" width="180" height="28" fill="var(--c-cloud-blue-light)" rx="10" />
+      <text x="90" y="19" text-anchor="middle" class="text-title" font-size="13" fill="var(--c-cloud-blue)">🧠 [E] 编码 (Encode)</text>
+      <text x="10" y="45" font-size="11" fill="var(--c-text-main)">• 解析环境上下文</text>
+      <text x="10" y="62" font-size="11" fill="var(--c-text-main)">• 拆解任务与自主规划</text>
+      <!-- ReAct 对齐 -->
+      <rect x="110" y="63" width="65" height="14" rx="3" fill="var(--c-cloud-blue)" />
+      <text x="142" y="73" text-anchor="middle" class="text-mono" font-size="9" fill="#FFFFFF">ReAct: Thought</text>
+    </g>
+
+    <!-- [A] 行动 (Action) - 右侧 / 本地 -->
+    <g transform="translate(460, 310)">
+      <rect x="0" y="0" width="180" height="80" class="node-card node-green" />
+      <rect x="0" y="0" width="180" height="28" fill="var(--c-local-green-light)" rx="10" />
+      <text x="90" y="19" text-anchor="middle" class="text-title" font-size="13" fill="var(--c-local-green)">🦾 [A] 行动 (Act)</text>
+      <text x="10" y="45" font-size="11" fill="var(--c-text-main)">• 输出低熵 JSON 指令</text>
+      <text x="10" y="62" font-size="11" fill="var(--c-text-main)">• 调用 MCP 外部工具</text>
+      <!-- ReAct 对齐 -->
+      <rect x="110" y="63" width="65" height="14" rx="3" fill="var(--c-local-green)" />
+      <text x="142" y="73" text-anchor="middle" class="text-mono" font-size="9" fill="#FFFFFF">ReAct: Action</text>
+    </g>
+
+    <!-- [R] 反思 (Reflection) - 底部 / 本地 -->
+    <g transform="translate(260, 480)">
+      <rect x="0" y="0" width="180" height="80" class="node-card node-amber" />
+      <rect x="0" y="0" width="180" height="28" fill="var(--c-risk-amber-light)" rx="10" />
+      <text x="90" y="19" text-anchor="middle" class="text-title" font-size="13" fill="var(--c-risk-amber)">🪞 [R] 反思 (Reflect)</text>
+      <text x="10" y="45" font-size="11" fill="var(--c-text-main)">• 读取工具返回结果</text>
+      <text x="10" y="62" font-size="11" fill="var(--c-text-main)">• 失败兜底与熔断重试</text>
+      <!-- ReAct 对齐 -->
+      <rect x="110" y="63" width="65" height="14" rx="3" fill="var(--c-risk-amber)" />
+      <text x="142" y="73" text-anchor="middle" class="text-mono" font-size="9" fill="#FFFFFF">ReAct: Observe</text>
+    </g>
+
+
+    <!-- ================= PEAR 循环连接线 ================= -->
+
+    <!-- P -> E -->
+    <path d="M 150,310 C 150,220 220,135 250,135" class="line-dashed-blue" marker-end="url(#arrow-blue)" />
+    <!-- E -> A -->
+    <path d="M 440,135 C 470,135 550,220 550,300" class="line-dashed-blue" marker-end="url(#arrow-blue)" />
+    <!-- A -> R -->
+    <path d="M 550,390 C 550,450 480,520 450,520" class="line-loop" marker-end="url(#arrow-green)" />
+    <!-- R -> P -->
+    <path d="M 260,520 C 220,520 150,450 150,400" class="line-loop" marker-end="url(#arrow-green)" />
+
+    <!-- 循环中心标识 -->
+    <g transform="translate(350, 350)">
+      <circle cx="0" cy="0" r="30" fill="var(--c-local-green-light)" stroke="var(--c-local-green)" stroke-width="2" stroke-dasharray="4 4"/>
+      <path d="M -10,-10 L 10,-10 L 10,10 L -10,10 Z" fill="var(--c-local-green)" opacity="0.2"/>
+      <text x="0" y="4" text-anchor="middle" class="text-title" font-size="12" fill="var(--c-local-green)">自动化</text>
+      <text x="0" y="55" text-anchor="middle" class="text-mono" font-size="11" fill="var(--c-neutral-gray)">Agentic Workflow</text>
+    </g>
+
+    <!-- MCP 工具落地示意 (脱离缸中之脑) -->
+    <rect x="460" y="410" width="180" height="30" rx="4" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5" stroke-dasharray="4 4"/>
+    <text x="550" y="430" text-anchor="middle" class="text-mono" font-size="11" fill="var(--c-neutral-gray)">修改文件 / 检索 FAISS 库</text>
+    <path d="M 550,390 L 550,410" stroke="var(--c-neutral-gray)" stroke-width="2" marker-end="url(#arrow-gray)"/>
+
+  </g>
+
+  <!--
+  ===========================================================================
+       4. 底部图例与许可 (Legend & License)
+  ===========================================================================
+  -->
+  <g id="legend-block" transform="translate(150, 740)">
+    <rect x="0" y="0" width="850" height="45" rx="6" fill="rgba(255,255,255,0.9)" stroke="var(--c-neutral-gray)" stroke-width="0.5"/>
+    <g transform="translate(20, 26)">
+      <text x="0" y="0" class="text-title" font-size="12" fill="var(--c-neutral-gray)">架构图例：</text>
+
+      <!-- 图例 1: 云端模型 -->
+      <rect x="90" y="-10" width="14" height="14" rx="2" fill="var(--c-cloud-blue-light)" stroke="var(--c-cloud-blue)" stroke-width="1.5" />
+      <text x="110" y="2" font-size="11" fill="var(--c-text-main)">大模型推理 / 云端算力</text>
+
+      <!-- 图例 2: 本地执行 -->
+      <rect x="250" y="-10" width="14" height="14" rx="2" fill="var(--c-local-green-light)" stroke="var(--c-local-green)" stroke-width="1.5" />
+      <text x="270" y="2" font-size="11" fill="var(--c-text-main)">工具调用 / 本地执行</text>
+
+      <!-- 图例 3: 异步/网络流 -->
+      <line x1="410" y1="-3" x2="440" y2="-3" class="line-dashed-blue" />
+      <text x="450" y="2" font-size="11" fill="var(--c-text-main)">异步网络调用 (Network I/O)</text>
+
+      <!-- 图例 4: 同步/本地流 -->
+      <line x1="600" y1="-3" x2="630" y2="-3" class="line-loop" />
+      <text x="640" y="2" font-size="11" fill="var(--c-text-main)">本地同步流转 (Memory/Disk)</text>
+
+      <!-- 图例 5: 熔断/干预 -->
+      <line x1="780" y1="-3" x2="800" y2="-3" class="line-error" />
+      <text x="810" y="2" font-size="11" fill="var(--c-text-main)">中断与人工干预</text>
+    </g>
+  </g>
+
+  <!-- CC 版权声明 -->
+  <text x="575" y="820" text-anchor="middle" font-size="11" fill="var(--c-neutral-gray)">
+    本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+  </text>
+
+</svg>

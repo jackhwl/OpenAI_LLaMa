@@ -1,0 +1,131 @@
+<svg width="1000" height="700" viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    图表名称：MVW 最小可行工作流深度解析图
+    描述：展示从原始任务到结构化工作流的转化过程，强调输入、逻辑步骤与标准输出。
+    设计决策：采用 Gitconomy 蓝色系作为核心逻辑，辅以绿色系表示产出，展现“最小化但完整”的设计原则。
+    参考文档：Gitconomy 社区图形即代码设计规范指南
+  -->
+
+  <style>
+    .main-title-text { font-family: 'Inter', 'Noto Sans', sans-serif; font-size: 22px; font-weight: 800; fill: #111827; }
+    .title-text { font-family: 'Inter', 'Noto Sans', sans-serif; font-size: 16px; font-weight: bold; fill: #111827; }
+    .body-text { font-family: 'Inter', 'Noto Sans', sans-serif; font-size: 12px; font-weight: 400; fill: #374151; }
+    .highlight-text { font-family: 'Inter', 'Noto Sans', sans-serif; font-size: 12px; font-weight: bold; fill: #2563EB; }
+    .small-text { font-family: 'Inter', 'Noto Sans', sans-serif; font-size: 11px; font-weight: 400; fill: #6B7280; }
+    .license-text { font-family: 'Inter', 'Noto Sans', sans-serif; font-size: 12px; font-weight: 400; fill: #64748B; }
+
+    .main-box { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; }
+    .standard-box { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; }
+    .highlight-box { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2px; }
+    .container-box { fill: #F8FAFC; stroke: #CBD5E1; stroke-width: 1px; stroke-dasharray: 4; }
+
+    .connector { stroke: #2563EB; stroke-width: 2px; fill: none; }
+    .connector-dashed { stroke: #94A3B8; stroke-width: 1.5px; fill: none; stroke-dasharray: 4; }
+  </style>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2563EB"/>
+    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.05"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="700" fill="#FFFFFF"/>
+
+  <!-- 1. 标题与核心理念 -->
+  <g transform="translate(500, 60)">
+    <text text-anchor="middle" class="main-title-text">最小化可行工作流（Minimum Viable Workflow）框架</text>
+    <text y="30" text-anchor="middle" class="body-text">核心原则：所有的任务必须拆解为可重复、可验证、可连接的最小单元</text>
+  </g>
+
+  <!-- 2. 左侧：输入定义 (Inputs) -->
+  <g transform="translate(80, 160)">
+    <rect width="200" height="380" rx="12" class="container-box" />
+    <text x="100" y="-15" text-anchor="middle" class="title-text">1. 边界定义 (Input)</text>
+
+    <!-- Input Items -->
+    <g transform="translate(20, 30)">
+      <rect width="160" height="60" rx="8" class="main-box" filter="url(#shadow)"/>
+      <text x="80" y="25" text-anchor="middle" class="highlight-text">原始上下文</text>
+      <text x="80" y="45" text-anchor="middle" class="small-text">需求背景、受众画像</text>
+    </g>
+
+    <g transform="translate(20, 110)">
+      <rect width="160" height="60" rx="8" class="main-box" filter="url(#shadow)"/>
+      <text x="80" y="25" text-anchor="middle" class="highlight-text">核心约束</text>
+      <text x="80" y="45" text-anchor="middle" class="small-text">字数、语气、禁用词</text>
+    </g>
+
+    <g transform="translate(20, 190)">
+      <rect width="160" height="60" rx="8" class="main-box" filter="url(#shadow)"/>
+      <text x="80" y="25" text-anchor="middle" class="highlight-text">参考素材</text>
+      <text x="80" y="45" text-anchor="middle" class="small-text">知识库、过往模版</text>
+    </g>
+  </g>
+
+  <!-- 3. 中间：处理逻辑 (Process/Steps) -->
+  <g transform="translate(360, 160)">
+    <rect width="280" height="380" rx="12" class="container-box" />
+    <text x="140" y="-15" text-anchor="middle" class="title-text">2. 最小步骤 (Logic)</text>
+
+    <!-- Step 1 -->
+    <g transform="translate(40, 30)">
+      <rect width="200" height="50" rx="6" class="main-box"/>
+      <text x="100" y="30" text-anchor="middle" class="body-text">步骤一：结构化拆解</text>
+    </g>
+
+    <path d="M 140 80 L 140 105" class="connector" marker-end="url(#arrow)"/>
+
+    <!-- Step 2 -->
+    <g transform="translate(40, 110)">
+      <rect width="200" height="50" rx="6" class="main-box"/>
+      <text x="100" y="30" text-anchor="middle" class="body-text">步骤二：填充与变换</text>
+    </g>
+
+    <path d="M 140 160 L 140 185" class="connector" marker-end="url(#arrow)"/>
+
+    <!-- Step 3 -->
+    <g transform="translate(40, 190)">
+      <rect width="200" height="50" rx="6" class="main-box"/>
+      <text x="100" y="30" text-anchor="middle" class="body-text">步骤三：验证与调优</text>
+    </g>
+
+    <g transform="translate(40, 270)">
+      <rect width="200" height="80" rx="8" class="highlight-box" stroke-dasharray="4"/>
+      <text x="100" y="30" text-anchor="middle" class="highlight-text" fill="#D97706">验证法则 (Viability)</text>
+      <text x="100" y="52" text-anchor="middle" class="small-text">“换个人/换次提问”</text>
+      <text x="100" y="68" text-anchor="middle" class="small-text">结果是否依然稳定？</text>
+    </g>
+  </g>
+
+  <!-- 4. 右侧：产物标准 (Output) -->
+  <g transform="translate(720, 160)">
+    <rect width="200" height="380" rx="12" class="container-box" />
+    <text x="100" y="-15" text-anchor="middle" class="title-text">3. 产出定义 (Output)</text>
+
+    <g transform="translate(20, 150)">
+      <rect width="160" height="80" rx="8" class="standard-box" filter="url(#shadow)"/>
+      <text x="80" y="35" text-anchor="middle" class="highlight-text" fill="#059669">结构化交付物</text>
+      <text x="80" y="55" text-anchor="middle" class="small-text">代码、文档、表格</text>
+      <text x="80" y="70" text-anchor="middle" class="small-text">或下一步的输入</text>
+    </g>
+  </g>
+
+  <!-- 连接主要模块的线 -->
+  <path d="M 280 350 L 350 350" class="connector" marker-end="url(#arrow)"/>
+  <path d="M 640 350 L 710 350" class="connector" marker-end="url(#arrow)"/>
+
+  <!-- 5. 底部总结 -->
+  <g transform="translate(500, 620)">
+    <rect x="-350" y="-25" width="700" height="40" rx="20" fill="#F1F5F9"/>
+    <text text-anchor="middle" class="highlight-text">MVW 的意义：将个体的“灵光一现”转化为团队可复制的“生产流程”</text>
+  </g>
+
+  <!-- 6. 许可声明 -->
+  <text x="500" y="670" text-anchor="middle" class="license-text">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+</svg>

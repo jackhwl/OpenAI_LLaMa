@@ -1,0 +1,61 @@
+name: 🚩 任务打卡与复盘 (Task Check-in)
+description: 用于提交任务进度，并进行核心知识点的复盘与反思
+title: "[Task]: 任务名称 (如 Task03)"
+labels: ["任务提交", "待评审"]
+body:
+  # [type: markdown]
+  # 作用：仅用于显示静态文本/HTML，不收集用户输入。
+  # 场景：用于显示欢迎语、填写说明、警告信息或分割线。
+  - type: markdown
+    attributes:
+      value: |
+        恭喜你完成了本阶段的探索！请填写以下信息，记录你的思考过程。
+
+  # [type: dropdown]
+  # 作用：下拉选择菜单。
+  # 场景：当选项是固定的（如特定的任务ID、环境版本）时使用，避免用户手写出错，方便后续自动化统计。
+  - type: dropdown
+    id: task_id
+    attributes:
+      label: 关联任务
+      description: 你完成了哪个阶段的任务？
+      # [cite_start]options 定义下拉菜单的具体选项，对应课程大纲中的 Task01-05 [cite: 71]
+      options:
+        - "Task01: 理解知识工作流 (思维导图)"
+        - "Task02: 结构化输入 (Obsidian笔记)"
+        - "Task03: 最小闭环创作 (Prompt迭代)"
+        - "Task04: 抽象工作流模板 (Workflow.md)"
+        - "Task05: 构建MCP智能体 (Agent)"
+        - "Task06: 进阶与其他"
+    validations:
+      required: true # 设置为必填项
+
+  # [type: input]
+  # 作用：单行文本输入框。
+  # 场景：适合填写简短的信息，如 URL 链接、ID、简短标题等。
+  - type: input
+    id: pr_link
+    attributes:
+      label: Pull Request 链接
+      description: 请粘贴你提交作业的 PR 链接（我们将在此 Review 你的代码/文档）。
+      placeholder: https://gitcode.com/.../pulls/123
+    validations:
+      required: true
+
+  # [type: textarea]
+  # 作用：多行文本输入区域。
+  # 场景：用于长篇大论的描述、代码粘贴或详细反馈。
+  - type: textarea
+    id: reflection
+    attributes:
+      label: 💡 核心复盘 (Review)
+      description: 回顾整个过程，你在“结构化思考”或“Prompt设计”上最大的顿悟是什么？
+      placeholder: 例如：我发现 AI 读不懂模糊的指令，当我使用“清单体”结构化输入后，输出质量明显提升...
+    validations:
+      required: true
+
+  - type: textarea
+    id: challenge
+    attributes:
+      label: 遇到的挑战与解决方案
+      description: 遇到了什么坑？你是如何解决的？（这也将成为他人的经验）

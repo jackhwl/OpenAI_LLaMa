@@ -1,0 +1,181 @@
+<!--
+================================================================================
+图表名称：Markdown：规范性人机共读接口
+文件命名：03-figure-01-markdown-hmi-principle.svg
+用途：展示 Markdown 作为连接人类视觉与机器数据的中间态协议
+版本：v1.0.0
+作者：Gitconomy Research-郭晧
+SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+创建日期：2026-02-01
+================================================================================
+-->
+<svg width="900" height="600" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background: Solid White -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+  <defs>
+    <style>
+      :root {
+        /* 语义色定义 [2] */
+        --c-cloud-blue: #0052CC;
+        --c-brain-blue: #0099FF;
+        --c-body-green: #009900;
+        --c-risk-amber: #FF991F;
+        --c-dark: #0F172A;
+        --c-neutral-gray: #94A3B8;
+        --c-bg-light: #F8FAFC;
+
+        /* 字体规范 [3.2] */
+        --font-sans: 'Noto Sans SC', sans-serif;
+        --font-mono: 'JetBrains Mono', monospace;
+      }
+
+      text { font-family: var(--font-sans); }
+      .text-mono { font-family: var(--font-mono); }
+
+      /* 模块样式 */
+      .title-main { font-weight: bold; font-size: 24px; fill: #000000; }
+      .title-sub { font-size: 14px; fill: var(--c-neutral-gray); }
+
+      .node-chaos { fill: rgba(255, 153, 31, 0.05); stroke: var(--c-risk-amber); stroke-width: 2; stroke-dasharray: 4 4; }
+      .node-terminal { fill: var(--c-dark); stroke: var(--c-brain-blue); stroke-width: 2; rx: 8; }
+      .node-data { fill: rgba(0, 153, 0, 0.05); stroke: var(--c-body-green); stroke-width: 2; rx: 6; }
+      .node-view { fill: #FFFFFF; stroke: var(--c-neutral-gray); stroke-width: 1.5; rx: 6; }
+
+      .syntax-anchor { fill: var(--c-brain-blue); font-weight: bold; }
+      .code-text { fill: #E2E8F0; font-size: 13px; }
+
+      .connector { stroke: var(--c-neutral-gray); stroke-width: 2; fill: none; }
+      .label-tag { font-family: var(--font-mono); font-size: 11px; font-weight: bold; }
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-neutral-gray)" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-brain-blue)" />
+    </marker>
+  </defs>
+
+  <!-- MODULE: Header (标题区) [3.3] -->
+  <g id="header" transform="translate(450, 40)">
+    <text y="20" text-anchor="middle" class="title-main">Markdown表格：规范性人机共读接口</text>
+    <text y="45" text-anchor="middle" class="text-mono title-sub">第三天 > 基础原理</text>
+    <line x1="-30" y1="60" x2="30" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- MODULE: Main Content (原理主体) -->
+  <!-- Safe Zone Margin: 60px below indicator (y=120) -->
+  <g id="diagram-body" transform="translate(0, 130)">
+
+    <!-- LEFT: High Entropy Input (Human Intent) -->
+    <g id="left-intent" transform="translate(50, 80)">
+      <path d="M10,20 Q50,-10 120,10 T220,50 T180,150 T40,140 Z" class="node-chaos" />
+      <text x="110" y="70" text-anchor="middle" font-weight="bold" font-size="16" fill="#92400E">自然语言</text>
+      <text x="110" y="90" text-anchor="middle" font-size="12" fill="#B45309">(模糊意图)</text>
+      <text x="110" y="125" text-anchor="middle" font-size="10" fill="var(--c-neutral-gray)" font-style="italic">"帮我列一下张三和李四的年龄..."</text>
+    </g>
+
+    <!-- CONNECTOR: Input to Protocol -->
+    <path d="M 240,165 L 290,165" class="connector" stroke-dasharray="4 4" marker-end="url(#arrow-gray)" />
+
+    <!-- MIDDLE: Markdown Protocol Interface -->
+    <g id="middle-protocol" transform="translate(310, 30)">
+      <!-- Terminal Window -->
+      <rect width="280" height="260" class="node-terminal" />
+      <g transform="translate(15, 15)">
+        <circle cx="0" cy="0" r="4" fill="#FF5F56" />
+        <circle cx="15" cy="0" r="4" fill="#FFBD2E" />
+        <circle cx="30" cy="0" r="4" fill="#27C93F" />
+      </g>
+
+      <!-- Markdown Source Code -->
+      <g transform="translate(20, 60)" class="text-mono">
+        <text class="code-text" y="0">
+          <tspan class="syntax-anchor">| </tspan>姓名<tspan class="syntax-anchor"> | </tspan>年龄<tspan class="syntax-anchor"> |</tspan>
+        </text>
+        <text class="code-text" y="25">
+          <tspan class="syntax-anchor">| </tspan>:---<tspan class="syntax-anchor"> | </tspan>:---<tspan class="syntax-anchor"> |</tspan>
+        </text>
+        <text class="code-text" y="50">
+          <tspan class="syntax-anchor">| </tspan>张三<tspan class="syntax-anchor"> | </tspan>30<tspan class="syntax-anchor">   |</tspan>
+        </text>
+        <text class="code-text" y="75">
+          <tspan class="syntax-anchor">| </tspan>李四<tspan class="syntax-anchor"> | </tspan>25<tspan class="syntax-anchor">   |</tspan>
+        </text>
+
+        <!-- Semantic Highlighting Indicators -->
+        <rect x="-5" y="-15" width="230" height="45" fill="var(--c-brain-blue)" opacity="0.1" rx="2" />
+        <text x="210" y="5" font-size="9" fill="var(--c-brain-blue)" font-weight="bold">语法锚点</text>
+      </g>
+
+      <text x="140" y="235" text-anchor="middle" font-weight="bold" font-size="14" fill="var(--c-brain-blue)">人机共读中间态 (Markdown)</text>
+    </g>
+
+    <!-- CONNECTOR: Protocol to Dual Output -->
+    <!-- Split Arrows -->
+    <path d="M 590,140 C 620,140 630,80 660,80" class="connector" marker-end="url(#arrow-gray)" />
+    <path d="M 590,180 C 620,180 630,240 660,240" class="connector" stroke="var(--c-body-green)" marker-end="url(#arrow-blue)" />
+
+    <!-- RIGHT: Dual Output -->
+    <!-- 1. Human View (Rendered) -->
+    <g id="right-human" transform="translate(670, 30)">
+      <rect width="180" height="100" class="node-view" />
+      <text x="20" y="25" font-weight="bold" font-size="12" fill="#1E293B">视觉渲染 (Human View)</text>
+      <!-- Mini Table Icon -->
+      <g transform="translate(20, 40)">
+        <rect width="140" height="45" fill="#F1F5F9" rx="2" />
+        <line x1="0" y1="15" x2="140" y2="15" stroke="#CBD5E1" />
+        <line x1="70" y1="0" x2="70" y2="45" stroke="#CBD5E1" />
+        <text x="5" y="11" font-size="8" fill="#475569">姓名</text>
+        <text x="75" y="11" font-size="8" fill="#475569">年龄</text>
+      </g>
+      <text x="90" y="115" text-anchor="middle" font-size="10" fill="var(--c-neutral-gray)" font-style="italic">特质：直观、易读</text>
+    </g>
+
+    <!-- 2. Machine View (Structured) -->
+    <g id="right-machine" transform="translate(670, 190)">
+      <rect width="180" height="100" class="node-data" />
+      <text x="20" y="25" font-weight="bold" font-size="12" fill="var(--c-body-green)">结构化数据 (Machine View)</text>
+      <!-- JSON Code Block -->
+      <g transform="translate(20, 40)" class="text-mono">
+        <rect width="140" height="45" fill="#000" rx="4" />
+        <text x="10" y="18" font-size="9" fill="#00FF00" opacity="0.8">{"name": "张三",</text>
+        <text x="10" y="32" font-size="9" fill="#00FF00" opacity="0.8"> "age": 30}</text>
+      </g>
+      <text x="90" y="115" text-anchor="middle" font-size="10" fill="var(--c-body-green)" font-weight="bold">Regex / Dataview 解析</text>
+    </g>
+  </g>
+
+  <!-- MODULE: Legend & Footer (图例与版权) [3.4] -->
+  <g id="legend-block" transform="translate(450, 520)">
+    <rect x="-260" y="0" width="520" height="40" rx="20" fill="rgba(255, 255, 255, 0.9)" stroke="#E2E8F0" stroke-width="0.5"/>
+    <g transform="translate(-240, 25)">
+      <text x="0" y="0" font-weight="bold" font-size="10" fill="#64748B">图例说明</text>
+
+      <g transform="translate(80, -10)">
+        <circle cx="5" cy="5" r="5" fill="var(--c-risk-amber)" />
+        <text x="15" y="9" class="label-tag" fill="#334155">高熵输入</text>
+      </g>
+
+      <g transform="translate(180, -10)">
+        <circle cx="5" cy="5" r="5" fill="var(--c-brain-blue)" />
+        <text x="15" y="9" class="label-tag" fill="#334155">语法协议</text>
+      </g>
+
+      <g transform="translate(280, -10)">
+        <circle cx="5" cy="5" r="5" fill="var(--c-body-green)" />
+        <text x="15" y="9" class="label-tag" fill="#334155">执行/数据</text>
+      </g>
+
+      <text x="380" y="-1" class="text-mono" font-size="10" fill="var(--c-neutral-gray)" font-style="italic">熵减：从意图到数据</text>
+    </g>
+  </g>
+
+  <g id="footer" transform="translate(450, 580)">
+    <text text-anchor="middle" font-size="11" fill="var(--c-neutral-gray)">
+     本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+    </text>
+  </g>
+
+</svg>

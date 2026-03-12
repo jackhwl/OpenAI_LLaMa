@@ -1,0 +1,156 @@
+<!--
+================================================================================
+图表名称：信息熵转化：从聊天到工程
+文件命名：02-figure-01-information-entropy-transformation.svg
+用途：展示信息从高熵模糊状态到低熵确定状态的转化过程
+版本：v1.0.0
+作者：Gitconomy Reserch-郭晧
+SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+创建日期：2026-02-01
+================================================================================
+-->
+<svg width="900" height="600" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background: Solid White -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+  <defs>
+    <style>
+      :root {
+        /* 语义色定义*/
+        --c-cloud-blue: #0052CC;
+        --c-local-green: #00875A;
+        --c-risk-amber: #FF991F;
+        --c-neutral-gray: #64748B;
+        --c-brand-purple: #8B5CF6;
+
+        /* 字体规范*/
+        --font-sans: 'Noto Sans SC', sans-serif;
+        --font-mono: 'JetBrains Mono', monospace;
+      }
+
+      text { font-family: var(--font-sans); }
+      .text-mono { font-family: var(--font-mono); }
+
+      /* 模块样式 */
+      .title-main { font-weight: bold; font-size: 24px; fill: #000000; }
+      .title-sub { font-size: 14px; fill: var(--c-neutral-gray); }
+
+      .chaos-particle { fill: var(--c-risk-amber); fill-opacity: 0.6; }
+      .broken-line { stroke: var(--c-neutral-gray); stroke-width: 1; stroke-dasharray: 4 4; opacity: 0.4; }
+
+      .order-block { fill: rgba(33, 150, 243, 0.05); stroke: var(--c-cloud-blue); stroke-width: 2; }
+      .order-line { stroke: var(--c-cloud-blue); stroke-width: 2; fill: none; }
+      .result-block { fill: #FFFFFF; stroke: var(--c-local-green); stroke-width: 2.5; }
+
+      .entropy-bg { font-family: var(--font-mono); font-size: 40px; fill: var(--c-neutral-gray); opacity: 0.12; font-weight: bold; }
+      .section-desc { font-size: 16px; font-weight: bold; }
+      .text-step-desc { font-size: 12px; fill: var(--c-neutral-gray); }
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-neutral-gray)" />
+    </marker>
+  </defs>
+
+  <!-- MODULE: Header -->
+  <g id="header" transform="translate(450, 40)">
+    <text y="20" text-anchor="middle" class="title-main">提示词信息熵转化机制示意图</text>
+    <text y="45" text-anchor="middle" class="text-mono title-sub">第二天 > 基础理论</text>
+    <line x1="-30" y1="60" x2="30" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- MODULE: Diagram Body (图形主体) -->
+  <g id="diagram-content" transform="translate(0, 140)">
+
+    <!-- LEFT PANEL: Chat Mode (高熵混沌) -->
+    <g id="left-chaos" transform="translate(50, 0)">
+      <text x="150" y="120" text-anchor="middle" class="entropy-bg">HIGH ENTROPY</text>
+
+      <g id="particles">
+        <circle cx="100" cy="80" r="12" class="chaos-particle" />
+        <circle cx="200" cy="60" r="8" class="chaos-particle" />
+        <circle cx="240" cy="140" r="15" class="chaos-particle" />
+        <circle cx="120" cy="180" r="10" class="chaos-particle" />
+        <circle cx="180" cy="220" r="6" class="chaos-particle" />
+        <circle cx="60" cy="150" r="9" class="chaos-particle" />
+        <circle cx="280" cy="190" r="7" class="chaos-particle" />
+
+        <line x1="100" y1="80" x2="200" y2="60" class="broken-line" />
+        <line x1="200" y1="60" x2="240" y2="140" class="broken-line" />
+        <line x1="120" y1="180" x2="180" y2="220" class="broken-line" />
+        <line x1="60" y1="150" x2="120" y2="180" class="broken-line" />
+      </g>
+
+      <text x="150" y="145" text-anchor="middle" font-weight="bold" font-size="20" fill="#5F4B09">模糊意图</text>
+      <text x="150" y="165" text-anchor="middle" class="text-mono" font-size="12" fill="#5F4B09" opacity="0.7">Vague Intent</text>
+
+      <text x="150" y="320" text-anchor="middle" class="section-desc" fill="var(--c-risk-amber)">聊天模式：随机、拼运气</text>
+    </g>
+
+    <!-- CENTER PANEL: Transformation -->
+    <g id="transformation" transform="translate(350, 135)">
+      <path d="M0,0 L160,10 L160,30 L0,40 Z" fill="var(--c-neutral-gray)" opacity="0.15" />
+      <line x1="0" y1="20" x2="180" y2="20" stroke="var(--c-neutral-gray)" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arrow-head)" />
+      <text x="90" y="-10" text-anchor="middle" font-weight="bold" font-size="14" fill="#666">工程化约束 / 熵减</text>
+    </g>
+
+    <!-- RIGHT PANEL: Engineering Mode -->
+    <g id="right-order" transform="translate(580, 0)">
+      <text x="140" y="120" text-anchor="middle" class="entropy-bg">LOW ENTROPY</text>
+
+      <g id="pipeline" transform="translate(40, 20)">
+        <rect x="0" y="0" width="200" height="50" rx="4" class="order-block" />
+        <text x="100" y="30" text-anchor="middle" font-weight="bold" fill="var(--c-cloud-blue)">结构化指令</text>
+
+        <path d="M100,50 L100,80" class="order-line" marker-end="url(#arrow-head)" />
+
+        <rect x="0" y="80" width="200" height="50" rx="4" class="order-block" />
+        <text x="100" y="110" text-anchor="middle" font-weight="bold" fill="var(--c-cloud-blue)">上下文注入</text>
+
+        <path d="M100,130 L100,160" class="order-line" marker-end="url(#arrow-head)" />
+
+        <rect x="0" y="160" width="200" height="50" rx="4" class="result-block" />
+        <text x="100" y="190" text-anchor="middle" font-weight="bold" fill="var(--c-local-green)">确定性结果</text>
+      </g>
+
+      <text x="140" y="320" text-anchor="middle" class="section-desc" fill="var(--c-local-green)">工程模式：协议、可复用</text>
+    </g>
+  </g>
+
+  <!-- MODULE: Footer & Legend -->
+  <g id="legend-block" transform="translate(450, 500)">
+    <rect x="-260" y="0" width="520" height="40" rx="20" fill="rgba(255, 255, 255, 0.9)" stroke="#E2E8F0" stroke-width="0.5"/>
+    <g transform="translate(-240, 25)">
+      <text x="0" y="0" font-weight="bold" font-size="10" fill="#64748B">图例说明</text>
+
+      <!-- 高熵输入 -->
+      <g transform="translate(80, -10)">
+        <circle cx="5" cy="5" r="5" fill="var(--c-risk-amber)" />
+        <text x="15" y="9" class="text-mono" font-size="10" fill="#334155">高熵输入</text>
+      </g>
+
+      <!-- 收敛过滤 -->
+      <g transform="translate(180, -10)">
+        <circle cx="5" cy="5" r="5" fill="var(--c-cloud-blue)" />
+        <text x="15" y="9" class="text-mono" font-size="10" fill="#334155">收敛过滤</text>
+      </g>
+
+      <!-- 工程心法 -->
+      <g transform="translate(280, -10)">
+        <rect width="10" height="10" rx="2" fill="var(--c-brand-purple)" />
+        <text x="15" y="9" class="text-mono" font-size="10" fill="#334155">工程心法</text>
+      </g>
+
+      <!-- 描述文字 -->
+      <text x="380" y="-1" class="text-step-desc" font-size="10" font-style="italic">熵减过程：无序 -> 有序</text>
+    </g>
+  </g>
+
+  <!-- 版权声明 -->
+  <g id="copyright-block" transform="translate(450, 580)">
+    <text text-anchor="middle" font-size="11" fill="var(--c-neutral-gray)">
+      本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+    </text>
+  </g>
+
+</svg>

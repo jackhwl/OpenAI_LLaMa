@@ -1,0 +1,162 @@
+<!--
+  文件名：module-04-from-prompt-to-agent.svg
+  图表名称：从个人生成到知识工程系统的能力跃迁图
+  描述：展示从简单的 Prompt 交互向复杂的智能知识工程系统演进的四个阶梯，明确第四章的系统化定位。
+
+  核心逻辑：
+  1. 阶梯式演进：Prompt -> Data/RAG -> Agent -> System/Ops。
+  2. 角色转变：从“提示词写手”到“知识系统架构师”。
+  3. 价值主张：清晰展示每一层级解决的特定工程痛点。
+
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+-->
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义样式与标记 -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+      .stage-title { font-family: 'Noto Sans', sans-serif; font-size: 18px; font-weight: 800; text-anchor: middle; }
+      .stage-subtitle { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: bold; text-anchor: middle; fill: #4B5563; }
+      .role-label { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: 800; text-anchor: end; fill: #6B7280; }
+      .pain-point { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-style: italic; fill: #DC2626; text-anchor: start; }
+      .value-prop { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: bold; fill: #059669; text-anchor: start; }
+
+      /* 阶梯背景 */
+      .step-bg-1 { fill: #F3F4F6; stroke: #9CA3AF; stroke-width: 2px; }
+      .step-bg-2 { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; }
+      .step-bg-3 { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; }
+      .step-bg-4 { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2px; }
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow-up" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6B7280" />
+    </marker>
+  </defs>
+
+  <!-- 1. 标题区域 -->
+  <text x="600" y="60" text-anchor="middle" font-family="Noto Sans" font-size="26" font-weight="800" fill="#111827">
+    智能知识工程体系能力跃迁：从“对话”到“工程”
+  </text>
+  <text x="600" y="95" text-anchor="middle" font-family="Noto Sans" font-size="16" fill="#6B7280">
+  为什么你需要构建“智能知识工程系统”？
+  </text>
+
+  <!-- 2. 坐标轴与背景趋势 -->
+  <line x1="150" y1="700" x2="150" y2="150" stroke="#E5E7EB" stroke-width="4" marker-end="url(#arrow-up)"/>
+  <text x="140" y="140" text-anchor="middle" font-family="Noto Sans" font-size="12" fill="#6B7280" font-weight="bold">系统自主性 / 复杂度</text>
+
+  <line x1="150" y1="700" x2="1100" y2="700" stroke="#E5E7EB" stroke-width="4"/>
+  <text x="1100" y="730" text-anchor="end" font-family="Noto Sans" font-size="12" fill="#6B7280" font-weight="bold">工程化深度</text>
+
+  <!-- ================================================================================== -->
+  <!-- Level 1: 个人交互 (Individual Interaction) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(200, 550)">
+    <rect x="0" y="0" width="200" height="150" rx="8" class="step-bg-1"/>
+    <text x="100" y="40" class="stage-title" fill="#374151">L1. 单点交互</text>
+    <text x="100" y="60" class="stage-subtitle">Prompt Engineering</text>
+
+    <g transform="translate(20, 80)">
+        <text x="0" y="0" font-size="12" fill="#4B5563">• 技巧：CoT, Few-Shot</text>
+        <text x="0" y="20" font-size="12" fill="#4B5563">• 工具：ChatGPT 网页版</text>
+        <text x="0" y="40" font-size="12" fill="#4B5563">• 产物：一次性文本</text>
+    </g>
+
+    <!-- 痛点标注 -->
+    <text x="0" y="170" class="pain-point">❌ 痛点：不可复用、依赖人工、易断裂</text>
+  </g>
+
+  <!-- 角色标签 L1 -->
+  <text x="180" y="625" class="role-label">Prompt User</text>
+
+  <!-- ================================================================================== -->
+  <!-- Level 2: 数据与协作 (Data & Collaboration) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(420, 400)">
+    <rect x="0" y="0" width="200" height="150" rx="8" class="step-bg-2"/>
+    <text x="100" y="40" class="stage-title" fill="#1E40AF">L2. 数据基座</text>
+    <text x="100" y="60" class="stage-subtitle">Knowledge as Code</text>
+
+    <g transform="translate(20, 80)">
+        <text x="0" y="0" font-size="12" fill="#4B5563">• 技巧：Git, RAG, Chunking</text>
+        <text x="0" y="20" font-size="12" fill="#4B5563">• 工具：Obsidian, Vector DB</text>
+        <text x="0" y="40" font-size="12" fill="#4B5563">• 产物：结构化知识库</text>
+    </g>
+
+    <!-- 痛点标注 -->
+    <text x="0" y="170" class="pain-point">❌ 痛点：有知识但无法行动，检索不准</text>
+    <text x="210" y="75" class="value-prop">✅ 引入“版本控制”与“外部记忆”</text>
+  </g>
+
+  <!-- 角色标签 L2 -->
+  <text x="400" y="475" class="role-label">Knowledge Creator</text>
+
+  <!-- 连接线 L1 -> L2 -->
+  <path d="M 400 550 L 400 500 L 420 500" fill="none" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="4,4"/>
+
+  <!-- ================================================================================== -->
+  <!-- Level 3: 代理式工作流 (Agentic Workflow) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(640, 250)">
+    <rect x="0" y="0" width="200" height="150" rx="8" class="step-bg-3"/>
+    <text x="100" y="40" class="stage-title" fill="#065F46">L3. 智能体行动</text>
+    <text x="100" y="60" class="stage-subtitle">Agentic Workflow</text>
+
+    <g transform="translate(20, 80)">
+        <text x="0" y="0" font-size="12" fill="#4B5563">• 技巧：Planning, Reflection</text>
+        <text x="0" y="20" font-size="12" fill="#4B5563">• 工具：Tools, API, ReAct</text>
+        <text x="0" y="40" font-size="12" fill="#4B5563">• 产物：自主执行任务</text>
+    </g>
+
+    <!-- 痛点标注 -->
+    <text x="0" y="170" class="pain-point">❌ 痛点：单次成功率低，缺乏质量门控</text>
+    <text x="210" y="75" class="value-prop">✅ 引入“自主规划”与“工具使用”</text>
+  </g>
+
+  <!-- 角色标签 L3 -->
+  <text x="620" y="325" class="role-label">Workflow Orchestrator</text>
+
+  <!-- 连接线 L2 -> L3 -->
+  <path d="M 620 400 L 620 350 L 640 350" fill="none" stroke="#93C5FD" stroke-width="2" stroke-dasharray="4,4"/>
+
+  <!-- ================================================================================== -->
+  <!-- Level 4: 知识运维系统 (Knowledge Ops) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(860, 100)">
+    <rect x="0" y="0" width="220" height="150" rx="8" class="step-bg-4"/>
+    <text x="110" y="40" class="stage-title" fill="#B45309">L4. 智能工程系统</text>
+    <text x="110" y="60" class="stage-subtitle">System &amp; Ops</text>
+
+    <g transform="translate(20, 80)">
+        <text x="0" y="0" font-size="12" fill="#4B5563">• 技巧：CI/CD, Eval, HITL</text>
+        <text x="0" y="20" font-size="12" fill="#4B5563">• 工具：GitHub Actions, Evals</text>
+        <text x="0" y="40" font-size="12" fill="#4B5563">• 产物：可自我进化的系统</text>
+    </g>
+
+    <!-- 价值主张 -->
+    <text x="230" y="75" class="value-prop" font-size="14">✅ 最终形态：稳定性、规模化、自动化</text>
+  </g>
+
+  <!-- 角色标签 L4 -->
+  <text x="840" y="175" class="role-label" fill="#B45309">System Architect</text>
+
+  <!-- 连接线 L3 -> L4 -->
+  <path d="M 840 250 L 840 200 L 860 200" fill="none" stroke="#86EFAC" stroke-width="2" stroke-dasharray="4,4"/>
+
+  <!-- ================================================================================== -->
+  <!-- 核心洞察注释 -->
+  <!-- ================================================================================== -->
+  <g transform="translate(100, 200)">
+    <text x="0" y="0" font-family="Noto Sans" font-size="14" fill="#6B7280" font-weight="bold">核心差异：</text>
+    <text x="0" y="25" font-family="Noto Sans" font-size="12" fill="#374151">前三章解决“如何让 AI 写得更好”</text>
+    <text x="0" y="45" font-family="Noto Sans" font-size="12" fill="#1E40AF" font-weight="bold">第四章解决“如何让 AI 干得更稳”</text>
+  </g>
+
+  <!-- 底部许可 -->
+  <text x="600" y="780" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="12" fill="#64748B">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

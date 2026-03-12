@@ -1,0 +1,213 @@
+<!--
+  文件名：module-03-cognitive-to-engineering-logic.svg
+  图表名称：从认知模型到工程骨架的逻辑架构图
+  描述：展示结构化提示工程的三层抽象逻辑：认知层（思维流）、工程层（关键动作）、实践层（执行形态）的对应关系。
+
+  核心逻辑：
+  1. 认知层 (Cognitive): I-S-G-I-E (Blue) - 人机协同的思考模式
+  2. 工程层 (Engineering): Express-Evaluate-Iterate-System (Green/Yellow) - 必须工程化的环节
+  3. 实践层 (Practical): Prompt-Workflow-Agent-MCP (Purple) - 最终落地的执行形态
+
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+-->
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义样式与标记 -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+      .layer-label { font-family: 'Noto Sans', sans-serif; font-size: 18px; font-weight: 800; text-anchor: end; }
+      .node-text { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: bold; text-anchor: middle; }
+      .desc-text { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: normal; text-anchor: middle; }
+      .connect-line { stroke-dasharray: 4,4; stroke-width: 1.5; opacity: 0.6; }
+    </style>
+    <!-- 箭头定义 -->
+    <marker id="arrow-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563EB" />
+    </marker>
+    <marker id="arrow-gray" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#6B7280" />
+    </marker>
+  </defs>
+
+  <!-- 标题 -->
+  <text x="600" y="50" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="24" font-weight="800" fill="#111827">
+    从“认知模型”到“工程骨架”的抽象逻辑
+  </text>
+  <text x="600" y="80" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="14" fill="#6B7280">
+    三层架构：思维模式 → 工程方法 → 执行形态
+  </text>
+
+  <!-- 左侧层级标签 -->
+  <g transform="translate(180, 0)">
+      <!-- 认知层标签 -->
+      <text x="0" y="200" class="layer-label" fill="#1E40AF">认知层</text>
+      <text x="0" y="225" text-anchor="end" font-size="12" fill="#6B7280" font-style="italic">Cognitive Layer</text>
+
+      <!-- 工程层标签 -->
+      <text x="0" y="400" class="layer-label" fill="#047857">工程层</text>
+      <text x="0" y="425" text-anchor="end" font-size="12" fill="#6B7280" font-style="italic">Engineering Layer</text>
+
+      <!-- 实践层标签 -->
+      <text x="0" y="600" class="layer-label" fill="#7C3AED">实践层</text>
+      <text x="0" y="625" text-anchor="end" font-size="12" fill="#6B7280" font-style="italic">Practical Layer</text>
+  </g>
+
+  <!-- 分隔线 -->
+  <line x1="200" y1="120" x2="200" y2="700" stroke="#E5E7EB" stroke-width="2"/>
+
+  <!-- ================================================================================== -->
+  <!-- Layer 1: 认知层 (I-S-G-I-E) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(250, 160)">
+      <!-- 背景带 -->
+      <rect x="0" y="0" width="850" height="80" rx="40" fill="#EFF6FF" stroke="#BFDBFE"/>
+
+      <!-- I: Input -->
+      <g transform="translate(50, 40)">
+        <circle cx="0" cy="0" r="30" fill="white" stroke="#2563EB" stroke-width="2"/>
+        <text x="0" y="5" class="node-text" fill="#1E40AF">I</text>
+        <text x="0" y="50" class="desc-text" fill="#1E40AF">Input</text>
+      </g>
+
+      <!-- S: Structure -->
+      <g transform="translate(200, 40)">
+        <circle cx="0" cy="0" r="35" fill="white" stroke="#2563EB" stroke-width="3"/>
+        <text x="0" y="5" class="node-text" fill="#1E40AF" font-size="16">S</text>
+        <text x="0" y="55" class="desc-text" fill="#1E40AF">Structure</text>
+      </g>
+
+      <!-- G: Generate -->
+      <g transform="translate(350, 40)">
+        <circle cx="0" cy="0" r="30" fill="white" stroke="#2563EB" stroke-width="2"/>
+        <text x="0" y="5" class="node-text" fill="#1E40AF">G</text>
+        <text x="0" y="50" class="desc-text" fill="#1E40AF">Generate</text>
+      </g>
+
+      <!-- I: Inspect -->
+      <g transform="translate(500, 40)">
+        <circle cx="0" cy="0" r="35" fill="white" stroke="#2563EB" stroke-width="3"/>
+        <text x="0" y="5" class="node-text" fill="#1E40AF" font-size="16">I</text>
+        <text x="0" y="55" class="desc-text" fill="#1E40AF">Inspect</text>
+      </g>
+
+      <!-- E: Execute/Iterate -->
+      <g transform="translate(650, 40)">
+        <circle cx="0" cy="0" r="30" fill="white" stroke="#2563EB" stroke-width="2"/>
+        <text x="0" y="5" class="node-text" fill="#1E40AF">E</text>
+        <text x="0" y="50" class="desc-text" fill="#1E40AF">Execute</text>
+      </g>
+
+      <!-- 连接箭头 -->
+      <line x1="80" y1="40" x2="165" y2="40" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow-blue)"/>
+      <line x1="235" y1="40" x2="320" y2="40" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow-blue)"/>
+      <line x1="380" y1="40" x2="465" y2="40" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow-blue)"/>
+      <line x1="535" y1="40" x2="620" y2="40" stroke="#2563EB" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+      <!-- 右侧说明 -->
+      <text x="750" y="45" font-family="Noto Sans" font-size="14" fill="#1E40AF" font-weight="bold">人机协同思考回路</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- Layer 2: 工程层 (Express-Evaluate-Iterate-System) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(250, 360)">
+      <!-- 表达 (Express) - 对应 S -->
+      <g transform="translate(200, 40)">
+        <rect x="-60" y="-30" width="120" height="60" rx="8" fill="#F0FDF4" stroke="#34D399" stroke-width="2"/>
+        <text x="0" y="5" class="node-text" fill="#047857">表达 (Express)</text>
+        <text x="0" y="45" class="desc-text" fill="#059669">结构化约束</text>
+      </g>
+
+      <!-- 评估 (Evaluate) - 对应 I -->
+      <g transform="translate(500, 40)">
+        <rect x="-60" y="-30" width="120" height="60" rx="8" fill="#FEF9C3" stroke="#FACC15" stroke-width="2"/>
+        <text x="0" y="5" class="node-text" fill="#B45309">评估 (Evaluate)</text>
+        <text x="0" y="45" class="desc-text" fill="#D97706">质量门控</text>
+      </g>
+
+      <!-- 迭代与系统 (System Loop) - 对应 E 及整体 -->
+      <g transform="translate(650, 40)">
+        <rect x="-60" y="-30" width="120" height="60" rx="8" fill="#F0FDF4" stroke="#34D399" stroke-width="2"/>
+        <text x="0" y="5" class="node-text" fill="#047857">迭代 (Iterate)</text>
+      </g>
+
+      <g transform="translate(800, 40)">
+         <rect x="-50" y="-30" width="100" height="60" rx="8" fill="#ECFDF5" stroke="#059669" stroke-width="2" stroke-dasharray="5,5"/>
+         <text x="0" y="5" class="node-text" fill="#065F46">系统</text>
+         <text x="0" y="25" class="desc-text" fill="#065F46">(System)</text>
+      </g>
+
+      <!-- 工程层内部连接 -->
+      <line x1="260" y1="40" x2="440" y2="40" stroke="#6B7280" stroke-width="1.5" stroke-dasharray="2,2"/>
+      <line x1="560" y1="40" x2="590" y2="40" stroke="#6B7280" stroke-width="2" marker-end="url(#arrow-gray)"/>
+      <path d="M 710 40 L 730 40 L 730 40 L 750 40" stroke="#059669" stroke-width="2" marker-end="url(#arrow-gray)"/>
+
+      <!-- 反馈闭环 -->
+      <path d="M 590 70 L 590 85 L 200 85 L 200 70" fill="none" stroke="#D97706" stroke-width="1.5" stroke-dasharray="5,5" marker-end="url(#arrow-gray)"/>
+      <text x="375" y="80" class="desc-text" fill="#D97706" font-size="10">工程化闭环</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- Layer 3: 实践层 (Prompt-Workflow-Agent-MCP) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(250, 560)">
+
+      <!-- Prompt - 对应 表达 -->
+      <g transform="translate(200, 40)">
+        <rect x="-60" y="-30" width="120" height="60" rx="8" fill="#F3E8FF" stroke="#A855F7" stroke-width="2"/>
+        <text x="0" y="5" class="node-text" fill="#6B21A8">Prompt</text>
+        <text x="0" y="45" class="desc-text" fill="#7E22CE">提示词工程</text>
+      </g>
+
+      <!-- Workflow - 对应 评估/迭代流程 -->
+      <g transform="translate(500, 40)">
+        <rect x="-60" y="-30" width="120" height="60" rx="8" fill="#FAE8FF" stroke="#D946EF" stroke-width="2"/>
+        <text x="0" y="5" class="node-text" fill="#86198F">Workflow</text>
+        <text x="0" y="45" class="desc-text" fill="#A21CAF">工作流编排</text>
+      </g>
+
+      <!-- Agent / MCP - 对应 系统/整体 -->
+      <g transform="translate(725, 40)">
+        <rect x="-100" y="-40" width="200" height="80" rx="10" fill="#FCE7F3" stroke="#EC4899" stroke-width="2"/>
+        <text x="0" y="-5" class="node-text" fill="#9D174D" font-size="16">Agent / MCP</text>
+        <text x="0" y="25" class="desc-text" fill="#BE185D">智能体 &amp; 上下文协议</text>
+        <text x="0" y="50" font-size="10" fill="#BE185D" text-anchor="middle">(执行形态)</text>
+      </g>
+
+      <!-- 底座连接 -->
+      <path d="M 260 40 L 440 40" stroke="#A855F7" stroke-width="3" opacity="0.3"/>
+      <path d="M 560 40 L 625 40" stroke="#D946EF" stroke-width="3" opacity="0.3"/>
+
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 垂直映射连线 (关键逻辑) -->
+  <!-- ================================================================================== -->
+  <g>
+    <!-- S -> 表达 -> Prompt -->
+    <line x1="450" y1="235" x2="450" y2="330" class="connect-line" stroke="#2563EB"/>
+    <line x1="450" y1="430" x2="450" y2="530" class="connect-line" stroke="#34D399"/>
+
+    <!-- I -> 评估 -> Workflow -->
+    <line x1="750" y1="235" x2="750" y2="330" class="connect-line" stroke="#2563EB"/>
+    <line x1="750" y1="430" x2="750" y2="530" class="connect-line" stroke="#34D399"/>
+
+    <!-- E -> 迭代 -> Agent -->
+    <line x1="900" y1="235" x2="900" y2="330" class="connect-line" stroke="#2563EB"/>
+    <line x1="900" y1="430" x2="975" y2="520" class="connect-line" stroke="#34D399"/>
+  </g>
+
+  <!-- 右侧注释 -->
+  <g transform="translate(1150, 0)">
+      <text x="0" y="200" text-anchor="middle" font-size="12" fill="#6B7280" writing-mode="tb">如何思考</text>
+      <text x="0" y="400" text-anchor="middle" font-size="12" fill="#6B7280" writing-mode="tb">哪里工程化</text>
+      <text x="0" y="600" text-anchor="middle" font-size="12" fill="#6B7280" writing-mode="tb">如何执行</text>
+  </g>
+
+  <!-- 底部许可 -->
+  <text x="600" y="750" text-anchor="middle" font-family="Noto Sans, sans-serif" font-size="12" fill="#64748B">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

@@ -1,0 +1,98 @@
+<svg width="900" height="620" viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+
+      :root {
+        --color-main-fill: #EFF6FF;
+        --color-main-stroke: #60A5FA;
+        --color-std-fill: #F0FDF4;       /* Green - Human Advantage */
+        --color-std-stroke: #34D399;
+        --color-highlight-fill: #FEF9C3; /* Yellow - AI Advantage */
+        --color-highlight-stroke: #FACC15;
+        --color-connector: #2563EB;
+        --color-text-main: #111827;
+        --color-text-body: #374151;
+        --color-text-small: #6B7280;
+        --color-human-line: #9CA3AF;
+      }
+
+      text { font-family: 'Noto Sans', sans-serif; }
+
+      /* Styles */
+      .axis-line { stroke: var(--color-text-small); stroke-width: 2px; }
+      .grid-line { stroke: #E5E7EB; stroke-width: 1px; stroke-dasharray: 4,4; }
+      .human-baseline { stroke: var(--color-human-line); stroke-width: 2px; stroke-dasharray: 6,4; }
+
+      .frontier-line { fill: none; stroke: var(--color-connector); stroke-width: 3px; }
+
+      .point-high { fill: var(--color-highlight-fill); stroke: var(--color-highlight-stroke); stroke-width: 2px; }
+      .point-low { fill: var(--color-std-fill); stroke: var(--color-std-stroke); stroke-width: 2px; }
+
+      /* Text */
+      .main-title-text { font-size: 24px; font-weight: 800; fill: var(--color-text-main); }
+      .label-text { font-size: 14px; font-weight: 700; fill: var(--color-text-body); text-anchor: middle; }
+      .axis-label { font-size: 12px; font-weight: 400; fill: var(--color-text-small); }
+      .annotation-text { font-size: 12px; font-weight: 400; fill: var(--color-text-body); }
+      .license-text { font-size: 12px; font-weight: 400; fill: #64748B; text-anchor: middle; }
+    </style>
+
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6B7280" />
+    </marker>
+  </defs>
+
+  <text x="450" y="50" class="main-title-text" text-anchor="middle">锯齿状技术前沿示意图</text>
+  <text x="450" y="80" class="axis-label" text-anchor="middle" font-size="14">AI 能力的不均匀分布与“能力错觉”</text>
+
+  <g transform="translate(140, 120)">
+
+    <line x1="0" y1="0" x2="700" y2="0" class="grid-line" />
+    <text x="-15" y="5" class="axis-label" text-anchor="end">超人水平 (Superhuman)</text>
+
+    <line x1="0" y1="350" x2="700" y2="350" class="grid-line" />
+    <text x="-15" y="355" class="axis-label" text-anchor="end">低级错误 (Unreliable)</text>
+
+    <line x1="0" y1="175" x2="700" y2="175" class="human-baseline" />
+    <text x="710" y="180" class="annotation-text" fill="#9CA3AF" font-weight="bold">人类专家基准线</text>
+
+    <path d="M50,80 L150,300 L250,100 L350,320 L450,120 L550,250 L650,150" class="frontier-line" />
+
+    <circle cx="50" cy="80" r="8" class="point-high" />
+    <text x="50" y="60" class="label-text">创意写作</text>
+    <text x="50" y="370" class="axis-label" text-anchor="middle">易幻觉任务</text> <circle cx="150" cy="300" r="8" class="point-low" />
+    <text x="150" y="340" class="label-text">事实校验</text>
+
+    <circle cx="250" cy="100" r="8" class="point-high" />
+    <text x="250" y="80" class="label-text">代码生成</text>
+
+    <circle cx="350" cy="320" r="8" class="point-low" />
+    <text x="350" y="360" class="label-text">情感共鸣</text>
+
+    <circle cx="450" cy="120" r="8" class="point-high" />
+    <text x="450" y="100" class="label-text">文档总结</text>
+
+    <circle cx="550" cy="250" r="8" class="point-low" />
+    <text x="550" y="290" class="label-text">复杂规划</text>
+
+    <circle cx="650" cy="150" r="8" class="point-high" />
+    <text x="650" y="130" class="label-text">逻辑推理</text>
+
+    <line x1="0" y1="0" x2="0" y2="380" class="axis-line" /> <line x1="0" y1="380" x2="700" y2="380" class="axis-line" marker-end="url(#arrow)" /> <text x="-40" y="200" class="axis-label" text-anchor="middle" transform="rotate(-90, -40, 200)">AI 相对表现 (Performance)</text>
+    <text x="350" y="410" class="axis-label" text-anchor="middle">不同类型的认知任务 (Task Dimensions)</text>
+
+  </g>
+
+  <g transform="translate(140, 540)">
+    <circle cx="10" cy="10" r="6" class="point-high" />
+    <text x="25" y="15" class="annotation-text">前沿内部 (Inside Frontier): AI 表现优异，适合自动化/增强</text>
+
+    <circle cx="350" cy="10" r="6" class="point-low" />
+    <text x="365" y="15" class="annotation-text">前沿外部 (Outside Frontier): AI 易出错，需人工主导</text>
+  </g>
+
+  <text x="450" y="600" class="license-text">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+</svg>

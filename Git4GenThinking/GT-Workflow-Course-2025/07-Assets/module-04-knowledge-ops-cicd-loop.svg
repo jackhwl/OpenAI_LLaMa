@@ -1,0 +1,165 @@
+<!--
+  文件名：module-04-knowledge-ops-cicd-loop.svg
+  图表名称：持续集成与知识运维（Knowledge Ops）：闭环管理
+  描述：展示将 DevOps 理念应用于知识工程的无限循环闭环，包含开发（左环）与运维（右环）的核心环节。
+
+  核心流程：
+  1. Dev (左环): Plan -> Create -> Verify (自动化检查)。
+  2. Ops (右环): Release -> Monitor -> Feedback (数据驱动)。
+  3. Core (中心): CI/CD Pipeline (持续集成/持续部署)。
+
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+-->
+<svg width="1200" height="700" viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义样式与标记 -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+
+      /* 文本样式 */
+      .main-title { font-family: 'Noto Sans', sans-serif; font-size: 24px; font-weight: 800; fill: #111827; text-anchor: middle; }
+      .sub-title { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: normal; fill: #6B7280; text-anchor: middle; }
+
+      .phase-title { font-family: 'Noto Sans', sans-serif; font-size: 16px; font-weight: 700; text-anchor: middle; }
+      .node-text { font-family: 'Noto Sans', sans-serif; font-size: 13px; font-weight: bold; text-anchor: middle; }
+      .desc-text { font-family: 'Noto Sans', sans-serif; font-size: 11px; font-weight: normal; text-anchor: middle; fill: #4B5563; }
+      .icon-text { font-family: 'Noto Sans', sans-serif; font-size: 20px; text-anchor: middle; dominant-baseline: central; }
+
+      /* 区域背景 */
+      .dev-bg { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; }
+      .ops-bg { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; }
+      .pipeline-bg { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2px; }
+
+      /* 节点样式 */
+      .node-circle { stroke-width: 3px; fill: white; }
+      .node-dev { stroke: #2563EB; }
+      .node-ops { stroke: #059669; }
+
+      /* 连接线 */
+      .loop-path { fill: none; stroke-width: 12px; stroke-linecap: round; stroke-opacity: 0.2; }
+      .flow-arrow { fill: none; stroke: #4B5563; stroke-width: 2px; stroke-dasharray: 4,4; marker-end: url(#arrow-gray); }
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow-gray" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#4B5563"/>
+    </marker>
+  </defs>
+
+  <!-- 1. 标题区域 -->
+  <text x="600" y="50" class="main-title">持续集成与知识运维 (Knowledge Ops)</text>
+  <text x="600" y="80" class="sub-title">构建“开发-运维”一体化的知识工程闭环</text>
+
+  <!-- ================================================================================== -->
+  <!-- 核心结构：无限循环 (Infinity Loop) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(600, 380)">
+    <!-- 左环 (Dev) -->
+    <path d="M 0 0 C -150 -150 -350 -150 -350 0 C -350 150 -150 150 0 0" class="loop-path" stroke="#2563EB"/>
+
+    <!-- 右环 (Ops) -->
+    <path d="M 0 0 C 150 150 350 150 350 0 C 350 -150 150 -150 0 0" class="loop-path" stroke="#059669"/>
+
+    <!-- 中心连接点 -->
+    <circle cx="0" cy="0" r="10" fill="#FACC15"/>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 左侧：Dev 环节 (Plan -> Create -> Verify) -->
+  <!-- ================================================================================== -->
+
+  <text x="300" y="150" class="phase-title" fill="#1E40AF">Dev (知识开发)</text>
+
+  <!-- Node 1: Plan -->
+  <g transform="translate(300, 230)">
+    <circle r="40" class="node-circle node-dev"/>
+    <text x="0" y="-10" class="icon-text">📋</text>
+    <text x="0" y="20" class="node-text" fill="#1E40AF">Plan</text>
+    <text x="0" y="60" class="desc-text">需求/Prompt设计</text>
+  </g>
+
+  <!-- Node 2: Create -->
+  <g transform="translate(150, 380)">
+    <circle r="40" class="node-circle node-dev"/>
+    <text x="0" y="-10" class="icon-text">✍️</text>
+    <text x="0" y="20" class="node-text" fill="#1E40AF">Create</text>
+    <text x="-80" y="0" class="desc-text" text-anchor="end">撰写/编码</text>
+  </g>
+
+  <!-- Node 3: Verify -->
+  <g transform="translate(300, 530)">
+    <circle r="40" class="node-circle node-dev"/>
+    <text x="0" y="-10" class="icon-text">🧪</text>
+    <text x="0" y="20" class="node-text" fill="#1E40AF">Verify</text>
+    <text x="0" y="60" class="desc-text">自动化测试/Eval</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 右侧：Ops 环节 (Release -> Monitor -> Feedback) -->
+  <!-- ================================================================================== -->
+
+  <text x="900" y="150" class="phase-title" fill="#065F46">Ops (知识运维)</text>
+
+  <!-- Node 4: Release -->
+  <g transform="translate(900, 530)">
+    <circle r="40" class="node-circle node-ops"/>
+    <text x="0" y="-10" class="icon-text">🚀</text>
+    <text x="0" y="20" class="node-text" fill="#065F46">Release</text>
+    <text x="0" y="60" class="desc-text">部署/发布</text>
+  </g>
+
+  <!-- Node 5: Monitor -->
+  <g transform="translate(1050, 380)">
+    <circle r="40" class="node-circle node-ops"/>
+    <text x="0" y="-10" class="icon-text">📊</text>
+    <text x="0" y="20" class="node-text" fill="#065F46">Monitor</text>
+    <text x="80" y="0" class="desc-text" text-anchor="start">监控/数据</text>
+  </g>
+
+  <!-- Node 6: Feedback -->
+  <g transform="translate(900, 230)">
+    <circle r="40" class="node-circle node-ops"/>
+    <text x="0" y="-10" class="icon-text">🔄</text>
+    <text x="0" y="20" class="node-text" fill="#065F46">Feedback</text>
+    <text x="0" y="60" class="desc-text">用户反馈/洞察</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 中心：CI/CD Pipeline -->
+  <!-- ================================================================================== -->
+  <g transform="translate(600, 380)">
+    <rect x="-60" y="-30" width="120" height="60" rx="30" class="pipeline-bg"/>
+    <text x="0" y="5" class="node-text" fill="#854D0E">CI/CD</text>
+    <text x="0" y="20" class="desc-text" font-size="9">Pipeline</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 流程箭头 (Flow Arrows) -->
+  <!-- ================================================================================== -->
+  <!-- Plan -> Create -->
+  <path d="M 280 260 Q 200 300 160 340" class="flow-arrow"/>
+
+  <!-- Create -> Verify -->
+  <path d="M 160 420 Q 200 480 280 510" class="flow-arrow"/>
+
+  <!-- Verify -> Release (Cross Center) -->
+  <path d="M 340 530 Q 600 600 860 530" class="flow-arrow" stroke="#FACC15"/>
+  <text x="600" y="590" class="desc-text" fill="#D97706">Deploy to Prod</text>
+
+  <!-- Release -> Monitor -->
+  <path d="M 940 510 Q 1020 480 1040 420" class="flow-arrow"/>
+
+  <!-- Monitor -> Feedback -->
+  <path d="M 1040 340 Q 1000 280 940 250" class="flow-arrow"/>
+
+  <!-- Feedback -> Plan (Cross Center) -->
+  <path d="M 860 230 Q 600 160 340 230" class="flow-arrow" stroke="#FACC15"/>
+  <text x="600" y="180" class="desc-text" fill="#D97706">Loop Back</text>
+
+  <!-- 底部许可 -->
+  <text x="600" y="650" font-family="Noto Sans" font-size="12" fill="#9CA3AF" text-anchor="middle">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

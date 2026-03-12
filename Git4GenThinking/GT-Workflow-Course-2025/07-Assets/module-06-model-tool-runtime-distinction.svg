@@ -1,0 +1,183 @@
+<!--
+  文件名：module-06-model-tool-runtime-distinction.svg
+  图表名称：智能体、模型与运行环境的本体区分图
+  描述：通过三层结构清晰界定 Model (大脑)、Tool (手脚) 与 Agent Runtime (操作系统) 的边界与职能。
+
+  核心区分：
+  1. Model: 静态的概率预测引擎 (Stateless). 负责 Think.
+  2. Tool: 具体的执行函数 (Function). 负责 Act.
+  3. Runtime: 动态的系统环境 (Stateful). 负责 Manage & Connect.
+
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+-->
+<svg width="1200" height="750" viewBox="0 0 1200 750" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义样式与标记 -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+
+      /* 文本样式 */
+      .main-title { font-family: 'Noto Sans', sans-serif; font-size: 24px; font-weight: 800; fill: #111827; text-anchor: middle; }
+      .sub-title { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: normal; fill: #6B7280; text-anchor: middle; }
+
+      .layer-title { font-family: 'Noto Sans', sans-serif; font-size: 18px; font-weight: 700; text-anchor: middle; }
+      .card-title { font-family: 'Noto Sans', sans-serif; font-size: 16px; font-weight: 700; text-anchor: middle; }
+      .body-text { font-family: 'Noto Sans', sans-serif; font-size: 13px; font-weight: 400; fill: #374151;}
+      .can-do { font-family: 'Noto Sans', sans-serif; font-size: 12px; fill: #059669; text-anchor: start; }
+      .cannot-do { font-family: 'Noto Sans', sans-serif; font-size: 12px; fill: #DC2626; text-anchor: start; }
+      .tag-label { font-family: 'Noto Sans', sans-serif; font-size: 11px; font-weight: bold; fill: white; text-anchor: middle; }
+
+      /* 区域背景 */
+      .bg-runtime { fill: #F3E8FF; stroke: #A855F7; stroke-width: 2px; rx: 16; }
+      .bg-model { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; rx: 12; }
+      .bg-tool { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; rx: 12; }
+
+      /* 组件框 */
+      .box-white { fill: white; stroke-width: 1px; rx: 6; }
+      .stroke-purple { stroke: #7C3AED; }
+      .stroke-blue { stroke: #2563EB; }
+      .stroke-green { stroke: #059669; }
+
+      /* 连接线 */
+      .connector { fill: none; stroke: #94A3B8; stroke-width: 2px; marker-end: url(#arrow-gray); }
+      .interaction { fill: none; stroke: #374151; stroke-width: 2px; stroke-dasharray: 6,4; marker-end: url(#arrow-dark); }
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow-gray" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#94A3B8"/>
+    </marker>
+    <marker id="arrow-dark" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="#374151"/>
+    </marker>
+  </defs>
+
+  <!-- 1. 标题区域 -->
+  <text x="600" y="50" class="main-title">智能体本体区分：Runtime vs Model vs Tool</text>
+  <text x="600" y="80" class="sub-title">解构 Agent：运行环境 (Runtime) 才是系统的“肉身”，模型 (Model) 只是“大脑”</text>
+
+  <!-- ================================================================================== -->
+  <!-- 核心容器：Agent Runtime (运行环境) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(100, 130)">
+    <!-- 大背景框 -->
+    <rect x="0" y="0" width="1000" height="500" class="bg-runtime"/>
+    <text x="500" y="40" class="layer-title" fill="#6B21A8">Agent Runtime (智能体运行环境)</text>
+    <text x="500" y="60" class="body-text" text-anchor="middle" fill="#7C3AED">负责：状态管理 · 记忆维护 · 错误处理 · 任务调度</text>
+
+    <!-- 内部组件布局 -->
+
+    <!-- ================================================================================== -->
+    <!-- 中间核心：Model (模型) -->
+    <!-- ================================================================================== -->
+    <g transform="translate(350, 100)">
+        <rect x="0" y="0" width="300" height="330" class="bg-model"/>
+        <text x="150" y="35" class="card-title" fill="#1E40AF">LLM Model (模型)</text>
+        <text x="150" y="55" class="body-text" text-anchor="middle" fill="#2563EB">概率预测引擎</text>
+
+        <!-- 图标 -->
+        <circle cx="150" cy="100" r="30" fill="white" stroke="#2563EB" stroke-width="2"/>
+        <text x="150" y="108" font-size="24" text-anchor="middle">🧠</text>
+
+        <!-- 能力列表 -->
+        <g transform="translate(30, 160)">
+            <rect x="0" y="0" width="240" height="150" class="box-white stroke-blue"/>
+
+            <text x="55" y="25" class="can-do">✅ 能做 (Capabilities):</text>
+            <text x="40" y="45" class="body-text" text-anchor="start">• 语义理解 / 意图识别</text>
+            <text x="40" y="65" class="body-text" text-anchor="start">• 逻辑推理 / 规划 (Reasoning)</text>
+            <text x="40" y="85" class="body-text" text-anchor="start">• 生成结构化指令 (JSON)</text>
+
+            <line x1="10" y1="95" x2="230" y2="95" stroke="#E5E7EB" stroke-width="1"/>
+
+            <text x="55" y="115" class="cannot-do">❌ 不能做 (Limitations):</text>
+            <text x="100" y="135" class="body-text" text-anchor="middle" font-size="11">直接联网 / 修改文件 / 记忆</text>
+        </g>
+    </g>
+
+    <!-- ================================================================================== -->
+    <!-- 右侧组件：Tool (工具) -->
+    <!-- ================================================================================== -->
+    <g transform="translate(700, 100)">
+        <rect x="0" y="0" width="250" height="330" class="bg-tool"/>
+        <text x="125" y="35" class="card-title" fill="#047857">Tools (工具)</text>
+        <text x="125" y="55" class="body-text" text-anchor="middle" fill="#059669">执行能力的延伸</text>
+
+        <!-- 图标 -->
+        <circle cx="125" cy="100" r="30" fill="white" stroke="#059669" stroke-width="2"/>
+        <text x="125" y="108" font-size="24" text-anchor="middle">🛠️</text>
+troke-dasharray: 6,4;
+        <!-- 能力列表 -->
+        <g transform="translate(25, 160)">
+            <rect x="0" y="0" width="200" height="150" class="box-white stroke-green"/>
+            <text x="55" y="25" class="can-do">✅ 能做:</text>
+            <text x="40" y="45" class="body-text" text-anchor="start">• 联网搜索 (Search)</text>
+            <text x="40" y="65" class="body-text" text-anchor="start">• 读写文件 (IO)</text>
+            <text x="40" y="85" class="body-text" text-anchor="start">• 执行代码 (Code Exec)</text>
+
+            <line x1="10" y1="95" x2="190" y2="95" stroke="#E5E7EB" stroke-width="1"/>
+
+            <text x="55" y="115" class="cannot-do">❌ 不能做:</text>
+            <text x="100" y="135" class="body-text" text-anchor="middle" font-size="11">自主决策 / 理解意图</text>
+        </g>
+    </g>
+
+    <!-- ================================================================================== -->
+    <!-- 左侧组件：State & Memory (状态与记忆) -->
+    <!-- ================================================================================== -->
+    <g transform="translate(50, 100)">
+        <rect x="0" y="0" width="250" height="330" class="bg-runtime" fill="white" stroke="#A855F7"/>
+        <text x="125" y="35" class="card-title" fill="#6B21A8">State (状态)</text>
+        <text x="125" y="55" class="body-text" text-anchor="middle" fill="#7C3AED">上下文与记忆</text>
+
+        <!-- 图标 -->
+        <circle cx="125" cy="100" r="30" fill="#F3E8FF" stroke="#A855F7" stroke-width="2"/>
+        <text x="125" y="108" font-size="24" text-anchor="middle">💾</text>
+
+        <!-- 能力列表 -->
+        <g transform="translate(25, 160)">
+            <rect x="0" y="0" width="200" height="150" class="box-white stroke-purple"/>
+
+            <text x="55" y="25" class="can-do" fill="#7C3AED">✅ Runtime 职责:</text>
+            <text x="40" y="45" class="body-text" text-anchor="start">• 维护对话历史</text>
+            <text x="40" y="65" class="body-text" text-anchor="start">• 管理短期/长期记忆</text>
+            <text x="40" y="85" class="body-text" text-anchor="start">• 拼接 Prompt 上下文</text>
+
+            <line x1="10" y1="95" x2="190" y2="95" stroke="#E5E7EB" stroke-width="1"/>
+            <text x="55" y="115" class="cannot-do">❌ 不能做:</text>
+            <text x="100" y="135" class="body-text" text-anchor="middle" font-size="11">Model 是无状态的，状态在此。</text>
+        </g>
+    </g>
+
+    <!-- 交互连接线 -->
+    <!-- State -> Model (Context) -->
+    <path d="M 300 280 L 350 280" class="interaction" marker-end="url(#arrow-dark)"/>
+    <text x="325" y="260" font-size="10" fill="#4B5563" text-anchor="middle">Context</text>
+
+    <!-- Model -> Tool (Call) -->
+    <path d="M 650 280 L 700 280" class="interaction" marker-end="url(#arrow-dark)"/>
+    <text x="675" y="260" font-size="10" fill="#4B5563" text-anchor="middle">Function Call</text>
+
+    <!-- Tool -> Runtime -> State (Feedback Loop) -->
+    <path d="M 825 440 L 825 470 L 175 470 L 175 440" class="connector" stroke="#A855F7" stroke-dasharray="4,4"/>
+    <text x="500" y="485" font-size="11" fill="#7C3AED" text-anchor="middle" font-weight="bold">Result Feedback &amp; Update Memory</text>
+
+  </g>
+
+  <!-- 底部对比总结 -->
+  <g transform="translate(50, 650)">
+    <line x1="0" y1="0" x2="1000" y2="0" stroke="#E5E7EB" stroke-width="2"/>
+    <text x="300" y="30" class="body-text" font-size="14" fill="#374151">
+      <tspan font-weight="bold" fill="#1E40AF">Model</tspan> 是大脑 (思考)，
+      <tspan font-weight="bold" fill="#059669">Tools</tspan> 是手脚 (行动)，
+      <tspan font-weight="bold" fill="#6B21A8">Runtime</tspan> 是躯体与神经系统 (连接与记忆)。
+    </text>
+  </g>
+
+  <!-- 底部许可 -->
+  <text x="600" y="720" font-family="Noto Sans" font-size="12" fill="#9CA3AF" text-anchor="middle">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

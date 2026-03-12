@@ -1,0 +1,153 @@
+<!--
+================================================================================
+  图表名称：单体Agent与多智能体系统结构对比图
+  图表文件名：module-07-sas-vs-mas-comparison
+  描述：对比单体巨型 Agent 的高度耦合结构与多智能体系统（MAS）的解耦协同结构。
+  设计规范：遵循 Gitconomy 社区 DaC 指南与课程规范
+  SPDX-License-Identifier: MIT AND CC-BY-4.0
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+================================================================================
+-->
+<svg width="1200" height="700" viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    /* 字体定义 */
+    text {
+      font-family: 'Noto Sans', 'Segoe UI', sans-serif;
+    }
+    .title-main { font-size: 22px; font-weight: 800; fill: #111827; text-anchor: middle; }
+    .title-sub { font-size: 14px; fill: #4B5563; text-anchor: middle; }
+    .license-text { font-size: 11px; fill: #9CA3AF; text-anchor: middle; }
+
+    /* 容器样式 */
+    .container-bg { fill: #F9FAFB; stroke: #94A3B8; stroke-width: 2; }
+    .divider { stroke: #E5E7EB; stroke-width: 2; stroke-dasharray: 8 4; }
+
+    /* 核心概念框 (Core Concepts) - 蓝色系 */
+    .box-core { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2; }
+    .text-core { font-size: 14px; font-weight: 700; fill: #1E40AF; text-anchor: middle; }
+
+    /* 标准信息框 (Standard Info) - 绿色系 */
+    .box-standard { fill: #F0FDF4; stroke: #34D399; stroke-width: 2; }
+    .text-standard-head { font-size: 12px; font-weight: 700; fill: #065F46; text-anchor: middle; }
+    .text-standard-body { font-size: 11px; fill: #065F46; text-anchor: middle; }
+
+    /* 高亮框 (Highlight) - 黄色系 */
+    .box-highlight { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2; }
+    .text-highlight { font-size: 11px; fill: #854D0E; text-anchor: middle; }
+
+    /* 内部功能块 */
+    .box-inner { fill: #FFFFFF; stroke: #60A5FA; stroke-dasharray: 4 2; }
+    .text-inner { font-size: 12px; fill: #1E40AF; text-anchor: middle; }
+
+    /* 连接与标注 */
+    .conn-line { stroke: #2563EB; stroke-width: 2; fill: none; }
+    .group-label { font-size: 16px; font-weight: 700; fill: #1F2937; text-anchor: middle; }
+    .state-note { font-size: 12px; font-style: italic; fill: #6B7280; text-anchor: middle; }
+
+    /* 底部对比栏 */
+    .summary-bg { fill: #F3F4F6; }
+    .summary-text-red { font-size: 14px; font-weight: 700; fill: #1F2937; text-anchor: middle; }
+    .summary-text-green { font-size: 14px; font-weight: 700; fill: #059669; text-anchor: middle; }
+  </style>
+
+  <defs>
+    <!-- 箭头定义 -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2563EB" />
+    </marker>
+  </defs>
+
+  <!-- 1. 居中标题 -->
+  <text x="600" y="50" class="title-main">单体 Agent 与多智能体系统 (MAS) 结构对比</text>
+  <text x="600" y="80" class="title-sub">从“全能巨型实体”到“专业化协同网络”的范式演进</text>
+
+  <!-- 中间分割线 -->
+  <line x1="600" y1="120" x2="600" y2="620" class="divider"/>
+
+  <!-- 2. 左侧：单体 Agent -->
+  <g transform="translate(80, 150)">
+    <text x="220" y="-20" class="group-label">单体 Agent：高度耦合的巨型实体</text>
+    <rect width="440" height="400" rx="20" class="container-bg"/>
+
+    <!-- 核心大脑 -->
+    <rect x="70" y="60" width="300" height="280" rx="15" class="box-core"/>
+    <text x="220" y="95" class="text-core">LLM 核心 (推理引擎)</text>
+
+    <!-- 内部块 -->
+    <rect x="100" y="120" width="240" height="40" rx="8" class="box-inner"/>
+    <text x="220" y="145" class="text-inner">复杂规划 (Complex Planning)</text>
+
+    <rect x="100" y="170" width="240" height="40" rx="8" class="box-inner"/>
+    <text x="220" y="195" class="text-inner">长期记忆 (Long-term Memory)</text>
+
+    <rect x="100" y="220" width="240" height="40" rx="8" class="box-inner"/>
+    <text x="220" y="245" class="text-inner">工具调用 (Tool Usage)</text>
+
+    <rect x="100" y="270" width="240" height="40" rx="8" class="box-inner"/>
+    <text x="220" y="295" class="text-inner">自省评估 (Self-Reflection)</text>
+
+    <text x="220" y="380" class="state-note">状态：上下文挤压、提示词臃肿、逻辑缠绕</text>
+  </g>
+
+  <!-- 3. 右侧：多智能体系统 (MAS) -->
+  <g transform="translate(680, 150)">
+    <text x="220" y="-20" class="group-label">MAS：解耦协同的专业网络</text>
+
+    <!-- 通信总线 -->
+    <rect x="40" y="180" width="360" height="40" rx="20" class="box-core"/>
+    <text x="220" y="205" class="text-core" style="font-size: 12px;">标准化通信协议层 (如 MCP / 消息总线)</text>
+
+    <!-- 智能体 A：规划者 -->
+    <g transform="translate(20, 40)">
+      <rect width="120" height="80" rx="10" class="box-standard"/>
+      <text x="60" y="35" class="text-standard-head">Planner</text>
+      <text x="60" y="55" class="text-standard-body">任务拆解</text>
+      <line x1="60" y1="80" x2="60" y2="135" class="conn-line" marker-end="url(#arrowhead)"/>
+    </g>
+
+    <!-- 智能体 B：执行者 -->
+    <g transform="translate(160, 40)">
+      <rect width="120" height="80" rx="10" class="box-standard"/>
+      <text x="60" y="35" class="text-standard-head">Worker</text>
+      <text x="60" y="55" class="text-standard-body">代码/执行</text>
+      <line x1="60" y1="80" x2="60" y2="135" class="conn-line" marker-end="url(#arrowhead)"/>
+    </g>
+
+    <!-- 智能体 C：审核者 -->
+    <g transform="translate(300, 40)">
+      <rect width="120" height="80" rx="10" class="box-standard"/>
+      <text x="60" y="35" class="text-standard-head">Reviewer</text>
+      <text x="60" y="55" class="text-standard-body">安全与质量</text>
+      <line x1="60" y1="80" x2="60" y2="135" class="conn-line" marker-end="url(#arrowhead)"/>
+    </g>
+
+    <!-- 外部资源 -->
+    <g transform="translate(40, 280)">
+      <rect x="0" y="0" width="100" height="60" rx="5" class="box-highlight"/>
+      <text x="50" y="35" class="text-highlight">知识库</text>
+      <line x1="50" y1="0" x2="50" y2="-55" class="conn-line" marker-end="url(#arrowhead)"/>
+
+      <rect x="130" y="0" width="100" height="60" rx="5" class="box-highlight"/>
+      <text x="180" y="35" class="text-highlight">搜索引擎</text>
+      <line x1="180" y1="0" x2="180" y2="-55" class="conn-line" marker-end="url(#arrowhead)"/>
+
+      <rect x="260" y="0" width="100" height="60" rx="5" class="box-highlight"/>
+      <text x="310" y="35" class="text-highlight">本地文件</text>
+      <line x1="310" y1="0" x2="310" y2="-55" class="conn-line" marker-end="url(#arrowhead)"/>
+    </g>
+
+    <text x="220" y="380" class="state-note">状态：角色清晰、上下文解耦、易于扩展与审计</text>
+  </g>
+
+  <!-- 4. 底部核心对比 -->
+  <g transform="translate(60, 600)">
+    <rect width="1080" height="60" rx="8" class="summary-bg"/>
+    <text x="330" y="35" class="summary-text-red">❌ 单体瓶颈：难以调试、不可复用、天花板明显</text>
+    <text x="750" y="35" class="summary-text-green">✅ 多体优势：模块化、高鲁棒性、可无限扩展</text>
+  </g>
+
+  <!-- 5. 底部许可声明 -->
+  <text x="600" y="685" class="license-text">
+  本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+</svg>

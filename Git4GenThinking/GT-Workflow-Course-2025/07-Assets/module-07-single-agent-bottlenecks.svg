@@ -1,0 +1,161 @@
+<!--
+  ================================================================================
+  图表名称：单体 Agent 的结构性瓶颈四维图
+  描述：展示单体 Agent 在角色耦合、上下文、安全及扩展性四个维度的结构性瓶颈。
+  SPDX-License-Identifier: MIT AND CC-BY-4.0
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+  ================================================================================
+-->
+<svg width="1200" height="840" viewBox="0 0 1200 840" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig7_1_title fig7_1_desc">
+  <title id="fig7_1_title">图7-1｜单体 Agent 的结构性瓶颈四维图</title>
+  <desc id="fig7_1_desc">此图用四个卡片解释单体 Agent 的结构性上限：角色负载耦合、上下文竞争与遗忘、行动不可控与安全风险、可扩展性与可维护性瓶颈。</desc>
+
+  <defs>
+    <style>
+      :root {
+        --color-bg: #FFFFFF;
+        /* 规范配色表 */
+        --core-fill: #EFF6FF;     /* 核心概念框 - 淡蓝 */
+        --core-stroke: #60A5FA;   /* 核心描边 - 亮蓝 */
+        --std-fill: #F0FDF4;      /* 标准信息框 - 淡绿 */
+        --std-stroke: #34D399;    /* 标准描边 - 活力绿 */
+        --hl-fill: #FEF9C3;       /* 高亮框 - 淡黄 */
+        --hl-stroke: #FACC15;     /* 高亮描边 - 亮黄 */
+        --card-fill: #F8FAFC;     /* 背景容器 - 灰白 */
+        --card-stroke: #E2E8F0;
+        --line-std: #2563EB;      /* 连接线 - 深蓝 */
+
+        /* 文字配色 */
+        --text-main: #111827;
+        --text-body: #374151;
+        --text-muted: #64748B;
+
+        /* 字体规范 */
+        --font-sans: 'Noto Sans SC', 'Noto Sans', sans-serif;
+      }
+
+      .canvas { fill: var(--color-bg); }
+      .main-title { font-family: var(--font-sans); font-size: 22px; font-weight: 800; fill: var(--text-main); text-anchor: middle; }
+      .sub-title { font-family: var(--font-sans); font-size: 13px; font-weight: 400; fill: var(--text-body); text-anchor: middle; }
+
+      /* 卡片组件 */
+      .card-bg { fill: var(--card-fill); stroke: var(--card-stroke); stroke-width: 1; }
+      .card-header { fill: var(--core-fill); stroke: var(--core-stroke); stroke-width: 1.5; }
+      .card-title { font-family: var(--font-sans); font-size: 16px; font-weight: 700; fill: var(--text-main); }
+
+      /* 内容样式 */
+      .text-body { font-family: var(--font-sans); font-size: 12px; line-height: 1.5; fill: var(--text-body); }
+      .text-bold { font-weight: 700; fill: var(--text-main); }
+      .text-license { font-family: var(--font-sans); font-size: 11px; fill: var(--text-muted); text-anchor: middle; }
+
+      /* 强调框 */
+      .box-highlight { fill: var(--hl-fill); stroke: var(--hl-stroke); stroke-width: 1.5; }
+
+      .connector { stroke: var(--line-std); stroke-width: 1.5; fill: none; }
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="var(--line-std)" />
+    </marker>
+  </defs>
+
+  <!-- 画布背景 -->
+  <rect width="1200" height="840" class="canvas"/>
+
+  <!-- 标题区 -->
+  <text x="600" y="60" class="main-title">单体Agent的结构性瓶颈</text>
+  <text x="600" y="90" class="sub-title">瓶颈源于系统结构耦合，而非单一LLM模型的参数规模或指令遵循能力</text>
+
+  <!-- 维度 1: 角色负载耦合 -->
+  <g transform="translate(80, 140)">
+    <rect width="500" height="260" rx="12" class="card-bg" />
+    <rect x="20" y="20" width="460" height="40" rx="8" class="card-header" />
+    <text x="40" y="46" class="card-title">维度 1：角色负载耦合 (Role Overload)</text>
+
+    <g transform="translate(40, 90)">
+      <circle cx="15" cy="15" r="15" class="card-header" />
+      <circle cx="35" cy="15" r="15" style="fill:var(--std-fill); stroke:var(--std-stroke);" />
+      <circle cx="25" cy="35" r="15" class="box-highlight" />
+      <text x="70" y="15" class="text-body">规划、检索、执行、评估被塞进同一角色容器。</text>
+      <text x="70" y="35" class="text-body">目标冲突导致“自洽幻觉”，即边修改规则边满足结果。</text>
+    </g>
+
+    <rect x="20" y="160" width="460" height="80" rx="8" class="box-highlight" />
+    <text x="40" y="185" class="text-body text-bold">结果表现：</text>
+    <text x="100" y="185" class="text-body">计划与执行互相污染，输出难解释、难复用、难稳定。</text>
+    <text x="100" y="210" class="text-body">评估被“完成任务的冲动”稀释，缺乏独立客观性。</text>
+  </g>
+
+  <!-- 维度 2: 上下文竞争 -->
+  <g transform="translate(620, 140)">
+    <rect width="500" height="260" rx="12" class="card-bg" />
+    <rect x="20" y="20" width="460" height="40" rx="8" class="card-header" />
+    <text x="40" y="46" class="card-title">维度 2：上下文竞争与遗忘 (Context Drift)</text>
+
+    <g transform="translate(40, 85)">
+      <rect width="100" height="12" rx="4" class="card-header" />
+      <rect y="20" width="120" height="12" rx="4" class="card-header" />
+      <rect y="40" width="140" height="12" rx="4" class="card-header" />
+      <path d="M150,10 L200,30" class="connector" marker-end="url(#arrow)" />
+      <text x="215" y="15" class="text-body">多源信息争夺同一 Context Window。</text>
+      <text x="215" y="35" class="text-body">约束条件被挤出后，前后一致性快速下降。</text>
+    </g>
+
+    <rect x="20" y="160" width="460" height="80" rx="8" class="box-highlight" />
+    <text x="40" y="185" class="text-body text-bold">结果表现：</text>
+    <text x="100" y="185" class="text-body">“中间信息丢失”现象严重，长任务容易偏离初始目标。</text>
+    <text x="100" y="210" class="text-body">短任务表现优异，但稳定性随规模化呈断崖式下跌。</text>
+  </g>
+
+  <!-- 维度 3: 行动不可控 -->
+  <g transform="translate(80, 440)">
+    <rect width="500" height="260" rx="12" class="card-bg" />
+    <rect x="20" y="20" width="460" height="40" rx="8" class="card-header" />
+    <text x="40" y="46" class="card-title">维度 3：行动不可控与风险 (Action Risk)</text>
+
+    <g transform="translate(40, 80)">
+      <path d="M30,10 L10,50 L50,50 Z" class="box-highlight" />
+      <text x="26" y="40" class="text-bold" style="font-size:18px;">!</text>
+      <text x="70" y="20" class="text-body">推理与工具调用共用输出口，缺乏“受控接口”。</text>
+      <text x="70" y="40" class="text-body">错误的思维链会直接触发越权的、真实环境的写入。</text>
+    </g>
+
+    <rect x="20" y="160" width="460" height="80" rx="8" class="box-highlight" />
+    <text x="40" y="185" class="text-body text-bold">结果表现：</text>
+    <text x="100" y="185" class="text-body">误调用、越权写入，需要频繁的“人在回路”兜底。</text>
+    <text x="100" y="210" class="text-body">自动化程度越高，系统性崩塌的潜在风险越大。</text>
+  </g>
+
+  <!-- 维度 4: 可扩展性瓶颈 -->
+  <g transform="translate(620, 440)">
+    <rect width="500" height="260" rx="12" class="card-bg" />
+    <rect x="20" y="20" width="460" height="40" rx="8" class="card-header" />
+    <text x="40" y="46" class="card-title">维度 4：可扩展与维护瓶颈 (Scale Wall)</text>
+
+    <g transform="translate(40, 80)">
+      <circle cx="20" cy="20" r="8" class="card-header" />
+      <circle cx="60" cy="10" r="8" style="fill:var(--std-fill); stroke:var(--std-stroke);" />
+      <circle cx="100" cy="30" r="8" class="box-highlight" />
+      <path d="M28,20 L52,12 M68,15 L92,25" class="connector" />
+      <text x="120" y="15" class="text-body">Prompt 逻辑高度缠绕，复用成本指数级上升。</text>
+      <text x="120" y="35" class="text-body">引入新工具往往需要重构整段协作 Prompt。</text>
+    </g>
+
+    <rect x="20" y="160" width="460" height="80" rx="8" class="box-highlight" />
+    <text x="40" y="185" class="text-body text-bold">结果表现：</text>
+    <text x="100" y="185" class="text-body">难测试、难回归、难替换。经验无法沉淀为组件。</text>
+    <text x="100" y="210" class="text-body">最终系统停留在“能用但不可扩”的单体孤岛状态。</text>
+  </g>
+
+  <!-- 结论区 -->
+  <g transform="translate(80, 720)">
+    <rect width="1040" height="60" rx="15" class="card-header" />
+    <text x="520" y="38" class="card-title" text-anchor="middle">核心洞察：解决瓶颈需从“单体模型”转向“多智能体网络结构”</text>
+  </g>
+
+  <!-- 版权信息 -->
+  <text x="600" y="815" class="text-license">
+    本作品采用 CC-BY-SA 4.0 国际许可协议进行许可，© 2025 Gitconomy Research 社区
+  </text>
+</svg>

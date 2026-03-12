@@ -1,0 +1,18 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 需要帮助？查看项目文档
+    url: https://gitcode.com/Gitconomy-Research/Git4GenThinking
+    about: 请在提问前，先查阅我们的官方文档和常见问题解答（FAQ）。
+  - name: 💬 加入社区讨论
+    url: https://gitcode.com/Gitconomy-Research/Git4GenThinking/discussions
+    about: 对于非代码类问题、想法讨论，欢迎加入我们的社区频道交流。
+
+template:
+  - name: "🐛 Bug报告"
+    about: "报告一个错误或异常行为"
+    description: |
+      感谢你花时间帮助我们改进项目！
+      在提交前，请确保：
+      1. 已搜索过现有Issue，避免重复。
+      2. Bug描述清晰且可以复现。
+    ref: bug_report.yml # 指向你的Bug报告模板文件

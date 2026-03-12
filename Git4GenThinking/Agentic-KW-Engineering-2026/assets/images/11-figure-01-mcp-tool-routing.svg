@@ -1,0 +1,248 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 850" width="100%" height="100%">
+  <!--
+  ================================================================================
+  图表名称：MCP 生态集成与智能工具路由机制 (Ecosystem Integration & Tool Routing)
+  文件命名：11-figure-01-mcp-tool-routing.svg
+  用途：展示智能体在面临多个 MCP 工具时，如何通过标准化 Schema、上下文注入以及 LLM 的语义匹配进行智能决策和指令分发，同时对比 Hosted 与 Local 两种运行模式。
+  版本：v1.0.0
+  作者：Gitconomy Research-郭晧
+  SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+  创建日期：2026-02-21
+  ================================================================================
+  -->
+
+  <!-- Background: Solid White (遵循规范 3.5.1，确保 Git 平台深色模式兼容性) -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+
+  <defs>
+    <style>
+      :root {
+        /* Semantic Colors 语义色系统 */
+        --c-cloud-blue: #0066CC;   /* Brain Blue: 云端算力/逻辑推理/Hosted工具 */
+        --c-local-green: #00875A;  /* Body Green: 本地执行/隐私数据/Local工具 */
+        --c-risk-amber: #FF991F;   /* State Amber: 异步等待/语义决策成本 */
+        --c-neutral-gray: #475569; /* Meta Gray: 存储/背景/辅助线 */
+
+        /* 浅色背景辅助变量 */
+        --c-bg-light-blue: #EBF3FA;
+        --c-bg-light-green: #E6F3EE;
+        --c-bg-light-amber: #FFF4E5;
+
+        /* Font Stacks (严格遵循字体降级规范) */
+        --font-sans: 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
+        --font-mono: 'JetBrains Mono', Consolas, 'Courier New', monospace;
+      }
+
+      .text-sans { font-family: var(--font-sans); }
+      .text-mono { font-family: var(--font-mono); }
+      .text-bold { font-weight: bold; }
+    </style>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-cloud-blue)" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-local-green)" />
+    </marker>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-neutral-gray)" />
+    </marker>
+  </defs>
+
+  <!--
+  ===========================================================================
+       标题块 (Title Block) - 严格遵循 3.3.4 SVG 实现范式
+  ===========================================================================
+  -->
+  <g id="title-block" transform="translate(600, 40)">
+    <!-- A. Main Title -->
+    <text y="20" text-anchor="middle" class="text-sans text-bold" font-size="24" fill="#000000">MCP 生态集成与智能工具路由机制</text>
+
+    <!-- B. Breadcrumbs -->
+    <text y="45" text-anchor="middle" class="text-mono" font-size="14" fill="var(--c-neutral-gray)">第 11 天 > 基础原理</text>
+
+    <!-- C. Context Indicator -->
+    <line x1="-40" y1="60" x2="40" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!--
+  ===========================================================================
+       架构主视图区 (Diagram Content - Safe Zone Starts at Y=140)
+  ===========================================================================
+  -->
+  <g id="diagram-content" transform="translate(0, 140)">
+
+    <!-- 1. 物理边界容器 (Container Boundaries) -->
+    <!-- Local Host Boundary -->
+    <rect x="50" y="20" width="540" height="540" rx="12" fill="none" stroke="var(--c-local-green)" stroke-width="2" stroke-dasharray="8 4" />
+    <text x="70" y="45" class="text-sans text-bold" font-size="14" fill="var(--c-local-green)">
+      Local Environment (本地宿主机 / Client &amp; Local Tools)
+    </text>
+
+    <!-- Public Internet Boundary -->
+    <rect x="620" y="20" width="530" height="540" rx="12" fill="none" stroke="var(--c-cloud-blue)" stroke-width="2" stroke-dasharray="8 4" />
+    <text x="640" y="45" class="text-sans text-bold" font-size="14" fill="var(--c-cloud-blue)">
+      Public Internet (云端服务 / LLM &amp; Hosted Tools)
+    </text>
+
+    <!-- 2. 本地控制平面的核心：MCP Client -->
+    <g transform="translate(90, 100)">
+      <rect width="460" height="190" rx="8" fill="var(--c-bg-light-green)" stroke="var(--c-local-green)" stroke-width="2" />
+      <text x="230" y="25" text-anchor="middle" class="text-sans text-bold" font-size="16" fill="var(--c-local-green)">神经中枢：MCP Client / 路由器</text>
+      <text x="230" y="45" text-anchor="middle" class="text-mono" font-size="12" fill="var(--c-neutral-gray)">(Claude Desktop / Cursor / Cherry Studio)</text>
+
+      <!-- Phase 1: 能力注册表 (Schema Registry) -->
+      <rect x="20" y="65" width="420" height="110" rx="4" fill="#FFFFFF" stroke="var(--c-neutral-gray)" stroke-width="1" />
+      <text x="35" y="85" class="text-sans text-bold" font-size="13" fill="#333333">[1] 能力注册 (Registration) - 收集 Schema</text>
+
+      <!-- List of Registered Tools -->
+      <rect x="35" y="100" width="180" height="60" rx="4" fill="var(--c-bg-light-blue)" stroke="var(--c-cloud-blue)" stroke-width="0.5" stroke-dasharray="2 2" />
+      <text x="45" y="120" class="text-mono text-bold" font-size="11" fill="var(--c-cloud-blue)">@fetch-hosted (SSE)</text>
+      <text x="45" y="135" class="text-sans" font-size="10" fill="#666666">Desc: 抓取任意网络 URL...</text>
+      <text x="45" y="150" class="text-mono" font-size="10" fill="#666666">Args: { url: string }</text>
+
+      <rect x="225" y="100" width="195" height="60" rx="4" fill="var(--c-bg-light-green)" stroke="var(--c-local-green)" stroke-width="0.5" />
+      <text x="235" y="120" class="text-mono text-bold" font-size="11" fill="var(--c-local-green)">@filesystem (stdio)</text>
+      <text x="235" y="135" class="text-sans" font-size="10" fill="#666666">Desc: 读写本地文件系统...</text>
+      <text x="235" y="150" class="text-mono" font-size="10" fill="#666666">Args: { path: string, ...}</text>
+    </g>
+
+
+    <!-- 3. 云端大脑平面：LLM Inference -->
+    <g transform="translate(880, 200)">
+      <!-- Hexagon path for Brain -->
+      <polygon points="0,-100 90,-45 90,65 0,120 -90,65 -90,-45" fill="var(--c-bg-light-blue)" stroke="var(--c-cloud-blue)" stroke-width="2" />
+
+      <circle cx="0" cy="-60" r="18" fill="var(--c-cloud-blue)"/>
+      <text x="0" y="-54" text-anchor="middle" class="text-sans text-bold" font-size="18" fill="#FFFFFF">🧠</text>
+
+      <text x="0" y="-20" text-anchor="middle" class="text-sans text-bold" font-size="18" fill="var(--c-cloud-blue)">决策大脑 (LLM)</text>
+      <text x="0" y="0" text-anchor="middle" class="text-mono" font-size="12" fill="var(--c-neutral-gray)">DeepSeek-V3 / Claude-3.5</text>
+
+      <!-- Phase 3: 意图识别与语义匹配 -->
+      <rect x="-75" y="15" width="150" height="70" rx="4" fill="#FFFFFF" stroke="var(--c-risk-amber)" stroke-width="1" />
+      <text x="-65" y="32" class="text-sans text-bold" font-size="11" fill="var(--c-risk-amber)">[3] 意图识别 (Decision)</text>
+      <text x="-65" y="50" class="text-sans" font-size="10" fill="#333333">计算: User Intent 向量</text>
+      <text x="-65" y="62" class="text-sans" font-size="10" fill="#333333">匹配: Tool Descriptions</text>
+      <text x="-65" y="74" class="text-mono" font-size="10" fill="var(--c-cloud-blue)">> select("fetch-hosted")</text>
+    </g>
+
+
+    <!-- 4. 执行节点平面：MCP Servers (Hosted vs Local) -->
+
+    <!-- Local Tool: Filesystem -->
+    <g transform="translate(90, 410)">
+      <rect width="250" height="110" rx="8" fill="var(--c-bg-light-green)" stroke="var(--c-local-green)" stroke-width="2" />
+      <text x="125" y="25" text-anchor="middle" class="text-sans text-bold" font-size="14" fill="var(--c-local-green)">Local Mode 工具 (本地进程)</text>
+
+      <rect x="15" y="40" width="220" height="55" rx="4" fill="#FFFFFF" stroke="var(--c-local-green)" stroke-width="1" />
+      <text x="25" y="58" class="text-mono text-bold" font-size="11" fill="var(--c-local-green)">npx @modelcontextprotocol/</text>
+      <text x="25" y="72" class="text-mono text-bold" font-size="11" fill="var(--c-local-green)">    server-filesystem</text>
+      <text x="25" y="88" class="text-sans" font-size="10" fill="#666666">完全物理隔离，操作本地 Obsidian</text>
+    </g>
+
+    <!-- Storage Node (Target of Filesystem) -->
+    <g transform="translate(370, 410)">
+      <path d="M 0 30 L 0 90 A 60 15 0 0 0 120 90 L 120 30 Z" fill="#F1F5F9" stroke="var(--c-neutral-gray)" stroke-width="2"/>
+      <ellipse cx="60" cy="30" rx="60" ry="15" fill="#E2E8F0" stroke="var(--c-neutral-gray)" stroke-width="2"/>
+      <text x="60" y="60" text-anchor="middle" class="text-sans text-bold" font-size="12" fill="#333333">Obsidian Vault</text>
+      <text x="60" y="80" text-anchor="middle" class="text-mono" font-size="11" fill="var(--c-local-green)">/Inbox/*.md</text>
+    </g>
+    <!-- Line from FS to Storage -->
+    <line x1="340" y1="465" x2="365" y2="465" stroke="var(--c-local-green)" stroke-width="2" marker-end="url(#arrow-green)" />
+
+    <!-- Hosted Tool: Fetch -->
+    <g transform="translate(680, 410)">
+      <rect width="280" height="110" rx="8" fill="var(--c-bg-light-blue)" stroke="var(--c-cloud-blue)" stroke-width="2" stroke-dasharray="4 2" />
+      <text x="140" y="25" text-anchor="middle" class="text-sans text-bold" font-size="14" fill="var(--c-cloud-blue)">Hosted Mode 工具 (云端生态)</text>
+
+      <rect x="15" y="40" width="250" height="55" rx="4" fill="#FFFFFF" stroke="var(--c-cloud-blue)" stroke-width="1" />
+      <text x="25" y="58" class="text-mono text-bold" font-size="11" fill="var(--c-cloud-blue)">ModelScope MCP 广场</text>
+      <text x="25" y="72" class="text-mono" font-size="10" fill="#333333">URL: mcp.api-inference.modelscope...</text>
+      <text x="25" y="88" class="text-sans" font-size="10" fill="#666666">免安装即插即用，通过 SSE 协议通信</text>
+    </g>
+
+
+    <!-- 5. 核心数据流转线 (Flows) -->
+
+    <!-- Phase 2: Injection (Client -> Brain) -->
+    <path d="M 550 160 C 650 160, 700 160, 780 160" fill="none" stroke="var(--c-cloud-blue)" stroke-width="2" stroke-dasharray="4 2" marker-end="url(#arrow-blue)" />
+    <g transform="translate(560, 120)">
+      <rect x="0" y="0" width="210" height="30" rx="4" fill="#FFFFFF" fill-opacity="0.9" />
+      <text x="10" y="14" class="text-sans text-bold" font-size="11" fill="var(--c-cloud-blue)">[2] 上下文注入 (Injection)</text>
+      <text x="10" y="26" class="text-mono" font-size="10" fill="#333333">SystemPrompt &lt;- [Tool Schemas]</text>
+    </g>
+
+    <!-- Phase 4 (Response): Brain -> Client -->
+    <path d="M 780 250 C 700 250, 650 250, 560 250" fill="none" stroke="var(--c-cloud-blue)" stroke-width="2" stroke-dasharray="4 2" marker-end="url(#arrow-blue)" />
+    <g transform="translate(560, 260)">
+      <rect x="0" y="0" width="220" height="30" rx="4" fill="#FFFFFF" fill-opacity="0.9" />
+      <text x="10" y="14" class="text-sans text-bold" font-size="11" fill="var(--c-cloud-blue)">[4] 返回决策指令 (JSON-RPC)</text>
+      <text x="10" y="26" class="text-mono" font-size="10" fill="#333333">{"name": "fetch-hosted", args: ...}</text>
+    </g>
+
+    <!-- Phase 4 (Dispatch A): Client -> Hosted Tool -->
+    <path d="M 460 290 C 550 320, 780 320, 820 400" fill="none" stroke="var(--c-cloud-blue)" stroke-width="2" stroke-dasharray="4 2" marker-end="url(#arrow-blue)" />
+    <g transform="translate(630, 340)">
+      <rect x="0" y="0" width="160" height="20" rx="4" fill="#FFFFFF" fill-opacity="0.9" />
+      <text x="10" y="14" class="text-sans text-bold" font-size="11" fill="var(--c-cloud-blue)">[4A] 分发至云端 (SSE)</text>
+    </g>
+
+    <!-- Phase 4 (Dispatch B): Client -> Local Tool -->
+    <path d="M 200 290 L 200 400" fill="none" stroke="var(--c-local-green)" stroke-width="2" marker-end="url(#arrow-green)" />
+    <g transform="translate(210, 340)">
+      <rect x="0" y="0" width="160" height="20" rx="4" fill="#FFFFFF" fill-opacity="0.9" />
+      <text x="10" y="14" class="text-sans text-bold" font-size="11" fill="var(--c-local-green)">[4B] 分发至本地 (stdio)</text>
+    </g>
+
+  </g>
+
+  <!--
+  ===========================================================================
+       底部图例与注释块 (Legend & Key Block - 遵循 3.4 & 7.3)
+  ===========================================================================
+  -->
+  <g id="legend" transform="translate(600, 740)">
+    <!-- 统一的半透明背景容器 -->
+    <rect x="-460" y="-16" width="920" height="32" rx="4" fill="rgba(255, 255, 255, 0.9)" stroke="var(--c-neutral-gray)" stroke-width="0.5"/>
+
+    <g transform="translate(-440, 0)">
+      <text x="0" y="4" class="text-sans text-bold" font-size="12" fill="var(--c-neutral-gray)">图例说明:</text>
+
+      <!-- Entity 1: Brain/Hosted -->
+      <g transform="translate(80, 0)">
+        <polygon points="0,-6 6,-3 6,3 0,6 -6,3 -6,-3" fill="var(--c-cloud-blue)" />
+        <text x="12" y="4" class="text-mono" font-size="11" fill="#333333">Remote LLM / Hosted Tools</text>
+      </g>
+
+      <!-- Entity 2: Local Node -->
+      <g transform="translate(280, 0)">
+        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="var(--c-local-green)" />
+        <text x="12" y="4" class="text-mono" font-size="11" fill="#333333">Local Body (物理宿主机环境)</text>
+      </g>
+
+      <!-- Connection 1: Network / Async -->
+      <g transform="translate(490, 0)">
+        <line x1="-8" y1="0" x2="8" y2="0" stroke="var(--c-cloud-blue)" stroke-width="2" stroke-dasharray="4 2" />
+        <text x="12" y="4" class="text-mono" font-size="11" fill="#333333">Network I/O (公网路由分发)</text>
+      </g>
+
+      <!-- Connection 2: Local Sync -->
+      <g transform="translate(690, 0)">
+        <line x1="-8" y1="0" x2="8" y2="0" stroke="var(--c-local-green)" stroke-width="2" />
+        <text x="12" y="4" class="text-mono" font-size="11" fill="#333333">Local I/O (本地进程通信/stdio)</text>
+      </g>
+    </g>
+  </g>
+
+  <!--
+  ===========================================================================
+       底部许可注释规范 (Footer License - 遵循 7.4)
+  ===========================================================================
+  -->
+  <text x="600" y="810" text-anchor="middle" class="text-sans" font-size="12" fill="var(--c-neutral-gray)">
+    本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research社区
+  </text>
+
+</svg>

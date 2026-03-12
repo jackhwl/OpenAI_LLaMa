@@ -1,0 +1,11 @@
+{
+  "scores": {
+    "faithfulness": 5,
+    "completeness": 5,
+    "boundary_control": 5,
+    "reusability": 5
+  },
+  "pass": true,
+  "top_issues": [],
+  "fix_suggestions": []
+}

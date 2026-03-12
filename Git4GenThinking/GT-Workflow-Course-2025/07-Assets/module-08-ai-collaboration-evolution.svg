@@ -1,0 +1,256 @@
+<svg width="1200" height="780" viewBox="0 0 1200 780" xmlns="http://www.w3.org/2000/svg" class="dac-chart">
+  <!--
+  ================================================================================
+  图表名称：AI协作生态演进趋势
+  图表文件名：module-08-ai-collaboration-evolution.svg
+  描述：基于第八章8.2.2节，展示AI从被动工具演变为自主团队的三个阶段，
+        以及人类从操作者到监督者的角色转变。
+  SPDX-License-Identifier: MIT AND CC-BY-4.0
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+  ================================================================================
+  -->
+
+  <style>
+    /* 全局字体设置 */
+    .dac-chart {
+      background-color: white;
+      font-family: 'Noto Sans', sans-serif, Arial;
+    }
+
+    /* 文本样式 */
+    .text-title-main { font-size: 22px; font-weight: 800; fill: #111827; letter-spacing: 1px; }
+    .text-title-sub { font-size: 14px; font-weight: normal; fill: #6B7280; }
+
+    .text-phase-title { font-size: 18px; font-weight: bold; text-anchor: middle; }
+    .text-phase-subtitle { font-size: 12px; font-weight: bold; text-anchor: middle; opacity: 0.8; }
+
+    .text-body { font-size: 12px; fill: #4B5563; }
+    .text-body-bold { font-size: 12px; font-weight: bold; fill: #111827; }
+    .text-label { font-size: 11px; fill: #6B7280; text-anchor: middle; }
+
+    .text-role-main { font-size: 16px; font-weight: 800; text-anchor: middle; }
+    .text-role-sub { font-size: 12px; font-weight: normal; text-anchor: middle; }
+
+    /* 容器样式 */
+    .box-phase-1 { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; } /* Green */
+    .box-phase-2 { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; } /* Blue */
+    .box-phase-3 { fill: #FEF9C3; stroke: #FACC15; stroke-width: 2px; } /* Yellow */
+
+    .card-feature { fill: white; stroke-width: 1px; rx: 4; }
+
+    /* 角色转变栏样式 */
+    .role-bar-bg { fill: #F3F4F6; stroke: #E5E7EB; stroke-width: 1px; }
+    .role-arrow { stroke: #9CA3AF; stroke-width: 2px; stroke-dasharray: 4; }
+
+    /* 连接线样式 */
+    .evolution-arrow { stroke-width: 2px; fill: none; }
+  </style>
+
+  <defs>
+    <!-- 绿色箭头 (Phase 1) -->
+    <marker id="arrow-green" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L0,12 L12,6 z" fill="#34D399" />
+    </marker>
+    <!-- 蓝色箭头 (Phase 2) -->
+    <marker id="arrow-blue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L0,12 L12,6 z" fill="#60A5FA" />
+    </marker>
+    <!-- 黄色箭头 (Phase 3) -->
+    <marker id="arrow-yellow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L0,12 L12,6 z" fill="#FACC15" />
+    </marker>
+    <!-- 灰色箭头 -->
+    <marker id="arrow-gray" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9CA3AF" />
+    </marker>
+  </defs>
+
+  <!-- ==================== 1. 标题区域 ==================== -->
+  <g transform="translate(600, 60)">
+    <text x="0" y="0" class="text-title-main" text-anchor="middle">AI 协作生态演进趋势</text>
+  </g>
+
+  <!-- ==================== 2. 演进主轴 (Evolution Axis) ==================== -->
+  <g transform="translate(100, 150)">
+    <!-- Phase 1: Tools -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="280" height="280" rx="8" class="box-phase-1"/>
+
+      <!-- Header -->
+      <rect x="0" y="0" width="280" height="60" rx="8" fill="#DCFCE7" stroke="none"/> <!-- Light Green Header -->
+      <text x="140" y="30" class="text-phase-title" fill="#065F46">Phase 1: 工具</text>
+      <text x="140" y="50" class="text-phase-subtitle" fill="#065F46">(Tools)</text>
+
+      <!-- Content -->
+      <g transform="translate(20, 80)">
+        <text x="0" y="0" class="text-body-bold">核心特征：意图导向</text>
+        <text x="0" y="20" class="text-body">Intent-based / 被动响应</text>
+
+        <line x1="0" y1="35" x2="240" y2="35" stroke="#34D399" stroke-width="1" opacity="0.3"/>
+
+        <g transform="translate(0, 50)">
+          <text x="0" y="0" class="text-body-bold">能力边界：</text>
+          <rect x="0" y="10" width="240" height="30" class="card-feature" stroke="#86EFAC"/>
+          <text x="120" y="30" class="text-label">无记忆 / 无行动权</text>
+
+          <rect x="0" y="50" width="240" height="30" class="card-feature" stroke="#86EFAC"/>
+          <text x="120" y="70" class="text-label">依赖单次指令驱动</text>
+        </g>
+
+        <line x1="0" y1="100" x2="240" y2="100" stroke="#34D399" stroke-width="1" opacity="0.3"/>
+
+        <g transform="translate(0, 120)">
+           <text x="0" y="0" class="text-body-bold">典型案例：</text>
+           <text x="0" y="25" class="text-body">· 计算器 / 搜索引擎</text>
+           <text x="0" y="45" class="text-body">· 早期 ChatGPT</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Arrow 1-2 -->
+    <g transform="translate(290, 190)">
+      <line x1="0" y1="0" x2="60" y2="0" class="evolution-arrow" stroke="#60A5FA" marker-end="url(#arrow-blue)"/>
+      <text x="25" y="-15" class="text-label" fill="#60A5FA">记忆 + 工具</text>
+    </g>
+
+    <!-- Phase 2: Partners -->
+    <g transform="translate(360, 0)">
+      <rect x="0" y="0" width="280" height="280" rx="8" class="box-phase-2"/>
+
+      <!-- Header -->
+      <rect x="0" y="0" width="280" height="60" rx="8" fill="#DBEAFE" stroke="none"/> <!-- Light Blue Header -->
+      <text x="140" y="30" class="text-phase-title" fill="#1E40AF">Phase 2: 伙伴</text>
+      <text x="140" y="50" class="text-phase-subtitle" fill="#1E40AF">(Partners)</text>
+
+      <!-- Content -->
+      <g transform="translate(20, 80)">
+        <text x="0" y="0" class="text-body-bold">核心特征：人机协作</text>
+        <text x="0" y="20" class="text-body">HITL / 辅助决策</text>
+
+        <line x1="0" y1="35" x2="240" y2="35" stroke="#60A5FA" stroke-width="1" opacity="0.3"/>
+
+        <g transform="translate(0, 50)">
+          <text x="0" y="0" class="text-body-bold">能力边界：</text>
+          <rect x="0" y="10" width="240" height="30" class="card-feature" stroke="#93C5FD"/>
+          <text x="120" y="30" class="text-label">短期记忆 (Context)</text>
+
+          <rect x="0" y="50" width="240" height="30" class="card-feature" stroke="#93C5FD"/>
+          <text x="120" y="70" class="text-label">Function Calling (工具使用)</text>
+        </g>
+
+        <line x1="0" y1="100" x2="240" y2="100" stroke="#60A5FA" stroke-width="1" opacity="0.3"/>
+
+        <g transform="translate(0, 120)">
+           <text x="0" y="0" class="text-body-bold">典型案例：</text>
+           <text x="0" y="25" class="text-body">· GitHub Copilot</text>
+           <text x="0" y="45" class="text-body">· 智能客服助手</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Arrow 2-3 -->
+    <g transform="translate(650, 190)">
+      <line x1="0" y1="0" x2="60" y2="0" class="evolution-arrow" stroke="#FACC15" marker-end="url(#arrow-yellow)"/>
+      <text x="25" y="-15" class="text-label" fill="#B45309">规划 + 自主</text>
+    </g>
+
+    <!-- Phase 3: Teams -->
+    <g transform="translate(720, 0)">
+      <rect x="0" y="0" width="320" height="280" rx="8" class="box-phase-3"/>
+
+      <!-- Header -->
+      <rect x="0" y="0" width="320" height="60" rx="8" fill="#FEF9C3" stroke="none"/> <!-- Light Yellow Header -->
+      <text x="160" y="30" class="text-phase-title" fill="#B45309">Phase 3: 团队</text>
+      <text x="160" y="50" class="text-phase-subtitle" fill="#B45309">(Teams)</text>
+
+      <!-- Content -->
+      <g transform="translate(20, 80)">
+        <text x="0" y="0" class="text-body-bold">核心特征：目标导向</text>
+        <text x="0" y="20" class="text-body">Goal-oriented / 自主闭环</text>
+
+        <line x1="0" y1="35" x2="280" y2="35" stroke="#FACC15" stroke-width="1" opacity="0.5"/>
+
+        <g transform="translate(0, 50)">
+          <text x="0" y="0" class="text-body-bold">高级形态：多智能体协作</text>
+
+          <!-- Hierarchy Diagram -->
+          <g transform="translate(0, 15)">
+             <rect x="0" y="0" width="135" height="70" rx="4" fill="white" stroke="#FDE047"/>
+             <text x="67" y="15" text-anchor="middle" font-size="10" font-weight="bold" fill="#B45309">层级模式 (Hierarchy)</text>
+             <!-- Mini Hierarchy Icon -->
+             <circle cx="67" cy="30" r="3" fill="#B45309"/>
+             <line x1="67" y1="30" x2="47" y2="50" stroke="#B45309" stroke-width="1"/>
+             <line x1="67" y1="30" x2="87" y2="50" stroke="#B45309" stroke-width="1"/>
+             <circle cx="47" cy="50" r="3" fill="#FACC15"/>
+             <circle cx="87" cy="50" r="3" fill="#FACC15"/>
+             <text x="67" y="65" text-anchor="middle" font-size="9" fill="#6B7280">严谨合规</text>
+          </g>
+
+          <!-- Swarm Diagram -->
+          <g transform="translate(145, 15)">
+             <rect x="0" y="0" width="135" height="70" rx="4" fill="white" stroke="#FDE047"/>
+             <text x="67" y="15" text-anchor="middle" font-size="10" font-weight="bold" fill="#B45309">蜂群模式 (Swarm)</text>
+             <!-- Mini Swarm Icon -->
+             <circle cx="67" cy="40" r="3" fill="#B45309"/>
+             <circle cx="47" cy="50" r="3" fill="#FACC15"/>
+             <circle cx="87" cy="30" r="3" fill="#FACC15"/>
+             <line x1="67" y1="40" x2="47" y2="50" stroke="#FACC15" stroke-width="1"/>
+             <line x1="67" y1="40" x2="87" y2="30" stroke="#FACC15" stroke-width="1"/>
+             <line x1="47" y1="50" x2="87" y2="30" stroke="#FACC15" stroke-width="1" stroke-dasharray="2"/>
+             <text x="67" y="65" text-anchor="middle" font-size="9" fill="#6B7280">涌现智慧</text>
+          </g>
+        </g>
+
+        <line x1="0" y1="135" x2="280" y2="135" stroke="#FACC15" stroke-width="1" opacity="0.5"/>
+
+        <g transform="translate(0, 150)">
+           <text x="0" y="0" class="text-body-bold">典型案例：</text>
+           <text x="0" y="25" class="text-body">· Agent Swarms (数字团队)</text>
+           <text x="0" y="45" class="text-body">· 自适应供应链系统</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- ==================== 3. 人类角色转变 (Human Role Shift) ==================== -->
+  <g transform="translate(100, 460)">
+    <!-- Background Bar -->
+    <rect x="0" y="0" width="1040" height="160" rx="8" class="role-bar-bg"/>
+    <text x="20" y="30" font-size="14" font-weight="bold" fill="#4B5563">Human Role Shift</text>
+
+    <!-- Role: Operator -->
+    <g transform="translate(140, 40)">
+      <circle cx="40" cy="40" r="35" fill="white" stroke="#34D399" stroke-width="2"/>
+      <text x="40" y="35" class="text-role-main" fill="#065F46">Operator</text>
+      <text x="40" y="55" class="text-role-sub" fill="#065F46">操作者</text>
+      <text x="40" y="90" class="text-label">Intent</text>
+    </g>
+
+    <!-- Transition Arrow -->
+    <g transform="translate(300, 80)">
+      <line x1="0" y1="0" x2="440" y2="0" class="role-arrow" marker-end="url(#arrow-gray)"/>
+      <text x="220" y="-10" class="text-label" font-size="12">自主权移交 (Handover of Autonomy)</text>
+    </g>
+
+    <!-- Role: Supervisor -->
+    <g transform="translate(860, 40)">
+      <circle cx="40" cy="40" r="35" fill="#FEF9C3" stroke="#FACC15" stroke-width="2"/>
+      <text x="40" y="35" class="text-role-main" fill="#B45309">Supervisor</text>
+      <text x="40" y="55" class="text-role-sub" fill="#B45309">监督者</text>
+      <text x="40" y="90" class="text-label">Outcome</text>
+    </g>
+
+    <!-- Supervision Modes Text -->
+    <g transform="translate(400, 100)">
+       <text x="0" y="0" class="text-label" text-anchor="start">Supervision Modes:</text>
+       <text x="0" y="20" font-size="11" fill="#4B5563" font-weight="bold" text-anchor="start">1. Human-in-the-loop (关键审批)</text>
+       <text x="0" y="35" font-size="11" fill="#4B5563" font-weight="bold" text-anchor="start">2. Human-on-the-loop (旁路监控)</text>
+    </g>
+  </g>
+
+  <!-- ==================== 4. 底部许可声明 ==================== -->
+  <text x="600" y="660" class="text-label" fill="#64748B">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

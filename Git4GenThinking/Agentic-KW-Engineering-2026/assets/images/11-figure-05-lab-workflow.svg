@@ -1,0 +1,246 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1000" width="100%" height="100%">
+  <!--
+  ================================================================================
+  图表名称：工具与任务自动化流程图 (Tool & Task Automation Workflow)
+  文件命名：11-figure-05-lab-workflow.svg
+  用途：展示多工具协作（Multi-tool Collaboration）中的智能体编排工作流。通过 fetch 和 filesystem 的串联，呈现基于 ReAct 循环的自动化任务执行链路。
+  版本：v1.1.0
+  作者：Gitconomy Research-郭晧
+  SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+  创建日期：2026-02-21
+  ================================================================================
+  -->
+
+  <!-- Background: Solid White (遵循规范 3.5.1) -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+
+  <defs>
+    <style>
+      :root {
+        /* Semantic Colors 语义色系统 */
+        --c-cloud-blue: #0066CC;   /* Brain Blue: 云端算力/逻辑推理 */
+        --c-local-green: #00875A;  /* Body Green: 本地执行/用户节点 */
+        --c-risk-amber: #FF991F;   /* State Amber: 异步等待/数据提取 */
+        --c-neutral-gray: #475569; /* Meta Gray: 存储/背景/辅助线 */
+
+        /* 浅色背景辅助变量 */
+        --c-bg-light-blue: #EBF3FA;
+        --c-bg-light-green: #E6F3EE;
+        --c-bg-light-amber: #FFF4E5;
+        --c-bg-light-gray: #F1F5F9;
+
+        /* Font Stacks */
+        --font-sans: 'Noto Sans', 'Helvetica Neue', Arial, sans-serif;
+        --font-mono: 'JetBrains Mono', Consolas, 'Courier New', monospace;
+      }
+
+      .text-sans { font-family: var(--font-sans); }
+      .text-mono { font-family: var(--font-mono); }
+      .text-bold { font-weight: bold; }
+    </style>
+
+    <!-- Arrow Markers -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-cloud-blue)" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-local-green)" />
+    </marker>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-neutral-gray)" />
+    </marker>
+  </defs>
+
+  <!--
+  ===========================================================================
+       标题块 (Title Block)
+  ===========================================================================
+  -->
+  <g id="title-block" transform="translate(600, 40)">
+    <!-- A. Main Title -->
+    <text y="20" text-anchor="middle" class="text-sans text-bold" font-size="24" fill="#000000">实战演练：多工具协作自动化工作流
+    </text>
+
+    <!-- B. Breadcrumbs -->
+    <text y="45" text-anchor="middle" class="text-mono" font-size="14" fill="var(--c-neutral-gray)">第 11 天 > 实战演练</text>
+
+    <!-- C. Context Indicator -->
+    <line x1="-50" y1="60" x2="50" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!--
+  ===========================================================================
+       架构主视图区 (Diagram Content Starts at Y=140)
+  ===========================================================================
+  -->
+  <g id="diagram-content" transform="translate(0, 140)">
+
+    <!-- ================= 泳道背景与标头 (Swimlanes) ================= -->
+
+    <!-- Lane 1: User / Client -->
+    <rect x="40" y="0" width="280" height="700" fill="var(--c-bg-light-green)" fill-opacity="0.3" stroke="none" />
+    <text x="180" y="30" text-anchor="middle" class="text-sans text-bold" font-size="16" fill="var(--c-local-green)">1. 神经中枢 (MCP Client)</text>
+    <line x1="180" y1="50" x2="180" y2="680" stroke="var(--c-local-green)" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+
+    <!-- Lane 2: LLM Brain -->
+    <rect x="340" y="0" width="460" height="700" fill="var(--c-bg-light-blue)" fill-opacity="0.3" stroke="none" />
+    <text x="570" y="30" text-anchor="middle" class="text-sans text-bold" font-size="16" fill="var(--c-cloud-blue)">2. 决策大脑 (LLM / ReAct)</text>
+    <line x1="570" y1="50" x2="570" y2="680" stroke="var(--c-cloud-blue)" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+
+    <!-- Lane 3: MCP Tools -->
+    <rect x="820" y="0" width="340" height="700" fill="var(--c-bg-light-gray)" fill-opacity="0.3" stroke="none" />
+    <text x="990" y="30" text-anchor="middle" class="text-sans text-bold" font-size="16" fill="var(--c-neutral-gray)">3. 行动中枢 (MCP Tools)</text>
+    <line x1="990" y1="50" x2="990" y2="680" stroke="var(--c-neutral-gray)" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+
+
+    <!-- ================= 核心流转节点 (Nodes & Flows) ================= -->
+
+    <!-- Step 1: User Prompt -->
+    <g transform="translate(60, 80)">
+      <rect width="240" height="90" rx="8" fill="#FFFFFF" stroke="var(--c-local-green)" stroke-width="2" />
+      <text x="120" y="25" text-anchor="middle" class="text-sans text-bold" font-size="14" fill="var(--c-local-green)">复合指令 (User Prompt)</text>
+      <text x="120" y="50" text-anchor="middle" class="text-sans" font-size="12" fill="#333333">"抓取网页 https://gitlink...</text>
+      <text x="120" y="70" text-anchor="middle" class="text-sans" font-size="12" fill="#333333">提取知识点，并写入笔记库。"</text>
+    </g>
+
+    <path d="M 300 120 L 400 120" fill="none" stroke="var(--c-cloud-blue)" stroke-width="2" marker-end="url(#arrow-blue)" />
+    <rect x="315" y="105" width="20" height="16" rx="4" fill="var(--c-cloud-blue)"/>
+    <text x="325" y="117" text-anchor="middle" class="text-sans text-bold" font-size="10" fill="#FFFFFF">1</text>
+
+    <!-- Step 2: LLM Reasoning 1 (Fetch) -->
+    <g transform="translate(410, 80)">
+      <rect width="320" height="120" rx="8" fill="#FFFFFF" stroke="var(--c-cloud-blue)" stroke-width="2" />
+      <text x="20" y="25" class="text-sans text-bold" font-size="12" fill="var(--c-cloud-blue)">🧠 Thought (思考):</text>
+      <text x="35" y="45" class="text-sans" font-size="12" fill="#333333">任务第一步需要获取网页内容。根据注册的</text>
+      <text x="35" y="60" class="text-sans" font-size="12" fill="#333333">Schema，我需要调用 fetch 工具。</text>
+      <line x1="20" y1="75" x2="300" y2="75" stroke="var(--c-cloud-blue)" stroke-dasharray="2 2" stroke-width="1"/>
+      <text x="20" y="95" class="text-sans text-bold" font-size="12" fill="var(--c-cloud-blue)">⚡ Action (行动):</text>
+      <text x="35" y="110" class="text-mono" font-size="11" fill="var(--c-cloud-blue)">{"name": "fetch", "args": {"url": "..."}}</text>
+    </g>
+
+    <path d="M 730 120 L 860 120" fill="none" stroke="var(--c-neutral-gray)" stroke-width="2" stroke-dasharray="4 2" marker-end="url(#arrow-gray)" />
+    <rect x="780" y="105" width="20" height="16" rx="4" fill="var(--c-neutral-gray)"/>
+    <text x="790" y="117" text-anchor="middle" class="text-sans text-bold" font-size="10" fill="#FFFFFF">2</text>
+
+    <!-- Step 3: Tool 1 (Fetch) -->
+    <g transform="translate(880, 80)">
+      <rect width="220" height="90" rx="8" fill="#FFFFFF" stroke="var(--c-neutral-gray)" stroke-width="2" />
+      <rect x="0" y="0" width="220" height="25" rx="8" fill="var(--c-bg-light-gray)" />
+      <text x="110" y="17" text-anchor="middle" class="text-mono text-bold" font-size="12" fill="#333333">@fetch (Hosted/Local)</text>
+      <text x="110" y="50" text-anchor="middle" class="text-sans" font-size="12" fill="#666666">执行 HTTP GET 请求</text>
+      <text x="110" y="70" text-anchor="middle" class="text-sans" font-size="12" fill="#666666">返回网页 Raw HTML</text>
+    </g>
+
+    <path d="M 880 140 C 820 180, 780 270, 730 270" fill="none" stroke="var(--c-cloud-blue)" stroke-width="2" marker-end="url(#arrow-blue)" />
+    <rect x="780" y="260" width="20" height="16" rx="4" fill="var(--c-cloud-blue)"/>
+    <text x="790" y="272" text-anchor="middle" class="text-sans text-bold" font-size="10" fill="#FFFFFF">3</text>
+
+    <!-- Step 4: LLM Reasoning 2 (Process & Write) -->
+    <g transform="translate(410, 230)">
+      <rect width="320" height="150" rx="8" fill="#FFFFFF" stroke="var(--c-cloud-blue)" stroke-width="2" />
+      <text x="20" y="25" class="text-sans text-bold" font-size="12" fill="var(--c-cloud-blue)">👁️ Observation (观察与提取):</text>
+      <text x="35" y="45" class="text-sans" font-size="12" fill="#333333">已获取页面。核心提取内容：[Markdown 列表...]</text>
+      <line x1="20" y1="55" x2="300" y2="55" stroke="var(--c-cloud-blue)" stroke-dasharray="2 2" stroke-width="1"/>
+
+      <text x="20" y="75" class="text-sans text-bold" font-size="12" fill="var(--c-cloud-blue)">🧠 Thought (思考):</text>
+      <text x="35" y="90" class="text-sans" font-size="12" fill="#333333">我需要将提取的 Markdown 存入 Obsidian。</text>
+      <line x1="20" y1="100" x2="300" y2="100" stroke="var(--c-cloud-blue)" stroke-dasharray="2 2" stroke-width="1"/>
+
+      <text x="20" y="120" class="text-sans text-bold" font-size="12" fill="var(--c-cloud-blue)">⚡ Action (行动):</text>
+      <text x="35" y="135" class="text-mono" font-size="11" fill="var(--c-cloud-blue)">{"name": "write_file", "args": {"path": "..."}}</text>
+    </g>
+
+    <path d="M 730 305 L 860 305" fill="none" stroke="var(--c-neutral-gray)" stroke-width="2" marker-end="url(#arrow-gray)" />
+    <rect x="780" y="297" width="20" height="16" rx="4" fill="var(--c-neutral-gray)"/>
+    <text x="790" y="309" text-anchor="middle" class="text-sans text-bold" font-size="10" fill="#FFFFFF">4</text>
+
+    <!-- Step 5: Tool 2 (Filesystem) -->
+    <g transform="translate(880, 265)">
+      <rect width="220" height="90" rx="8" fill="#FFFFFF" stroke="var(--c-local-green)" stroke-width="2" />
+      <rect x="0" y="0" width="220" height="25" rx="8" fill="var(--c-bg-light-green)" />
+      <text x="110" y="17" text-anchor="middle" class="text-mono text-bold" font-size="12" fill="var(--c-local-green)">@filesystem (Local)</text>
+      <text x="110" y="50" text-anchor="middle" class="text-sans" font-size="12" fill="#666666">定位到 /Inbox 目录</text>
+      <text x="110" y="70" text-anchor="middle" class="text-sans text-bold" font-size="12" fill="var(--c-local-green)">f.write(markdown_content)</text>
+    </g>
+
+    <path d="M 880 325 C 820 325, 780 475, 730 475" fill="none" stroke="var(--c-cloud-blue)" stroke-width="2" marker-end="url(#arrow-blue)" />
+    <rect x="780" y="465" width="20" height="16" rx="4" fill="var(--c-cloud-blue)"/>
+    <text x="790" y="477" text-anchor="middle" class="text-sans text-bold" font-size="10" fill="#FFFFFF">5</text>
+
+    <!-- Step 6: LLM Reasoning 3 (Finalizing) -->
+    <g transform="translate(410, 420)">
+      <rect width="320" height="110" rx="8" fill="#FFFFFF" stroke="var(--c-cloud-blue)" stroke-width="2" />
+      <text x="20" y="25" class="text-sans text-bold" font-size="12" fill="var(--c-cloud-blue)">👁️ Observation (观察):</text>
+      <text x="35" y="45" class="text-sans" font-size="12" fill="#333333">文件写入成功。任务序列已全部完成。</text>
+      <line x1="20" y1="55" x2="300" y2="55" stroke="var(--c-cloud-blue)" stroke-dasharray="2 2" stroke-width="1"/>
+      <text x="20" y="75" class="text-sans text-bold" font-size="12" fill="var(--c-cloud-blue)">💬 Final Answer (生成回复):</text>
+      <text x="35" y="90" class="text-sans" font-size="12" fill="#333333">向用户汇报抓取摘要和写入状态。</text>
+    </g>
+
+    <path d="M 410 475 L 320 475" fill="none" stroke="var(--c-local-green)" stroke-width="2" marker-end="url(#arrow-green)" />
+    <rect x="355" y="467" width="20" height="16" rx="4" fill="var(--c-local-green)"/>
+    <text x="365" y="479" text-anchor="middle" class="text-sans text-bold" font-size="10" fill="#FFFFFF">6</text>
+
+    <!-- Step 7: Final Result to User -->
+    <g transform="translate(60, 415)">
+      <rect width="240" height="130" rx="8" fill="var(--c-bg-light-green)" stroke="var(--c-local-green)" stroke-width="2" />
+      <text x="120" y="25" text-anchor="middle" class="text-sans text-bold" font-size="14" fill="var(--c-local-green)">任务完成展示</text>
+
+      <rect x="15" y="40" width="210" height="75" rx="4" fill="#FFFFFF" stroke="var(--c-local-green)" stroke-width="1"/>
+      <text x="25" y="55" class="text-sans text-bold" font-size="11" fill="#333333">🤖 AI 回复：</text>
+      <text x="25" y="70" class="text-sans" font-size="11" fill="#666666">已成功为您抓取目标网页，</text>
+      <text x="25" y="85" class="text-sans" font-size="11" fill="#666666">并提取核心知识点写入到</text>
+      <text x="25" y="100" class="text-mono text-bold" font-size="11" fill="var(--c-local-green)">/Inbox/Tutorial.md</text>
+    </g>
+
+    <!-- Context / Concept Box -->
+    <g transform="translate(60, 580)">
+      <rect width="1040" height="100" rx="8" fill="#FFFBEB" stroke="var(--c-risk-amber)" stroke-width="1" />
+      <text x="20" y="25" class="text-sans text-bold" font-size="14" fill="var(--c-risk-amber)">💡 架构师注脚：ReAct 与自动化编排</text>
+      <text x="20" y="50" class="text-sans" font-size="13" fill="#4B5563">在多工具协作场景中，LLM 不再是单纯的一问一答（Chat），而是演变为一个基于 <tspan class="text-mono text-bold" fill="var(--c-cloud-blue)">Thought -> Action -> Observation</tspan> 循环的自治系统。</text>
+      <text x="20" y="70" class="text-sans" font-size="13" fill="#4B5563">通过 MCP 协议挂载多种生态工具，智能体能够实现从“网络信息获取”到“本地知识库归档”的端到端（End-to-End）闭环流转。</text>
+    </g>
+
+  </g>
+
+  <!--
+  ===========================================================================
+       底部图例与注释块 (Legend & Key Block - 遵循 3.4 & 7.3)
+  ===========================================================================
+  -->
+  <g id="legend" transform="translate(600, 870)">
+    <!-- 统一的半透明背景容器 -->
+    <rect x="-460" y="-16" width="920" height="32" rx="4" fill="rgba(255, 255, 255, 0.9)" stroke="var(--c-neutral-gray)" stroke-width="0.5"/>
+
+    <g transform="translate(-440, 0)">
+      <text x="0" y="4" class="text-sans text-bold" font-size="12" fill="var(--c-neutral-gray)">工作流步骤图例:</text>
+
+      <g transform="translate(100, 0)">
+        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="var(--c-cloud-blue)" />
+        <text x="12" y="4" class="text-mono" font-size="11" fill="#333333">[1] 意图解析</text>
+      </g>
+      <g transform="translate(200, 0)">
+        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="var(--c-neutral-gray)" />
+        <text x="12" y="4" class="text-mono" font-size="11" fill="#333333">[2/4] 分发工具调用</text>
+      </g>
+      <g transform="translate(350, 0)">
+        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="var(--c-cloud-blue)" />
+        <text x="12" y="4" class="text-mono" font-size="11" fill="#333333">[3/5] 工具结果回传/观察</text>
+      </g>
+      <g transform="translate(530, 0)">
+        <rect x="-6" y="-6" width="12" height="12" rx="2" fill="var(--c-local-green)" />
+        <text x="12" y="4" class="text-mono" font-size="11" fill="#333333">[6] 任务结束并生成答复</text>
+      </g>
+    </g>
+  </g>
+
+  <!--
+  ===========================================================================
+       底部许可注释规范 (Footer License - 遵循 7.4)
+  ===========================================================================
+  -->
+  <text x="600" y="930" text-anchor="middle" class="text-sans" font-size="12" fill="var(--c-neutral-gray)">
+    本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research社区
+  </text>
+
+</svg>

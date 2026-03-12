@@ -1,0 +1,227 @@
+<!--
+  ================================================================================
+  图表名称：MCP 核心思想：上下文即接口 (Context as Interface)
+  文件命名：module-07-mcp-context-interface.svg
+  描述：
+    展示 MCP (Model Context Protocol) 如何将外部能力转化为模型上下文：
+    1. MCP Server (Right): 提供 Resources, Prompts, Tools (Green).
+    2. Context Window (Center): 通过协议将 Server 能力投影为 Text/Schema (Yellow/Interface).
+    3. Host/LLM (Left): 基于上下文进行认知推理 (Blue).
+  SPDX-License-Identifier: MIT AND CC-BY-4.0
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+  ================================================================================
+-->
+<svg width="1300" height="700" viewBox="0 0 1300 700" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- ========================================================================= -->
+  <!-- DEFINITIONS & STYLES -->
+  <!-- ========================================================================= -->
+  <defs>
+    <style>
+      /* 全局字体 */
+      .font-sans { font-family: 'Noto Sans', sans-serif; }
+
+      /* 文本层级 */
+      .title-main { font-size: 24px; font-weight: 800; fill: #111827; }
+      .title-sub { font-size: 16px; font-weight: 400; fill: #6B7280; }
+      .text-head { font-size: 18px; font-weight: 700; }
+      .text-label-lg { font-size: 14px; font-weight: 700; }
+      .text-label-md { font-size: 13px; font-weight: 700; }
+      .text-body { font-size: 12px; }
+      .text-code { font-family: 'Consolas', 'Monaco', monospace; font-size: 11px; }
+
+      /* 颜色通用类 */
+      .fill-white { fill: #FFFFFF; }
+      .fill-bg { fill: #F9FAFB; }
+      .stroke-gray { stroke: #E5E7EB; stroke-width: 1px; }
+
+      /* Host / LLM (Blue) */
+      .box-host { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; }
+      .header-host { fill: #DBEAFE; }
+      .text-host-title { fill: #1E40AF; }
+      .text-host-body { fill: #1E3A8A; }
+
+      /* MCP Server (Green) */
+      .box-server { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; }
+      .header-server { fill: #DCFCE7; }
+      .text-server-title { fill: #065F46; }
+      .text-server-body { fill: #064E3B; }
+
+      /* Context Interface (Yellow/Orange) */
+      .box-context { fill: #FFFBEB; stroke: #F59E0B; stroke-width: 2px; stroke-dasharray: 8,4; }
+      .text-context-title { fill: #B45309; }
+      .code-block { fill: #FFFFFF; stroke: #D1D5DB; stroke-width: 1px; }
+      .text-code-key { fill: #B45309; }
+      .text-code-val { fill: #047857; }
+
+      /* Connectors */
+      .conn-flow { fill: none; stroke: #9CA3AF; stroke-width: 2px; }
+      .conn-protocol { fill: none; stroke: #111827; stroke-width: 2px; }
+    </style>
+
+    <marker id="arrow-gray" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9CA3AF" />
+    </marker>
+    <marker id="arrow-dark" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#111827" />
+    </marker>
+  </defs>
+
+  <!-- ========================================================================= -->
+  <!-- Header -->
+  <!-- ========================================================================= -->
+  <text x="650" y="50" class="font-sans title-main" text-anchor="middle">
+    MCP核心思想：上下文即接口 (Context as Interface)
+  </text>
+  <text x="650" y="80" class="font-sans title-sub" text-anchor="middle">
+    Standardizing AI Interactions by Projecting Capabilities into the Context Window
+  </text>
+
+  <!-- ========================================================================= -->
+  <!-- LEFT: MCP HOST (Client/LLM) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(50, 150)">
+    <!-- Main Box -->
+    <rect x="0" y="0" width="300" height="420" rx="12" class="box-host"/>
+
+    <!-- Header -->
+    <path d="M 0 12 Q 0 0 12 0 L 288 0 Q 300 0 300 12 L 300 50 L 0 50 Z" class="header-host"/>
+    <text x="150" y="32" class="font-sans text-head text-host-title" text-anchor="middle">MCP Host (Client)</text>
+
+    <!-- LLM Kernel -->
+    <g transform="translate(30, 80)">
+      <rect x="0" y="0" width="240" height="120" rx="8" class="fill-white" stroke="#3B82F6" stroke-width="2"/>
+      <text x="120" y="30" class="font-sans text-label-lg text-host-title" text-anchor="middle">LLM / Agent</text>
+
+      <!-- Thinking Process -->
+      <text x="20" y="60" class="font-sans text-body text-host-body">1. Observe Context</text>
+      <text x="20" y="80" class="font-sans text-body text-host-body">2. Reason &amp; Plan</text>
+      <text x="20" y="100" class="font-sans text-body text-host-body">3. Generate Intent</text>
+    </g>
+
+    <!-- Host Action -->
+    <g transform="translate(30, 240)">
+      <rect x="0" y="0" width="240" height="120" rx="8" class="fill-white" stroke="#93C5FD" stroke-width="1" stroke-dasharray="4,2"/>
+      <text x="120" y="30" class="font-sans text-label-md text-host-body" text-anchor="middle">Runtime Execution</text>
+      <text x="120" y="60" class="font-sans text-body text-gray" text-anchor="middle">Construct JSON-RPC</text>
+      <text x="120" y="80" class="font-sans text-body text-gray" text-anchor="middle">Call Tool / Read Resource</text>
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- RIGHT: MCP SERVER (Provider) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(910, 150)">
+    <!-- Main Box -->
+    <rect x="0" y="0" width="300" height="420" rx="12" class="box-server"/>
+
+    <!-- Header -->
+    <path d="M 0 12 Q 0 0 12 0 L 288 0 Q 300 0 300 12 L 300 50 L 0 50 Z" class="header-server"/>
+    <text x="150" y="32" class="font-sans text-head text-server-title" text-anchor="middle">MCP Server</text>
+
+    <!-- Capabilities -->
+    <g transform="translate(30, 80)">
+      <!-- Prompts -->
+      <rect x="0" y="0" width="240" height="60" rx="6" class="fill-white" stroke="#34D399" stroke-width="2"/>
+      <text x="15" y="25" class="font-sans text-label-md text-server-title">Prompts (提示词)</text>
+      <text x="15" y="45" class="font-sans text-body text-server-body">Templates for interaction</text>
+
+      <!-- Resources -->
+      <rect x="0" y="80" width="240" height="60" rx="6" class="fill-white" stroke="#34D399" stroke-width="2"/>
+      <text x="15" y="105" class="font-sans text-label-md text-server-title">Resources (资源)</text>
+      <text x="15" y="125" class="font-sans text-body text-server-body">File, DB, Logs, API data</text>
+
+      <!-- Tools -->
+      <rect x="0" y="160" width="240" height="60" rx="6" class="fill-white" stroke="#34D399" stroke-width="2"/>
+      <text x="15" y="185" class="font-sans text-label-md text-server-title">Tools (工具)</text>
+      <text x="15" y="205" class="font-sans text-body text-server-body">Executable functions</text>
+    </g>
+
+    <!-- Protocol Adaptor -->
+    <g transform="translate(30, 320)">
+      <rect x="0" y="0" width="240" height="80" rx="6" fill="#DCFCE7" stroke="#10B981" stroke-width="1"/>
+      <text x="120" y="30" class="font-sans text-label-md text-server-title" text-anchor="middle">Protocol Adaptor</text>
+      <text x="120" y="55" class="font-sans text-xs text-server-body" text-anchor="middle">Expose Capabilities via JSON</text>
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- CENTER: CONTEXT WINDOW (The Interface) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(430, 180)">
+    <!-- Context Box -->
+    <rect x="0" y="0" width="400" height="340" rx="8" class="box-context"/>
+
+    <text x="200" y="-15" class="font-sans text-head text-context-title" text-anchor="middle">
+      Context Window (上下文窗口)
+    </text>
+    <text x="200" y="25" class="font-sans text-body text-light" text-anchor="middle">
+      "The Interface where capabilities become text"
+    </text>
+
+    <!-- Projection: Capabilities -> Text -->
+    <g transform="translate(30, 40)">
+      <!-- System Prompt Injection -->
+      <rect x="0" y="0" width="340" height="120" rx="4" class="code-block"/>
+      <text x="10" y="20" class="font-sans text-xs text-gray" font-weight="bold">System Prompt (Injected by MCP):</text>
+
+      <text x="20" y="45" class="text-code text-code-key">Available Tools:</text>
+      <text x="30" y="60" class="text-code text-code-val">- read_file(path: string)</text>
+      <text x="30" y="75" class="text-code text-code-val">- execute_sql(query: string)</text>
+
+      <text x="20" y="95" class="text-code text-code-key">Attached Resources:</text>
+      <text x="30" y="110" class="text-code text-code-val">- postgres://db/users (schema loaded)</text>
+    </g>
+
+    <!-- Interaction: Model -> Intent -->
+    <g transform="translate(30, 180)">
+      <rect x="0" y="0" width="340" height="80" rx="4" class="code-block" style="stroke: #60A5FA;"/>
+      <text x="10" y="20" class="font-sans text-xs text-host-title" font-weight="bold">Model Response (Intent):</text>
+
+      <text x="20" y="45" class="text-code text-dark">Thinking: User wants user data.</text>
+      <text x="20" y="60" class="text-code text-host-title">Call: execute_sql("SELECT * FROM users")</text>
+    </g>
+
+    <!-- Realization: Execution Result -->
+    <g transform="translate(30, 275)">
+      <rect x="0" y="0" width="340" height="50" rx="4" class="code-block" style="fill: #F0FDF4; stroke: #34D399;"/>
+      <text x="10" y="20" class="font-sans text-xs text-server-title" font-weight="bold">Execution Result (Appended to Context):</text>
+      <text x="20" y="38" class="text-code text-server-body">[ { "id": 1, "name": "Alice" }, ... ]</text>
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- CONNECTORS -->
+  <!-- ========================================================================= -->
+  <!-- Server to Context (Projection) -->
+  <path d="M 910 250 L 830 250" class="conn-protocol" marker-end="url(#arrow-dark)"/>
+  <text x="870" y="240" class="font-sans text-xs text-gray" text-anchor="middle">Project</text>
+
+  <path d="M 910 330 L 830 330" class="conn-protocol" marker-end="url(#arrow-dark)"/>
+  <text x="870" y="320" class="font-sans text-xs text-gray" text-anchor="middle">Inject</text>
+
+  <!-- Host to Context (Read/Write) -->
+  <path d="M 350 250 L 430 250" class="conn-protocol" marker-end="url(#arrow-dark)"/>
+  <text x="390" y="240" class="font-sans text-xs text-gray" text-anchor="middle">Read</text>
+
+  <path d="M 350 330 L 430 330" class="conn-protocol" marker-end="url(#arrow-dark)"/>
+  <text x="390" y="320" class="font-sans text-xs text-gray" text-anchor="middle">Write</text>
+
+  <!-- Bottom: The Protocol Pipe -->
+  <path d="M 350 630 L 960 630" class="conn-protocol" stroke-dasharray="8,4"/>
+  <rect x="480" y="610" width="300" height="40" rx="20" class="fill-bg stroke-gray"/>
+  <text x="630" y="635" class="font-sans text-label-md text-dark" text-anchor="middle">MCP Transport Layer (Stdio / SSE)</text>
+
+  <!-- Vertical Links to Protocol -->
+  <line x1="200" y1="550" x2="200" y2="630" class="conn-flow" stroke-dasharray="4,2"/>
+  <line x1="200" y1="630" x2="480" y2="630" class="conn-flow" stroke-dasharray="4,2"/>
+
+  <line x1="1060" y1="550" x2="1060" y2="630" class="conn-flow" stroke-dasharray="4,2"/>
+  <line x1="1060" y1="630" x2="780" y2="630" class="conn-flow" stroke-dasharray="4,2"/>
+
+  <!-- License -->
+  <text x="650" y="690" class="font-sans text-body text-light" text-anchor="middle">
+    本作品采用 CC-BY-SA 4.0 国际许可协议进行许可，© 2025 Gitconomy Research 社区
+  </text>
+
+</svg>

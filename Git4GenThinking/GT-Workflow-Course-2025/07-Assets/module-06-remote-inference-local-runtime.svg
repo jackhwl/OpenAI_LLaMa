@@ -1,0 +1,200 @@
+<!--
+  文件名：module-06-remote-inference-local-runtime.svg
+  图表名称：远程推理 × 本地运行的协同架构图 (上下结构版)
+  描述：展示如何利用云端大模型的推理能力，同时在本地 Runtime 中保持对状态、记忆和工具执行的绝对控制。
+
+  核心逻辑：
+  1. 上层 (Cloud Inference): 提供算力与智能 (Brain-as-a-Service)，无状态。
+  2. 下层 (Local Runtime): 管理状态与执行 (Body & System)，有状态。
+  3. 中间 (Security Boundary): 隐私过滤器与数据脱敏，确保主权。
+
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+-->
+<svg width="1200" height="940" viewBox="0 0 1200 940" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义样式与标记 -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+
+      /* 文本样式 */
+      .main-title { font-family: 'Noto Sans', sans-serif; font-size: 24px; font-weight: 800; fill: #111827; text-anchor: middle; }
+      .sub-title { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: normal; fill: #6B7280; text-anchor: middle; }
+
+      .layer-title { font-family: 'Noto Sans', sans-serif; font-size: 20px; font-weight: 700; text-anchor: middle; }
+      .box-title { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: 700; fill: #111827; text-anchor: middle; }
+      .item-text { font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 400; fill: #374151; text-anchor: middle; }
+
+      .cloud-text { fill: #6B21A8; }
+      .local-text { fill: #065F46; }
+      .boundary-text { fill: #B45309; font-weight: bold; }
+
+      /* 区域背景 */
+      .bg-cloud { fill: #F3E8FF; stroke: #A855F7; stroke-width: 2px; rx: 16; }
+      .bg-local { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; rx: 16; }
+
+      /* 模块框 */
+      .box-white { fill: white; stroke-width: 1.5; rx: 8; }
+      .stroke-purple { stroke: #A855F7; }
+      .stroke-green { stroke: #059669; }
+      .stroke-yellow { stroke: #FACC15; }
+
+      /* 边界线 */
+      .boundary-line { stroke: #FACC15; stroke-width: 4px; stroke-dasharray: 8,4; }
+
+      /* 连接线 */
+      .connector { fill: none; stroke: #94A3B8; stroke-width: 1px; marker-end: url(#arrow-gray); }
+      .data-flow { fill: none; stroke: #2563EB; stroke-width: 2px; marker-end: url(#arrow-blue); }
+      .control-flow { fill: none; stroke: #059669; stroke-width: 2px; marker-end: url(#arrow-green); }
+    </style>
+
+    <!-- 箭头定义 -->
+    <marker id="arrow-gray" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <polygon points="0,0 8,4 0,8" fill="#94A3B8"/>
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="#2563EB"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <polygon points="0,0 10,5 0,10" fill="#059669"/>
+    </marker>
+  </defs>
+
+  <!-- 1. 标题区域 -->
+  <text x="600" y="50" class="main-title">远程推理 × 本地运行：Agent 协同架构</text>
+  <text x="600" y="80" class="sub-title">解构“本地优先”：推理在云端 (Thinking in Cloud)，运行在本地 (Acting Locally)</text>
+
+  <!-- ================================================================================== -->
+  <!-- 上层：推理层 (Remote Inference) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(100, 120)">
+    <!-- 背景 -->
+    <rect x="0" y="0" width="1000" height="240" class="bg-cloud"/>
+
+    <text x="500" y="35" class="layer-title cloud-text">☁️ 推理层 (Remote Inference)</text>
+    <text x="500" y="55" class="item-text" fill="#7E22CE">Brain-as-a-Service (Stateless)</text>
+
+    <!-- Cloud Model (Center) -->
+    <g transform="translate(400, 80)">
+        <circle cx="100" cy="70" r="60" fill="white" stroke="#A855F7" stroke-width="3"/>
+        <text x="100" y="60" class="box-title" font-size="20">LLM API</text>
+        <text x="100" y="85" class="item-text">GPT-4 / Claude</text>
+        <text x="100" y="105" class="item-text" font-size="10">纯计算节点</text>
+    </g>
+
+    <!-- Capabilities (Right) -->
+    <g transform="translate(680, 80)">
+        <rect x="0" y="10" width="220" height="120" class="box-white stroke-purple"/>
+        <text x="110" y="50" class="box-title" fill="#6B21A8">提供的能力</text>
+        <line x1="20" y1="50" x2="200" y2="40" stroke="#E9D5FF" stroke-width="1"/>
+        <text x="110" y="70" class="item-text">• 语义理解 (Understanding)</text>
+        <text x="110" y="90" class="item-text">• 逻辑推理 (Reasoning)</text>
+        <text x="110" y="110" class="item-text">• 任务规划 (Planning)</text>
+    </g>
+
+    <!-- Limitations (Left) -->
+    <g transform="translate(100, 80)">
+         <rect x="0" y="10" width="220" height="120" class="box-white stroke-purple" stroke-dasharray="4,2"/>
+         <text x="110" y="40" class="box-title" fill="#6B21A8">❌ 不触及</text>
+         <line x1="20" y1="50" x2="200" y2="40" stroke="#E9D5FF" stroke-width="1"/>
+         <text x="110" y="70" class="item-text">本地文件 (Local Files)</text>
+         <text x="110" y="90" class="item-text">用户隐私 (Private Data)</text>
+         <text x="110" y="110" class="item-text">执行状态 (State)</text>
+    </g>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 中间：安全边界 (Security Boundary) -->
+  <!-- =========================&========================================================= -->
+  <g transform="translate(100, 380)">
+    <!-- 虚线边界 -->
+    <line x1="0" y1="20" x2="1000" y2="20" class="boundary-line"/>
+
+    <!-- 标签 -->
+    <rect x="420" y="5" width="160" height="30" rx="15" fill="#FEF9C3" stroke="#FACC15"/>
+    <text x="500" y="25" class="boundary-text" font-size="12" text-anchor="middle">Air Gap / API Gateway</text>
+
+    <!-- 隐私网关 (Privacy Gateway) -->
+    <g transform="translate(350, -30)">
+        <rect x="0" y="0" width="300" height="100" rx="8" fill="white" stroke="#FACC15" stroke-width="3"/>
+        <text x="150" y="30" class="box-title" fill="#B45309">🛡️ 隐私网关 (Privacy Filter)</text>
+        <text x="150" y="55" class="item-text">PII 过滤 / 数据脱敏</text>
+        <text x="150" y="75" class="item-text">Token 审计与监控</text>
+    </g>
+
+    <!-- 数据流向 (垂直) -->
+    <!-- Request: Local -> Remote (Up) -->
+    <path d="M 400 140 L 400 70" class="data-flow"/>
+    <text x="350" y="110" class="item-text" font-size="10" fill="#2563EB">Prompt (脱敏)</text>
+
+    <!-- Response: Remote -> Local (Down) -->
+    <path d="M 600 70 L 600 140" class="control-flow"/>
+    <text x="650" y="110" class="item-text" font-size="10" fill="#059669">Plan / JSON</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 下层：运行层 (Local Runtime) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(100, 520)">
+    <!-- 背景 -->
+    <rect x="0" y="0" width="1000" height="300" class="bg-local"/>
+    <text x="500" y="40" class="layer-title local-text">💻 运行层 (Local Runtime)</text>
+    <text x="500" y="65" class="item-text" fill="#047857">System-as-a-Body (Stateful)</text>
+
+    <!-- Core Engine (Center) -->
+    <g transform="translate(375, 90)">
+        <rect x="0" y="0" width="250" height="70" class="box-white stroke-green"/>
+        <text x="125" y="30" class="box-title" fill="#059669">Agent Core</text>
+        <text x="125" y="55" class="item-text">Orchestrator &amp; State Manager</text>
+    </g>
+
+    <!-- Components Row -->
+    <g transform="translate(50, 190)">
+        <!-- Memory -->
+        <g transform="translate(0, 0)">
+            <rect x="0" y="0" width="200" height="80" class="box-white stroke-green"/>
+            <text x="100" y="25" class="box-title">🧠 Memory</text>
+            <text x="100" y="45" class="item-text">Vector DB / Chat History</text>
+            <text x="100" y="65" class="item-text" font-weight="bold" fill="#059669">(State Owner)</text>
+        </g>
+
+        <!-- Tools -->
+        <g transform="translate(350, 0)">
+            <rect x="0" y="0" width="200" height="80" class="box-white stroke-green"/>
+            <text x="100" y="25" class="box-title">🛠️ Tools</text>
+            <text x="100" y="45" class="item-text">File I/O / Python Exec</text>
+            <text x="100" y="65" class="item-text" font-weight="bold" fill="#059669">(Action Owner)</text>
+        </g>
+
+        <!-- File System -->
+        <g transform="translate(700, 0)">
+            <rect x="0" y="0" width="200" height="80" class="box-white stroke-green" stroke-dasharray="4,2"/>
+            <text x="100" y="25" class="box-title" fill="#047857">📁 Filesystem</text>
+            <text x="100" y="45" class="item-text">Obsidian Vault</text>
+            <rect x="75" y="55" width="50" height="18" rx="4" fill="#DCFCE7"/>
+            <text x="100" y="68" class="item-text" font-weight="bold" fill="#059669" font-size="10">SSOT</text>
+        </g>
+    </g>
+
+    <!-- Internal Connections -->
+    <line x1="500" y1="160" x2="150" y2="190" class="connector"/>
+    <line x1="500" y1="160" x2="500" y2="190" class="connector"/>
+    <line x1="500" y1="160" x2="850" y2="190" class="connector"/>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 底部：总结 -->
+  <!-- ================================================================================== -->
+  <g transform="translate(100, 850)">
+    <rect x="0" y="0" width="1000" height="40" rx="8" fill="#F9FAFB" stroke="#E5E7EB" stroke-width="2"/>
+    <text x="500" y="25" class="item-text" font-size="14" fill="#374151">
+      💡 <tspan font-weight="bold">关键设计：</tspan>通过网关隔离，将“思考”(Cloud) 与“记忆/行动”(Local) 解耦，既获得大模型智力，又保障数据主权。
+    </text>
+  </g>
+
+  <!-- 底部许可 -->
+  <text x="600" y="920" font-family="Noto Sans" font-size="12" fill="#9CA3AF" text-anchor="middle">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

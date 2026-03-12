@@ -1,0 +1,189 @@
+<!--
+  ===========================================================================
+  图表名称：课程体系整体示意图 (Course Architecture Overview)
+  图表文件名：course-architecture-overview.svg
+  描述：基于高质量提示词生成的极简课程架构图，展示理论、工具、系统三层体系的关系。
+  设计逻辑：
+      1. 结构：横向并排递进结构 (Parallel Progression)，从左向右。
+      2. 内容：仅展示核心体系命名与价值，不包含具体技术术语。
+      3. 关系：认知奠基 -> 能力转化 -> 系统构建。
+      4. 角色：AI User -> System Builder (底部横轴)。
+  SPDX-License-Identifier: MIT AND CC-BY-4.0
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+  版本号：1.0.0
+  创建时间：2025-12-31
+  ===========================================================================
+-->
+<svg width="1200" height="520" viewBox="0 0 1200 520" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    /* 基础字体 */
+    text { font-family: 'Noto Sans', 'Inter', Arial, sans-serif; }
+
+    /* 体系卡片样式 */
+    .card-base { stroke-width: 2; rx: 16; ry: 16; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05)); }
+
+    /* 理论体系 (Theory) - Blue */
+    .theory-fill { fill: #F0F9FF; }
+    .theory-stroke { stroke: #0EA5E9; }
+    .theory-text { fill: #0369A1; }
+
+    /* 工具体系 (Tools) - Purple */
+    .tools-fill { fill: #FAF5FF; }
+    .tools-stroke { stroke: #9333EA; }
+    .tools-text { fill: #7E22CE; }
+
+    /* 系统体系 (Systems) - Green */
+    .system-fill { fill: #F0FDF4; }
+    .system-stroke { stroke: #10B981; }
+    .system-text { fill: #047857; }
+
+    /* 文本样式 */
+    .title-main { font-size: 32px; font-weight: 900; fill: #1E293B; text-anchor: middle; }
+    .title-sub { font-size: 18px; font-weight: normal; fill: #64748B; text-anchor: middle; }
+
+    .layer-head { font-size: 22px; font-weight: 800; text-anchor: middle; letter-spacing: 1px; }
+    .layer-sub { font-size: 14px; font-weight: 600; text-anchor: middle; opacity: 0.8; }
+    .layer-desc { font-size: 13px; font-weight: normal; text-anchor: middle; opacity: 0.7; }
+    .layer-step { font-size: 16px; font-weight: 700; text-anchor: start; opacity: 0.6; }
+
+    /* 演进轴样式 */
+    .axis-line { stroke: #CBD5E1; stroke-width: 2; stroke-linecap: round; }
+    .axis-label { font-size: 14px; font-weight: 700; fill: #94A3B8; text-anchor: middle; }
+    .role-text { font-size: 16px; font-weight: 800; text-anchor: middle; }
+
+    /* 连接箭头 */
+    .flow-arrow { stroke: #CBD5E1; stroke-width: 2; fill: none; stroke-dasharray: 6, 4; }
+    .license-text { font-size: 12px; fill: #94A3B8; text-anchor: middle; }
+  </style>
+
+  <defs>
+    <!-- 箭头定义 -->
+    <marker id="arrow-right" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+    </marker>
+    <marker id="arrow-axis" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12" fill="#CBD5E1"/>
+    </marker>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="1200" height="600" fill="#FFFFFF"/>
+
+  <!-- 标题区 -->
+  <g transform="translate(600, 50)">
+    <text class="title-main" y="0">课程体系整体架构示意图</text>
+    <text class="title-sub" y="35">构建了一个三层递进（认知范式 → 能力组件 → 系统实现）、彼此衔接的课程体系</text>
+  </g>
+
+  <!--
+    ===========================================================================
+    MAIN STRUCTURE (Parallel Horizontal)
+    ===========================================================================
+  -->
+
+  <!-- Stage 1: Theory (Left) -->
+  <g transform="translate(100, 150)">
+    <!-- Card -->
+    <rect x="0" y="0" width="300" height="200" class="card-base theory-fill theory-stroke"/>
+
+    <!-- Step Label -->
+    <text x="20" y="30" class="layer-step theory-text">第一部曲</text>
+
+    <!-- Content -->
+    <g transform="translate(150, 80)">
+        <text x="0" y="0" class="layer-head theory-text">理论 / 认知体系</text>
+        <text x="0" y="25" class="layer-sub theory-text">Theory &amp; Foundation</text>
+        <!-- Divider -->
+        <line x1="-40" y1="45" x2="40" y2="45" stroke="#0EA5E9" stroke-width="1" opacity="0.3"/>
+        <!-- Value -->
+        <text x="0" y="70" class="layer-desc theory-text">认知重构 · 思维奠基</text>
+        <text x="0" y="90" class="layer-desc theory-text">逻辑建模</text>
+    </g>
+  </g>
+
+  <!-- Connector 1 -> 2 -->
+  <g transform="translate(410, 300)">
+    <line x1="0" y1="0" x2="70" y2="0" class="flow-arrow" marker-end="url(#arrow-right)"/>
+  </g>
+
+  <!-- Stage 2: Tools (Middle) -->
+  <g transform="translate(450, 150)">
+    <!-- Card -->
+    <rect x="0" y="0" width="300" height="200" class="card-base tools-fill tools-stroke"/>
+
+    <!-- Step Label -->
+    <text x="20" y="30" class="layer-step tools-text">第二部曲</text>
+
+    <!-- Content -->
+    <g transform="translate(150, 80)">
+        <text x="0" y="0" class="layer-head tools-text">工具 / 能力体系</text>
+        <text x="0" y="25" class="layer-sub tools-text">Tools &amp; Skills</text>
+        <!-- Divider -->
+        <line x1="-40" y1="45" x2="40" y2="45" stroke="#9333EA" stroke-width="1" opacity="0.3"/>
+        <!-- Value -->
+        <text x="0" y="70" class="layer-desc tools-text">能力拆解 · 技能组合</text>
+        <text x="0" y="90" class="layer-desc tools-text">方法落地</text>
+    </g>
+  </g>
+
+  <!-- Connector 2 -> 3 -->
+  <g transform="translate(760, 300)">
+    <line x1="0" y1="0" x2="70" y2="0" class="flow-arrow" marker-end="url(#arrow-right)"/>
+  </g>
+
+  <!-- Stage 3: Systems (Right) -->
+  <g transform="translate(800, 150)">
+    <!-- Card -->
+    <rect x="0" y="0" width="300" height="200" class="card-base system-fill system-stroke"/>
+
+    <!-- Step Label -->
+    <text x="20" y="30" class="layer-step system-text">第三部曲</text>
+
+    <!-- Content -->
+    <g transform="translate(150, 80)">
+        <text x="0" y="0" class="layer-head system-text">系统 / 工程体系</text>
+        <text x="0" y="25" class="layer-sub system-text">Systems &amp; Engineering</text>
+        <!-- Divider -->
+        <line x1="-40" y1="45" x2="40" y2="45" stroke="#10B981" stroke-width="1" opacity="0.3"/>
+        <!-- Value -->
+        <text x="0" y="70" class="layer-desc system-text">系统构建 · 复杂编排</text>
+        <text x="0" y="90" class="layer-desc system-text">自动化运行</text>
+    </g>
+  </g>
+
+  <!--
+    ===========================================================================
+    EVOLUTION AXIS (Bottom Horizontal)
+    Y: 480
+    ===========================================================================
+  -->
+  <g transform="translate(100, 380)">
+    <!-- Axis Line -->
+    <line x1="50" y1="30" x2="940" y2="30" class="axis-line" marker-end="url(#arrow-axis)"/>
+
+    <!-- Left Role -->
+    <g transform="translate(50, 30)">
+      <circle cx="0" cy="0" r="6" fill="#64748B"/>
+      <text x="0" y="35" class="role-text" fill="#64748B">AI 使用者</text>
+      <text x="0" y="55" class="axis-label">(User)</text>
+    </g>
+
+    <!-- Center Label -->
+    <g transform="translate(500, 20)">
+        <text x="0" y="0" class="axis-label" letter-spacing="4" font-size="16">能力跃迁 (EVOLUTION)</text>
+    </g>
+
+    <!-- Right Role -->
+    <g transform="translate(950, 30)">
+      <circle cx="0" cy="0" r="6" fill="#10B981"/>
+      <text x="0" y="35" class="role-text" fill="#10B981">系统构建者</text>
+      <text x="0" y="55" class="axis-label">(Builder)</text>
+    </g>
+  </g>
+
+  <!-- Footer -->
+  <text x="600" y="500" class="license-text">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

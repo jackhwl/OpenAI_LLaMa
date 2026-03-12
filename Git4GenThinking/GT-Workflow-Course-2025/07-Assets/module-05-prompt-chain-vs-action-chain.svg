@@ -1,0 +1,217 @@
+<!--
+  文件名：module-05-prompt-chain-vs-action-chain.svg
+  图表名称：Prompt Chain vs Action Chain 对比图
+  描述：展示从“提示链”（文本生成流水线）到“行动链”（结构化决策与执行闭环）的方法论跃迁，突出“行动”带来的系统质变。
+
+  核心对比：
+  1. Prompt Chain (左): 线性文本流 (Text Pipeline)。侧重内容生成，输出是文本。
+  2. Action Chain (右): 循环行动流 (Action Loop)。侧重状态改变，输出是副作用 (Side Effect)。
+  3. 质变点: 结构化决策 (Evaluate) + 真实执行 (Act) + 状态更新 (Update)。
+
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+  修改记录：
+-->
+<svg width="1200" height="720" viewBox="0 0 1200 720" xmlns="http://www.w3.org/2000/svg" style="background-color: white;">
+
+  <!-- 定义样式与标记 -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&amp;display=swap');
+
+      /* 文本样式 */
+      .main-title { font-family: 'Noto Sans', sans-serif; font-size: 24px; font-weight: 800; fill: #111827; text-anchor: middle; }
+      .sub-title { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: normal; fill: #6B7280; text-anchor: middle; }
+
+      .panel-title { font-family: 'Noto Sans', sans-serif; font-size: 18px; font-weight: 800; text-anchor: middle; }
+      .node-text { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: bold; text-anchor: middle; }
+      /* 调整描述文本字号和位置以防溢出 */
+      .desc-text { font-family: 'Noto Sans', sans-serif; font-size: 10px; fill: #4B5563; text-anchor: middle; }
+      .tag-text { font-family: 'Noto Sans', sans-serif; font-size: 10px; font-weight: bold; fill: white; text-anchor: middle; }
+
+      /* 区域背景 */
+      .bg-prompt { fill: #EFF6FF; stroke: #60A5FA; stroke-width: 2px; rx: 16; }
+      .bg-action { fill: #F0FDF4; stroke: #34D399; stroke-width: 2px; rx: 16; }
+
+      /* 节点样式 */
+      .node-box { fill: white; stroke-width: 2px; rx: 6; }
+      .box-blue { stroke: #2563EB; }
+      .box-green { stroke: #059669; }
+      .box-yellow { stroke: #FACC15; }
+      .box-purple { stroke: #A855F7; }
+
+      /* 连接线 */
+      .flow-line { fill: none; stroke: #2563EB; stroke-width: 2px; marker-end: url(#arrow-blue); }
+      .action-loop { fill: none; stroke: #059669; stroke-width: 3px; marker-end: url(#arrow-green); }
+      .dashed-line { fill: none; stroke: #9CA3AF; stroke-width: 2px; stroke-dasharray: 4,4; marker-end: url(#arrow-gray); }
+    </style>
+
+    <!-- 箭头定义 (尺寸减半) -->
+    <marker id="arrow-blue" markerWidth="4" markerHeight="4" refX="3.5" refY="2" orient="auto">
+      <polygon points="0,0 4,2 0,4" fill="#2563EB"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="5" markerHeight="5" refX="4.5" refY="2.5" orient="auto">
+      <polygon points="0,0 5,2.5 0,5" fill="#059669"/>
+    </marker>
+    <marker id="arrow-gray" markerWidth="4" markerHeight="4" refX="3.5" refY="2" orient="auto">
+      <polygon points="0,0 4,2 0,4" fill="#9CA3AF"/>
+    </marker>
+  </defs>
+
+  <!-- 1. 标题区域 -->
+  <text x="600" y="50" class="main-title">Prompt Chain vs Action Chain</text>
+  <text x="600" y="80" class="sub-title">方法论断点：从“文本生成的流水线”到“改变世界的行动环”</text>
+
+  <!-- ================================================================================== -->
+  <!-- 左侧：Prompt Chain (提示链) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(50, 120)">
+    <rect x="0" y="0" width="500" height="380" class="bg-prompt"/>
+    <text x="250" y="40" class="panel-title" fill="#1E40AF">Prompt Chain (提示链)</text>
+    <text x="250" y="60" class="desc-text" fill="#1E40AF">Focus: Text Generation</text>
+
+    <!-- 线性流程 -->
+    <g transform="translate(50, 100)">
+
+        <!-- Step 1 -->
+        <rect x="-20" y="0" width="120" height="60" class="node-box box-blue"/>
+        <text x="40" y="25" class="node-text" fill="#1E40AF">Step 1</text>
+        <text x="40" y="45" class="desc-text">Input Cleaning</text>
+
+        <!-- Arrow -->
+        <path d="M 100 30 L 140 30" class="flow-line"/>
+
+        <!-- Step 2 -->
+        <rect x="140" y="0" width="120" height="60" class="node-box box-blue"/>
+        <text x="200" y="25" class="node-text" fill="#1E40AF">Step 2</text>
+        <text x="200" y="45" class="desc-text">Reasoning</text>
+
+        <!-- Arrow -->
+        <path d="M 260 30 L 300 30" class="flow-line"/>
+
+        <!-- Step 3 -->
+        <rect x="300" y="0" width="120" height="60" class="node-box box-blue"/>
+        <text x="360" y="25" class="node-text" fill="#1E40AF">Step 3</text>
+        <text x="360" y="45" class="desc-text">Drafting</text>
+
+        <!-- Arrow Down -->
+        <path d="M 360 60 L 360 100" class="flow-line"/>
+
+        <!-- Step 4 -->
+        <rect x="300" y="100" width="120" height="60" class="node-box box-blue"/>
+        <text x="360" y="125" class="node-text" fill="#1E40AF">Step 4</text>
+        <text x="360" y="145" class="desc-text">Formatting</text>
+    </g>
+
+    <!-- 最终输出 -->
+    <g transform="translate(350, 300)">
+        <rect x="0" y="0" width="120" height="50" rx="4" fill="#DBEAFE" stroke="#2563EB"/>
+        <text x="60" y="20" class="node-text" fill="#1E40AF">Final Text</text>
+        <text x="60" y="38" class="desc-text">Markdown / Text</text>
+    </g>
+    <path d="M 410 260 L 410 300" class="flow-line"/>
+
+    <!-- 特征标注 -->
+    <g transform="translate(210, 420)">
+        <text x="0" y="0" font-weight="bold" fill="#1E40AF" text-anchor="start">❌ 局限性：</text>
+        <text x="20" y="25" class="desc-text" text-anchor="start">• **无副作用**：只生成文本，不改变系统状态</text>
+        <text x="20" y="45" class="desc-text" text-anchor="start">• **开环**：无法感知生成结果的对错并修正</text>
+        <text x="20" y="65" class="desc-text" text-anchor="start">• **静态**：流程固定，无法动态调整</text>
+    </g>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 中间：断点 (The Breakpoint) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(550, 250)">
+    <line x1="50" y1="0" x2="50" y2="200" stroke="#9CA3AF" stroke-width="2" stroke-dasharray="4,4"/>
+    <text x="50" y="100" font-size="14" font-weight="bold" fill="#B45309" text-anchor="middle" writing-mode="tb" transform="translate(10,0)">方法论断点</text>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 右侧：Action Chain (行动链) -->
+  <!-- ================================================================================== -->
+  <g transform="translate(650, 120)">
+    <rect x="0" y="0" width="500" height="380" class="bg-action"/>
+    <text x="250" y="40" class="panel-title" fill="#065F46">Action Chain (行动链)</text>
+    <text x="250" y="60" class="desc-text" fill="#065F46">Focus: State Change</text>
+
+    <!-- 循环流程 (重新计算坐标以满足 30 间距) -->
+    <g transform="translate(80, 90)">
+
+        <!-- 1. Evaluate (Decision) - Top: y=0, Bottom: y=70 -->
+        <g id="evaluate-group">
+            <rect x="100" y="0" width="140" height="70" class="node-box box-yellow" fill="#FEF9C3"/>
+            <text x="170" y="25" class="node-text" fill="#854D0E">Evaluate</text>
+            <text x="170" y="45" class="desc-text">Decision / Plan</text>
+            <!-- 标签 -->
+            <rect x="130" y="55" width="80" height="15" rx="4" fill="#FACC15"/>
+            <text x="170" y="66" class="tag-text">JSON 指令</text>
+        </g>
+
+        <!-- State (Center) - Center: y=140 (70+30+40), Top: y=100, Bottom: y=180 -->
+        <g id="state-group">
+            <circle cx="170" cy="140" r="40" fill="white" stroke="#059669" stroke-width="2"/>
+            <text x="170" y="135" class="node-text" fill="#059669">State</text>
+            <text x="170" y="155" class="desc-text">(Context)</text>
+        </g>
+
+        <!-- 3. Reflect (Verification) - Top: y=210 (180+30), Bottom: y=280 -->
+        <g id="reflect-group" transform="translate(0, 210)">
+            <rect x="100" y="0" width="140" height="70" class="node-box box-purple" fill="#F3E8FF"/>
+            <text x="170" y="25" class="node-text" fill="#6B21A8">Reflect</text>
+            <text x="170" y="45" class="desc-text">Verify / Update</text>
+            <!-- 标签 -->
+            <rect x="130" y="55" width="80" height="15" rx="4" fill="#A855F7"/>
+            <text x="170" y="66" class="tag-text">经验沉淀</text>
+        </g>
+
+        <!-- 2. Act (Execution) - Placed to the side -->
+        <g id="act-group" transform="translate(280, 105)">
+
+            <rect x="0" y="0" width="120" height="70" class="node-box box-green" fill="#DCFCE7"/>
+            <text x="60" y="25" class="node-text" fill="#065F46">Act</text>
+            <text x="60" y="45" class="desc-text">Tool / API</text>
+            <!-- 标签 -->
+            <rect x="20" y="55" width="80" height="15" rx="4" fill="#34D399"/>
+            <text x="60" y="66" class="tag-text">副作用</text>
+        </g>
+
+        <!-- Loop Arrows (Updated paths) -->
+        <!-- State -> Evaluate (Up) -->
+        <path d="M 170 100 L 170 75" class="action-loop" marker-end="url(#arrow-green)"/>
+
+        <!-- Evaluate -> Act (Right) -->
+        <path d="M 240 35 L 340 35 L 340 105" class="action-loop" marker-end="url(#arrow-green)"/>
+
+        <!-- Act -> Reflect (Down & Left) -->
+        <path d="M 340 175 L 340 245 L 240 245" class="action-loop" marker-end="url(#arrow-green)"/>
+
+        <!-- Reflect -> State (Up) -->
+        <path d="M 170 210 L 170 185" class="action-loop" marker-end="url(#arrow-green)"/>
+    </g>
+
+    <!-- 特征标注 -->
+    <g transform="translate(210, 420)">
+        <text x="0" y="0" font-weight="bold" fill="#065F46" text-anchor="start">✅ 核心突破：</text>
+        <text x="20" y="25" class="desc-text" text-anchor="start">• **结构化决策**：输出不是文本，是可执行的 JSON</text>
+        <text x="20" y="45" class="desc-text" text-anchor="start">• **副作用管理**：真实改变系统状态（如写文件）</text>
+        <text x="20" y="65" class="desc-text" text-anchor="start">• **闭环控制**：失败可重试，经验可沉淀</text>
+    </g>
+  </g>
+
+  <!-- ================================================================================== -->
+  <!-- 底部：总结 -->
+  <!-- ================================================================================== -->
+  <g transform="translate(100, 620)">
+    <line x1="0" y1="10" x2="1000" y2="0" stroke="#E5E7EB" stroke-width="2"/>
+    <text x="500" y="40" class="node-text" font-size="16" fill="#111827">
+      “行动链是智能体系统设计的最小功能单元，它将 Evaluation (决策) 与 Act (执行) 解耦。”
+    </text>
+  </g>
+
+  <!-- 底部许可 -->
+  <text x="600" y="700" class="desc-text" fill="#94A3B8">
+    本作品采用CC-BY-SA 4.0国际许可协议进行许可，© 2025 Gitconomy Research社区
+  </text>
+
+</svg>

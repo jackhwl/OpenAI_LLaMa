@@ -1,0 +1,231 @@
+<!--
+  ================================================================================
+  图表名称：从单体 Agent 到协议驱动的协作系统
+  文件命名：module-07-monolith-to-protocol.svg
+  版本：v1.3 (Color Matching Refinement)
+  描述：
+    展示架构演进的两个状态：
+    1. 左侧 (Monolith): 内部紧耦合，通过硬编码连接工具。
+    2. 右侧 (Protocol System): 外部化分工，通过 MCP 总线协作。
+  SPDX-License-Identifier: MIT AND CC-BY-4.0
+  设计规范参考：Gitconomy社区图形即代码设计规范 v1.0
+  ================================================================================
+-->
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="svg-title svg-desc">
+  <title id="svg-title">架构演进对比图：单体到协议驱动</title>
+  <desc id="svg-desc">左侧展示紧耦合的单体Agent，右侧展示通过MCP总线连接的模块化协议系统，所有箭头颜色与连接线保持一致。</desc>
+
+  <defs>
+    <style>
+      :root {
+        /* 全局调色板 */
+        --color-bg-base: #FFFFFF;
+        --color-text-primary: #111827;
+        --color-text-secondary: #6B7280;
+
+        /* Monolith 颜色 (黄色/警告) */
+        --color-monolith-bg: #FFFBEB;
+        --color-monolith-border: #F59E0B;
+        --color-monolith-text: #B45309;
+        --color-legacy-link: #D97706; /* 连接线与箭头共用颜色 */
+
+        /* Protocol System 颜色 (蓝色/绿色) */
+        --color-agent-bg: #EFF6FF;
+        --color-agent-border: #3B82F6; /* Agent连接线与箭头共用颜色 */
+        --color-agent-text: #1E40AF;
+
+        --color-server-bg: #F0FDF4;
+        --color-server-border: #10B981; /* Server连接线与箭头共用颜色 */
+        --color-server-text: #065F46;
+
+        --color-bus-bg: #1E40AF;
+        --color-bus-text: #FFFFFF;
+
+        --color-divider: #E5E7EB;
+      }
+
+      .font-sans { font-family: 'Noto Sans SC', sans-serif; }
+
+      /* 文本层级样式 */
+      .h1 { font-size: 26px; font-weight: 800; fill: var(--color-text-primary); }
+      .h2 { font-size: 16px; font-weight: 400; fill: var(--color-text-secondary); }
+      .text-head { font-size: 18px; font-weight: 700; }
+      .text-label { font-size: 14px; font-weight: 700; }
+      .text-body { font-size: 12px; font-weight: 400; }
+      .text-tag { font-size: 11px; font-weight: 600; }
+
+      /* 形状样式 */
+      .box-monolith { fill: var(--color-monolith-bg); stroke: var(--color-monolith-border); stroke-width: 3; }
+      .box-internal-dash { fill: #FFFFFF; stroke: var(--color-monolith-border); stroke-width: 1; stroke-dasharray: 4,2; }
+
+      .box-system-container { fill: #F9FAFB; stroke: var(--color-divider); stroke-width: 2; }
+      .box-agent-node { fill: var(--color-agent-bg); stroke: var(--color-agent-border); stroke-width: 2; }
+      .box-server-node { fill: var(--color-server-bg); stroke: var(--color-server-border); stroke-width: 2; }
+      .box-bus-spine { fill: var(--color-bus-bg); stroke: #1E3A8A; stroke-width: 2; }
+
+      /* 连接线样式 - 颜色与对应的 marker 匹配 */
+      .conn-messy { stroke: var(--color-legacy-link); stroke-width: 1.5; fill: none; }
+      .conn-mcp { stroke: var(--color-agent-border); stroke-width: 2; fill: none; }
+      .conn-resource { stroke: var(--color-server-border); stroke-width: 2; fill: none; }
+    </style>
+
+    <!-- 箭头标记定义 - fill 属性通过 CSS 变量与线段同步 -->
+    <marker id="arrow-legacy" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="var(--color-legacy-link)" />
+    </marker>
+    <marker id="arrow-mcp" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="var(--color-agent-border)" />
+    </marker>
+    <marker id="arrow-resource" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="var(--color-server-border)" />
+    </marker>
+    <marker id="arrow-transition" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="var(--color-text-primary)" />
+    </marker>
+
+    <!-- 节点模版 -->
+    <rect id="node-rect" width="130" height="60" rx="8" />
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="100%" height="100%" fill="var(--color-bg-base)" />
+
+  <!-- 页眉 -->
+  <g text-anchor="middle" class="font-sans" transform="translate(600, 50)">
+    <text class="h1">从单体 Agent 到协议驱动的协作系统</text>
+    <text y="32" class="h2">Architecture Evolution: From Monolithic Coupling to Protocol-Driven Collaboration</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 左侧：单体架构 (Monolith) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(60, 130)" class="font-sans">
+    <g text-anchor="middle">
+      <text x="230" y="20" class="text-head" fill="var(--color-monolith-text)">1. 单体 Agent (Monolith)</text>
+      <text x="230" y="42" class="text-body" fill="var(--color-text-secondary)">内部复杂度高 / SDK强耦合</text>
+    </g>
+
+    <rect x="30" y="80" width="400" height="420" rx="16" class="box-monolith"/>
+    <text x="230" y="110" class="text-label" text-anchor="middle" fill="var(--color-monolith-text)">Agent Runtime (All-in-One)</text>
+
+    <!-- 内部死锁式的连接关系 -->
+    <g transform="translate(80, 150)">
+      <rect width="120" height="60" rx="6" class="box-internal-dash"/>
+      <text x="60" y="35" text-anchor="middle" class="text-label" fill="var(--color-monolith-text)">Planner</text>
+
+      <rect x="180" width="120" height="60" rx="6" class="box-internal-dash"/>
+      <text x="240" y="35" text-anchor="middle" class="text-label" fill="var(--color-monolith-text)">Memory</text>
+
+      <rect x="90" y="100" width="120" height="60" rx="6" class="box-internal-dash"/>
+      <text x="150" y="135" text-anchor="middle" class="text-label" fill="var(--color-monolith-text)">Executor</text>
+
+      <!-- SDK 库文件 -->
+      <g transform="translate(20, 220)">
+        <rect width="260" height="90" rx="6" fill="#FFFFFF" stroke="var(--color-legacy-link)" stroke-width="2"/>
+        <text x="130" y="25" text-anchor="middle" class="text-label" fill="var(--color-monolith-text)">硬编码工具库 (Hardcoded SDKs)</text>
+        <g transform="translate(0, 45)" text-anchor="middle">
+          <text x="60" y="20" class="text-tag" fill="var(--color-legacy-link)">Slack SDK</text>
+          <text x="130" y="20" class="text-tag" fill="var(--color-legacy-link)">GitHub Lib</text>
+          <text x="200" y="20" class="text-tag" fill="var(--color-legacy-link)">SQL Drv</text>
+          <text x="130" y="38" class="text-body" fill="var(--color-monolith-border)">( 模块间强依赖，难以独立升级 )</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- 乱序的内部连接线 -->
+    <path d="M140,210 Q200,210 200,250" class="conn-messy" marker-end="url(#arrow-legacy)"/>
+    <path d="M260,210 Q200,210 200,250" class="conn-messy" marker-end="url(#arrow-legacy)"/>
+
+    <circle cx="405" cy="105" r="14" fill="var(--color-monolith-border)"/>
+    <text x="405" y="110" text-anchor="middle" class="text-label" fill="#FFF">!</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 中间：演进路径 -->
+  <!-- ========================================================================= -->
+  <g transform="translate(530, 330)" class="font-sans">
+    <path d="M-10,0 L150,0" stroke="var(--color-text-primary)" stroke-width="2" marker-end="url(#arrow-transition)"/>
+    <text x="60" y="-15" text-anchor="middle" class="text-label" fill="var(--color-text-primary)">协议化</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 右侧：协议驱动 (Protocol System) -->
+  <!-- ========================================================================= -->
+  <g transform="translate(680, 130)" class="font-sans">
+    <g text-anchor="middle">
+      <text x="240" y="20" class="text-head" fill="var(--color-agent-text)">2. 协议驱动协作 (Protocol System)</text>
+      <text x="240" y="42" class="text-body" fill="var(--color-agent-border)">标准 MCP 接口 / 能力解耦</text>
+    </g>
+
+    <rect x="20" y="80" width="460" height="420" rx="16" class="box-system-container"/>
+
+    <!-- MCP 总线中心脊柱 -->
+    <rect x="220" y="100" width="40" height="380" rx="20" class="box-bus-spine"/>
+    <text x="242" y="290" text-anchor="middle" class="text-label" fill="var(--color-bus-text)" transform="rotate(-90, 242, 290)">MCP PROTOCOL BUS (JSON-RPC)</text>
+
+    <!-- 客户端 Agents -->
+    <g transform="translate(50, 120)">
+      <g transform="translate(0, 0)">
+        <use href="#node-rect" class="box-agent-node" />
+        <text x="65" y="26" text-anchor="middle" class="text-label" fill="var(--color-agent-text)">Planner Agent</text>
+        <text x="65" y="44" text-anchor="middle" class="text-body" fill="var(--color-agent-border)">逻辑规划</text>
+        <line x1="130" y1="30" x2="170" y2="30" class="conn-mcp" marker-end="url(#arrow-mcp)"/>
+      </g>
+      <g transform="translate(0, 105)">
+        <use href="#node-rect" class="box-agent-node" />
+        <text x="65" y="26" text-anchor="middle" class="text-label" fill="var(--color-agent-text)">Coder Agent</text>
+        <text x="65" y="44" text-anchor="middle" class="text-body" fill="var(--color-agent-border)">代码实现</text>
+        <line x1="130" y1="30" x2="170" y2="30" class="conn-mcp" marker-end="url(#arrow-mcp)"/>
+      </g>
+      <g transform="translate(0, 210)">
+        <use href="#node-rect" class="box-agent-node" />
+        <text x="65" y="26" text-anchor="middle" class="text-label" fill="var(--color-agent-text)">Audit Agent</text>
+        <text x="65" y="44" text-anchor="middle" class="text-body" fill="var(--color-agent-border)">审计合规</text>
+        <line x1="130" y1="30" x2="170" y2="30" class="conn-mcp" marker-end="url(#arrow-mcp)"/>
+      </g>
+    </g>
+
+    <!-- 服务端 Resources -->
+    <g transform="translate(300, 160)">
+      <g transform="translate(0, 0)">
+        <rect width="130" height="50" rx="6" class="box-server-node" />
+        <text x="65" y="30" text-anchor="middle" class="text-label" fill="var(--color-server-text)">GitHub Server</text>
+        <line x1="-40" y1="25" x2="0" y2="25" class="conn-resource" marker-end="url(#arrow-resource)"/>
+      </g>
+      <g transform="translate(0, 85)">
+        <rect width="130" height="50" rx="6" class="box-server-node" />
+        <text x="65" y="30" text-anchor="middle" class="text-label" fill="var(--color-server-text)">Database</text>
+        <line x1="-40" y1="25" x2="0" y2="25" class="conn-resource" marker-end="url(#arrow-resource)"/>
+      </g>
+      <g transform="translate(0, 170)">
+        <rect width="130" height="50" rx="6" class="box-server-node" />
+        <text x="65" y="30" text-anchor="middle" class="text-label" fill="var(--color-server-text)">Filesystem</text>
+        <line x1="-40" y1="25" x2="0" y2="25" class="conn-resource" marker-end="url(#arrow-resource)"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 对比说明页脚 -->
+  <!-- ========================================================================= -->
+  <g transform="translate(150, 660)" class="font-sans">
+    <rect width="900" height="80" rx="12" fill="#F8FAFC" stroke="var(--color-divider)" stroke-width="1"/>
+
+    <g transform="translate(60, 20)">
+      <text y="15" class="text-label" fill="var(--color-monolith-text)">单体思维 (Legacy):</text>
+      <text y="38" class="text-body" fill="var(--color-text-secondary)">关注“如何集成库”，将外部能力吸纳为自身代码的一部分。</text>
+    </g>
+
+    <line x1="450" y1="15" x2="450" y2="65" stroke="var(--color-divider)" stroke-width="2"/>
+
+    <g transform="translate(510, 20)">
+      <text y="15" class="text-label" fill="var(--color-agent-text)">协议思维 (Modern):</text>
+      <text y="38" class="text-body" fill="var(--color-text-secondary)">关注“如何连接服务”，将外部能力视为标准化的上下文资源。</text>
+    </g>
+  </g>
+
+  <!-- 页脚声明 -->
+  <text x="600" y="780" class="font-sans text-body" fill="#94A3B8" text-anchor="middle">
+    © 2025 Gitconomy Research | 图形即代码 (DaC) 规范实现 | 采用 CC-BY-SA 4.0 许可
+  </text>
+</svg>

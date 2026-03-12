@@ -1,0 +1,269 @@
+<svg viewBox="0 0 1000 850" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+<!--
+================================================================================
+图表名称：双向链接与神经突触示意图
+文件命名：07-figure-02-bidirectional-links-synapses.svg
+用途：展示知识图谱中双向链接的神经网络隐喻，以及 Agent 如何通过多跳推理在节点间传递信息
+版本：v1.0.0
+作者：Gitconomy Research-郭晧
+SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+创建日期：2026-02-20
+================================================================================
+-->
+  <!--
+  ===========================================================================
+       背景声明：纯白背景 (Solid White) - 免疫 Git 平台深色模式干扰
+  ===========================================================================
+  -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+
+  <defs>
+    <!-- CSS 变量与基础样式 -->
+    <style>
+      :root {
+        --c-cloud-blue: #0052CC;
+        --c-cloud-blue-light: #DEEBFF;
+        --c-local-green: #00875A;
+        --c-local-green-light: #E3FCEF;
+        --c-risk-amber: #FF991F;
+        --c-risk-amber-light: #FFF7ED;
+        --c-neutral-gray: #64748B;
+        --c-neutral-light: #F1F5F9;
+        --c-text-main: #0F172A;
+
+        --font-sans: "Noto Sans SC", "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+        --font-mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+      }
+
+      text { font-family: var(--font-sans); }
+      .text-mono { font-family: var(--font-mono); }
+      .text-title { font-weight: bold; }
+
+      .box-neuron { fill: #FFFFFF; stroke: var(--c-local-green); stroke-width: 2px; }
+      .box-brain { fill: #FFFFFF; stroke: var(--c-cloud-blue); stroke-width: 2px; }
+      .card-annotation { fill: rgba(255, 255, 255, 0.9); stroke: #E2E8F0; stroke-width: 1.5px; }
+
+      /* 背景网络节点与连线 */
+      .bg-node { fill: var(--c-neutral-light); stroke: #CBD5E1; stroke-width: 1.5px; }
+      .bg-edge { stroke: #E2E8F0; fill: none; stroke-width: 1.5px; }
+
+      /* 核心连接线 (突触) */
+      .edge-synapse-fwd { stroke: var(--c-cloud-blue); fill: none; stroke-width: 3px; stroke-linecap: round; }
+      .edge-synapse-back { stroke: var(--c-local-green); fill: none; stroke-width: 3px; stroke-dasharray: 6 4; stroke-linecap: round; }
+      .edge-impulse { stroke: var(--c-risk-amber); fill: none; stroke-width: 4px; stroke-dasharray: 8 6; stroke-linecap: round; }
+    </style>
+
+    <!-- 箭头标记定义 -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-cloud-blue)" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-local-green)" />
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-risk-amber)" />
+    </marker>
+    <marker id="dot-blue" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5">
+      <circle cx="5" cy="5" r="4" fill="var(--c-cloud-blue)" />
+    </marker>
+  </defs>
+
+  <!--
+  ===========================================================================
+       1. 标题块 (Title Block)
+  ===========================================================================
+  -->
+  <g id="title-block" transform="translate(500, 40)">
+    <text y="20" text-anchor="middle" class="text-title" font-size="24" fill="#000000">双向链接与神经突触结构示意图</text>
+    <text y="45" text-anchor="middle" class="text-mono" font-size="14" fill="var(--c-neutral-gray)">第 7 天 > 基础原理</text>
+    <line x1="-50" y1="60" x2="50" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!--
+  ===========================================================================
+       2. 背景网络图层 (Background Knowledge Graph)
+  ===========================================================================
+  -->
+  <g id="background-network" transform="translate(0, 150)">
+    <!-- 连线网 -->
+    <path d="M 100,100 L 200,250 L 150,450 L 300,550 L 500,600 L 700,550 L 850,450 L 800,250 L 900,100 Z" class="bg-edge" />
+    <path d="M 200,250 L 400,150 L 600,150 L 800,250" class="bg-edge" />
+    <path d="M 150,450 L 350,300 L 650,300 L 850,450" class="bg-edge" />
+    <path d="M 400,150 L 350,300 L 300,550" class="bg-edge" />
+    <path d="M 600,150 L 650,300 L 700,550" class="bg-edge" />
+
+    <!-- 散落节点 (暗喻其他知识点) -->
+    <circle cx="100" cy="100" r="12" class="bg-node" />
+    <circle cx="200" cy="250" r="18" class="bg-node" />
+    <circle cx="150" cy="450" r="15" class="bg-node" />
+    <circle cx="300" cy="550" r="12" class="bg-node" />
+    <circle cx="500" cy="600" r="20" class="bg-node" />
+    <circle cx="700" cy="550" r="14" class="bg-node" />
+    <circle cx="850" cy="450" r="16" class="bg-node" />
+    <circle cx="800" cy="250" r="18" class="bg-node" />
+    <circle cx="900" cy="100" r="12" class="bg-node" />
+    <circle cx="400" cy="150" r="16" class="bg-node" />
+    <circle cx="600" cy="150" r="14" class="bg-node" />
+  </g>
+
+  <!--
+  ===========================================================================
+       3. 核心节点：神经元 (Neurons / Atomic Notes)
+  ===========================================================================
+  -->
+  <g id="main-neurons" transform="translate(0, 150)">
+
+    <!-- 神经元 A (左侧节点) -->
+    <g transform="translate(180, 220)">
+      <!-- 发光阴影效果 -->
+      <rect x="-5" y="-5" width="250" height="150" rx="14" fill="var(--c-local-green)" fill-opacity="0.08" />
+      <rect x="0" y="0" width="240" height="140" rx="12" class="box-neuron" />
+
+      <rect x="0" y="0" width="240" height="35" rx="12" fill="var(--c-local-green-light)" />
+      <text x="15" y="23" class="text-title" font-size="14" fill="var(--c-local-green)">🧠 神经元 A (知识节点)</text>
+
+      <text x="15" y="60" class="text-mono" font-size="16" fill="var(--c-text-main)">[问题] 中间迷失</text>
+      <text x="15" y="85" font-size="12" fill="var(--c-neutral-gray)">• 属性：大模型认知偏差</text>
+      <text x="15" y="105" font-size="12" fill="var(--c-neutral-gray)">• 现象：长文本中部信息遗失</text>
+
+      <!-- Obsidian 链接代码 -->
+      <rect x="15" y="115" width="210" height="18" rx="4" fill="var(--c-neutral-light)" />
+      <text x="20" y="128" class="text-mono" font-size="11" fill="var(--c-cloud-blue)">依赖解决: [[长文本切片]]</text>
+
+      <!-- 突触接口标注 -->
+      <circle cx="240" cy="70" r="6" fill="#FFFFFF" stroke="var(--c-local-green)" stroke-width="2" />
+    </g>
+
+    <!-- 神经元 B (右侧节点) -->
+    <g transform="translate(580, 220)">
+      <!-- 发光阴影效果 -->
+      <rect x="-5" y="-5" width="250" height="150" rx="14" fill="var(--c-local-green)" fill-opacity="0.08" />
+      <rect x="0" y="0" width="240" height="140" rx="12" class="box-neuron" />
+
+      <rect x="0" y="0" width="240" height="35" rx="12" fill="var(--c-local-green-light)" />
+      <text x="15" y="23" class="text-title" font-size="14" fill="var(--c-local-green)">🧠 神经元 B (知识节点)</text>
+
+      <text x="15" y="60" class="text-mono" font-size="16" fill="var(--c-text-main)">[策略] 长文本切片</text>
+      <text x="15" y="85" font-size="12" fill="var(--c-neutral-gray)">• 属性：RAG 核心工程策略</text>
+      <text x="15" y="105" font-size="12" fill="var(--c-neutral-gray)">• 作用：控制 Context 窗口熵值</text>
+
+      <!-- Backlink 引用面板 -->
+      <rect x="15" y="115" width="210" height="18" rx="4" fill="var(--c-neutral-light)" />
+      <text x="20" y="128" class="text-mono" font-size="11" fill="var(--c-local-green)">反向链接: [[中间迷失]]</text>
+
+      <!-- 突触接口标注 -->
+      <circle cx="0" cy="70" r="6" fill="#FFFFFF" stroke="var(--c-local-green)" stroke-width="2" />
+    </g>
+
+    <!--
+    ===========================================================================
+         4. 连接结构：神经突触 (Synapse / Bi-directional Links)
+    ===========================================================================
+    -->
+    <!-- 正向链接 (Forward Link) / 轴突 -->
+    <g transform="translate(0, -10)">
+      <path d="M 430,270 C 480,250 520,250 570,270" class="edge-synapse-fwd" marker-end="url(#arrow-blue)" marker-start="url(#dot-blue)"/>
+      <rect x="450" y="238" width="100" height="20" rx="10" fill="var(--c-cloud-blue-light)" />
+      <text x="500" y="252" text-anchor="middle" class="text-mono" font-size="11" fill="var(--c-cloud-blue)">Forward Link (轴突)</text>
+    </g>
+
+    <!-- 反向链接 (Backlink) / 树突 -->
+    <g transform="translate(0, 10)">
+      <path d="M 570,310 C 520,330 480,330 430,310" class="edge-synapse-back" marker-end="url(#arrow-green)" />
+      <rect x="450" y="322" width="100" height="20" rx="10" fill="var(--c-local-green-light)" />
+      <text x="500" y="336" text-anchor="middle" class="text-mono" font-size="11" fill="var(--c-local-green)">Backlink (树突关联)</text>
+    </g>
+
+    <!--
+    ===========================================================================
+         5. Agent 多跳推理流 (Neural Impulse)
+    ===========================================================================
+    -->
+    <!-- 云端大脑 Agent 节点 -->
+    <g transform="translate(500, 50)">
+      <polygon points="0,-30 26,-15 26,15 0,30 -26,15 -26,-15" class="box-brain" />
+      <text x="0" y="-38" text-anchor="middle" class="text-title" font-size="13" fill="var(--c-cloud-blue)">Agent / 检索大脑</text>
+    </g>
+
+    <!-- 推理脉冲连线：Agent -> A -> B -->
+    <path d="M 480,75 L 300,210" class="edge-impulse" marker-end="url(#arrow-amber)" />
+    <path d="M 430,300 C 500,300 500,300 560,300" class="edge-impulse" marker-end="url(#arrow-amber)" />
+
+    <!-- 脉冲阶段说明卡片 -->
+    <rect x="300" y="100" width="140" height="40" rx="6" fill="var(--c-risk-amber-light)" stroke="var(--c-risk-amber)" stroke-width="1.5"/>
+    <text x="370" y="118" text-anchor="middle" font-weight="bold" font-size="12" fill="var(--c-risk-amber)">Hop 1: 命中初始概念</text>
+    <text x="370" y="134" text-anchor="middle" font-size="11" fill="var(--c-neutral-gray)">"什么是中间迷失？"</text>
+
+    <rect x="420" y="350" width="160" height="40" rx="6" fill="var(--c-risk-amber-light)" stroke="var(--c-risk-amber)" stroke-width="1.5"/>
+    <text x="500" y="368" text-anchor="middle" font-weight="bold" font-size="12" fill="var(--c-risk-amber)">Hop 2: 顺藤摸瓜 (突触传递)</text>
+    <text x="500" y="384" text-anchor="middle" font-size="11" fill="var(--c-neutral-gray)">自动沿着链接读取"解决策略"</text>
+  </g>
+
+  <!--
+  ===========================================================================
+       6. 概念隐喻注释面板 (Metaphor Annotations)
+  ===========================================================================
+  -->
+  <g id="annotations" transform="translate(0, 570)">
+
+    <!-- 面板 1：神经元映射 -->
+    <g transform="translate(180, 0)">
+      <rect x="0" y="0" width="240" height="120" rx="8" class="card-annotation" />
+      <text x="20" y="25" class="text-title" font-size="14" fill="var(--c-local-green)">📦 载体：原子化笔记</text>
+      <line x1="20" y1="35" x2="220" y2="35" stroke="#E2E8F0" stroke-width="1.5" />
+      <text x="20" y="55" font-size="12" fill="var(--c-text-main)">等同于 <tspan font-weight="bold" fill="var(--c-cloud-blue)">大脑神经元</tspan> (Neuron)</text>
+      <text x="20" y="75" font-size="12" fill="var(--c-neutral-gray)">每个 Markdown 文件独立封装一个</text>
+      <text x="20" y="95" font-size="12" fill="var(--c-neutral-gray)">不可再分的核心概念或案例数据。</text>
+    </g>
+
+    <!-- 面板 2：突触映射 -->
+    <g transform="translate(580, 0)">
+      <rect x="0" y="0" width="240" height="120" rx="8" class="card-annotation" />
+      <text x="20" y="25" class="text-title" font-size="14" fill="var(--c-cloud-blue)">🔗 连接：Wiki 双向链接</text>
+      <line x1="20" y1="35" x2="220" y2="35" stroke="#E2E8F0" stroke-width="1.5" />
+      <text x="20" y="55" font-size="12" fill="var(--c-text-main)">等同于 <tspan font-weight="bold" fill="var(--c-risk-amber)">神经突触</tspan> (Synapse)</text>
+      <text x="20" y="75" font-size="12" fill="var(--c-neutral-gray)">打破扁平的文件夹树状层级，让</text>
+      <text x="20" y="95" font-size="12" fill="var(--c-neutral-gray)">知识点交织为复杂的网状结构图谱。</text>
+    </g>
+
+    <!-- 连接引导线 (连接面板与上方的突触) -->
+    <path d="M 500,480 L 500,530" stroke="#CBD5E1" stroke-width="2" stroke-dasharray="4 4" fill="none" />
+    <circle cx="500" cy="505" r="16" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="2" />
+    <text x="500" y="510" text-anchor="middle" font-weight="bold" font-size="14" fill="var(--c-neutral-gray)">+</text>
+  </g>
+
+  <!--
+  ===========================================================================
+       7. 底部图例与许可 (Legend & License)
+  ===========================================================================
+  -->
+  <g id="legend-block" transform="translate(130, 740)">
+    <rect x="0" y="0" width="740" height="40" rx="4" fill="rgba(255,255,255,0.9)" stroke="var(--c-neutral-gray)" stroke-width="0.5"/>
+    <g transform="translate(20, 24)">
+      <text x="0" y="0" class="text-title" font-size="11" fill="var(--c-neutral-gray)">图例说明：</text>
+
+      <!-- 图例 1: 节点 -->
+      <rect x="80" y="-8" width="12" height="12" rx="2" fill="var(--c-local-green)" />
+      <text x="98" y="2" font-size="11" fill="var(--c-text-main)">本地知识节点 (Body)</text>
+
+      <!-- 图例 2: 双向链接 -->
+      <line x1="240" y1="-2" x2="260" y2="-2" class="edge-synapse-fwd" stroke-width="2" />
+      <line x1="240" y1="2" x2="260" y2="2" class="edge-synapse-back" stroke-width="2" />
+      <text x="268" y="2" font-size="11" fill="var(--c-text-main)">双向链接结构 (Synapse)</text>
+
+      <!-- 图例 3: 神经冲动 -->
+      <line x1="410" y1="-2" x2="435" y2="-2" class="edge-impulse" stroke-width="2" />
+      <text x="445" y="2" font-size="11" fill="var(--c-text-main)">检索/多跳推理流 (Impulse)</text>
+
+      <!-- 图例 4: Agent 大脑 -->
+      <polygon points="590,-6 596,-2 596,4 590,8 584,4 584,-2" fill="var(--c-cloud-blue)" />
+      <text x="602" y="2" font-size="11" fill="var(--c-text-main)">云端推理核心 (Brain)</text>
+    </g>
+  </g>
+
+  <!-- CC 版权声明 -->
+  <text x="500" y="820" text-anchor="middle" font-size="11" fill="var(--c-neutral-gray)">
+    本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+  </text>
+
+</svg>

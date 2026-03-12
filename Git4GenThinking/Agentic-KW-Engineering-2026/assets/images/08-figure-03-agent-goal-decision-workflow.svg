@@ -1,0 +1,301 @@
+<svg viewBox="0 0 1150 850" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+<!--
+================================================================================
+图表名称：智能体任务决策与目标管理示意图
+文件命名：08-figure-03-agent-goal-decision-workflow.svg
+用途：展示智能体如何根据目标优先级，在 PEAR 与 ReAct 模式下进行决策、执行与策略自适应调整
+版本：v1.0.0
+作者：Gitconomy Research-郭晧
+SPDX-License-Identifier: MIT & CC-BY-SA-4.0
+创建日期：2026-02-20
+================================================================================
+-->
+
+  <!--
+  ===========================================================================
+       背景声明：纯白背景 (Solid White) - 免疫 Git 平台深色模式干扰
+  ===========================================================================
+  -->
+  <rect width="100%" height="100%" fill="#FFFFFF" />
+
+  <defs>
+    <!-- CSS 变量与基础样式 -->
+    <style>
+      :root {
+        --c-cloud-blue: #0052CC;
+        --c-cloud-blue-light: #DEEBFF;
+        --c-local-green: #00875A;
+        --c-local-green-light: #E3FCEF;
+        --c-risk-amber: #FF991F;
+        --c-risk-amber-light: #FFF7ED;
+        --c-risk-red: #EF4444;
+        --c-neutral-gray: #64748B;
+        --c-neutral-light: #F8FAFC;
+        --c-text-main: #0F172A;
+
+        --font-sans: "Noto Sans SC", "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+        --font-mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+      }
+
+      text { font-family: var(--font-sans); }
+      .text-mono { font-family: var(--font-mono); }
+      .text-title { font-weight: bold; }
+
+      /* 模块背景容器 */
+      .bg-panel-blue { fill: var(--c-cloud-blue-light); fill-opacity: 0.15; stroke: var(--c-cloud-blue); stroke-width: 1.5px; stroke-dasharray: 4 4; rx: 12px; }
+      .bg-panel-gray { fill: var(--c-neutral-light); fill-opacity: 0.5; stroke: var(--c-neutral-gray); stroke-width: 1.5px; stroke-dasharray: 4 4; rx: 12px; }
+      .bg-panel-amber { fill: var(--c-risk-amber-light); fill-opacity: 0.3; stroke: var(--c-risk-amber); stroke-width: 1.5px; stroke-dasharray: 4 4; rx: 12px; }
+
+      /* 实体卡片 */
+      .card-goal { fill: #1E293B; stroke: none; rx: 8px; }
+      .card-task-high { fill: #FFFFFF; stroke: var(--c-risk-red); stroke-width: 2px; rx: 6px; }
+      .card-task-med { fill: #FFFFFF; stroke: var(--c-risk-amber); stroke-width: 2px; rx: 6px; }
+      .card-task-low { fill: #FFFFFF; stroke: var(--c-local-green); stroke-width: 2px; rx: 6px; }
+
+      .node-pear { fill: #FFFFFF; stroke-width: 2px; rx: 8px; }
+      .diamond-decision { fill: #FFFFFF; stroke: var(--c-cloud-blue); stroke-width: 2px; }
+
+      /* 连线 */
+      .line-flow { stroke: var(--c-neutral-gray); fill: none; stroke-width: 2px; }
+      .line-react { stroke: var(--c-cloud-blue); fill: none; stroke-width: 2.5px; }
+      .line-success { stroke: var(--c-local-green); fill: none; stroke-width: 2.5px; }
+      .line-adjust { stroke: var(--c-risk-amber); fill: none; stroke-width: 2.5px; stroke-dasharray: 6 4; }
+    </style>
+
+    <!-- 箭头标记定义 -->
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-neutral-gray)" />
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-cloud-blue)" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-local-green)" />
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--c-risk-amber)" />
+    </marker>
+  </defs>
+
+  <!--
+  ===========================================================================
+       1. 标题块 (Title Block)
+  ===========================================================================
+  -->
+  <g id="title-block" transform="translate(575, 40)">
+    <text y="20" text-anchor="middle" class="text-title" font-size="24" fill="#000000">智能体任务决策与目标管理工作流</text>
+    <text y="45" text-anchor="middle" class="text-mono" font-size="14" fill="var(--c-neutral-gray)">第 8 天 > 基础原理</text>
+    <line x1="-50" y1="60" x2="50" y2="60" stroke="var(--c-cloud-blue)" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!--
+  ===========================================================================
+       2. 左侧：目标解析与任务队列 (Goal Parsing & Task Queue)
+  ===========================================================================
+  -->
+  <g id="section-queue" transform="translate(40, 140)">
+    <!-- 区域背景 -->
+    <rect x="0" y="0" width="280" height="560" class="bg-panel-gray" />
+    <rect x="0" y="0" width="280" height="35" fill="#E2E8F0" rx="12" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;" />
+    <text x="140" y="23" text-anchor="middle" class="text-title" font-size="14" fill="var(--c-text-main)">🎯 阶段 1：目标拆解与队列管理</text>
+
+    <!-- 宏观长期目标 -->
+    <rect x="20" y="60" width="240" height="70" class="card-goal" />
+    <text x="140" y="85" text-anchor="middle" class="text-title" font-size="14" fill="#FFFFFF">宏观长期目标 (Macro Goal)</text>
+    <text x="140" y="110" text-anchor="middle" class="text-mono" font-size="12" fill="#94A3B8">"撰写并发布《2026 AI 报告》"</text>
+
+    <!-- 拆解箭头 -->
+    <path d="M 140,130 L 140,160" class="line-flow" marker-end="url(#arrow-gray)" />
+    <text x="150" y="150" font-size="11" fill="var(--c-neutral-gray)">规划与拆解 (Planning)</text>
+
+    <!-- 任务队列区 -->
+    <rect x="10" y="170" width="260" height="370" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.5" />
+    <text x="140" y="195" text-anchor="middle" class="text-title" font-size="13" fill="var(--c-neutral-gray)">动态任务队列 (Task Queue)</text>
+    <line x1="10" y1="205" x2="270" y2="205" stroke="#E2E8F0" stroke-width="1.5" />
+
+    <!-- P0 任务 (高优先级) -->
+    <g transform="translate(20, 220)">
+      <rect x="0" y="0" width="240" height="50" class="card-task-high" />
+      <rect x="0" y="0" width="50" height="50" fill="#FEF2F2" rx="6" style="border-top-right-radius: 0; border-bottom-right-radius: 0;" />
+      <text x="25" y="30" text-anchor="middle" class="text-title" font-size="14" fill="var(--c-risk-red)">P0</text>
+      <text x="60" y="22" class="text-title" font-size="12" fill="var(--c-text-main)">收集市场数据</text>
+      <text x="60" y="40" class="text-mono" font-size="10" fill="var(--c-neutral-gray)">状态: 正在执行 (Running)</text>
+    </g>
+
+    <!-- P1 任务 (中优先级) -->
+    <g transform="translate(20, 290)">
+      <rect x="0" y="0" width="240" height="50" class="card-task-med" />
+      <rect x="0" y="0" width="50" height="50" fill="var(--c-risk-amber-light)" rx="6" style="border-top-right-radius: 0; border-bottom-right-radius: 0;" />
+      <text x="25" y="30" text-anchor="middle" class="text-title" font-size="14" fill="var(--c-risk-amber)">P1</text>
+      <text x="60" y="22" class="text-title" font-size="12" fill="var(--c-text-main)">提炼核心摘要</text>
+      <text x="60" y="40" class="text-mono" font-size="10" fill="var(--c-neutral-gray)">状态: 等待中 (Pending)</text>
+    </g>
+
+    <!-- P2 任务 (低优先级) -->
+    <g transform="translate(20, 360)">
+      <rect x="0" y="0" width="240" height="50" class="card-task-low" />
+      <rect x="0" y="0" width="50" height="50" fill="var(--c-local-green-light)" rx="6" style="border-top-right-radius: 0; border-bottom-right-radius: 0;" />
+      <text x="25" y="30" text-anchor="middle" class="text-title" font-size="14" fill="var(--c-local-green)">P2</text>
+      <text x="60" y="22" class="text-title" font-size="12" fill="var(--c-text-main)">Markdown 格式化排版</text>
+      <text x="60" y="40" class="text-mono" font-size="10" fill="var(--c-neutral-gray)">状态: 等待中 (Pending)</text>
+    </g>
+
+    <!-- 动态插入槽位示意 -->
+    <rect x="20" y="430" width="240" height="40" rx="6" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="4 4" />
+    <text x="140" y="455" text-anchor="middle" class="text-mono" font-size="11" fill="var(--c-neutral-gray)">+ 动态自适应任务插入槽</text>
+
+    <!-- 送入引擎箭头 -->
+    <path d="M 280,245 L 340,245" class="line-flow" marker-end="url(#arrow-gray)" />
+    <text x="310" y="235" text-anchor="middle" font-size="11" fill="var(--c-text-main)">出队</text>
+  </g>
+
+  <!--
+  ===========================================================================
+       3. 中间：决策与执行引擎 (Decision & Execution Engine)
+  ===========================================================================
+  -->
+  <g id="section-engine" transform="translate(350, 140)">
+    <!-- 区域背景 -->
+    <rect x="0" y="0" width="400" height="560" class="bg-panel-blue" />
+    <rect x="0" y="0" width="400" height="35" fill="var(--c-cloud-blue-light)" rx="12" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;" />
+    <text x="200" y="23" text-anchor="middle" class="text-title" font-size="14" fill="var(--c-cloud-blue)">⚙️ 阶段 2：PEAR / ReAct 决策循环</text>
+
+    <!-- 中心主循环轨迹 -->
+    <circle cx="200" cy="300" r="140" fill="none" stroke="var(--c-cloud-blue)" stroke-width="2" stroke-dasharray="8 6" opacity="0.4" />
+    <path d="M 200,160 A 140 140 0 0 1 340 300" fill="none" class="line-react" marker-end="url(#arrow-blue)" />
+    <path d="M 340,300 A 140 140 0 0 1 200 440" fill="none" class="line-react" marker-end="url(#arrow-blue)" />
+    <path d="M 200,440 A 140 140 0 0 1 60 300" fill="none" class="line-react" marker-end="url(#arrow-blue)" />
+    <path d="M 60,300 A 140 140 0 0 1 200 160" fill="none" class="line-react" marker-end="url(#arrow-blue)" />
+
+    <!-- 1. Perceive 节点 (左侧) -->
+    <g transform="translate(10, 260)">
+      <rect x="0" y="0" width="100" height="80" class="node-pear node-gray" />
+      <text x="50" y="25" text-anchor="middle" class="text-title" font-size="13" fill="var(--c-neutral-gray)">👁️ 感知</text>
+      <text x="50" y="45" text-anchor="middle" font-size="11" fill="var(--c-text-main)">读取任务</text>
+      <text x="50" y="65" text-anchor="middle" font-size="11" fill="var(--c-text-main)">获取上下文</text>
+    </g>
+
+    <!-- 2. Encode / Thought 节点 (顶部) -->
+    <g transform="translate(130, 80)">
+      <rect x="0" y="0" width="140" height="80" class="node-pear node-blue" />
+      <text x="70" y="25" text-anchor="middle" class="text-title" font-size="13" fill="var(--c-cloud-blue)">🧠 编码/思考</text>
+      <rect x="25" y="35" width="90" height="16" rx="4" fill="var(--c-cloud-blue)" />
+      <text x="70" y="47" text-anchor="middle" class="text-mono" font-size="10" fill="#FFFFFF">ReAct: Thought</text>
+      <text x="70" y="68" text-anchor="middle" font-size="11" fill="var(--c-text-main)">匹配可用工具集</text>
+    </g>
+
+    <!-- 3. Act 节点 (右侧) -->
+    <g transform="translate(290, 260)">
+      <rect x="0" y="0" width="100" height="80" class="node-pear node-green" />
+      <text x="50" y="25" text-anchor="middle" class="text-title" font-size="13" fill="var(--c-local-green)">🦾 行动</text>
+      <rect x="15" y="35" width="70" height="16" rx="4" fill="var(--c-local-green)" />
+      <text x="50" y="47" text-anchor="middle" class="text-mono" font-size="10" fill="#FFFFFF">Action</text>
+      <text x="50" y="68" text-anchor="middle" font-size="11" fill="var(--c-text-main)">调用外部API</text>
+    </g>
+
+    <!-- 4. Reflect / Observe 节点 (底部) -->
+    <g transform="translate(130, 440)">
+      <rect x="0" y="0" width="140" height="80" class="node-pear node-amber" />
+      <text x="70" y="25" text-anchor="middle" class="text-title" font-size="13" fill="var(--c-risk-amber)">🪞 反思/观察</text>
+      <rect x="25" y="35" width="90" height="16" rx="4" fill="var(--c-risk-amber)" />
+      <text x="70" y="47" text-anchor="middle" class="text-mono" font-size="10" fill="#FFFFFF">ReAct: Observe</text>
+      <text x="70" y="68" text-anchor="middle" font-size="11" fill="var(--c-text-main)">评估执行结果</text>
+    </g>
+
+    <!-- 输出到决策区的箭头 -->
+    <path d="M 270,480 L 410,480" class="line-flow" marker-end="url(#arrow-gray)" />
+    <text x="340" y="470" text-anchor="middle" font-size="11" fill="var(--c-text-main)">结果输出</text>
+  </g>
+
+  <!--
+  ===========================================================================
+       4. 右侧：结果评估与动态策略调整 (Evaluation & Adjustment)
+  ===========================================================================
+  -->
+  <g id="section-adjust" transform="translate(780, 140)">
+    <!-- 区域背景 -->
+    <rect x="0" y="0" width="330" height="560" class="bg-panel-amber" />
+    <rect x="0" y="0" width="330" height="35" fill="#FDE68A" rx="12" style="border-bottom-left-radius: 0; border-bottom-right-radius: 0;" />
+    <text x="165" y="23" text-anchor="middle" class="text-title" font-size="14" fill="#92400E">⚖️ 阶段 3：目标验证与策略自适应</text>
+
+    <!-- 决策菱形 (Decision Diamond) -->
+    <polygon points="165,400 240,480 165,560 90,480" class="diamond-decision" />
+    <text x="165" y="475" text-anchor="middle" class="text-title" font-size="14" fill="var(--c-cloud-blue)">任务目标</text>
+    <text x="165" y="495" text-anchor="middle" class="text-title" font-size="14" fill="var(--c-cloud-blue)">是否达成?</text>
+
+    <!-- ================= 成功分支 (Success Flow) ================= -->
+    <path d="M 240,480 L 280,480 L 280,210 L 165,210" class="line-success" marker-end="url(#arrow-green)" />
+    <rect x="250" y="320" width="60" height="24" rx="4" fill="#FFFFFF" stroke="var(--c-local-green)" stroke-width="1.5" />
+    <text x="280" y="336" text-anchor="middle" font-weight="bold" font-size="12" fill="var(--c-local-green)">Yes (✅)</text>
+
+    <!-- 成功节点 -->
+    <rect x="65" y="150" width="200" height="60" rx="8" fill="#FFFFFF" stroke="var(--c-local-green)" stroke-width="2" />
+    <text x="165" y="175" text-anchor="middle" class="text-title" font-size="14" fill="var(--c-local-green)">🎉 任务流转成功</text>
+    <text x="165" y="195" text-anchor="middle" font-size="12" fill="var(--c-neutral-gray)">通知队列处理下一个任务 (P1)</text>
+
+    <!-- 反馈成功信号回队列 -->
+    <path d="M 65,180 L -120,180 L -120,195" class="line-success" marker-end="url(#arrow-green)" stroke-dasharray="4 4" />
+    <text x="-30" y="170" text-anchor="middle" font-size="11" fill="var(--c-local-green)">推进宏观目标进度</text>
+
+
+    <!-- ================= 失败/调整分支 (Failure/Adjust Flow) ================= -->
+    <path d="M 165,400 L 165,350" class="line-adjust" marker-end="url(#arrow-amber)" />
+    <rect x="145" y="360" width="40" height="24" rx="4" fill="#FFFFFF" stroke="var(--c-risk-amber)" stroke-width="1.5" />
+    <text x="165" y="376" text-anchor="middle" font-weight="bold" font-size="12" fill="var(--c-risk-amber)">No</text>
+
+    <!-- 调整策略卡片 -->
+    <rect x="45" y="240" width="240" height="110" rx="8" fill="#FFFFFF" stroke="var(--c-risk-amber)" stroke-width="2" />
+    <text x="165" y="265" text-anchor="middle" class="text-title" font-size="14" fill="var(--c-risk-amber)">⚠️ 动态策略调整 (Self-Correction)</text>
+
+    <rect x="60" y="280" width="210" height="24" rx="4" fill="var(--c-risk-amber-light)" />
+    <text x="70" y="296" font-size="11" fill="var(--c-text-main)">• 方案 A: 切换备用 API / 工具重试</text>
+
+    <rect x="60" y="310" width="210" height="24" rx="4" fill="var(--c-risk-amber-light)" />
+    <text x="70" y="326" font-size="11" fill="var(--c-text-main)">• 方案 B: 任务降级 (分解为更小任务)</text>
+
+    <!-- 失败反馈信号回引擎 / 队列 -->
+    <!-- 1. 返回思考模块重新规划 -->
+    <path d="M 45,290 L -250,290 L -250,165" class="line-adjust" marker-end="url(#arrow-amber)" />
+    <text x="-100" y="282" text-anchor="middle" font-size="11" fill="var(--c-risk-amber)">将错误日志喂给大脑，重新规划</text>
+
+    <!-- 2. 插入新降级任务到队列 -->
+    <path d="M 45,320 L -460,320 L -460,430" class="line-adjust" marker-end="url(#arrow-amber)" />
+    <text x="-250" y="312" text-anchor="middle" font-size="11" fill="var(--c-risk-amber)">新派生任务：降级压入队列</text>
+  </g>
+
+  <!--
+  ===========================================================================
+       5. 底部图例与许可 (Legend & License)
+  ===========================================================================
+  -->
+  <g id="legend-block" transform="translate(150, 740)">
+    <rect x="0" y="0" width="850" height="45" rx="6" fill="rgba(255,255,255,0.9)" stroke="var(--c-neutral-gray)" stroke-width="0.5"/>
+    <g transform="translate(20, 26)">
+      <text x="0" y="0" class="text-title" font-size="12" fill="var(--c-neutral-gray)">图例说明：</text>
+
+      <!-- 图例 1: ReAct 核心 -->
+      <line x1="90" y1="-3" x2="125" y2="-3" class="line-react" />
+      <text x="130" y="2" font-size="11" fill="var(--c-text-main)">ReAct 推理执行流</text>
+
+      <!-- 图例 2: 目标闭环 -->
+      <line x1="290" y1="-3" x2="325" y2="-3" class="line-success" />
+      <text x="335" y="2" font-size="11" fill="var(--c-text-main)">任务达成与流转</text>
+
+      <!-- 图例 3: 策略修正 -->
+      <line x1="480" y1="-3" x2="515" y2="-3" class="line-adjust" />
+      <text x="535" y="2" font-size="11" fill="var(--c-text-main)">策略自适应/反馈纠错</text>
+
+      <!-- 图例 4: 优先级 -->
+      <rect x="685" y="-10" width="12" height="12" rx="2" fill="var(--c-risk-red)" />
+      <rect x="700" y="-10" width="12" height="12" rx="2" fill="var(--c-risk-amber)" />
+      <rect x="715" y="-10" width="12" height="12" rx="2" fill="var(--c-local-green)" />
+      <text x="735" y="2" font-size="11" fill="var(--c-text-main)">任务优先级排队</text>
+    </g>
+  </g>
+
+  <!-- CC 版权声明 -->
+  <text x="575" y="820" text-anchor="middle" font-size="11" fill="var(--c-neutral-gray)">
+    本作品采用 CC-BY-SA 4.0 进行许可，© 2025-2026 Gitconomy Research 社区
+  </text>
+
+</svg>
