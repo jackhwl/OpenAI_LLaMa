@@ -3,3 +3,4 @@
 ## 3 Initial Guide
 ## 4 Messenger plugin
 ## 5 Manage Model
+## 6 Manage Agent
