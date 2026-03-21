@@ -8,3 +8,7 @@
   - SOUL.md
 ## 7 Tools and schedule
 ## 8 Gateway
+## 9 remote access
+  - Tailscale
+  - SSH
+  - LAN
