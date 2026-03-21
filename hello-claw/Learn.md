@@ -7,3 +7,4 @@
   - IDENTITY.md 
   - SOUL.md
 ## 7 Tools and schedule
+## 8 Gateway
