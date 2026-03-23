@@ -12,3 +12,6 @@
   - Tailscale
   - SSH
   - LAN
+## 10 security
+## 11 Web UI and client
+## Appendix A: Summary of Learning Resources
