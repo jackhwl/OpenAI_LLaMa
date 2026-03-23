@@ -15,3 +15,6 @@
 ## 10 security
 ## 11 Web UI and client
 ## Appendix A: Summary of Learning Resources
+
+## [Awesome OpenClaw 教程](https://github.com/xianyu110/awesome-openclaw-tutorial/blob/main/docs/01-basics/01-introduction.md) 
+  - 第1章：认识OpenClaw
