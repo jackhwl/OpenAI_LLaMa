@@ -18,3 +18,5 @@
 
 ## [Awesome OpenClaw 教程](https://github.com/xianyu110/awesome-openclaw-tutorial/blob/main/docs/01-basics/01-introduction.md) 
   - 第1章：认识OpenClaw
+  - 第2章节：环境搭建
+  - 第3章节：快速上手
