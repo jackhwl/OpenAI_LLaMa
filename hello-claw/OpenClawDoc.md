@@ -20,3 +20,6 @@
       - npm i -g openclaw@latest
     - Migration Guide
     - Matrix migration
+## Channels
+  - Overview
+    - Chat Channels
