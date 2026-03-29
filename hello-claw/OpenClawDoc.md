@@ -13,4 +13,10 @@
     - Install
     - Installer Internals
     - Node.js
-  
+  - Containers
+  - Maintenance
+    - Update
+      - openclaw update --no-restart
+      - npm i -g openclaw@latest
+    - Migration Guide
+    - Matrix migration
