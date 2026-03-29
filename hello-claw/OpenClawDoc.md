@@ -6,3 +6,4 @@
   - macOS app onboarding
 ## Guides
   - Personal Assistant Setup
+  - CLI reference
