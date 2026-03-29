@@ -4,3 +4,5 @@
 ## Onboarding Overview
   - CLI onboarding
   - macOS app onboarding
+## Guides
+  - Personal Assistant Setup
