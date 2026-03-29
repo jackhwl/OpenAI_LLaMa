@@ -23,3 +23,5 @@
 ## Channels
   - Overview
     - Chat Channels
+  - Messaging platforms
+  - Configuration
