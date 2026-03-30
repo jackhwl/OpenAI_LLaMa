@@ -32,3 +32,4 @@
     - Agent Loop
       - https://github.com/shareAI-lab/claw0
       - https://github.com/shareAI-lab/learn-claude-code
+    - System Prompt
