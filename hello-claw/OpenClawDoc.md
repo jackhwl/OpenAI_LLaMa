@@ -25,3 +25,7 @@
     - Chat Channels
   - Messaging platforms
   - Configuration
+## Agents
+  - Fundamentals
+    - Gateway Architecture
+    - Agent Runtime
