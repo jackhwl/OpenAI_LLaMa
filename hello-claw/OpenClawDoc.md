@@ -29,3 +29,6 @@
   - Fundamentals
     - Gateway Architecture
     - Agent Runtime
+    - Agent Loop
+      - https://github.com/shareAI-lab/claw0
+      - https://github.com/shareAI-lab/learn-claude-code
