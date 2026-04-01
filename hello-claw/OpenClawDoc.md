@@ -33,3 +33,15 @@
       - https://github.com/shareAI-lab/claw0
       - https://github.com/shareAI-lab/learn-claude-code
     - System Prompt
+    - Context: it reports sizes and top contributors; it does not dump the full system prompt or tool schemas.
+      - /status. how full is my window
+      - /context list
+      - /context detail
+      - /usage tokens
+      - Everything the model receives counts, including:
+        - System prompt (all sections).
+        - Conversation history.
+        - Tool calls + tool results.
+        - Attachments/transcripts (images/audio/files).
+        - Compaction summaries and pruning artifacts.
+        - Provider “wrappers” or hidden headers (not visible, still counted).
