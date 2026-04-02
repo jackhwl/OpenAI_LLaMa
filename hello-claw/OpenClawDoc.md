@@ -45,3 +45,4 @@
         - Attachments/transcripts (images/audio/files).
         - Compaction summaries and pruning artifacts.
         - Provider “wrappers” or hidden headers (not visible, still counted).
+    - Context Engine
