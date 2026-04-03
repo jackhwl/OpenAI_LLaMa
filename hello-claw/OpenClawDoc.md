@@ -46,3 +46,6 @@
         - Compaction summaries and pruning artifacts.
         - Provider “wrappers” or hidden headers (not visible, still counted).
     - Context Engine
+      - replace legacy engine
+      - openclaw plugins install @martian-engineering/lossless-claw
+      - using ollama as embeding
