@@ -49,3 +49,4 @@
       - replace legacy engine
       - openclaw plugins install @martian-engineering/lossless-claw
       - using ollama as embeding
+    - Agent Workspace
