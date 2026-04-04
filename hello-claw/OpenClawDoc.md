@@ -52,3 +52,7 @@
     - Agent Workspace
     - OAuth
     - Agent Bootstrapping
+  - Sessions and memory
+    - Session Management
+      - Session lifecycle
+        - /new or /reset
