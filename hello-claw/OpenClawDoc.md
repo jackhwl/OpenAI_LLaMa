@@ -56,3 +56,5 @@
     - Session Management
       - Session lifecycle
         - /new or /reset
+    - Session Pruning
+      - Prouning vs compaction
