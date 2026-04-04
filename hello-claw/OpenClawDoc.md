@@ -51,3 +51,4 @@
       - using ollama as embeding
     - Agent Workspace
     - OAuth
+    - Agent Bootstrapping
