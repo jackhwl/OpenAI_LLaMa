@@ -58,3 +58,4 @@
         - /new or /reset
     - Session Pruning
       - Prouning vs compaction
+    - Session Tools
