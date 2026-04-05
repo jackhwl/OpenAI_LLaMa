@@ -59,3 +59,5 @@
     - Session Pruning
       - Prouning vs compaction
     - Session Tools
+    - Memorry
+      - Memory Overview
