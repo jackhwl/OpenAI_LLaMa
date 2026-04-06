@@ -64,3 +64,4 @@
       - Builtin Memory Engine
       - QMD Memory Engine
       - Honcho Memory
+      - Memory Search
