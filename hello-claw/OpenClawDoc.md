@@ -63,3 +63,4 @@
       - Memory Overview
       - Builtin Memory Engine
       - QMD Memory Engine
+      - Honcho Memory
