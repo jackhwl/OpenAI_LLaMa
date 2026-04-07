@@ -66,3 +66,4 @@
       - Honcho Memory
       - Memory Search
       - Dreaming (experimental)
+    - upgrade to v2026.4.5
