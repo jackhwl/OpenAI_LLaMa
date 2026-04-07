@@ -68,3 +68,5 @@
       - Dreaming (experimental)
     - upgrade to v2026.4.5
     - Compaction
+  - Multi-agent
+    - Multi-Agent Routing
