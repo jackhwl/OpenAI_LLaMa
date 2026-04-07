@@ -65,3 +65,4 @@
       - QMD Memory Engine
       - Honcho Memory
       - Memory Search
+      - Dreaming (experimental)
