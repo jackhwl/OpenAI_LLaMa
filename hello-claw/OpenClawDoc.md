@@ -71,3 +71,4 @@
   - Multi-agent
     - Multi-Agent Routing
     - Presence
+    - Delegate Architecture
