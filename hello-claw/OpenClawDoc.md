@@ -75,3 +75,4 @@
   - Messages and delivery
     - Messages
     - Streaming and Chunking
+    - Retry Policy
