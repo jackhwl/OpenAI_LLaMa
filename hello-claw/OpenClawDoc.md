@@ -76,3 +76,4 @@
     - Messages
     - Streaming and Chunking
     - Retry Policy
+    - Command Queue
