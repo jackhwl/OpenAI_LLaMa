@@ -77,3 +77,6 @@
     - Streaming and Chunking
     - Retry Policy
     - Command Queue
+## Tools and Plugins
+  - Overview
+  - Tools, skills, and plugins
