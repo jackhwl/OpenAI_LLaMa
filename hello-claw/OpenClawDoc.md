@@ -79,4 +79,8 @@
     - Command Queue
 ## Tools and Plugins
   - Overview
-  - Tools, skills, and plugins
+    - Tools, skills, and plugins
+    - Built-in tools
+  - Plugins
+    - Install and Configurea
+    
