@@ -83,4 +83,4 @@
     - Built-in tools
   - Plugins
     - Install and Configurea
-    
+    - Community Plugins
