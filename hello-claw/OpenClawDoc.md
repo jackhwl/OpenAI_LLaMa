@@ -84,3 +84,4 @@
   - Plugins
     - Install and Configurea
     - Community Plugins
+    - Plugin Bundles
