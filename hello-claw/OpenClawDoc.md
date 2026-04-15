@@ -87,3 +87,4 @@
     - Plugin Bundles
     - Codex Harness
     - Webhooks Plugin
+    - Voice Call Plugin
