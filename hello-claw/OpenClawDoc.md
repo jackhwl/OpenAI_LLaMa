@@ -89,3 +89,4 @@
     - Webhooks Plugin
     - Voice Call Plugin
     - Memory Wiki
+    - Zalo Personal Plugin
