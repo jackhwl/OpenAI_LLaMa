@@ -88,3 +88,4 @@
     - Codex Harness
     - Webhooks Plugin
     - Voice Call Plugin
+    - Memory Wiki
