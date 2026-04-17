@@ -93,3 +93,4 @@
     - Building Plugins
       - Getting Started
       - Channel Plugins
+      - Provider Plugins
