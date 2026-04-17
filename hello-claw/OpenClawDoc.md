@@ -94,3 +94,4 @@
       - Getting Started
       - Channel Plugins
       - Provider Plugins
+      - Migrate to SDK
