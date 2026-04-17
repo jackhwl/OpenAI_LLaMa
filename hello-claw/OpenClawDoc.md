@@ -90,3 +90,6 @@
     - Voice Call Plugin
     - Memory Wiki
     - Zalo Personal Plugin
+    - Building Plugins
+      - Getting Started
+      - Channel Plugins
