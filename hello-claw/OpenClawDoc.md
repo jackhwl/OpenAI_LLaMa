@@ -100,3 +100,7 @@
       - Entry Points
       - Runtime Helpers
       - Agent Harness
+      - Setup and Config
+      - Testing
+      - Plugin Manifest
+      - Internals
