@@ -104,3 +104,5 @@
       - Testing
       - Plugin Manifest
       - Internals
+  - Skills
+    - Skills
