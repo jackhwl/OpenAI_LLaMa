@@ -97,3 +97,5 @@
       - Migrate to SDK
     - SDK Reference
       - SDK Overview
+      - Entry Points
+      - Runtime Helpers
