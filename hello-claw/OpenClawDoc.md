@@ -95,3 +95,5 @@
       - Channel Plugins
       - Provider Plugins
       - Migrate to SDK
+    - SDK Reference
+      - SDK Overview
