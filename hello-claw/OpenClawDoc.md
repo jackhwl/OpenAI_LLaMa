@@ -111,3 +111,5 @@
     - Slash Commands
     - ClawHub
     - OpenProse
+  - Automation & Tasks
+    - Scheduled Tasks
