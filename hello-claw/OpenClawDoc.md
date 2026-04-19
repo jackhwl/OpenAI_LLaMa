@@ -107,3 +107,4 @@
   - Skills
     - Skills
     - Creating Skills
+    - Skills Config
