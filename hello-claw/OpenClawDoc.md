@@ -110,3 +110,4 @@
     - Skills Config
     - Slash Commands
     - ClawHub
+    - OpenProse
