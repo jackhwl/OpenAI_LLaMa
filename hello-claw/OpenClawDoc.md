@@ -113,3 +113,4 @@
     - OpenProse
   - Automation & Tasks
     - Scheduled Tasks
+    - Background Tasks
