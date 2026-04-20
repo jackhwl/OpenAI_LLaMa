@@ -115,3 +115,4 @@
     - Scheduled Tasks
     - Background Tasks
     - Task Flow
+    - Standing Orders
