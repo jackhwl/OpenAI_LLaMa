@@ -119,3 +119,4 @@
     - Hooks
   - Tools
     - Media Overview
+    - apply_patch Tool
