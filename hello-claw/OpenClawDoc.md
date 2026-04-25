@@ -123,3 +123,4 @@
     - BTW side questions
     - Code execution
     - Diff
+    - Elevated mode
