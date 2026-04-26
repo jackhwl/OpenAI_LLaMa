@@ -124,3 +124,4 @@
     - Code execution
     - Diff
     - Elevated mode
+    - dokobot skill installed
