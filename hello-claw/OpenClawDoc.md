@@ -125,3 +125,4 @@
     - Diff
     - Elevated mode
     - dokobot skill installed
+    - Exec approvals
