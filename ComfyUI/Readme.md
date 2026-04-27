@@ -12,3 +12,10 @@
     source .venv310/bin/activate      
     python3 ComfyUI/main.py
     ```
+  - Basic ComfyUI Workflow
+    - Using lora model to speed up
+    - Load LoRA
+    - steps: 4
+    - cfg: 1
+    - sampler_name: lcm
+    - scheduler sgm_uniform
