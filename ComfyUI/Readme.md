@@ -22,3 +22,5 @@
   - Text to Image
   - Image to Image
     - https://sbcode.net/genai/img-2-img/
+  - Inpainting
+    - 512-inpainting-ema.safetensors
