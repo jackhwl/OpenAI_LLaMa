@@ -20,3 +20,5 @@
     - sampler_name: lcm
     - scheduler sgm_uniform
   - Text to Image
+  - Image to Image
+    - https://sbcode.net/genai/img-2-img/
