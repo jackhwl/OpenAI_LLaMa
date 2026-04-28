@@ -19,3 +19,4 @@
     - cfg: 1
     - sampler_name: lcm
     - scheduler sgm_uniform
+  - Text to Image

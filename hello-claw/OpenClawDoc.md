@@ -126,3 +126,4 @@
     - Elevated mode
     - dokobot skill installed
     - Exec approvals
+    - Exec approvals - advanced
