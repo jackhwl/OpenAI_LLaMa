@@ -131,3 +131,7 @@
     - Image generation
     - LLM task
     - Lobster
+    - Media overview
+    - Music generation
+    - PDF tool
+    - Reactions
