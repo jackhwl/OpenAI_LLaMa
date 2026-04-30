@@ -127,3 +127,5 @@
     - dokobot skill installed
     - Exec approvals
     - Exec approvals - advanced
+    - Exec tool
+    - Image generation
