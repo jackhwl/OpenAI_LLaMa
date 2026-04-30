@@ -129,3 +129,5 @@
     - Exec approvals - advanced
     - Exec tool
     - Image generation
+    - LLM task
+    - Lobster
