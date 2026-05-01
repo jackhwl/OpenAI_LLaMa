@@ -135,3 +135,4 @@
     - Music generation
     - PDF tool
     - Reactions
+    - Thinking levels
