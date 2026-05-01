@@ -136,3 +136,6 @@
     - PDF tool
     - Reactions
     - Thinking levels
+    - Tokenjuice
+    - Tool-loop detection
+    - Trajectory bundles
