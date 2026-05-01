@@ -139,3 +139,4 @@
     - Tokenjuice
     - Tool-loop detection
     - Trajectory bundles
+    - Text to speech
