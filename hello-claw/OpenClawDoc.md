@@ -143,4 +143,8 @@
     - Video generation
       - ComfyUI
         Workflow-driven local or cloud execution. Supports text-to-video and image-to-video through the configured graph.
-        
+    - Web browser
+      - Browser (OpenClaw-managed)
+      - Browser control API
+      - Browser login
+      - Browser troubleshooting
