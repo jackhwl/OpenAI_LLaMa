@@ -148,3 +148,7 @@
       - Browser control API
       - Browser login
       - Browser troubleshooting
+    - Web tools
+      - Web Fetch
+      - Web Search
+      - Brave search
