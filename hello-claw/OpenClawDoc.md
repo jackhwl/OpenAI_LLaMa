@@ -140,3 +140,7 @@
     - Tool-loop detection
     - Trajectory bundles
     - Text to speech
+    - Video generation
+      - ComfyUI
+        Workflow-driven local or cloud execution. Supports text-to-video and image-to-video through the configured graph.
+        
