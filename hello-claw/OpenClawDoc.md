@@ -153,3 +153,13 @@
       - Web Search
       - Brave search
       - DuckDuckGo search
+      - Exa search
+      - Firecrawl
+      - Gemini search
+      - Grok search
+      - Kimi search
+      - MiniMax search
+      - Ollama web search
+      - Perplexity search
+      - SearXNG search
+      - Tavily
