@@ -163,3 +163,7 @@
       - Perplexity search
       - SearXNG search
       - Tavily
+  - Agent coordination
+    - Agent send
+    - Sub-agents
+    - ACP agents
