@@ -152,3 +152,4 @@
       - Web Fetch
       - Web Search
       - Brave search
+      - DuckDuckGo search
