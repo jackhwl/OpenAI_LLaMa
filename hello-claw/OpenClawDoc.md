@@ -169,3 +169,7 @@
     - ACP agents
     - ACP agents - setup
     - Multi-agent sandbox and tools
+## Models
+  - Overview
+    - Provider directory
+    - Model provider quickstart
