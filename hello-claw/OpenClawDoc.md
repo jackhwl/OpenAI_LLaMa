@@ -173,3 +173,5 @@
   - Overview
     - Provider directory
     - Model provider quickstart
+  - Concepts and configuration
+    - Models CLI
