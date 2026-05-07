@@ -176,3 +176,4 @@
   - Concepts and configuration
     - Models CLI
     - Model providers
+    - Model failover
