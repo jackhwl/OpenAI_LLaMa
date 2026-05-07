@@ -175,3 +175,4 @@
     - Model provider quickstart
   - Concepts and configuration
     - Models CLI
+    - Model providers
