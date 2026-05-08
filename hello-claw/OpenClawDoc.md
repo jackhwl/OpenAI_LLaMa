@@ -178,3 +178,5 @@
     - Model providers
     - Model failover
   - Providers
+## Platforms
+  - Platforms overview
