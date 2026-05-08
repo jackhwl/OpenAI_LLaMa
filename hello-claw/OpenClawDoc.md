@@ -180,3 +180,7 @@
   - Providers
 ## Platforms
   - Platforms overview
+## Gateway & Ops
+  - Gateway
+    - Gateway runbook
+      - 5-minute local startup
