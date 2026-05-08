@@ -177,3 +177,4 @@
     - Models CLI
     - Model providers
     - Model failover
+  - Providers
