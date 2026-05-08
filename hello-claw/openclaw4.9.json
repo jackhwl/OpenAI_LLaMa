@@ -1,0 +1,335 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.4.9",
+    "lastTouchedAt": "2026-04-11T00:06:14.138Z"
+  },
+  "memory": {
+    "backend": "qmd",
+  "qmd": {
+      "sessions": { "enabled": true },
+    },
+  },
+  "wizard": {
+    "lastRunAt": "2026-04-10T02:36:40.869Z",
+    "lastRunVersion": "2026.4.9",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "openai-codex:jackhwl@hotmail.com": {
+        "provider": "openai-codex",
+        "mode": "oauth"
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "model": {
+        "primary": "openai-codex/gpt-5.3-codex",
+        "fallbacks": [
+          "ollama/qwen2.5:14b-instruct"
+        ]
+      },
+      "memorySearch": {
+        "enabled": true,
+        "provider": "ollama",
+        "model": "nomic-embed-text",
+        "query": {
+          "hybrid": {
+            "vectorWeight": 0.7,
+            "textWeight": 0.3,
+            "mmr": {
+              "enabled": true,
+              "lambda": 0.7
+            },
+            "temporalDecay": {
+              "enabled": true,
+              "halfLifeDays": 30
+            }
+          }
+        }
+      },
+      "models": {
+        "openai-codex/gpt-5.4": {}
+      },
+      "workspace": "C:\\Users\\jhuang1\\.openclaw\\workspace",
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "workspace": "C:\\Users\\jhuang1\\.openclaw\\workspace",
+        "skills": [
+          "agentmail"
+        ],
+        "tools": {
+          "profile": "full",
+          "allow": [
+            "read",
+            "write",
+            "exec",
+            "web_search",
+            "web_fetch",
+            "memory_search",
+            "memory_get"
+          ],
+          "elevated": {
+            "enabled": false
+          },
+          "exec": {
+            "security": "full",
+            "ask": "off"
+          }
+        }
+      },
+      {
+        "id": "devinfo",
+        "name": "devinfo",
+        "workspace": "C:\\Users\\jhuang1\\.openclaw\\workspace-devinfo",
+        "agentDir": "C:\\Users\\jhuang1\\.openclaw\\agents\\devinfo\\agent",
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec"
+          ],
+          "elevated": {
+            "enabled": false
+          },
+          "exec": {
+            "security": "full",
+            "ask": "off"
+          }
+        }
+      },
+      {
+        "id": "system",
+        "name": "system",
+        "workspace": "C:\\Users\\jhuang1\\.openclaw\\workspace-system",
+        "agentDir": "C:\\Users\\jhuang1\\.openclaw\\agents\\system\\agent",
+        "tools": {
+          "profile": "minimal",
+          "allow": [
+            "exec",
+            "read"
+          ],
+          "elevated": {
+            "enabled": false
+          }
+        }
+      }
+    ]
+  },
+  "tools": {
+    "profile": "full",
+    "elevated": {
+      "enabled": true,
+      "allowFrom": {
+        "telegram": [
+          8659248327
+        ]
+      }
+    },
+    "exec": {
+      "security": "full",
+      "ask": "off"
+    },
+    "web": {
+      "search": {
+        "provider": "searxng",
+        "enabled": true,
+        "openaiCodex": {
+          "enabled": false
+        }
+      },
+      "fetch": {
+        "enabled": true
+      }
+    }
+  },
+  "bindings": [
+    {
+      "agentId": "main",
+      "match": {
+        "channel": "telegram",
+        "accountId": "default"
+      }
+    },
+    {
+      "agentId": "devinfo",
+      "match": {
+        "channel": "telegram",
+        "accountId": "devinfo"
+      }
+    },
+    {
+      "agentId": "system",
+      "match": {
+        "channel": "telegram",
+        "accountId": "system"
+      }
+    }
+  ],
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "groupPolicy": "disabled",
+      "streaming": {
+        "mode": "partial"
+      },
+      "network": {
+        "autoSelectFamily": false
+      },
+      "accounts": {
+        "default": {
+          "enabled": true,
+          "dmPolicy": "allowlist",
+          "botToken": "${TELEGRAM_MAIN_TOKEN}",
+          "allowFrom": [
+            8659248327
+          ],
+          "groupPolicy": "disabled",
+          "streaming": {
+            "mode": "partial"
+          }
+        },
+        "devinfo": {
+          "dmPolicy": "allowlist",
+          "botToken": "${TELEGRAM_DEVINFO_TOKEN}",
+          "allowFrom": [
+            8659248327
+          ],
+          "groupPolicy": "disabled",
+          "streaming": {
+            "mode": "partial"
+          }
+        },
+        "system": {
+          "dmPolicy": "allowlist",
+          "botToken": "${TELEGRAM_SYSTEM_TOKEN}",
+          "allowFrom": [
+            8659248327
+          ],
+          "groupPolicy": "disabled",
+          "streaming": {
+            "mode": "partial"
+          }
+        }
+      },
+      "defaultAccount": "default"
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "${TELEGRAM_GATEWAY_AUTH_TOKEN}"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send"
+      ]
+    }
+  },
+  "skills": {
+    "allowBundled": [
+      "mcporter"
+    ],
+    "entries": {
+      "vpn": {
+        "enabled": false
+      },
+      "mcporter": {
+        "enabled": true
+      },
+      "self-improvement": {
+        "enabled": true
+      },
+      "agentmail": {
+        "enabled": true,
+        "env": {
+          "AGENTMAIL_API_KEY": "${AGENTMAIL_API_KEY}"
+        }
+      }
+    }
+  },
+  "plugins": {
+    "entries": {
+      "lossless-claw": {
+        "enabled": true,
+        "config": {}
+      },
+      "openai": {
+        "enabled": true
+      },
+      "ollama": {
+        "enabled": true
+      },
+    "diffs": {
+        "enabled": true,
+        "hooks": {
+          "allowPromptInjection": false,
+        },
+      },
+      "searxng": {
+        "enabled": true,
+        "config": {
+          "webSearch": {
+            "baseUrl": "http://localhost:8888"
+          }
+        }
+      }
+    },
+    "installs": {
+      "lossless-claw": {
+        "source": "npm",
+        "spec": "@martian-engineering/lossless-claw",
+        "installPath": "C:\\Users\\jhuang1\\.openclaw\\extensions\\lossless-claw",
+        "version": "0.5.3",
+        "resolvedName": "@martian-engineering/lossless-claw",
+        "resolvedVersion": "0.5.3",
+        "resolvedSpec": "@martian-engineering/lossless-claw@0.5.3",
+        "integrity": "sha512-9mDRVt9N8t2LWPapIGlWMHl0c0gYw3gLJ7n+rR8eLC4IZav482OHy054J8GNB0LS8ztqkidf8z4PN6Yi6PwExw==",
+        "shasum": "bc7b4065a2ba2a7b143347dae7e09051519ea08c",
+        "resolvedAt": "2026-04-03T03:27:12.640Z",
+        "installedAt": "2026-04-03T03:28:40.432Z"
+      }
+    },
+    "allow": [
+      "lossless-claw",
+      "openai",
+      "ollama"
+    ]
+  }
+}
