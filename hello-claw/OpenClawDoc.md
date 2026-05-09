@@ -187,3 +187,5 @@
     - Configuration
       - Configuration
         - JSON5 config
+      - Configuration reference
+      
