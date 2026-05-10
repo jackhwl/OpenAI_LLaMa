@@ -191,4 +191,5 @@
       - Configuration agents
       - Configuration channels
       - Tools and custom providers
+      - Configuration examples
       
