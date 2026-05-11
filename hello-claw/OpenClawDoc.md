@@ -194,4 +194,5 @@
       - Configuration examples
     - Authentication and secrets
       - Authentication
+      - Auth credential semantics
       
