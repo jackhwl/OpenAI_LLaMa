@@ -200,4 +200,4 @@
       - Trusted proxy auth
     - Health and diagnostics
       - Health checks: openclaw health
-      
+      - Heartbeat
