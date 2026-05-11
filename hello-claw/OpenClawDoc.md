@@ -192,4 +192,6 @@
       - Configuration channels
       - Tools and custom providers
       - Configuration examples
+    - Authentication and secrets
+      - Authentication
       
