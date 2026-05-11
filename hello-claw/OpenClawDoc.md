@@ -195,4 +195,8 @@
     - Authentication and secrets
       - Authentication
       - Auth credential semantics
+      - Secrets management
+      - Secrets apply plan contract
+      - Trusted proxy auth
+
       
