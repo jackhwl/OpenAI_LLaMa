@@ -198,5 +198,6 @@
       - Secrets management
       - Secrets apply plan contract
       - Trusted proxy auth
-
+    - Health and diagnostics
+      - Health checks: openclaw health
       
