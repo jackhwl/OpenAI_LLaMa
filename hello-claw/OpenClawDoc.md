@@ -202,3 +202,4 @@
       - Health checks: openclaw health
       - Heartbeat
       - Doctor
+      - Logging
