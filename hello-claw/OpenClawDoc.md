@@ -201,3 +201,4 @@
     - Health and diagnostics
       - Health checks: openclaw health
       - Heartbeat
+      - Doctor
