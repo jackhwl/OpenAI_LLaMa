@@ -203,3 +203,4 @@
       - Heartbeat
       - Doctor
       - Logging
+      - OpenTelemetry export
