@@ -204,3 +204,4 @@
       - Doctor
       - Logging
       - OpenTelemetry export
+      - Prometheus
