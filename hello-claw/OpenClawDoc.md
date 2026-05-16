@@ -206,3 +206,4 @@
       - OpenTelemetry export
       - Prometheus
       - Gateway logging
+      - Diagnostics export
