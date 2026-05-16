@@ -207,3 +207,4 @@
       - Prometheus
       - Gateway logging
       - Diagnostics export
+      - Troubleshooting
