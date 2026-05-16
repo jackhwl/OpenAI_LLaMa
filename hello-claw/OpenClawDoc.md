@@ -205,3 +205,4 @@
       - Logging
       - OpenTelemetry export
       - Prometheus
+      - Gateway logging
