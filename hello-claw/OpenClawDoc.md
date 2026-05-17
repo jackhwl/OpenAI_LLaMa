@@ -208,3 +208,5 @@
       - Gateway logging
       - Diagnostics export
       - Troubleshooting
+    - Scaling and operations
+      - Gateway lock
