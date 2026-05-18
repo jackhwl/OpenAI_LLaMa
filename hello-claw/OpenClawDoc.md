@@ -218,3 +218,4 @@
       - Security audit checks
       - Operator scopes
       - Sandboxing
+      - OpenShell
