@@ -217,3 +217,4 @@
       - Secure file operations
       - Security audit checks
       - Operator scopes
+      - Sandboxing
