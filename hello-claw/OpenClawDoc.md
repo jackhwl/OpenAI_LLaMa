@@ -219,3 +219,4 @@
       - Operator scopes
       - Sandboxing
       - OpenShell
+      - Sandbox vs tool policy vs elevated
