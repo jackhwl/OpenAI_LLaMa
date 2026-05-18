@@ -212,3 +212,5 @@
       - Gateway lock
       - Background exec and process tool
       - Multiple gateways
+    - Security and sandboxing
+      - Security
