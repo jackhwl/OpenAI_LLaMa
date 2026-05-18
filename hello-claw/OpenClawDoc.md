@@ -214,3 +214,5 @@
       - Multiple gateways
     - Security and sandboxing
       - Security
+      - Secure file operations
+      
