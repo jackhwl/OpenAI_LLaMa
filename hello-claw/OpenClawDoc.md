@@ -220,3 +220,5 @@
       - Sandboxing
       - OpenShell
       - Sandbox vs tool policy vs elevated
+    - Protocals and APIs
+      - Gateway protocol
