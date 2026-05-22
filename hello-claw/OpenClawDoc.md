@@ -223,3 +223,4 @@
     - Protocals and APIs
       - Gateway protocol
       - Bridge protocol
+      - OpenAI chat completions
