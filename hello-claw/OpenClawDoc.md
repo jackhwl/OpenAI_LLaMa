@@ -224,3 +224,4 @@
       - Gateway protocol
       - Bridge protocol
       - OpenAI chat completions
+      - OpenResponses API
