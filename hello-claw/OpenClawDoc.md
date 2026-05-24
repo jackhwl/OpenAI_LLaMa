@@ -225,3 +225,4 @@
       - Bridge protocol
       - OpenAI chat completions
       - OpenResponses API
+      - Tools invoke API
