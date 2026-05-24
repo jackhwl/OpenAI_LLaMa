@@ -226,3 +226,4 @@
       - OpenAI chat completions
       - OpenResponses API
       - Tools invoke API
+      - CLI backends
