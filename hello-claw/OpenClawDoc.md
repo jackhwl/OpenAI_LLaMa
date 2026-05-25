@@ -228,3 +228,4 @@
       - Tools invoke API
       - CLI backends
       - Local models
+      - Local model services
