@@ -227,3 +227,4 @@
       - OpenResponses API
       - Tools invoke API
       - CLI backends
+      - Local models
