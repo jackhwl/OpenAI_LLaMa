@@ -231,3 +231,4 @@
       - Local model services
     - Networking and discovery
       - Network
+      - Gateway-owned pairing
