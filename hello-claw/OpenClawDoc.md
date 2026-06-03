@@ -229,3 +229,5 @@
       - CLI backends
       - Local models
       - Local model services
+    - Networking and discovery
+      - Network
