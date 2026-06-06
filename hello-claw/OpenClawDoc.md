@@ -233,3 +233,4 @@
       - Network
       - Gateway-owned pairing
       - Discovery and transports
+      - Bonjour discovery
