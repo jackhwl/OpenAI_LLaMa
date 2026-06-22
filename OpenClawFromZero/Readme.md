@@ -6,3 +6,4 @@
 ## Section 2: Setting Up OpenClaw
   - 9. Why Security Matters
   - 11. Install OpenClaw on local Mac
+  - 12. Local AI Models & The Golden Rule of OpenClaw
