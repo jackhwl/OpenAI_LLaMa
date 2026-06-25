@@ -8,3 +8,4 @@
   - 11. Install OpenClaw on local Mac
   - 12. Local AI Models & The Golden Rule of OpenClaw
   - 19. First Lauch & Onboarding
+  - 20. Important: Disable Heartbeat After Setup
