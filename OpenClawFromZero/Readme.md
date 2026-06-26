@@ -9,3 +9,4 @@
   - 12. Local AI Models & The Golden Rule of OpenClaw
   - 19. First Lauch & Onboarding
   - 20. Important: Disable Heartbeat After Setup
+  - 21. Hardening Your Agent's Security
