@@ -11,3 +11,4 @@
   - 20. Important: Disable Heartbeat After Setup
   - 21. Hardening Your Agent's Security
   - 22. Connecting telegram
+    - https://docs.openclaw.ai/gateway/security  Read through this entire page and apply all of the recommended security settings. The only exception is keep allowinsecureauth turned on for now.
