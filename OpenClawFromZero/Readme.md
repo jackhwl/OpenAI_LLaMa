@@ -15,3 +15,4 @@
     - before you send any message on my behalf, write a draft first and wait for me to approve it. If you need to delete any files, check with me first. And if you need to make any network requests to outside services, ask me before you do it.
     - If you try something and it falls three times, stop what you are doing and let me know what the problem is. Never let the task keep running with no endpoint. And unless I tell you otherwise, don't spend more than 10 minutes on any single task.
     - run a security audit on my setup and tell me what you find.
+  - 23. Understanding API cost & staying in control
