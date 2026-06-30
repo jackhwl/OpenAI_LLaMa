@@ -16,3 +16,4 @@
     - If you try something and it falls three times, stop what you are doing and let me know what the problem is. Never let the task keep running with no endpoint. And unless I tell you otherwise, don't spend more than 10 minutes on any single task.
     - run a security audit on my setup and tell me what you find.
   - 23. Understanding API cost & staying in control
+  - 24. The Gateway Dashboard - A Full Walkthrough
