@@ -17,3 +17,4 @@
     - run a security audit on my setup and tell me what you find.
   - 23. Understanding API cost & staying in control
   - 24. The Gateway Dashboard - A Full Walkthrough
+  - 25. Updates & Recovery
