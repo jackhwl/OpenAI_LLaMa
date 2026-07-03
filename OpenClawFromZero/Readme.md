@@ -18,3 +18,5 @@
   - 23. Understanding API cost & staying in control
   - 24. The Gateway Dashboard - A Full Walkthrough
   - 25. Updates & Recovery
+## Section 3: Models & Cost Control
+  - 26. Gift: OpenClaw AI Models Guide — Full Reference (PDF)
