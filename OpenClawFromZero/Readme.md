@@ -21,3 +21,4 @@
 ## Section 3: Models & Cost Control
   - 26. Gift: OpenClaw AI Models Guide — Full Reference (PDF)
   - 27. Model Tiers & Real Costs
+  - 28. Adding API Keys & Smart Routing 
