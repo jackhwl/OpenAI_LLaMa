@@ -22,3 +22,4 @@
   - 26. Gift: OpenClaw AI Models Guide — Full Reference (PDF)
   - 27. Model Tiers & Real Costs
   - 28. Adding API Keys & Smart Routing 
+  - 29. Setting up free fallback models - Kimi & Ollama
