@@ -24,3 +24,4 @@
   - 28. Adding API Keys & Smart Routing 
   - 29. Setting up free fallback models - Kimi & Ollama
   - 30. Note for local install users: adding api keys
+  - 31. Free & Cheap Models: MinMax, Kimi & Gemini Flash
