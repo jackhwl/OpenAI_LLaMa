@@ -29,3 +29,4 @@
   - 32. Organising Your Telegramm with Groups
   - 33. Voice Mode
   - 34. Understanding Skills & Staying Safe
+  - 35. Understanding Skill Structure
