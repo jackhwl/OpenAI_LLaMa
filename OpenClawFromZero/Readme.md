@@ -31,4 +31,4 @@
   - 34. Understanding Skills & Staying Safe
   - 35. Understanding Skill Structure
   - 36. Disclaimer: Create Separate Accounts for Your Agent
-  - 
+  - 37. Installing Google Workspace (GOG)
