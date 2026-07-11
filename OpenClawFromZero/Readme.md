@@ -33,3 +33,5 @@
   - 36. Disclaimer: Create Separate Accounts for Your Agent
   - 37. Installing Google Workspace (GOG)
   - 38. Mini Project: Email Automation
+## Section 5: Real Projects with Your Agent
+  - 39. Workspace Files, Soul & Memory
