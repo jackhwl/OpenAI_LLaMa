@@ -35,3 +35,4 @@
   - 38. Mini Project: Email Automation
 ## Section 5: Real Projects with Your Agent
   - 39. Workspace Files, Soul & Memory
+  - 40. Cron Jobs & Heartbeat
