@@ -35,4 +35,10 @@
   - 38. Mini Project: Email Automation
 ## Section 5: Real Projects with Your Agent
   - 39. Workspace Files, Soul & Memory
+    - I need you to update my identity file and my user.md file with important long-term information.
+      Give me an interview.
+      Ask me a bunch of questions about who I am, what I do, how I like to work, and what matters to me.
+      Use my answers to fill in and optimize these files.
+      And going forward, if something changes, keep updating these files as we chat, so you always
+      have the most up-to-date information about me.
   - 40. Cron Jobs & Heartbeat
