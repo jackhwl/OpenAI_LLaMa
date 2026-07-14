@@ -42,3 +42,4 @@
       And going forward, if something changes, keep updating these files as we chat, so you always
       have the most up-to-date information about me.
   - 40. Cron Jobs & Heartbeat
+  - 41. Browsing the Web & Sub-Agents
