@@ -87,3 +87,5 @@ Output:
   - Basic responsive layout
 
      '''
+  - 20. Install the front-end Design Skill in Claude Code in VS Code
+    - npx skills add anthropics/claude-code --skill frontend-design
