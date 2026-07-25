@@ -4,5 +4,6 @@
   - 3. Masterclass Key Success Tips
   - 4. Download the Masterclass Materials
   - 5. Claude Desktop App Setup
-## Section 2: Claude Cowork Foundations
+## Section 2: Claude Cowork Foundations Masterclass
   - 6. Claude Cowork Practical Demo: Develop PowerPoint Slides without a Skill
+  - 7. Understanding Agent Skills & Popular Skill Sources
