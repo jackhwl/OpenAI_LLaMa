@@ -1,0 +1,73 @@
+Month,Quarter,Region,Product Line,Revenue,Units Sold,Target
+Jan-2025,Q1,North America,Cloud Services,245000,180,230000
+Jan-2025,Q1,North America,Consulting,128000,42,140000
+Jan-2025,Q1,Europe,Cloud Services,189000,145,200000
+Jan-2025,Q1,Europe,Consulting,97000,31,110000
+Jan-2025,Q1,Asia Pacific,Cloud Services,156000,120,150000
+Jan-2025,Q1,Asia Pacific,Consulting,72000,24,80000
+Feb-2025,Q1,North America,Cloud Services,258000,192,230000
+Feb-2025,Q1,North America,Consulting,135000,45,140000
+Feb-2025,Q1,Europe,Cloud Services,195000,150,200000
+Feb-2025,Q1,Europe,Consulting,102000,33,110000
+Feb-2025,Q1,Asia Pacific,Cloud Services,162000,125,150000
+Feb-2025,Q1,Asia Pacific,Consulting,78000,26,80000
+Mar-2025,Q1,North America,Cloud Services,271000,198,230000
+Mar-2025,Q1,North America,Consulting,142000,47,140000
+Mar-2025,Q1,Europe,Cloud Services,201000,155,200000
+Mar-2025,Q1,Europe,Consulting,108000,35,110000
+Mar-2025,Q1,Asia Pacific,Cloud Services,168000,130,150000
+Mar-2025,Q1,Asia Pacific,Consulting,82000,28,80000
+Apr-2025,Q2,North America,Cloud Services,280000,205,260000
+Apr-2025,Q2,North America,Consulting,138000,46,145000
+Apr-2025,Q2,Europe,Cloud Services,210000,162,210000
+Apr-2025,Q2,Europe,Consulting,112000,36,115000
+Apr-2025,Q2,Asia Pacific,Cloud Services,175000,135,160000
+Apr-2025,Q2,Asia Pacific,Consulting,85000,29,85000
+May-2025,Q2,North America,Cloud Services,295000,215,260000
+May-2025,Q2,North America,Consulting,148000,49,145000
+May-2025,Q2,Europe,Cloud Services,218000,168,210000
+May-2025,Q2,Europe,Consulting,118000,38,115000
+May-2025,Q2,Asia Pacific,Cloud Services,182000,140,160000
+May-2025,Q2,Asia Pacific,Consulting,89000,30,85000
+Jun-2025,Q2,North America,Cloud Services,312000,228,260000
+Jun-2025,Q2,North America,Consulting,155000,52,145000
+Jun-2025,Q2,Europe,Cloud Services,225000,174,210000
+Jun-2025,Q2,Europe,Consulting,122000,40,115000
+Jun-2025,Q2,Asia Pacific,Cloud Services,190000,146,160000
+Jun-2025,Q2,Asia Pacific,Consulting,93000,31,85000
+Jul-2025,Q3,North America,Cloud Services,305000,222,290000
+Jul-2025,Q3,North America,Consulting,145000,48,150000
+Jul-2025,Q3,Europe,Cloud Services,215000,166,220000
+Jul-2025,Q3,Europe,Consulting,105000,34,120000
+Jul-2025,Q3,Asia Pacific,Cloud Services,178000,137,170000
+Jul-2025,Q3,Asia Pacific,Consulting,80000,27,88000
+Aug-2025,Q3,North America,Cloud Services,318000,232,290000
+Aug-2025,Q3,North America,Consulting,152000,51,150000
+Aug-2025,Q3,Europe,Cloud Services,228000,176,220000
+Aug-2025,Q3,Europe,Consulting,115000,37,120000
+Aug-2025,Q3,Asia Pacific,Cloud Services,188000,145,170000
+Aug-2025,Q3,Asia Pacific,Consulting,86000,29,88000
+Sep-2025,Q3,North America,Cloud Services,330000,240,290000
+Sep-2025,Q3,North America,Consulting,160000,53,150000
+Sep-2025,Q3,Europe,Cloud Services,235000,182,220000
+Sep-2025,Q3,Europe,Consulting,120000,39,120000
+Sep-2025,Q3,Asia Pacific,Cloud Services,195000,150,170000
+Sep-2025,Q3,Asia Pacific,Consulting,91000,31,88000
+Oct-2025,Q4,North America,Cloud Services,342000,248,320000
+Oct-2025,Q4,North America,Consulting,158000,53,155000
+Oct-2025,Q4,Europe,Cloud Services,240000,185,235000
+Oct-2025,Q4,Europe,Consulting,125000,41,125000
+Oct-2025,Q4,Asia Pacific,Cloud Services,202000,156,180000
+Oct-2025,Q4,Asia Pacific,Consulting,95000,32,92000
+Nov-2025,Q4,North America,Cloud Services,355000,258,320000
+Nov-2025,Q4,North America,Consulting,165000,55,155000
+Nov-2025,Q4,Europe,Cloud Services,248000,192,235000
+Nov-2025,Q4,Europe,Consulting,130000,42,125000
+Nov-2025,Q4,Asia Pacific,Cloud Services,210000,162,180000
+Nov-2025,Q4,Asia Pacific,Consulting,98000,33,92000
+Dec-2025,Q4,North America,Cloud Services,368000,268,320000
+Dec-2025,Q4,North America,Consulting,172000,57,155000
+Dec-2025,Q4,Europe,Cloud Services,255000,198,235000
+Dec-2025,Q4,Europe,Consulting,135000,44,125000
+Dec-2025,Q4,Asia Pacific,Cloud Services,218000,168,180000
+Dec-2025,Q4,Asia Pacific,Consulting,102000,34,92000
