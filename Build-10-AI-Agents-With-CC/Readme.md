@@ -27,3 +27,5 @@
     Output:
     - A file called novatech_annual_review_v2.pptx
 '''
+  - 10. Understanding Claude Plugins (Finance, Data, HR)
+    - plugins bundle skills, connectors, slash commands & sub-agents into one package for a specific job function. No technical knowledge required to create them.
