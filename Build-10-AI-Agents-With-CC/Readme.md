@@ -29,3 +29,4 @@
 '''
   - 10. Understanding Claude Plugins (Finance, Data, HR)
     - plugins bundle skills, connectors, slash commands & sub-agents into one package for a specific job function. No technical knowledge required to create them.
+  - 11. Claude Plugin Demo: Build Dashboard & Explore Data Using Data Plugin in Cowork
