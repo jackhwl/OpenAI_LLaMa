@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Stock Portfolio Dashboard</title>
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+    color: #222;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h1 {
+    margin: 0 0 4px 0;
+    font-size: 24px;
+  }
+
+  header {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+
+  .header-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 8px;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: #666;
+  }
+
+  .stat-value {
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .up {
+    color: #1a7f1a;
+  }
+
+  .down {
+    color: #c0392b;
+  }
+
+  .note {
+    font-size: 12px;
+    color: #888;
+    margin-top: 8px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 30px;
+  }
+
+  .card {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 14px 16px;
+    background-color: #fff;
+  }
+
+  .card.up {
+    background-color: #e8f7e8;
+  }
+
+  .card.down {
+    background-color: #fbe9e7;
+  }
+
+  .card .symbol {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .card .name {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 8px;
+  }
+
+  .card .price {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+
+  .card .change {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  section.chart-section {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 16px 20px;
+  }
+
+  section.chart-section h2 {
+    margin-top: 0;
+    font-size: 18px;
+  }
+
+  .chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 220px;
+    border-bottom: 2px solid #999;
+    padding: 0 10px;
+    margin-top: 20px;
+  }
+
+  .bar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    width: 60px;
+  }
+
+  .bar-value {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+
+  .bar {
+    width: 40px;
+    border-radius: 3px 3px 0 0;
+  }
+
+  .bar.up {
+    background-color: #4caf50;
+  }
+
+  .bar.down {
+    background-color: #e74c3c;
+  }
+
+  .bar-label {
+    font-size: 12px;
+    margin-top: 6px;
+    color: #333;
+  }
+
+  @media (max-width: 500px) {
+    .header-stats {
+      gap: 16px;
+    }
+    .bar-container {
+      width: 40px;
+    }
+    .bar {
+      width: 24px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Stock Portfolio Dashboard</h1>
+  <div class="header-stats">
+    <div>
+      <div class="stat-label">Total Portfolio Value</div>
+      <div class="stat-value" id="total-value">--</div>
+    </div>
+    <div>
+      <div class="stat-label">Overall Daily Change</div>
+      <div class="stat-value" id="total-change">--</div>
+    </div>
+  </div>
+  <div class="note">Assumes 1 share held per stock. Prices from stock_data.csv.</div>
+</header>
+
+<div class="cards" id="cards"></div>
+
+<section class="chart-section">
+  <h2>Daily % Change by Stock</h2>
+  <div class="chart" id="chart"></div>
+</section>
+
+<script>
+  // Data embedded from stock_data.csv
+  const stocks = [
+    { symbol: "AAPL", name: "Apple Inc.", price: 333.02, change: 11.92, change_pct: 3.71 },
+    { symbol: "MSFT", name: "Microsoft Corporation", price: 381.70, change: -0.73, change_pct: -0.19 },
+    { symbol: "GOOGL", name: "Alphabet Inc.", price: 319.74, change: 0.50, change_pct: 0.16 },
+    { symbol: "AMZN", name: "Amazon.com, Inc.", price: 232.11, change: -2.22, change_pct: -0.95 },
+    { symbol: "NVDA", name: "NVIDIA Corporation", price: 206.84, change: -1.15, change_pct: -0.55 },
+    { symbol: "JPM", name: "JP Morgan Chase & Co.", price: 353.21, change: 3.69, change_pct: 1.05 }
+  ];
+
+  function formatMoney(n) {
+    return "$" + n.toFixed(2);
+  }
+
+  function formatSigned(n, suffix) {
+    const sign = n >= 0 ? "+" : "";
+    return sign + n.toFixed(2) + suffix;
+  }
+
+  // Header totals
+  const totalValue = stocks.reduce((sum, s) => sum + s.price, 0);
+  const totalChange = stocks.reduce((sum, s) => sum + s.change, 0);
+  const prevTotalValue = totalValue - totalChange;
+  const totalChangePct = (totalChange / prevTotalValue) * 100;
+
+  const totalValueEl = document.getElementById("total-value");
+  totalValueEl.textContent = formatMoney(totalValue);
+
+  const totalChangeEl = document.getElementById("total-change");
+  totalChangeEl.textContent = formatSigned(totalChange, "") + " (" + formatSigned(totalChangePct, "%") + ")";
+  totalChangeEl.classList.add(totalChange >= 0 ? "up" : "down");
+
+  // Cards
+  const cardsEl = document.getElementById("cards");
+  stocks.forEach(function (s) {
+    const isUp = s.change >= 0;
+    const card = document.createElement("div");
+    card.className = "card " + (isUp ? "up" : "down");
+    card.innerHTML =
+      '<div class="symbol">' + s.symbol + '</div>' +
+      '<div class="name">' + s.name + '</div>' +
+      '<div class="price">' + formatMoney(s.price) + '</div>' +
+      '<div class="change ' + (isUp ? "up" : "down") + '">' +
+        formatSigned(s.change, "") + ' (' + formatSigned(s.change_pct, "%") + ')' +
+      '</div>';
+    cardsEl.appendChild(card);
+  });
+
+  // Bar chart
+  const chartEl = document.getElementById("chart");
+  const maxAbsPct = Math.max(...stocks.map(function (s) { return Math.abs(s.change_pct); }));
+  const scale = maxAbsPct === 0 ? 1 : 160 / maxAbsPct;
+
+  stocks.forEach(function (s) {
+    const isUp = s.change_pct >= 0;
+    const barHeight = Math.max(Math.abs(s.change_pct) * scale, 2);
+
+    const container = document.createElement("div");
+    container.className = "bar-container";
+
+    const valueLabel = document.createElement("div");
+    valueLabel.className = "bar-value";
+    valueLabel.textContent = formatSigned(s.change_pct, "%");
+
+    const bar = document.createElement("div");
+    bar.className = "bar " + (isUp ? "up" : "down");
+    bar.style.height = barHeight + "px";
+
+    const label = document.createElement("div");
+    label.className = "bar-label";
+    label.textContent = s.symbol;
+
+    container.appendChild(valueLabel);
+    container.appendChild(bar);
+    container.appendChild(label);
+    chartEl.appendChild(container);
+  });
+</script>
+
+</body>
+</html>
