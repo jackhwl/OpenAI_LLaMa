@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Elevate Performance — Train smarter. Perform better.</title>
+<style>
+  :root{
+    --bg:#0a0d12;
+    --bg-2:#0f141b;
+    --panel:#141a23;
+    --panel-2:#1a212c;
+    --line:#232c3a;
+    --text:#e7ecf3;
+    --muted:#8a95a7;
+    --accent:#c6ff3d;      /* electric lime */
+    --accent-2:#3bd6ff;    /* cyan */
+    --purple:#8b5cf6;      /* primary CTA */
+    --purple-2:#a78bfa;
+    --danger:#ff5a6a;
+    --ok:#41d18a;
+    --shadow: 0 20px 60px rgba(0,0,0,.45);
+    --r:14px;
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family: ui-sans-serif, -apple-system, "SF Pro Text", "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background:
+      radial-gradient(1100px 600px at 85% -10%, rgba(198,255,61,.10), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(59,214,255,.10), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    line-height:1.5;
+  }
+
+  /* ---------- Layout ---------- */
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 40px;
+    border-bottom:1px solid var(--line);
+    backdrop-filter: blur(8px);
+    position:sticky; top:0; z-index:20;
+    background: rgba(10,13,18,.7);
+  }
+  .brand{display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.4px}
+  .brand-mark{
+    width:34px; height:34px; border-radius:9px;
+    background: conic-gradient(from 210deg, var(--accent), var(--accent-2), var(--accent));
+    position:relative; box-shadow: 0 0 0 1px rgba(255,255,255,.06), 0 8px 24px rgba(198,255,61,.15);
+  }
+  .brand-mark::after{
+    content:""; position:absolute; inset:5px; border-radius:6px; background:var(--bg-2);
+  }
+  .brand-mark::before{
+    content:""; position:absolute; inset:0; border-radius:9px;
+    background: linear-gradient(120deg, transparent 40%, rgba(255,255,255,.25) 50%, transparent 60%);
+    mix-blend-mode: overlay;
+  }
+  .brand-name{font-size:15px}
+  .brand-name span{color:var(--muted); font-weight:500}
+  .nav-links{display:flex; gap:28px; color:var(--muted); font-size:14px}
+  .nav-links a{color:inherit; text-decoration:none; transition:color .15s}
+  .nav-links a:hover{color:var(--text)}
+  .nav-cta{
+    padding:10px 16px; border-radius:999px;
+    background: linear-gradient(135deg, var(--purple), var(--purple-2));
+    color:#fff;
+    font-weight:700; font-size:13px; border:none; cursor:pointer;
+    transition:transform .15s, box-shadow .15s;
+    box-shadow: 0 8px 24px rgba(139,92,246,.35);
+  }
+  .nav-cta:hover{transform:translateY(-1px); box-shadow: 0 12px 30px rgba(139,92,246,.5)}
+
+  main{max-width:1200px; margin:0 auto; padding:40px 40px 80px}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    display:grid; grid-template-columns: 1.15fr 1fr; gap:28px;
+    margin-bottom:36px;
+  }
+  .hero-copy{padding:8px 4px}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:6px 12px; border-radius:999px; background:rgba(198,255,61,.08);
+    border:1px solid rgba(198,255,61,.25); color:var(--accent);
+    font-size:12px; letter-spacing:.6px; text-transform:uppercase; font-weight:600;
+  }
+  .eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--accent); box-shadow:0 0 12px var(--accent)}
+  h1{
+    font-size: clamp(38px, 5vw, 56px);
+    line-height:1.05; letter-spacing:-.02em;
+    margin:18px 0 14px; font-weight:800;
+  }
+  h1 em{
+    font-style:normal;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
+    -webkit-background-clip: text; background-clip:text; color:transparent;
+  }
+  .lead{color:var(--muted); font-size:16px; max-width:520px; margin-bottom:22px}
+  .hero-ctas{display:flex; gap:12px; flex-wrap:wrap}
+  .btn{
+    padding:14px 22px; border-radius:12px; font-weight:700; font-size:14px;
+    border:1px solid transparent; cursor:pointer; transition: transform .15s, background .15s, border-color .15s;
+    display:inline-flex; align-items:center; gap:10px;
+  }
+  .btn-primary{
+    background: linear-gradient(135deg, var(--purple), var(--purple-2));
+    color:#fff;
+    box-shadow: 0 10px 30px rgba(139,92,246,.35);
+  }
+  .btn-primary:hover{transform:translateY(-1px); box-shadow: 0 14px 36px rgba(139,92,246,.5)}
+  .btn-ghost{background:transparent; color:var(--text); border-color:var(--line)}
+  .btn-ghost:hover{border-color:#3a475b; background:rgba(255,255,255,.03)}
+
+  .hero-stats{display:flex; gap:28px; margin-top:34px; color:var(--muted); font-size:13px}
+  .hero-stat b{display:block; color:var(--text); font-size:22px; font-weight:800; letter-spacing:-.01em}
+
+  /* ---------- Cards ---------- */
+  .card{
+    background: linear-gradient(180deg, var(--panel), var(--panel-2));
+    border:1px solid var(--line); border-radius: var(--r);
+    box-shadow: var(--shadow);
+  }
+  .card-pad{padding:24px}
+  .card-title{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px}
+  .card-title h3{margin:0; font-size:14px; font-weight:600; letter-spacing:.4px; color:var(--muted); text-transform:uppercase}
+
+  /* ---------- Dashboard ---------- */
+  .dash-hero{
+    display:grid; grid-template-columns: 1.2fr 1fr; gap:20px;
+    padding:26px;
+    background: linear-gradient(180deg, rgba(255,255,255,.02), transparent), linear-gradient(180deg, var(--panel), var(--panel-2));
+    border:1px solid var(--line); border-radius:var(--r); box-shadow: var(--shadow);
+  }
+  .ring-wrap{display:flex; align-items:center; gap:20px}
+  .ring{
+    --p:0;
+    width:150px; height:150px; border-radius:50%;
+    background:
+      conic-gradient(var(--accent) calc(var(--p)*1%), rgba(255,255,255,.06) 0);
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    transition: background .8s ease;
+  }
+  .ring::after{
+    content:""; position:absolute; inset:12px; border-radius:50%;
+    background: radial-gradient(circle at 30% 20%, #1a2230, #0f141b);
+    border:1px solid var(--line);
+  }
+  .ring-inner{position:relative; z-index:2; text-align:center}
+  .ring-inner .val{font-size:34px; font-weight:800; letter-spacing:-.02em}
+  .ring-inner .lbl{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.7px}
+  .level-badge{
+    display:inline-block; padding:6px 12px; border-radius:999px;
+    background:rgba(59,214,255,.1); border:1px solid rgba(59,214,255,.3);
+    color:var(--accent-2); font-size:12px; font-weight:700; letter-spacing:.4px;
+  }
+  .ring-caption h4{margin:12px 0 6px; font-size:22px; letter-spacing:-.01em}
+  .ring-caption p{margin:0; color:var(--muted); font-size:14px; max-width:280px}
+
+  .capacity{
+    display:flex; flex-direction:column; justify-content:space-between;
+    padding:20px; border-radius:12px; border:1px solid var(--line);
+    background: linear-gradient(180deg, rgba(255,255,255,.02), transparent);
+  }
+  .capacity h4{margin:0 0 4px; font-size:14px; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.4px}
+  .capacity .big{font-size:44px; font-weight:800; letter-spacing:-.02em; margin-bottom:6px}
+  .capacity .big small{font-size:14px; color:var(--muted); font-weight:500; margin-left:6px}
+  .week{display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; margin-top:14px}
+  .day{
+    height:56px; border-radius:8px;
+    background: rgba(255,255,255,.04);
+    border:1px solid var(--line);
+    position:relative; overflow:hidden;
+    display:flex; align-items:flex-end; justify-content:center; padding-bottom:6px;
+    font-size:10px; color:var(--muted); font-weight:600; letter-spacing:.5px;
+  }
+  .day .fill{
+    position:absolute; left:0; right:0; bottom:0; height:0%;
+    background: linear-gradient(180deg, var(--accent), #7fd414);
+    transition: height .6s cubic-bezier(.4,0,.2,1);
+    opacity:.85;
+  }
+  .day.active .fill{height:100%}
+  .day span{position:relative; z-index:2; color:var(--text)}
+  .day.active span{color:#0b0f14}
+
+  /* ---------- Sections layout ---------- */
+  .grid-2{display:grid; grid-template-columns: 1.15fr 1fr; gap:20px; margin-top:22px}
+  @media (max-width: 940px){
+    .hero, .dash-hero, .grid-2{grid-template-columns:1fr}
+    main{padding:24px}
+    .nav{padding:18px 20px}
+    .nav-links{display:none}
+  }
+
+  /* ---------- Assessment ---------- */
+  .quiz{padding:28px}
+  .quiz-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:18px}
+  .quiz-progress-wrap{flex:1; margin:0 18px; height:6px; background:rgba(255,255,255,.06); border-radius:999px; overflow:hidden}
+  .quiz-progress{height:100%; width:0%; background:linear-gradient(90deg, var(--accent), var(--accent-2)); border-radius:999px; transition:width .4s ease}
+  .quiz-step{font-size:12px; color:var(--muted); font-weight:600; letter-spacing:.6px}
+
+  .question{min-height:280px; display:flex; flex-direction:column; justify-content:flex-start;
+    animation: fadeUp .35s ease;
+  }
+  @keyframes fadeUp{from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none}}
+
+  .q-num{color:var(--accent); font-weight:700; font-size:13px; letter-spacing:.5px; margin-bottom:6px}
+  .q-title{font-size:26px; font-weight:800; letter-spacing:-.01em; margin:0 0 20px}
+
+  .opts{display:grid; grid-template-columns: 1fr 1fr; gap:10px}
+  .opt{
+    display:flex; align-items:center; gap:12px;
+    padding:16px 18px; border-radius:12px;
+    background:rgba(255,255,255,.03); border:1px solid var(--line);
+    cursor:pointer; transition: all .18s;
+    font-weight:600; font-size:14px;
+  }
+  .opt:hover{border-color:#3a475b; background:rgba(255,255,255,.05)}
+  .opt.selected{
+    border-color: var(--accent);
+    background: linear-gradient(180deg, rgba(198,255,61,.10), rgba(198,255,61,.03));
+    box-shadow: inset 0 0 0 1px rgba(198,255,61,.4);
+  }
+  .opt-radio{
+    width:18px; height:18px; border-radius:50%; border:1.5px solid #3a475b;
+    display:inline-flex; align-items:center; justify-content:center;
+    flex-shrink:0; transition: all .18s;
+  }
+  .opt.selected .opt-radio{border-color:var(--accent); background:var(--accent)}
+  .opt.selected .opt-radio::after{content:""; width:8px; height:8px; border-radius:50%; background:#0b0f14}
+
+  .num-input{
+    display:flex; align-items:center; gap:14px; padding:14px 18px; border-radius:12px;
+    background:rgba(255,255,255,.03); border:1px solid var(--line); max-width:280px;
+  }
+  .num-input input{
+    background:transparent; border:none; color:var(--text); font-size:44px; font-weight:800;
+    width:110px; text-align:center; outline:none; font-family:inherit; letter-spacing:-.02em;
+  }
+  .num-input input::-webkit-outer-spin-button,
+  .num-input input::-webkit-inner-spin-button{-webkit-appearance:none; margin:0}
+  .num-btn{
+    width:44px; height:44px; border-radius:10px; background:rgba(255,255,255,.05);
+    border:1px solid var(--line); color:var(--text); font-size:20px; cursor:pointer;
+    font-weight:700; transition:all .15s;
+  }
+  .num-btn:hover{background:rgba(255,255,255,.09); border-color:#3a475b}
+  .num-label{color:var(--muted); font-size:13px; margin-top:8px}
+
+  .quiz-actions{display:flex; align-items:center; justify-content:space-between; margin-top:28px; padding-top:20px; border-top:1px solid var(--line)}
+  .btn-back{
+    background:transparent; border:none; color:var(--muted); cursor:pointer;
+    font-size:14px; font-weight:600; padding:10px 4px; transition:color .15s;
+  }
+  .btn-back:hover{color:var(--text)}
+  .btn-back:disabled{opacity:.35; cursor:not-allowed}
+
+  /* Result screen */
+  .result{padding:28px; text-align:left}
+  .result-hero{display:flex; align-items:center; gap:24px; margin-bottom:22px; flex-wrap:wrap}
+  .result h2{margin:0 0 6px; font-size:32px; letter-spacing:-.01em}
+  .result .sub{color:var(--muted); margin-bottom:2px; max-width:460px}
+
+  .recs{display:grid; gap:12px; margin-top:12px}
+  .rec{
+    display:flex; gap:14px; padding:16px; border-radius:12px;
+    background:rgba(255,255,255,.03); border:1px solid var(--line);
+  }
+  .rec-ico{
+    width:38px; height:38px; border-radius:10px; flex-shrink:0;
+    background: linear-gradient(160deg, rgba(198,255,61,.15), rgba(59,214,255,.1));
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; font-size:18px;
+  }
+  .rec h4{margin:0 0 4px; font-size:15px}
+  .rec p{margin:0; color:var(--muted); font-size:13.5px}
+
+  /* ---------- Membership ---------- */
+  .membership{margin-top:22px}
+  .join{padding:32px; display:grid; grid-template-columns: 1fr 1fr; gap:32px; align-items:center}
+  @media (max-width: 940px){ .join{grid-template-columns:1fr; padding:24px} }
+  .join-copy h2{font-size:34px; letter-spacing:-.01em; margin:8px 0 12px}
+  .join-copy p{color:var(--muted); margin:0 0 14px; max-width:420px}
+  .checks{list-style:none; padding:0; margin:14px 0 0; display:grid; gap:10px}
+  .checks li{display:flex; align-items:center; gap:10px; font-size:14px; color:var(--muted)}
+  .checks li::before{
+    content:""; width:18px; height:18px; border-radius:50%; background:rgba(198,255,61,.15);
+    border:1px solid rgba(198,255,61,.4); flex-shrink:0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23c6ff3d' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>");
+    background-size:12px; background-position:center; background-repeat:no-repeat;
+  }
+
+  .form{display:grid; gap:14px}
+  .field{display:flex; flex-direction:column; gap:6px}
+  .field label{font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; font-weight:600}
+  .field input, .field select, .field textarea{
+    background: rgba(255,255,255,.03); border:1px solid var(--line);
+    color:var(--text); padding:12px 14px; border-radius:10px;
+    font-size:14px; font-family:inherit; outline:none;
+    transition: border-color .15s, background .15s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    border-color: var(--accent); background: rgba(255,255,255,.05);
+  }
+  .field textarea{resize:vertical; min-height:80px}
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+  .join-cta{margin-top:6px; width:100%; justify-content:center}
+
+  .toast{
+    position:fixed; bottom:30px; right:30px;
+    background: linear-gradient(160deg, #182131, #101720);
+    border:1px solid var(--line); border-left:3px solid var(--accent);
+    padding:14px 18px; border-radius:12px; box-shadow: var(--shadow);
+    font-size:14px; color:var(--text);
+    transform:translateY(20px); opacity:0; pointer-events:none;
+    transition: all .3s ease;
+    max-width:320px; z-index:100;
+  }
+  .toast.show{transform:none; opacity:1}
+  .toast b{color:var(--accent)}
+
+  /* Utility */
+  .hidden{display:none !important}
+  footer{color:var(--muted); font-size:12px; text-align:center; padding:24px 20px 40px}
+  footer a{color:inherit}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="brand">
+    <div class="brand-mark"></div>
+    <div class="brand-name">Elevate Performance<br><span>Train smarter. Perform better.</span></div>
+  </div>
+  <div class="nav-links">
+    <a href="#assessment">Assessment</a>
+    <a href="#dashboard">Dashboard</a>
+    <a href="#membership">Membership</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('membership').scrollIntoView({behavior:'smooth'})">Join now</button>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="eyebrow-dot"></span>AI-Powered Coaching</span>
+      <h1>Your body has a ceiling. <em>We move it.</em></h1>
+      <p class="lead">
+        Adaptive training plans, science-backed recovery, and a coach in your pocket —
+        built around who you are today and where you want to be in twelve weeks.
+      </p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary" onclick="document.getElementById('assessment').scrollIntoView({behavior:'smooth'})">
+          Start free assessment →
+        </button>
+        <button class="btn btn-ghost" onclick="document.getElementById('dashboard').scrollIntoView({behavior:'smooth'})">
+          See dashboard
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><b>12,400+</b>Active members</div>
+        <div class="hero-stat"><b>94%</b>Hit their goal</div>
+        <div class="hero-stat"><b>4.9★</b>Coach rating</div>
+      </div>
+    </div>
+
+    <!-- DASHBOARD PREVIEW -->
+    <div id="dashboard" class="dash-hero">
+      <div>
+        <div class="card-title" style="margin-bottom:18px">
+          <h3>Readiness score</h3>
+          <span id="levelBadge" class="level-badge">Awaiting intake</span>
+        </div>
+        <div class="ring-wrap">
+          <div class="ring" id="ring" style="--p:0">
+            <div class="ring-inner">
+              <div class="val" id="scoreVal">—</div>
+              <div class="lbl">out of 100</div>
+            </div>
+          </div>
+          <div class="ring-caption">
+            <h4 id="levelTitle">Complete your assessment</h4>
+            <p id="levelDesc">Answer four quick questions to unlock your personalized readiness score and training capacity.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="capacity">
+        <div>
+          <h4>Weekly training capacity</h4>
+          <div class="big"><span id="daysVal">0</span><small>/ 7 days</small></div>
+        </div>
+        <div class="week" id="week">
+          <div class="day"><div class="fill"></div><span>MON</span></div>
+          <div class="day"><div class="fill"></div><span>TUE</span></div>
+          <div class="day"><div class="fill"></div><span>WED</span></div>
+          <div class="day"><div class="fill"></div><span>THU</span></div>
+          <div class="day"><div class="fill"></div><span>FRI</span></div>
+          <div class="day"><div class="fill"></div><span>SAT</span></div>
+          <div class="day"><div class="fill"></div><span>SUN</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASSESSMENT + RECS -->
+  <section class="grid-2" id="assessment">
+    <div class="card quiz" id="quizCard">
+      <div class="quiz-head">
+        <span class="quiz-step" id="quizStep">STEP 1 OF 4</span>
+        <div class="quiz-progress-wrap"><div class="quiz-progress" id="quizProgress"></div></div>
+        <span class="quiz-step" id="quizPct">25%</span>
+      </div>
+
+      <div id="quizBody"></div>
+
+      <div class="quiz-actions">
+        <button class="btn-back" id="btnBack" disabled>← Back</button>
+        <button class="btn btn-primary" id="btnNext">Continue</button>
+      </div>
+    </div>
+
+    <div class="card card-pad" id="recCard">
+      <div class="card-title"><h3>Personalized recommendations</h3></div>
+      <div id="recBody">
+        <p style="color:var(--muted); font-size:14px; margin:0">
+          Your recommendations will appear here as you complete the assessment.
+          Every answer refines the plan in real time.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEMBERSHIP -->
+  <section class="membership" id="membership">
+    <div class="card join">
+      <div class="join-copy">
+        <span class="eyebrow"><span class="eyebrow-dot"></span>Membership</span>
+        <h2>Coaching that adapts to your week.</h2>
+        <p>Real coaches, adaptive AI programming, and a training system that meets you at your level — not somebody else's.</p>
+        <ul class="checks">
+          <li>Weekly plan tailored to your capacity</li>
+          <li>1:1 check-ins with a certified coach</li>
+          <li>Recovery, nutrition, and mobility built in</li>
+          <li>Cancel anytime — no lock-in</li>
+        </ul>
+      </div>
+
+      <form class="form" id="joinForm" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="fName">Full name</label>
+            <input id="fName" type="text" placeholder="Alex Rivera" required />
+          </div>
+          <div class="field">
+            <label for="fEmail">Email</label>
+            <input id="fEmail" type="email" placeholder="you@domain.com" required />
+          </div>
+        </div>
+        <div class="field">
+          <label for="fTime">Preferred training time</label>
+          <select id="fTime" required>
+            <option value="">Choose a time…</option>
+            <option>Early morning (5–7 AM)</option>
+            <option>Morning (7–10 AM)</option>
+            <option>Midday (11 AM–2 PM)</option>
+            <option>Afternoon (2–5 PM)</option>
+            <option>Evening (5–8 PM)</option>
+            <option>Late night (8–11 PM)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fNotes">Anything your coach should know?</label>
+          <textarea id="fNotes" placeholder="Old shoulder injury, travel schedule, home gym setup…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary join-cta">Claim my plan →</button>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>© Elevate Performance · Train smarter. Perform better.</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ---------------- Assessment engine ---------------- */
+
+const QUESTIONS = [
+  {
+    id: "goal",
+    q: "What's your primary fitness goal?",
+    hint: "This anchors everything — training split, intensity, and recovery.",
+    type: "choice",
+    options: [
+      { v: "lose",     label: "Lose weight" },
+      { v: "muscle",   label: "Build muscle" },
+      { v: "endure",   label: "Improve endurance" },
+      { v: "general",  label: "General fitness" },
+    ],
+  },
+  {
+    id: "days",
+    q: "How many days per week can you realistically train?",
+    hint: "Be honest — consistency beats ambition every time.",
+    type: "number",
+    min: 1, max: 7, default: 3,
+  },
+  {
+    id: "level",
+    q: "What's your current fitness level?",
+    hint: "Choose where you are today, not where you want to be.",
+    type: "choice",
+    options: [
+      { v: "beg",  label: "Beginner" },
+      { v: "int",  label: "Intermediate" },
+      { v: "adv",  label: "Advanced" },
+    ],
+  },
+  {
+    id: "block",
+    q: "What's your biggest challenge?",
+    hint: "We'll build the plan around beating this specifically.",
+    type: "choice",
+    options: [
+      { v: "consist", label: "Consistency" },
+      { v: "nutri",   label: "Nutrition" },
+      { v: "moti",    label: "Motivation" },
+      { v: "time",    label: "Time" },
+    ],
+  },
+];
+
+const state = {
+  step: 0,
+  answers: { goal:null, days:null, level:null, block:null },
+  finished: false,
+};
+
+const $ = (s) => document.querySelector(s);
+const quizBody = $("#quizBody");
+const btnNext = $("#btnNext");
+const btnBack = $("#btnBack");
+const quizStep = $("#quizStep");
+const quizPct = $("#quizPct");
+const quizProgress = $("#quizProgress");
+
+function renderQuestion(){
+  const q = QUESTIONS[state.step];
+  const total = QUESTIONS.length;
+  quizStep.textContent = `STEP ${state.step + 1} OF ${total}`;
+  const pct = Math.round(((state.step) / total) * 100);
+  quizPct.textContent = `${pct}%`;
+  quizProgress.style.width = pct + "%";
+
+  btnBack.disabled = state.step === 0;
+  btnNext.textContent = state.step === total - 1 ? "See my plan →" : "Continue →";
+
+  let html = `
+    <div class="question">
+      <div class="q-num">Question ${state.step + 1}</div>
+      <h2 class="q-title">${q.q}</h2>
+  `;
+
+  if (q.type === "choice") {
+    html += `<div class="opts">`;
+    for (const o of q.options) {
+      const sel = state.answers[q.id] === o.v ? "selected" : "";
+      html += `
+        <div class="opt ${sel}" data-val="${o.v}">
+          <span class="opt-radio"></span>
+          <span>${o.label}</span>
+        </div>`;
+    }
+    html += `</div>`;
+  } else if (q.type === "number") {
+    const val = state.answers[q.id] ?? q.default;
+    html += `
+      <div class="num-input">
+        <button class="num-btn" data-delta="-1" aria-label="decrease">−</button>
+        <input id="numVal" type="number" min="${q.min}" max="${q.max}" value="${val}" />
+        <button class="num-btn" data-delta="1" aria-label="increase">+</button>
+      </div>
+      <div class="num-label">${q.hint}</div>
+    `;
+  }
+
+  html += `</div>`;
+
+  if (q.type === "choice") {
+    html = html.replace(`<div class="num-label">`, `<div class="num-label" style="margin-top:16px">`);
+    html = html.slice(0, html.lastIndexOf("</div>")) + `<div style="color:var(--muted); font-size:13px; margin-top:18px">${q.hint}</div></div>`;
+  }
+
+  quizBody.innerHTML = html;
+
+  // Bind
+  if (q.type === "choice") {
+    quizBody.querySelectorAll(".opt").forEach(el => {
+      el.addEventListener("click", () => {
+        state.answers[q.id] = el.dataset.val;
+        quizBody.querySelectorAll(".opt").forEach(x => x.classList.remove("selected"));
+        el.classList.add("selected");
+        updateLiveRecs();
+      });
+    });
+  } else if (q.type === "number") {
+    const input = quizBody.querySelector("#numVal");
+    const commit = () => {
+      let v = parseInt(input.value, 10);
+      if (isNaN(v)) v = q.default;
+      v = Math.max(q.min, Math.min(q.max, v));
+      input.value = v;
+      state.answers[q.id] = v;
+      updateLiveRecs();
+    };
+    input.addEventListener("input", commit);
+    input.addEventListener("change", commit);
+    quizBody.querySelectorAll(".num-btn").forEach(b => {
+      b.addEventListener("click", () => {
+        const delta = parseInt(b.dataset.delta, 10);
+        input.value = (parseInt(input.value, 10) || q.default) + delta;
+        commit();
+      });
+    });
+    // ensure default is stored on first render
+    if (state.answers[q.id] == null) { state.answers[q.id] = q.default; updateLiveRecs(); }
+  }
+}
+
+btnNext.addEventListener("click", () => {
+  const q = QUESTIONS[state.step];
+  if (state.answers[q.id] == null || state.answers[q.id] === "") {
+    flash("Pick an answer to continue.");
+    return;
+  }
+  if (state.step < QUESTIONS.length - 1) {
+    state.step++;
+    renderQuestion();
+  } else {
+    finishAssessment();
+  }
+});
+btnBack.addEventListener("click", () => {
+  if (state.step === 0) return;
+  if (state.finished) { state.finished = false; renderQuestion(); return; }
+  state.step--; renderQuestion();
+});
+
+/* ---------------- Scoring & recs ---------------- */
+
+function computeReadiness(a){
+  // Missing inputs = partial score
+  let score = 0;
+  // Level (weight: 45)
+  if (a.level === "beg") score += 20;
+  else if (a.level === "int") score += 34;
+  else if (a.level === "adv") score += 45;
+
+  // Days (weight: 35) — 1..7
+  if (a.days) score += Math.round((Math.min(7, Math.max(1, a.days)) / 7) * 35);
+
+  // Goal alignment (weight: 10)
+  if (a.goal) score += 10;
+
+  // Block (weight: 10) — nuance
+  if (a.block === "consist" || a.block === "moti") score += 6;
+  else if (a.block) score += 10;
+
+  return Math.max(0, Math.min(100, score));
+}
+
+function levelFromScore(s){
+  if (s >= 75) return { key:"high", label:"High Performance",
+    desc:"You've got the base. Time to push structure, intensity, and recovery to another tier." };
+  if (s >= 45) return { key:"active", label:"Active",
+    desc:"Solid foundation. A tailored plan will unlock consistency and measurable progress." };
+  return { key:"starter", label:"Starter",
+    desc:"Great starting point. We'll build habits first, then layer intensity — no burnout." };
+}
+
+const RECS = {
+  goal: {
+    lose:    { icon:"🔥", h:"Metabolic conditioning circuits",  p:"3× weekly full-body strength + 2× low-impact zone-2 sessions to burn without breaking down." },
+    muscle:  { icon:"💪", h:"Push/pull/legs hypertrophy split", p:"Progressive overload on 6–8 compound lifts, 8–12 rep sweet spot, 48h recovery per group." },
+    endure:  { icon:"🏃", h:"Polarized endurance protocol",     p:"80% easy aerobic base, 20% VO₂ intervals. Grow the engine before flooring the gas pedal." },
+    general: { icon:"⚡", h:"Balanced 3-day strength + mobility",p:"Full-body strength alternated with mobility flows — the highest ROI plan for lifelong fitness." },
+  },
+  level: {
+    beg: { icon:"🎯", h:"Master the movement patterns first",    p:"Squat, hinge, push, pull, carry. Two weeks of skill work protects you from every future injury." },
+    int: { icon:"📈", h:"Add periodization",                     p:"Cycle 3 weeks of building volume with 1 week of deload — the fastest path past a plateau." },
+    adv: { icon:"🧬", h:"Data-driven recovery",                  p:"Track HRV, sleep, and RPE. Advanced athletes gain from recovery precision, not more volume." },
+  },
+  block: {
+    consist: { icon:"📅", h:"Anchor training to a fixed time",    p:"Same slot, same days. Willpower fails; scheduling doesn't. We'll lock your plan to your calendar." },
+    nutri:   { icon:"🥗", h:"Start with protein + water minimums", p:"1g protein per lb bodyweight, 3L water. Two habits before we optimize anything else." },
+    moti:    { icon:"🔗", h:"Streaks + weekly coach check-ins",   p:"External accountability triples adherence. Your coach reviews the week every Sunday." },
+    time:    { icon:"⏱️", h:"30-minute density sessions",         p:"Supersets and full-body circuits — same stimulus, half the clock. Built for tight weeks." },
+  },
+  days: {
+    low:  { icon:"⚙️", h:"Density beats frequency",   p:"With limited days, every session is full-body compound-focused for maximum stimulus per hour." },
+    mid:  { icon:"🔁", h:"Upper/lower rotation",       p:"4-day sessions split intelligently so no muscle group is neglected and recovery stays sharp." },
+    high: { icon:"🏆", h:"Advanced 5–6 day split",     p:"Volume distributed across specialized days — hypertrophy, strength, conditioning, mobility." },
+  },
+};
+
+function buildRecs(a){
+  const recs = [];
+  if (a.goal) recs.push(RECS.goal[a.goal]);
+  if (a.level) recs.push(RECS.level[a.level]);
+  if (a.block) recs.push(RECS.block[a.block]);
+  if (a.days != null){
+    if (a.days <= 2) recs.push(RECS.days.low);
+    else if (a.days <= 4) recs.push(RECS.days.mid);
+    else recs.push(RECS.days.high);
+  }
+  // Prioritize 2–3 highest-signal picks
+  const answered = [a.goal, a.level, a.block, a.days].filter(x => x != null && x !== "").length;
+  const target = answered <= 2 ? 2 : 3;
+  return recs.slice(0, target);
+}
+
+/* ---------------- Live UI updates ---------------- */
+
+function updateLiveRecs(){
+  const a = state.answers;
+  const score = computeReadiness(a);
+  const lvl = levelFromScore(score);
+
+  // Ring
+  $("#ring").style.setProperty("--p", score);
+  $("#scoreVal").textContent = score;
+  $("#levelBadge").textContent = lvl.label;
+  $("#levelBadge").style.color = score >= 75 ? "var(--accent)" : "var(--accent-2)";
+  $("#levelBadge").style.background = score >= 75 ? "rgba(198,255,61,.10)" : "rgba(59,214,255,.10)";
+  $("#levelBadge").style.borderColor = score >= 75 ? "rgba(198,255,61,.35)" : "rgba(59,214,255,.30)";
+  $("#levelTitle").textContent = `${lvl.label} · Score ${score}`;
+  $("#levelDesc").textContent = lvl.desc;
+
+  // Days visual
+  const d = a.days || 0;
+  $("#daysVal").textContent = d;
+  const days = document.querySelectorAll("#week .day");
+  days.forEach((el, i) => el.classList.toggle("active", i < d));
+
+  // Recommendations
+  const recCard = document.getElementById("recBody");
+  const recs = buildRecs(a);
+  if (recs.length === 0){
+    recCard.innerHTML = `<p style="color:var(--muted); font-size:14px; margin:0">
+      Your recommendations will appear here as you complete the assessment.</p>`;
+    return;
+  }
+  recCard.innerHTML = `<div class="recs">` + recs.map(r => `
+    <div class="rec">
+      <div class="rec-ico">${r.icon}</div>
+      <div><h4>${r.h}</h4><p>${r.p}</p></div>
+    </div>`).join("") + `</div>`;
+}
+
+/* ---------------- Finish ---------------- */
+
+function finishAssessment(){
+  state.finished = true;
+  const a = state.answers;
+  const score = computeReadiness(a);
+  const lvl = levelFromScore(score);
+  const recs = buildRecs(a);
+
+  // Progress full
+  quizProgress.style.width = "100%";
+  quizPct.textContent = "100%";
+  quizStep.textContent = "COMPLETE";
+
+  const goalMap = { lose:"lose weight", muscle:"build muscle", endure:"improve endurance", general:"build general fitness" };
+
+  quizBody.innerHTML = `
+    <div class="result question">
+      <div class="result-hero">
+        <div>
+          <div class="q-num">Assessment complete</div>
+          <h2>You're a <em style="color:var(--accent); font-style:normal">${lvl.label}</em>.</h2>
+          <p class="sub">Based on your goal to ${goalMap[a.goal] || "improve fitness"}, ${a.days} training days per week, and current level, here's your personalized starting plan.</p>
+        </div>
+      </div>
+
+      <div class="recs">
+        ${recs.map(r => `
+          <div class="rec">
+            <div class="rec-ico">${r.icon}</div>
+            <div><h4>${r.h}</h4><p>${r.p}</p></div>
+          </div>`).join("")}
+      </div>
+    </div>
+  `;
+  btnNext.textContent = "Join Elevate →";
+  btnNext.onclick = () => {
+    document.getElementById("membership").scrollIntoView({behavior:"smooth"});
+  };
+  btnBack.disabled = false;
+}
+
+/* ---------------- Membership form ---------------- */
+
+document.getElementById("joinForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = $("#fName").value.trim();
+  const email = $("#fEmail").value.trim();
+  const time = $("#fTime").value;
+  if (!name || !email || !time){
+    flash("Please fill in name, email, and a preferred time.");
+    return;
+  }
+  if (!/^\S+@\S+\.\S+$/.test(email)){
+    flash("That email doesn't look right.");
+    return;
+  }
+  flash(`<b>Welcome, ${name.split(" ")[0]}!</b><br>Your coach will reach out within 24h.`, true);
+  e.target.reset();
+});
+
+/* ---------------- Toast ---------------- */
+
+let toastT;
+function flash(msg, ok=false){
+  const t = document.getElementById("toast");
+  t.innerHTML = msg;
+  t.style.borderLeftColor = ok ? "var(--accent)" : "var(--danger)";
+  t.classList.add("show");
+  clearTimeout(toastT);
+  toastT = setTimeout(() => t.classList.remove("show"), 3400);
+}
+
+/* ---------------- Boot ---------------- */
+renderQuestion();
+updateLiveRecs();
+</script>
+</body>
+</html>
