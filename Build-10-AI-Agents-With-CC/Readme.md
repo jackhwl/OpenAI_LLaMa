@@ -245,3 +245,4 @@ Output:
     - Memory Karpathy Wiki Pattern
     - Automation
   - 33. Building Personal AI Agent Architecture (Deep Dive)
+  - 34. The Karpathy Wiki Pattern
