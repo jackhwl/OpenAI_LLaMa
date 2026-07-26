@@ -244,3 +244,4 @@ Output:
     - Personality soul.md
     - Memory Karpathy Wiki Pattern
     - Automation
+  - 33. Building Personal AI Agent Architecture (Deep Dive)
