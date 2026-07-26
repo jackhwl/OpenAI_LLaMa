@@ -135,3 +135,5 @@ Input:
 Output: A single self-contained HTML file I can open in any browser. File name: mindful_paws.html
 ```
   - 24. Context Window Management
+  - 25. CLAUDE.md Best Practices & How to Create one with Claude Code
+    - /init to create CLAUDE.md
