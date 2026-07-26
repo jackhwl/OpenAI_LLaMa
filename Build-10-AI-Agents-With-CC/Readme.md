@@ -207,3 +207,19 @@ Output:
   - Slide 6: Overall assessment: bullish/bearish/neutral, what to watch, and next catalyst
   - Clean, professional design
 ```
+  - 30. Develop Slash Command Automation Demo (Part 4) - Develop an Automated Workflow
+```
+Context: We just built a 3-step workflow in this conversation: (1) search for Apple performance, sentiment, and news, (2) organize it into an Excel tracker, and (3) create a PowerPoint update deck. I want to turn this into a single reusable command so I can monitor Apple with one word.
+
+Instruction: Create a Cowork command called /apple-monitor that chains all three steps together automatically. When I run /apple-monitor, it should do the full workflow end to end.
+
+Input:
+- Step 1: Search online for latest AAPL performance (price, change, metrics, analyst sentiment, social sentiment, news) plus SPY and QQQ benchmarks
+- Step 2: Organize into apple_monitor.xlsx (dashboard with chart, fundamentals, sentiment, news sheets)
+- Step 3: Create apple_update.pptx (6 slides: title, price snapshot, analyst sentiment, social sentiment, news, overall assessment)
+
+Output:
+- A working Cowork command called /apple-monitor
+- When I type /apple-monitor in a new conversation, all three steps run automatically
+- Confirm the command is created and ready to use
+```
