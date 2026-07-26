@@ -137,3 +137,31 @@ Output: A single self-contained HTML file I can open in any browser. File name: 
   - 24. Context Window Management
   - 25. CLAUDE.md Best Practices & How to Create one with Claude Code
     - /init to create CLAUDE.md
+  - 26. Model Context Protocol (MCP)
+  - 27. Develop Slash Command Automation Demo (Part 1) - Research Teams
+```
+Context: I hold Apple (AAPL) as a core position in my portfolio. I just did deep research on the company using their 10-K and earnings call. Now I need a real-time update on how Apple is performing today, what the current sentiment is, and whether there is any breaking news I should know about.
+
+Instruction: Search online for the latest Apple performance data, analyst sentiment, social media sentiment, and news. Give me a comprehensive update I can review in under 2 minutes.
+
+Input:
+- Stock to monitor: Apple (AAPL)
+- Data points to find:
+  - Current price and daily change ($ and %)
+  - Key metrics: market cap, P/E ratio, 52-week range, volume vs average
+  - Analyst sentiment: recent upgrades/downgrades, average price target, buy/hold/sell consensus
+  - Social/retail sentiment: what are people saying on financial forums, X (Twitter), Reddit about Apple today
+  - Recent news (last 24-48 hours): iPhone demand, AI announcements, App Store/regulatory updates, earnings commentary, supply chain developments, competitor moves (Microsoft, Google, Samsung)
+  - Overall sentiment rating: bullish, bearish, or neutral with a brief explanation
+- Also include: S&P 500 (SPY) and Nasdaq (QQQ) as benchmarks
+
+Output:
+- A clean, structured Apple monitor report with:
+  - Market context at the top (SPY, QQQ, macro news affecting tech)
+  - Apple price and performance section
+  - Analyst sentiment section with specific names/firms if available
+  - Social/retail sentiment section summarizing the mood
+  - News section with key headlines
+  - Overall assessment: bullish/bearish/neutral with reasoning
+
+```
