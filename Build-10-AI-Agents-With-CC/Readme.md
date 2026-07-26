@@ -251,3 +251,17 @@ Output:
     - open vault/folder as an obsidian vault
     - claude code edits pages, you browse in real-time
     - graph view reveals orphan pages and clusters
+  - 36. Personal AI Agent Folder Structure
+    - personal-os/
+      - CLAUDE.md
+      - soul.md
+      - GETTING-STARTED.md
+      - SCHECULING-GUIDE.md
+      -.claude/
+        - settings.json
+        - commands/ (7 commands)
+      - brand/
+        - config/ | images/ | templates/
+      - vault/
+        - me/ | business/ | people/
+        index.md | log.md
