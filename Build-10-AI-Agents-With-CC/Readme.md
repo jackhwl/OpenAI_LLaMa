@@ -89,3 +89,49 @@ Output:
      '''
   - 20. Install the front-end Design Skill in Claude Code in VS Code
     - npx skills add anthropics/claude-code --skill frontend-design
+  - 21. Claude Code Demo: Build Dashboard Using Claude Code in VS Code (with Skills)
+  '''
+Context: I have stock_data.csv with real prices for 6 stocks and a basic dashboard.html that shows the data.
+
+Instruction: Use the /frontend-design skill to build a new file called dashboard_v2.html. Make the most visually impressive financial dashboard you can — professional, polished, something you would actually show to a client. Keep all the same data and functionality from dashboard.html but make the design dramatically better.
+
+Input:
+- Same stock_data.csv from the current folder
+- Same 6 stocks, same prices and daily changes
+- Same bar chart comparing daily % change
+- No constraints on design — go all out
+
+Output:
+- dashboard_v2.html in the same folder
+- Professional financial dashboard with a clear design direction
+- All data and functionality preserved
+- The visual difference from dashboard.html should be dramatic
+  '''
+  - 22. Practice Opportunity Question: Claude Code with Skills in VS Code
+  - 23. Practice Opportunity Solution: Claude Code with Skills in VS Code
+```
+Context: Building a single HTML file landing page for a pet grooming business. No frameworks, no dependencies. Don't use frontend design skill. 
+
+Instruction: Create a single HTML file called "mindful_paws.html" for a boutique pet grooming salon called "Mindful Paws". Include a hero section with the tagline "Where grooming meets calm", an interactive booking quiz that asks 3 questions one at a time (pet type, size, service) and shows a price estimate, a services section with 4 services and prices, a gallery section with image placeholders, and a booking form with pet name, owner name, phone, and preferred date. Make it fully functional with smooth transitions.
+
+Input:
+- Business: Mindful Paws
+- Tagline: "Where grooming meets calm"
+- Services: Bath & Brush ($45), Full Groom ($75), Spa Day ($120), Puppy First Groom ($55)
+
+Output: A single self-contained HTML file I can open in any browser. File name: mindful_paws.html
+```
+
+```
+Context: Building a single HTML file landing page for a pet grooming business. No frameworks, no dependencies. Use frontend design skill. 
+
+Instruction: Create a single HTML file called "mindful_paws.html" for a boutique pet grooming salon called "Mindful Paws". Include a hero section with the tagline "Where grooming meets calm", an interactive booking quiz that asks 3 questions one at a time (pet type, size, service) and shows a price estimate, a services section with 4 services and prices, a gallery section with image placeholders, and a booking form with pet name, owner name, phone, and preferred date. Make it fully functional with smooth transitions.
+
+Input:
+- Business: Mindful Paws
+- Tagline: "Where grooming meets calm"
+- Services: Bath & Brush ($45), Full Groom ($75), Spa Day ($120), Puppy First Groom ($55)
+
+Output: A single self-contained HTML file I can open in any browser. File name: mindful_paws.html
+```
+  - 24. Context Window Management

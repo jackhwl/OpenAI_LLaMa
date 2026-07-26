@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mindful Paws — Where grooming meets calm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,500&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --stone:     #EDE6DA;
+    --stone-2:   #E3DACA;
+    --ink:       #2B3328;
+    --ink-soft:  #5B6353;
+    --sage:      #6B7F5E;
+    --sage-deep: #4E6144;
+    --clay:      #B67F5E;
+    --clay-deep: #93613F;
+    --mist:      #DDE3D8;
+    --cream:     #F8F4EC;
+    --line:      rgba(43,51,40,0.14);
+
+    --font-display: "Cormorant", Georgia, serif;
+    --font-body: "Karla", Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--ink-soft);
+    background: var(--stone);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3 { font-family: var(--font-display); color: var(--ink); margin: 0; }
+
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
+
+  a { color: var(--sage-deep); }
+
+  :focus-visible {
+    outline: 2px solid var(--sage-deep);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sage-deep);
+    margin: 0 0 10px;
+  }
+
+  section h2 {
+    font-weight: 500;
+    font-size: clamp(28px, 3.4vw, 40px);
+    line-height: 1.2;
+    max-width: 20ch;
+    margin-bottom: 34px;
+  }
+
+  /* ===== Nav ===== */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 28px;
+    background: rgba(248,244,236,0.78);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav .brand {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav .nav-cta {
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    padding: 9px 18px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .nav .nav-cta:hover { background: var(--ink); color: var(--cream); }
+
+  /* ===== Hero ===== */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding: 90px 28px 110px;
+    text-align: left;
+  }
+
+  .hero-ripples {
+    position: absolute;
+    inset: -10% -10% -10% 40%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-ripples span {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 120px; height: 120px;
+    margin: -60px 0 0 -60px;
+    border-radius: 50%;
+    border: 1.5px solid var(--sage);
+    opacity: 0;
+    animation: ripple-drift 7s ease-out infinite;
+  }
+  .hero-ripples span:nth-child(2) { animation-delay: 2.3s; border-color: var(--clay); }
+  .hero-ripples span:nth-child(3) { animation-delay: 4.6s; }
+
+  @keyframes ripple-drift {
+    0%   { transform: scale(0.3); opacity: 0; }
+    12%  { opacity: 0.35; }
+    100% { transform: scale(3.6); opacity: 0; }
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 620px;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 6.4vw, 74px);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em { font-style: italic; color: var(--sage-deep); }
+
+  .hero p.lede {
+    font-size: 18px;
+    max-width: 46ch;
+    margin: 22px 0 34px;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 999px;
+    padding: 15px 30px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+
+  .btn-primary { background: var(--sage-deep); color: var(--cream); box-shadow: 0 6px 18px rgba(78,97,68,0.28); }
+  .btn-primary:hover { box-shadow: 0 8px 22px rgba(78,97,68,0.36); }
+
+  .btn-ghost { background: transparent; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; padding: 15px 4px; }
+
+  .btn-quiet {
+    background: none; border: none; color: var(--sage-deep);
+    font-family: var(--font-body); font-weight: 700; font-size: 14px;
+    text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 6px 0;
+  }
+
+  /* click-ripple (signature interaction) */
+  .ripple-mark {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.55), transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    pointer-events: none;
+    animation: ripple-pop 0.6s ease-out forwards;
+  }
+  @keyframes ripple-pop {
+    to { transform: translate(-50%, -50%) scale(3.2); opacity: 0; }
+  }
+
+  /* ===== Sections ===== */
+  section { padding: 88px 0; }
+  section.alt { background: var(--stone-2); }
+
+  /* ===== Quiz ===== */
+  .quiz-card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    max-width: 560px;
+    padding: 44px 40px 40px;
+    box-shadow: 0 20px 50px rgba(43,51,40,0.08);
+    position: relative;
+    min-height: 300px;
+  }
+
+  .quiz-progress {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+  .quiz-progress .dot {
+    width: 26px; height: 4px;
+    border-radius: 4px;
+    background: var(--line);
+    transition: background 0.3s ease;
+  }
+  .quiz-progress .dot.done { background: var(--sage); }
+  .quiz-progress .dot.current { background: var(--clay); }
+
+  .quiz-q {
+    font-family: var(--font-display);
+    font-size: 24px;
+    color: var(--ink);
+    margin: 0 0 22px;
+  }
+
+  .quiz-step {
+    transition: opacity 0.28s ease, transform 0.28s ease;
+  }
+  .quiz-step.fade-out { opacity: 0; transform: translateY(-6px); }
+  .quiz-step.fade-in-start { opacity: 0; transform: translateY(8px); }
+
+  .pill-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .pill {
+    flex: 1 1 140px;
+    text-align: left;
+    background: var(--stone);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px 18px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    color: var(--ink);
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .pill:hover { border-color: var(--sage); background: var(--mist); }
+  .pill:active { transform: scale(0.98); }
+
+  .pill-title { display: block; font-weight: 700; font-size: 16px; }
+  .pill-sub { display: block; font-size: 13px; color: var(--ink-soft); margin-top: 3px; }
+
+  .quiz-back {
+    margin-top: 26px;
+    background: none; border: none; cursor: pointer;
+    font-family: var(--font-body); font-weight: 700; font-size: 13px;
+    color: var(--ink-soft); padding: 0;
+  }
+  .quiz-back:hover { color: var(--ink); }
+
+  .quiz-result { transition: opacity 0.3s ease; }
+  .quiz-result .eyebrow { margin-bottom: 4px; }
+  .quiz-result .price {
+    font-family: var(--font-display);
+    font-size: 56px;
+    font-weight: 600;
+    color: var(--clay-deep);
+    margin: 4px 0 6px;
+  }
+  .quiz-result .detail { font-size: 15px; margin-bottom: 6px; }
+  .quiz-result .fine { font-size: 13px; color: var(--ink-soft); margin-bottom: 26px; }
+  .quiz-result .result-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+
+  /* ===== Services ===== */
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .service-card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 28px 24px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 30px rgba(43,51,40,0.1); }
+
+  .service-card h3 {
+    font-size: 21px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .service-price {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--clay-deep);
+    background: rgba(182,127,94,0.14);
+    border-radius: 999px;
+    padding: 4px 14px;
+    margin-bottom: 14px;
+  }
+
+  .service-card p { font-size: 14.5px; margin: 0; }
+
+  /* ===== Gallery ===== */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .gallery-tile {
+    border-radius: 22px;
+    aspect-ratio: 4 / 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    color: var(--sage-deep);
+    border: 1px solid var(--line);
+  }
+  .gallery-tile svg { width: 34px; height: 34px; }
+  .gallery-tile span {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--ink-soft);
+    text-align: center;
+    padding: 0 14px;
+  }
+
+  .gallery-tile.t1 { background: radial-gradient(circle at 30% 25%, #f1ede2, var(--mist)); }
+  .gallery-tile.t2 { background: radial-gradient(circle at 70% 30%, #eee7d5, var(--stone-2)); }
+  .gallery-tile.t3 { background: radial-gradient(circle at 40% 70%, #e7ded0, var(--mist)); }
+  .gallery-tile.t4 { background: radial-gradient(circle at 60% 60%, #efe6d3, var(--stone-2)); }
+
+  /* ===== Booking ===== */
+  .book-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .book-info p { max-width: 34ch; }
+  .book-info .details {
+    margin-top: 26px;
+    font-size: 14px;
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+  }
+  .book-info .details div { margin-bottom: 6px; }
+
+  form.booking-form {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .field input {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--ink);
+    background: var(--stone);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 13px 14px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .field input:focus { border-color: var(--sage); background: var(--cream); outline: none; }
+  .field input:focus-visible { outline: 2px solid var(--sage-deep); outline-offset: 2px; }
+
+  .booking-confirm {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 40px 36px;
+    text-align: left;
+  }
+  .booking-confirm h3 { font-size: 26px; margin-bottom: 10px; }
+  .booking-confirm p { margin: 0 0 20px; }
+
+  /* ===== Footer ===== */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 40px 0 50px;
+  }
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .footer-row .brand-mark {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 17px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero-ripples span { animation: none; opacity: 0; }
+    .ripple-mark { animation: none; display: none; }
+    .quiz-step, .btn, .service-card { transition: none; }
+  }
+
+  @media (max-width: 860px) {
+    .service-grid, .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .book-layout { grid-template-columns: 1fr; gap: 36px; }
+    .hero { padding: 70px 22px 80px; }
+    .hero-ripples { inset: -10% -20% -10% 10%; }
+  }
+
+  @media (max-width: 520px) {
+    .service-grid, .gallery-grid { grid-template-columns: 1fr; }
+    .quiz-card { padding: 32px 24px; }
+    .wrap { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#top" class="brand">Mindful Paws</a>
+  <a href="#book" class="nav-cta">Book a visit</a>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-ripples" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="hero-inner">
+    <p class="eyebrow">Boutique grooming · By appointment</p>
+    <h1>Where grooming<br>meets <em>calm</em>.</h1>
+    <p class="lede">A slow, gentle wash-and-groom ritual for dogs and cats — no rushing, no loud dryers, just care from start to finish.</p>
+    <div class="hero-actions">
+      <a href="#quiz" class="btn btn-primary" data-ripple>Find your ritual</a>
+      <a href="#services" class="btn btn-ghost">See the menu</a>
+    </div>
+  </div>
+</header>
+
+<section id="quiz">
+  <div class="wrap">
+    <p class="eyebrow">Find your ritual</p>
+    <h2>Three quick questions. One calm estimate.</h2>
+
+    <div class="quiz-card" id="quizCard">
+      <div class="quiz-progress" id="quizProgress" aria-hidden="true">
+        <span class="dot" data-step="1"></span>
+        <span class="dot" data-step="2"></span>
+        <span class="dot" data-step="3"></span>
+      </div>
+
+      <div class="quiz-step" data-step="1">
+        <p class="quiz-q" tabindex="-1">What kind of companion are we caring for?</p>
+        <div class="pill-group">
+          <button class="pill" type="button" data-field="petType" data-value="dog">
+            <span class="pill-title">Dog</span>
+          </button>
+          <button class="pill" type="button" data-field="petType" data-value="cat">
+            <span class="pill-title">Cat</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="2" hidden>
+        <p class="quiz-q" id="step2Question" tabindex="-1">How big is your companion?</p>
+        <div class="pill-group">
+          <button class="pill" type="button" data-field="size" data-value="small">
+            <span class="pill-title">Small</span>
+            <span class="pill-sub">Under 20 lb</span>
+          </button>
+          <button class="pill" type="button" data-field="size" data-value="medium">
+            <span class="pill-title">Medium</span>
+            <span class="pill-sub">20–50 lb</span>
+          </button>
+          <button class="pill" type="button" data-field="size" data-value="large">
+            <span class="pill-title">Large</span>
+            <span class="pill-sub">Over 50 lb</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="quiz-step" data-step="3" hidden>
+        <p class="quiz-q" id="step3Question" tabindex="-1">What kind of visit sounds right?</p>
+        <div class="pill-group" id="serviceOptions"></div>
+      </div>
+
+      <div class="quiz-result" id="quizResult" hidden>
+        <p class="eyebrow">Your estimate</p>
+        <p class="price" id="resultPrice">$0</p>
+        <p class="detail" id="resultDetail"></p>
+        <p class="fine">Final pricing is confirmed at check-in based on coat and condition.</p>
+        <div class="result-actions">
+          <a href="#book" class="btn btn-primary" data-ripple>Reserve this ritual</a>
+          <button class="btn-quiet" type="button" id="quizRestart">Start over</button>
+        </div>
+      </div>
+
+      <button class="quiz-back" id="quizBack" type="button" hidden>← Back</button>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="alt">
+  <div class="wrap">
+    <p class="eyebrow">The menu</p>
+    <h2>Chosen for how it feels, not just how it looks.</h2>
+    <div class="service-grid" id="serviceGrid"></div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <p class="eyebrow">Inside the salon</p>
+    <h2>A peek behind the calm.</h2>
+    <div class="gallery-grid">
+      <div class="gallery-tile t1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c4 5 6 8 6 11a6 6 0 1 1-12 0c0-3 2-6 6-11Z"/></svg>
+        <span>Warm bath, warm light</span>
+      </div>
+      <div class="gallery-tile t2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M6 6v6M9 6v6M12 6v6M15 6v6M18 6v6M4 18h16"/></svg>
+        <span>Slow, patient brush-outs</span>
+      </div>
+      <div class="gallery-tile t3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0M2 17c2-3 4-3 6 0s4 3 6 0 4-3 6 0"/></svg>
+        <span>A calming finishing rinse</span>
+      </div>
+      <div class="gallery-tile t4">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg>
+        <span>Quiet rest before pickup</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="book" class="alt">
+  <div class="wrap">
+    <div class="book-layout">
+      <div class="book-info">
+        <p class="eyebrow">Reserve a visit</p>
+        <h2>Let's find a time that feels easy.</h2>
+        <p>Tell us about your companion and we'll hold a spot. We'll text you to confirm — no waiting on hold.</p>
+        <div class="details">
+          <div><strong>Hours</strong> — Tue–Sat, 9am–5pm, by appointment</div>
+          <div><strong>Address</strong> — 118 Willow Creek Lane, Portland, OR</div>
+          <div><strong>Phone</strong> — (503) 555-0148</div>
+        </div>
+      </div>
+
+      <div>
+        <form class="booking-form" id="bookingForm">
+          <div class="field">
+            <label for="petName">Pet's name</label>
+            <input id="petName" name="petName" type="text" required autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="ownerName">Your name</label>
+            <input id="ownerName" name="ownerName" type="text" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder="(503) 555-0148">
+          </div>
+          <div class="field">
+            <label for="date">Preferred date</label>
+            <input id="date" name="date" type="date" required>
+          </div>
+          <button class="btn btn-primary" type="submit" data-ripple style="margin-top: 6px;">Confirm booking</button>
+        </form>
+
+        <div class="booking-confirm" id="bookingConfirm" hidden>
+          <h3>You're booked.</h3>
+          <p id="confirmMessage"></p>
+          <button class="btn-quiet" type="button" id="bookAnother">Book another visit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <span class="brand-mark">Mindful Paws</span>
+    <span>@mindfulpaws · Tue–Sat, 9am–5pm · 118 Willow Creek Lane, Portland, OR</span>
+  </div>
+</footer>
+
+<script>
+  // ---------- Data ----------
+  var SERVICES = [
+    { id: "bath",  name: "Bath & Brush",          price: 45,  blurb: "A warm soak, gentle brush-out, and blow-dry — ideal upkeep between full grooms.", dogOnly: false },
+    { id: "full",  name: "Full Groom",             price: 75,  blurb: "Bath, precision trim, ear and nail care, finished with a calming rinse.", dogOnly: false },
+    { id: "spa",   name: "Spa Day",                price: 120, blurb: "Our full groom plus a warm towel wrap, paw balm, and twenty quiet minutes of rest.", dogOnly: false },
+    { id: "puppy", name: "Puppy's First Groom",    price: 55,  blurb: "A slow, reassuring introduction to grooming — treats included, never rushed.", dogOnly: true }
+  ];
+
+  var SIZES = [
+    { id: "small",  label: "Small",  sub: "Under 20 lb",  mult: 1.0 },
+    { id: "medium", label: "Medium", sub: "20–50 lb",     mult: 1.15 },
+    { id: "large",  label: "Large",  sub: "Over 50 lb",   mult: 1.35 }
+  ];
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ---------- Helpers ----------
+  function formatMoney(n) {
+    return "$" + Math.round(n);
+  }
+
+  function createRipple(evt, container) {
+    if (reduceMotion) return;
+    var target = container || evt.currentTarget;
+    var rect = target.getBoundingClientRect();
+    var mark = document.createElement("span");
+    mark.className = "ripple-mark";
+    var size = Math.max(rect.width, rect.height);
+    mark.style.width = size + "px";
+    mark.style.height = size + "px";
+    mark.style.left = (evt.clientX - rect.left) + "px";
+    mark.style.top = (evt.clientY - rect.top) + "px";
+    target.appendChild(mark);
+    setTimeout(function () { mark.remove(); }, 650);
+  }
+
+  // Buttons that request a ripple need relative positioning + overflow hidden (already set via .btn)
+  document.querySelectorAll("[data-ripple]").forEach(function (el) {
+    el.addEventListener("click", function (evt) { createRipple(evt, el); });
+  });
+
+  // ---------- Services section ----------
+  var serviceGrid = document.getElementById("serviceGrid");
+  SERVICES.forEach(function (s) {
+    var card = document.createElement("div");
+    card.className = "service-card";
+    card.innerHTML =
+      '<h3>' + s.name + '</h3>' +
+      '<span class="service-price">From ' + formatMoney(s.price) + '</span>' +
+      '<p>' + s.blurb + '</p>';
+    serviceGrid.appendChild(card);
+  });
+
+  // ---------- Quiz ----------
+  var quizState = { petType: null, size: null, serviceId: null };
+  var quizCurrentStep = 1;
+
+  var quizCard = document.getElementById("quizCard");
+  var quizProgress = document.getElementById("quizProgress");
+  var quizBack = document.getElementById("quizBack");
+  var quizResult = document.getElementById("quizResult");
+  var step2Question = document.getElementById("step2Question");
+  var serviceOptions = document.getElementById("serviceOptions");
+  var resultPrice = document.getElementById("resultPrice");
+  var resultDetail = document.getElementById("resultDetail");
+
+  function updateProgress(step) {
+    quizProgress.querySelectorAll(".dot").forEach(function (dot) {
+      var n = Number(dot.dataset.step);
+      dot.classList.toggle("done", n < step);
+      dot.classList.toggle("current", n === step);
+    });
+  }
+
+  function renderServiceOptions() {
+    serviceOptions.innerHTML = "";
+    SERVICES.filter(function (s) {
+      return !(s.dogOnly && quizState.petType === "cat");
+    }).forEach(function (s) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "pill";
+      btn.dataset.field = "serviceId";
+      btn.dataset.value = s.id;
+      btn.innerHTML =
+        '<span class="pill-title">' + s.name + '</span>' +
+        '<span class="pill-sub">From ' + formatMoney(s.price) + '</span>';
+      serviceOptions.appendChild(btn);
+    });
+  }
+
+  function showStep(step) {
+    var current = quizCard.querySelector('.quiz-step[data-step="' + quizCurrentStep + '"]');
+    var next = quizCard.querySelector('.quiz-step[data-step="' + step + '"]');
+    quizResult.hidden = true;
+    quizBack.hidden = step === 1;
+    updateProgress(step);
+
+    function reveal() {
+      next.hidden = false;
+      if (reduceMotion) {
+        quizCurrentStep = step;
+        return;
+      }
+      next.classList.add("fade-in-start");
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          next.classList.remove("fade-in-start");
+        });
+      });
+      quizCurrentStep = step;
+      var q = next.querySelector(".quiz-q");
+      if (q) q.focus();
+    }
+
+    if (current && current !== next && !reduceMotion) {
+      current.classList.add("fade-out");
+      setTimeout(function () {
+        current.hidden = true;
+        current.classList.remove("fade-out");
+        reveal();
+      }, 220);
+    } else {
+      if (current && current !== next) current.hidden = true;
+      reveal();
+    }
+  }
+
+  function showResult() {
+    var current = quizCard.querySelector('.quiz-step[data-step="' + quizCurrentStep + '"]');
+    if (current) current.hidden = true;
+    quizBack.hidden = true;
+    updateProgress(4);
+
+    var service = SERVICES.filter(function (s) { return s.id === quizState.serviceId; })[0];
+    var size = SIZES.filter(function (s) { return s.id === quizState.size; })[0];
+    var price = Math.round(service.price * size.mult);
+    var petLabel = quizState.petType === "cat" ? "cat" : "dog";
+
+    resultPrice.textContent = formatMoney(price);
+    resultDetail.textContent = service.name + " for a " + size.label.toLowerCase() + " " + petLabel + " — " + formatMoney(price) + " today.";
+    quizResult.hidden = false;
+  }
+
+  function resetQuiz() {
+    quizState = { petType: null, size: null, serviceId: null };
+    quizCard.querySelectorAll(".quiz-step").forEach(function (el) {
+      el.hidden = el.dataset.step !== "1";
+      el.classList.remove("fade-out", "fade-in-start");
+    });
+    step2Question.textContent = "How big is your companion?";
+    quizResult.hidden = true;
+    quizBack.hidden = true;
+    quizCurrentStep = 1;
+    updateProgress(1);
+  }
+
+  quizCard.addEventListener("click", function (evt) {
+    var pill = evt.target.closest(".pill");
+    if (!pill) return;
+    createRipple(evt, pill);
+
+    var field = pill.dataset.field;
+    var value = pill.dataset.value;
+    quizState[field] = value;
+
+    setTimeout(function () {
+      if (field === "petType") {
+        step2Question.textContent = "How big is your " + value + "?";
+        showStep(2);
+      } else if (field === "size") {
+        renderServiceOptions();
+        showStep(3);
+      } else if (field === "serviceId") {
+        showResult();
+      }
+    }, 260);
+  });
+
+  quizBack.addEventListener("click", function () {
+    if (quizCurrentStep > 1) showStep(quizCurrentStep - 1);
+  });
+
+  document.getElementById("quizRestart").addEventListener("click", resetQuiz);
+
+  updateProgress(1);
+
+  // ---------- Booking form ----------
+  var bookingForm = document.getElementById("bookingForm");
+  var bookingConfirm = document.getElementById("bookingConfirm");
+  var confirmMessage = document.getElementById("confirmMessage");
+
+  function formatDate(value) {
+    var parts = value.split("-");
+    var d = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
+    return d.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+  }
+
+  bookingForm.addEventListener("submit", function (evt) {
+    evt.preventDefault();
+    var petName = document.getElementById("petName").value.trim();
+    var ownerName = document.getElementById("ownerName").value.trim();
+    var dateValue = document.getElementById("date").value;
+    var niceDate = dateValue ? formatDate(dateValue) : "your preferred date";
+
+    confirmMessage.textContent =
+      "Thank you, " + ownerName + ". We'll text a reminder ahead of " + petName + "'s visit on " + niceDate + ".";
+    bookingForm.hidden = true;
+    bookingConfirm.hidden = false;
+    bookingConfirm.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+  });
+
+  document.getElementById("bookAnother").addEventListener("click", function () {
+    bookingForm.reset();
+    bookingForm.hidden = false;
+    bookingConfirm.hidden = true;
+  });
+</script>
+
+</body>
+</html>
