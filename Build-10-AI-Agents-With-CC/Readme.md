@@ -246,3 +246,8 @@ Output:
     - Automation
   - 33. Building Personal AI Agent Architecture (Deep Dive)
   - 34. The Karpathy Wiki Pattern
+  - 35. Obsidian
+    - obsidian is the viewer, claude code is the programmer, the wiki is the knowledge base contained in markdown files.
+    - open vault/folder as an obsidian vault
+    - claude code edits pages, you browse in real-time
+    - graph view reveals orphan pages and clusters
