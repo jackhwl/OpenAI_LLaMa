@@ -239,3 +239,8 @@ Output:
 - The /apple-monitor command scheduled and confirmed
 - Show me where to find the schedule settings so I can edit, pause, or cancel it later
 ```
+## Section 4: Your Personal AI Agent Architecture in Claude Code & Cowork
+  - 32. The Rise of Autonomous Personal AI Agents (OpenClaw, Hermes, & Claude Code)
+    - Personality soul.md
+    - Memory Karpathy Wiki Pattern
+    - Automation
