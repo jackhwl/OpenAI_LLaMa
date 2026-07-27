@@ -240,6 +240,7 @@ Output:
 - Show me where to find the schedule settings so I can edit, pause, or cancel it later
 ```
 ## Section 4: Your Personal AI Agent Architecture in Claude Code & Cowork
+  - under iCloud Drive /personal-os
   - 32. The Rise of Autonomous Personal AI Agents (OpenClaw, Hermes, & Claude Code)
     - Personality soul.md
     - Memory Karpathy Wiki Pattern
@@ -301,5 +302,8 @@ Output:
     - Voice Rules: SOUL.md personality at all times. Never degrades with long context.
     - Post-Run Ingestion: After every automation: extract people, companies, links back to vault.
   - 40. Setup Your Brand Folder (Logo, Slide Template, & Brand Colors)
-  
+  - 41. Pre-defined Slash Commands in Claude Code & Cowork
+    - located in .claude/commands/ - type the command name to run
+    - /setup, /new, /status, /ingest, /lint, /brand
+
     
