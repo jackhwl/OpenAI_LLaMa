@@ -291,4 +291,13 @@ Output:
     - Communication Style: Preferred length, formality, technical depth
     - Hard Voice Rules: No AI speak, no em-dashes, no filler, no fluff
     - Things to Avoid: Specific phrases, patterns, and output styles to never use
+  - 39. Setting Up the Agent Playbook via CLAUDE.md
+    - the master orchestrator (playbook) that defines agent protocols and behaviour
+    - CLAUDE.md is a markdown file you add to your project root that Claude Code reads at the start of every session and acts like a briefing note. keep it under 200 rows. 
+    - Vault Protocol: Three-layer knowledge (Karpathy Wiki Pattern): 1. raw soources, 2. wiki pages. 3. schema.
+    - Brand Protocol: All outputs use brand config. PPT/Excel use skills + templates. Logo on every slide.
+    - MCP Integrations: Gmail, Calendar, Notion with documented parameter formats. Deferred loading.
+    - Self-Correction: Errors logged to error-log.md. Agent checks past fixes before retrying.
+    - Voice Rules: SOUL.md personality at all times. Never degrades with long context.
+    - Post-Run Ingestion: After every automation: extract people, companies, links back to vault.
     
