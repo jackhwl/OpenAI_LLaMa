@@ -300,4 +300,6 @@ Output:
     - Self-Correction: Errors logged to error-log.md. Agent checks past fixes before retrying.
     - Voice Rules: SOUL.md personality at all times. Never degrades with long context.
     - Post-Run Ingestion: After every automation: extract people, companies, links back to vault.
+  - 40. Setup Your Brand Folder (Logo, Slide Template, & Brand Colors)
+  
     
