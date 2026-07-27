@@ -265,3 +265,20 @@ Output:
       - vault/
         - me/ | business/ | people/
         index.md | log.md
+  - 37. What's inside the Vault?
+    - Vault: your agent's long-term brain
+    - powered by obsidian: a knownledge base that grows with every interaction
+    - business: company info, competitors, market data
+    - me: your role, goals, preferences
+    - people: contacts, meeting history, relationships
+    - index: map of everything
+    - log.md: running diary of agent actions & decisions
+    - the longer you use it, the smarter it gets. Every automation reads from and writes to the vault.
+    - How personal OS implements the Karpathy wiki pattern
+      - Raw sources: Immutable originals: PDFs, screenshots, transcripts. Dropped into vault/sources/
+      - Wiki pages: Mutable pages with [[wiki links]] and YAML frontmatter, Organized by: me/, business/, people/
+      - Schema: index.md catalogs all pages. log.md tracks every change. Structured, queryable.
+    - Three Core Operations:
+      - Ingest: Process new raw sources into wiki pages with [[links]], create people pages, update index & log
+      - Query: Read the index, drill into relevant pages, synthesize answers from structured knowledge
+      - Lint: Health checks: orphan pages, stale info, broken links, contradictions, missing cross-references
