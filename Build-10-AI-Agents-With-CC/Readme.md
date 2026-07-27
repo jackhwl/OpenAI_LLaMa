@@ -282,3 +282,13 @@ Output:
       - Ingest: Process new raw sources into wiki pages with [[links]], create people pages, update index & log
       - Query: Read the index, drill into relevant pages, synthesize answers from structured knowledge
       - Lint: Health checks: orphan pages, stale info, broken links, contradictions, missing cross-references
+  - 38. Give your personal AI Agent a Personality Using SOUL.md
+    - SOUL.md is a markdown file you add to your project that includes how you write, what you care about, and your personality.
+    - Injected automatically at every session start via hooks
+    - Identity & Role: Who you are, what you do, your company description
+    - Writing Samples: 3+ real sentences so the agent matches your exact tone
+    - Top 5 Priorities: Ranked priorities that guide every decision the agent makes
+    - Communication Style: Preferred length, formality, technical depth
+    - Hard Voice Rules: No AI speak, no em-dashes, no filler, no fluff
+    - Things to Avoid: Specific phrases, patterns, and output styles to never use
+    
