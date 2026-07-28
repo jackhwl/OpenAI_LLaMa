@@ -305,5 +305,7 @@ Output:
   - 41. Pre-defined Slash Commands in Claude Code & Cowork
     - located in .claude/commands/ - type the command name to run
     - /setup, /new, /status, /ingest, /lint, /brand
+## Section 5: Setup Your Personal AI Agent in Claude Code & Cowork
+  - 42. Overview of the Personal AI Agent Setup Process
 
     
