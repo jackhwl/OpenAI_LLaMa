@@ -307,5 +307,5 @@ Output:
     - /setup, /new, /status, /ingest, /lint, /brand
 ## Section 5: Setup Your Personal AI Agent in Claude Code & Cowork
   - 42. Overview of the Personal AI Agent Setup Process
-
+  - 43. Personal AI Agent Setup Part 1: Share Your Social Media, CV, Goals, & Writeups
     
