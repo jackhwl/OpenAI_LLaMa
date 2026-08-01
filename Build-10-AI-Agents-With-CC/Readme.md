@@ -311,4 +311,4 @@ Output:
     - claude --dangerously-skip-permissions
   - 44. Personal AI Agent Setup Part 2: Connect Notion, Gmail, & Calendar & Brand Setup
   - 45. Personal AI Agent Setup Part 3: Vault Walkthrough
-    
+  - 46. Personal AI Agent Setup Part 4: Visualize Vault in Obsidian
