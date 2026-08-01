@@ -309,4 +309,5 @@ Output:
   - 42. Overview of the Personal AI Agent Setup Process
   - 43. Personal AI Agent Setup Part 1: Share Your Social Media, CV, Goals, & Writeups
     - claude --dangerously-skip-permissions
+  - 44. Personal AI Agent Setup Part 2: Connect Notion, Gmail, & Calendar & Brand Setup
     
