@@ -316,3 +316,8 @@ Output:
   - 47. Overview of the 10 Automation Blueprints you'll Build!
   - 48. Build Sprint Tracker Automation - Part 1
   - 49. Build Sprint Tracker Automation - Part 2
+  - 50. Build Morning Brief Automation
+## Section 9: Generative AI Fundamentals
+  - 70. Tokens and Context Window Foundations
+    - 1M context window: 2500~3000 Pages
+    - Llama 4 Maverick, 10M context window
