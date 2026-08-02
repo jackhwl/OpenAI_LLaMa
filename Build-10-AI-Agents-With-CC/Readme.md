@@ -314,3 +314,4 @@ Output:
   - 46. Personal AI Agent Setup Part 4: Visualize Vault in Obsidian
 ## Section 6: Build AI Agents Automations: Sprint Tracker, Market Pulse, & Morning Brief
   - 47. Overview of the 10 Automation Blueprints you'll Build!
+  - 48. Build Sprint Tracker Automation - Part 1
