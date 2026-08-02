@@ -1,0 +1,20 @@
+## After the Personal AI Agent is built, run the following prompts:
+
+
+/market-pulse 
+I am teaching a new cohort on Claude Code and Claude Cowork on Maven, I want you to search the top 3 competitors and state how I differentiate my bootcamp. 
+
+
+/research-team 
+Top 3 humanoid robotics companies and provide a concise breakdown of their edge, current progress, and likelihood of winning. Generate a 5-slide PowerPoint deck using the brand colour. 
+
+
+/meeting-intel 
+check calendar and prep me for my meeting with David Chen  
+
+/content-plan
+Create a 30-day content plan to promote my Agentic AI for Business & Finance bootcamp → include daily topics, hooks, and formats (LinkedIn, Twitter, email) optimized for conversions.
+
+
+/content-machine
+Turn my Agentic AI bootcamp into a content machine → generate 10 high-converting posts, 5 email ideas, and 3 lead magnets with strong hooks and CTAs.

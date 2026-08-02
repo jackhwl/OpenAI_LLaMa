@@ -312,3 +312,5 @@ Output:
   - 44. Personal AI Agent Setup Part 2: Connect Notion, Gmail, & Calendar & Brand Setup
   - 45. Personal AI Agent Setup Part 3: Vault Walkthrough
   - 46. Personal AI Agent Setup Part 4: Visualize Vault in Obsidian
+## Section 6: Build AI Agents Automations: Sprint Tracker, Market Pulse, & Morning Brief
+  - 47. Overview of the 10 Automation Blueprints you'll Build!
