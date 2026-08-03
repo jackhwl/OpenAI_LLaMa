@@ -321,3 +321,7 @@ Output:
   - 70. Tokens and Context Window Foundations
     - 1M context window: 2500~3000 Pages
     - Llama 4 Maverick, 10M context window
+  - 71. Practice Opportunity Question: Understanding Tokens Context
+  - 72. Practice Opportunity Solution: Understanding Tokens Context
+  - 73. Prompt Engineering Fundamentals
+  - 74. Prompt Engineering Pro Tips
