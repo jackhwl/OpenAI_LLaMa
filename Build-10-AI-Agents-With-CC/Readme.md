@@ -325,3 +325,5 @@ Output:
   - 72. Practice Opportunity Solution: Understanding Tokens Context
   - 73. Prompt Engineering Fundamentals
   - 74. Prompt Engineering Pro Tips
+## Section 10: Building Apps with Claude Code
+  - 75. CLAUDE.MD Foundations for Building Apps 
