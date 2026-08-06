@@ -4,3 +4,4 @@
 ## Section 2: Codex updated CLI Tutorials
   - 3. New Codex, CLI tool
   - 4. Slash commands available at Codex
+  - 5. How to use skills with Codex?
