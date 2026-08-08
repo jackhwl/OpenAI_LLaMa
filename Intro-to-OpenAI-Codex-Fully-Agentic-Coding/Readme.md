@@ -7,3 +7,7 @@
   - 5. How to use skills with Codex?
 ## Section 3: What are AI Skills?
   - 6. What are Skills?
+    - three distict layers
+      - Rules - Guardrails
+      - Skills - Domain Expertise
+      - MCP Tools - Action Capabilities
