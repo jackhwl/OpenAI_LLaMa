@@ -13,3 +13,5 @@
       - MCP Tools - Action Capabilities
   - 7. Agent Mapping
   - 8. Setup
+  - 9. Code Review Skill
+  - 10. SKILL.md
