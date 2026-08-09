@@ -12,3 +12,4 @@
       - Skills - Domain Expertise
       - MCP Tools - Action Capabilities
   - 7. Agent Mapping
+  - 8. Setup
