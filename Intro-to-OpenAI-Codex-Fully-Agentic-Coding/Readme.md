@@ -15,3 +15,11 @@
   - 8. Setup
   - 9. Code Review Skill
   - 10. SKILL.md
+  - 11. Best Practice
+    - a. Writing clear descriptions
+    - b. Keeping the Body Lean, the skill body is a workflow instruction, 
+          not a knowledge base. keep it under 500 lines
+    - c. Scope control
+    - d. Writing good examples
+      - include at least one great example directly inside your skill.md body
+    - e. Testing systematically
