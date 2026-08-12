@@ -23,3 +23,9 @@
     - d. Writing good examples
       - include at least one great example directly inside your skill.md body
     - e. Testing systematically
+  - 12. Marketplace
+    - https://github.com/anthropics/skills
+    - Yao Meta Skill: AI 领导力
+      - https://github.com/yaojingang/yao-meta-skill
+      - https://github.com/danielmiessler/telos
+      - https://www.waytoagi.com/events
