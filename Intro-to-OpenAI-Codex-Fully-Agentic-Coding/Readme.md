@@ -24,6 +24,12 @@
       - include at least one great example directly inside your skill.md body
     - e. Testing systematically
   - 12. Marketplace
+    - within course
+      - https://github.com/whyashthakker/agent-skills-marketing
+      - https://github.com/alirezarezvani/claude-skills
+      - https://github.com/daymade/claude-code-skills
+      - https://github.com/jeffallan/claude-skills. full-stack dev
+      - https://www.skills.sh/
     - https://github.com/anthropics/skills
     - Yao Meta Skill: AI 领导力
       - https://github.com/yaojingang/yao-meta-skill
