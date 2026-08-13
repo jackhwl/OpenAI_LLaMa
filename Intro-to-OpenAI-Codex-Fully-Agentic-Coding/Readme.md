@@ -35,3 +35,5 @@
       - https://github.com/yaojingang/yao-meta-skill
       - https://github.com/danielmiessler/telos
       - https://www.waytoagi.com/events
+## Section 4: Settting up Project & Environment
+  - 13. Setting up our Codex Environment
