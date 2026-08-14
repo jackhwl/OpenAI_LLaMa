@@ -37,3 +37,5 @@
       - https://www.waytoagi.com/events
 ## Section 4: Settting up Project & Environment
   - 13. Setting up our Codex Environment
+  - 14. Setting up Testing Project (Nextjs 15+)
+    - https://github.com/jackhwl/saas-starter
