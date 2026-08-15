@@ -39,3 +39,6 @@
   - 13. Setting up our Codex Environment
   - 14. Setting up Testing Project (Nextjs 15+)
     - https://github.com/jackhwl/saas-starter
+  - 15. Using "Ask" Feature of Codex
+    - Explain how my codebase is tructured
+    and tell me which terminal commands i need to run in order to install all dependencies, both for backend and frontend.
