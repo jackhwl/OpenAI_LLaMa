@@ -42,3 +42,4 @@
   - 15. Using "Ask" Feature of Codex
     - Explain how my codebase is tructured
     and tell me which terminal commands i need to run in order to install all dependencies, both for backend and frontend.
+  - 16. Setting up Testing Project on Vercel
