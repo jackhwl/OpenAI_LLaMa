@@ -16,3 +16,5 @@
         Verify:     Check that zero P1 issues have no assignee
         Memory:     Log of issues already triaged this week
       '''
+## Sectio 2: Building & Discovering loops
+  - 5. Let's build your first loop: Self-improvement loop
