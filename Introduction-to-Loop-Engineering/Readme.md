@@ -18,3 +18,4 @@
       '''
 ## Sectio 2: Building & Discovering loops
   - 5. Let's build your first loop: Self-improvement loop
+  - 6. Building Product Evaluation loop
