@@ -6,3 +6,5 @@
 ## Section 2: The features that change everything
   - 5. Projects: Build your AI-powered workspace
   - 6. Artifacts: Create dynamic documents, dashboards, games and apps
+  - 7. Artifacts (Part 2)
+  - 8. Memory, Research Mode, and Extended Thinking
