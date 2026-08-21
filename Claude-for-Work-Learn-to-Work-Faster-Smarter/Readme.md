@@ -8,3 +8,22 @@
   - 6. Artifacts: Create dynamic documents, dashboards, games and apps
   - 7. Artifacts (Part 2)
   - 8. Memory, Research Mode, and Extended Thinking
+  - 9. Research Mode (Part 2)
+## Section 3: Prompting like a pro and business workflows
+  - 10. The Claude Prompting playbook
+    '''
+    <role>Senior financial analyst specializing in SaaS metrics</role>
+    <context>B2B SaaS company</context>
+    <task>review bgblur and give us the set of use cases</task>
+    <output_format>
+    1. Executive summary (3 sentences)
+    2. Three findings with supporting data
+    3. Recommended actions with expected impact
+    </output_format>
+    <constraints>Do not speculate beyond the data. If a conclusion is uncertain, say so.</constraints>
+
+    use bgblur as reference
+    '''
+    - Cheat Sheet
+      - https://explainx.ai/r/claude-for-work
+    - put your documentation and context at the top then your question at the end.
