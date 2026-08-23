@@ -3,13 +3,13 @@
   - 2. Why is Claude different than every other AI tool?
   - 3. Choose your plan: Free, Pro, Max, Team, Enterprise
   - 4. Your first 10 minutes inside Claude
-## Section 2: The features that change everything
+## Section 3: The features that change everything
   - 5. Projects: Build your AI-powered workspace
   - 6. Artifacts: Create dynamic documents, dashboards, games and apps
   - 7. Artifacts (Part 2)
   - 8. Memory, Research Mode, and Extended Thinking
   - 9. Research Mode (Part 2)
-## Section 3: Prompting like a pro and business workflows
+## Section 4: Prompting like a pro and business workflows
   - 10. The Claude Prompting playbook
     '''
     <role>Senior financial analyst specializing in SaaS metrics</role>
@@ -29,3 +29,6 @@
     - put your documentation and context at the top then your question at the end.
   - 11. Workflow demo: emails, reports and meeting notes
   - 24. Workflow demo: data analysis and visualisation
+  - 25. Workflow demo: slides, spreadsheets and marketing campaigns
+## Section 2: Aug - 2026 Update - Claude
+  - 3. AI Basics
