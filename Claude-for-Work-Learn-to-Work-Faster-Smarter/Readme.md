@@ -27,3 +27,4 @@
     - Cheat Sheet
       - https://explainx.ai/r/claude-for-work
     - put your documentation and context at the top then your question at the end.
+  - 11. Workflow demo: emails, reports and meeting notes
