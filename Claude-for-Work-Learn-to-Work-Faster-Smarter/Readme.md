@@ -32,3 +32,9 @@
   - 25. Workflow demo: slides, spreadsheets and marketing campaigns
 ## Section 2: Aug - 2026 Update - Claude
   - 3. AI Basics
+    - Good prompt: FROG in a Bowl
+      - ROLE
+      - GOAL
+      - CONTEXT
+      - OBJECTIVE:essentially something that you want to achieve over time or the overarching objective of this task.
+      - FORMAT
