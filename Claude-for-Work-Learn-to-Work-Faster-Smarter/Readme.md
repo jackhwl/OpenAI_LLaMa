@@ -38,3 +38,4 @@
       - CONTEXT
       - OBJECTIVE:essentially something that you want to achieve over time or the overarching objective of this task.
       - FORMAT
+  - 4. Basics of Claude
