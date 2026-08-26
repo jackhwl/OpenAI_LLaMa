@@ -52,3 +52,4 @@
       '''
   - 4. Basics of Claude
   - 5. Memory
+  - 6. Usage
