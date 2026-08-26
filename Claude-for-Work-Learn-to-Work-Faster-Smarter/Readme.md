@@ -51,3 +51,4 @@
       还有一个细微点：这里的 Goal 里面其实包含了 success criteria（成功标准）——not style nits 和 every comment should be actionable。所以如果把 prompt 设计得更严格，甚至可以拆成 Goal + Objective + Success Criteria。这样对 AI 来说会更清晰。
       '''
   - 4. Basics of Claude
+  - 5. Memory
