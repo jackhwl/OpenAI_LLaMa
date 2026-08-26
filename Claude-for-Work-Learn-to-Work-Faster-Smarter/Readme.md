@@ -33,9 +33,21 @@
 ## Section 2: Aug - 2026 Update - Claude
   - 3. AI Basics
     - Good prompt: FROG in a Bowl
+      - https://explainx.ai/practice/prompt-engineering-frog-in-a-bowl
       - ROLE
       - GOAL
       - CONTEXT
       - OBJECTIVE:essentially something that you want to achieve over time or the overarching objective of this task.
       - FORMAT
+      - Goal vs Objective
+      '''
+      所以在你这个 prompt 语境里，我会翻译成：
+
+      * Goal → 目的 / 期望结果
+      * Objective → 具体任务目标
+
+      而不是把两个都简单翻译成“目标”。
+
+      还有一个细微点：这里的 Goal 里面其实包含了 success criteria（成功标准）——not style nits 和 every comment should be actionable。所以如果把 prompt 设计得更严格，甚至可以拆成 Goal + Objective + Success Criteria。这样对 AI 来说会更清晰。
+      '''
   - 4. Basics of Claude
