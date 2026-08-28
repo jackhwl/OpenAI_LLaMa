@@ -55,3 +55,4 @@
   - 6. Usage
   - 7. Artifacts
   - 8. Projects
+  - 9. AI Skills
