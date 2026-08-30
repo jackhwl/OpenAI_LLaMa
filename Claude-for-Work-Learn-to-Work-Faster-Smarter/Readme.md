@@ -57,3 +57,4 @@
   - 8. Projects
   - 9. AI Skills
   - 10. Connectors
+  - 11. Plugins
