@@ -60,3 +60,4 @@
   - 11. Plugins
   - 12. Design
   - 13. Cowork
+  - 14. Scheduled Tasks
