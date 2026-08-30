@@ -63,3 +63,5 @@
   - 14. Scheduled Tasks
   - 15. Extension
     - chrome
+  - 16. Pro tips
+    - stick to sonnet, Opus is carrot
