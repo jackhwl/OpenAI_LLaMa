@@ -59,3 +59,4 @@
   - 10. Connectors
   - 11. Plugins
   - 12. Design
+  - 13. Cowork
