@@ -61,3 +61,5 @@
   - 12. Design
   - 13. Cowork
   - 14. Scheduled Tasks
+  - 15. Extension
+    - chrome
