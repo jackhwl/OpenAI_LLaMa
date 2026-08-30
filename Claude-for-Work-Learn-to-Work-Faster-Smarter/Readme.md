@@ -56,3 +56,4 @@
   - 7. Artifacts
   - 8. Projects
   - 9. AI Skills
+  - 10. Connectors
