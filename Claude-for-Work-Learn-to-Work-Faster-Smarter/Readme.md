@@ -58,3 +58,4 @@
   - 9. AI Skills
   - 10. Connectors
   - 11. Plugins
+  - 12. Design
