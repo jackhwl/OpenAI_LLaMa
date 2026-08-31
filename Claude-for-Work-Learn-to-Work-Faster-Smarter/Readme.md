@@ -65,3 +65,9 @@
     - chrome
   - 16. Pro tips
     - stick to sonnet, Opus is carrot
+## Section 5: What are skills?
+  - 26. Introduction
+  - 27. What are Skills? What is MCP?
+    - Rules: Guardrails
+    - Skills: Domain Expertise
+    - MCP Tools: Action Capabilities
