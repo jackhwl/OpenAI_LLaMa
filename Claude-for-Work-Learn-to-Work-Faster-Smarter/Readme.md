@@ -71,3 +71,4 @@
     - Rules: Guardrails
     - Skills: Domain Expertise
     - MCP Tools: Action Capabilities
+  - 28. Agent Skills Landscape
