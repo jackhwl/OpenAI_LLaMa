@@ -79,3 +79,4 @@
     - MCP Repo: https://github.com/whyashthakker/mcp-projects
 ## Section 6: What is MCP?
   - 30. What is MCP (Model Context Protocol)?
+  - 31. Why Anthropic Built MCP?
