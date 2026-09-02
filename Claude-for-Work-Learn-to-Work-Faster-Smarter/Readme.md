@@ -77,3 +77,5 @@
     - Skills Repo: https://github.com/whyashthakker/agent-skills
     - Marketing Skills repo: https://github.com/whyashthakker/agent-skills-marketing
     - MCP Repo: https://github.com/whyashthakker/mcp-projects
+## Section 6: What is MCP?
+  - 30. What is MCP (Model Context Protocol)?
