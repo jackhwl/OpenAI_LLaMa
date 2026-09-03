@@ -80,3 +80,4 @@
 ## Section 6: What is MCP?
   - 30. What is MCP (Model Context Protocol)?
   - 31. Why Anthropic Built MCP?
+  - 32. Core Components of MCP - Clients, Servers & Capabilities
