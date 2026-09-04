@@ -81,3 +81,5 @@
   - 30. What is MCP (Model Context Protocol)?
   - 31. Why Anthropic Built MCP?
   - 32. Core Components of MCP - Clients, Servers & Capabilities
+## Section 7: Choosing wisely and building your system
+  - 33. Claude vs ChatGPT vs Gemini vs Copilot: the honest comparison
