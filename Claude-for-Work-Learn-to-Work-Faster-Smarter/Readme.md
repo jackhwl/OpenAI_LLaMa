@@ -84,3 +84,5 @@
 ## Section 7: Choosing wisely and building your system
   - 33. Claude vs ChatGPT vs Gemini vs Copilot: the honest comparison
   - 34. Building your personal Claude workflow and next steps
+## Section 8: Skills: Setting up environment
+  - 35. Setting up environment
