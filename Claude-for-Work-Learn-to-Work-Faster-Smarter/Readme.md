@@ -86,3 +86,4 @@
   - 34. Building your personal Claude workflow and next steps
 ## Section 8: Skills: Setting up environment
   - 35. Setting up environment
+  - 36. Building your first Commit Message Skill
