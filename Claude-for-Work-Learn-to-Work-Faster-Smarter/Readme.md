@@ -87,3 +87,4 @@
 ## Section 8: Skills: Setting up environment
   - 35. Setting up environment
   - 36. Building your first Commit Message Skill
+  - 37. Building Code Review Skill
