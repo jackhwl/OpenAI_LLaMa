@@ -88,3 +88,4 @@
   - 35. Setting up environment
   - 36. Building your first Commit Message Skill
   - 37. Building Code Review Skill
+  - 38. Best Practices for Skill Building
