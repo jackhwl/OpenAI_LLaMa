@@ -89,3 +89,5 @@
   - 36. Building your first Commit Message Skill
   - 37. Building Code Review Skill
   - 38. Best Practices for Skill Building
+  - 39. Explainx skill marketplace
+    - https://explainx.ai/
