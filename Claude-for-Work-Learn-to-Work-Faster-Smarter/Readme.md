@@ -91,3 +91,4 @@
   - 38. Best Practices for Skill Building
   - 39. Explainx skill marketplace
     - https://explainx.ai/
+  - 40. Skill Marketplaces
