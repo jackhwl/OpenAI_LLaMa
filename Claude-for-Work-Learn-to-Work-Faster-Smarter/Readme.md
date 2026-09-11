@@ -94,3 +94,6 @@
   - 40. Skill Marketplaces
     - https://skills.sh
     - https://github.com/sourman/skills/blob/master/canadian-t2-filing/
+## Section 9: Skill Demos
+  - 41. Caveman skill
+  
