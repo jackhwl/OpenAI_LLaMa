@@ -92,3 +92,5 @@
   - 39. Explainx skill marketplace
     - https://explainx.ai/
   - 40. Skill Marketplaces
+    - https://skills.sh
+    - https://github.com/sourman/skills/blob/master/canadian-t2-filing/
