@@ -96,4 +96,5 @@
     - https://github.com/sourman/skills/blob/master/canadian-t2-filing/
 ## Section 9: Skill Demos
   - 41. Caveman skill
-  
+## Section 10: Building your first MCP Server
+  - 42. Pre-requisities for working with MCP
