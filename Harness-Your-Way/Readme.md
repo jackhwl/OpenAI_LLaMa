@@ -19,3 +19,5 @@
       - /details
       - /editor, /exit
       - !ls
+    - 2.4 案例：一个最小的专属 agent 配置（Karpathy 风格）
+  
