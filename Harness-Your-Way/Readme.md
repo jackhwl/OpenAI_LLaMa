@@ -20,4 +20,6 @@
       - /editor, /exit
       - !ls
     - 2.4 案例：一个最小的专属 agent 配置（Karpathy 风格）
-  
+  - 3. 认识 Deep Research 并让它做一次真实研究
+    - 3.1 第一次跑：让默认 agent 做研究
+    - 3.2 一次研究的输出长什么样
