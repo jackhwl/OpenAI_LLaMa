@@ -1,3 +1,4 @@
+# [会写规格，就会造出你的专属 harness](https://gitlink.org.cn/Gitconomy/Git4GenThinking/tree/main/courses/course-sdd-engineering/)
 ## 第 1 章 认识 SDD
   - 1. 智能体的工程化演进：为什么需要 SDD
     - 1.1 从提示词工程到 Graph 工程
@@ -9,3 +10,12 @@
       - 用 SDD 把通用 harness 变成专属 harness
     - 1.6 智能体、工具、助手的边界
     - 1.7 观察你的 agent：工具、助手、智能体差异
+  - 2. 认识你的载体：OpenCode
+    - 2.1 OpenCode 是什么
+    - 2.2 装上并跑起来
+    - 2.3 安装命令速查
+      - /init
+      - /share
+      - /details
+      - /editor, /exit
+      - !ls
