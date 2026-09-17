@@ -32,3 +32,5 @@
     - 3. 精准修改（Surgical Changes）：只改必须改的，不波及其他代码
     - 4. 目标驱动（Goal-Driven Execution）：明确目标再动手，不做无用功
     - 最小体验样例：让 AI 守纪律
+  - 3. OpenSpec：让需求可追踪
+    - 最小体验样例：让需求可追踪
