@@ -27,3 +27,8 @@
   - 本章导读
   - 1. 从差距到解决方案
   - 2. Karpathy 原则：让 AI 守纪律
+    - 1. 先思考（Think Before Coding）：不确定就问，有更简单的方法就说出来
+    - 2. 简单优先（Simplicity First）：能用简单方案就不用复杂方案
+    - 3. 精准修改（Surgical Changes）：只改必须改的，不波及其他代码
+    - 4. 目标驱动（Goal-Driven Execution）：明确目标再动手，不做无用功
+    - 最小体验样例：让 AI 守纪律
