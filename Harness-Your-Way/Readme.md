@@ -34,3 +34,14 @@
     - 最小体验样例：让 AI 守纪律
   - 3. OpenSpec：让需求可追踪
     - 最小体验样例：让需求可追踪
+    - npm install -g @fission-ai/openspec@latest
+    - mkdir todo-app && cd todo-app
+    - openspec init
+    - /opsx:propose 添加用户登录功能
+    - ls openspec/changes/add-user-auth/
+  - 4. Superpowers：让执行可验证
+    - Superpowers 的工作流是： brainstorm → spec → plan → build → review → merge
+    - 4.2 安装 Superpowers
+    - 4.3 验证安装是否成功
+    - 4.4 最小体验样例：让执行可验证
+    - 4.5 常见问题与使用边界
