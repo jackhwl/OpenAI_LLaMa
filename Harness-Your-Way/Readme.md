@@ -45,3 +45,33 @@
     - 4.3 验证安装是否成功
     - 4.4 最小体验样例：让执行可验证
     - 4.5 常见问题与使用边界
+  - 5. GStack：让复杂任务可管理
+    - 5.1 GStack 解决什么问题？
+      - GStack 是 YC CEO Garry Tan 开发的开源工具。它提供一组斜杠命令，每个命令激活一个专家角色：
+        ```
+        /office-hours    → CEO：重新定义问题
+        /plan-ceo-review → CEO：审视产品方向
+        /plan-eng-review → 架构师：锁定技术方案
+        /review          → 工程经理：代码审查
+        /qa              → QA：打开真实浏览器测试
+        /ship            → 发布经理：测试、提交、部署
+        ```
+    - 5.2 安装 GStack
+      - git clone --single-branch --depth 1 https://github.com/garrytan/gstack.git ~/gstack
+      - cd ~/gstack
+      - ./setup --host opencode
+    - 5.3 验证安装是否成功
+    - 5.4 如何使用 GStack
+      - GStack 的使用顺序应从问题定义开始，再逐步进入方案、实现、审查和测试。一个常见的最小路径是：
+        ```
+        /office-hours       → 说清问题、用户和目标
+        /plan-ceo-review    → 审视产品方向和范围
+        /plan-eng-review    → 审视架构、数据流和技术风险
+        /review             → 检查当前分支的代码改动
+        /qa                 → 在真实浏览器或测试环境中验证功能
+        /ship               → 汇总检查结果，准备交付
+        这些命令不是必须全部运行。产品想法可以先用 /office-hours；已有代码的功能修改可以从 /plan-eng-review 或 /review 开始；涉及网页交互时再使用 /qa。使用 /ship 前，应确认测试、代码审查和发布权限都在自己的授权范围内。
+        ```
+    - 5.5 最小体验样例：让复杂任务可管理
+      - use Gstack office-hours 我想做一个帮助学生管理作业的 AI 助手
+    - 5.6 常见问题与使用边界
