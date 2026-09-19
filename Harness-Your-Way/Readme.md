@@ -141,3 +141,5 @@
           -  **tools/**：放置工具配置文件，定义如何接入外部工具和知识库
           -  **docs/sources/**：放置研究资料，作为 Deep Research 的本地知识库
           -  **reports/**：放置 Deep Research 生成的研究报告，作为输出目录
+    - 1.3 创建步骤
+      ![flow](.\ch04-d02-four-layer-assembly.png)
