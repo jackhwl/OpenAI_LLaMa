@@ -103,3 +103,5 @@
     - 2.2 业界已有 Deep Research 的 MCP 和 Skill
     - 2.3 一个关键区分：Wide Research vs Deep Research
       - ![wide vs Deep](.\ch03-d02-wide-deep-research.png)
+  - 3. 用六层框架理解 Deep Research
+      - ![instance](.\ch03-d03-deep-research-layer-mapping.png)
