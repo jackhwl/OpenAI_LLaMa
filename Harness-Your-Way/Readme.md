@@ -64,6 +64,7 @@
     - 5.4 如何使用 GStack
       - GStack 的使用顺序应从问题定义开始，再逐步进入方案、实现、审查和测试。一个常见的最小路径是：
         ```
+
         /office-hours       → 说清问题、用户和目标
         /plan-ceo-review    → 审视产品方向和范围
         /plan-eng-review    → 审视架构、数据流和技术风险
@@ -80,14 +81,16 @@
   - 6. 这些实践说明了什么
 ## 第 3 章 六层框架：把工具变成方法
   - 1. 六层框架：把零散工具变成体系
-  '''
-    Layer 5: 可组合工具层  ─── Matt Pocock Skills（grill-me / tdd / diagnose / handoff）
-    Layer 4: 角色专业层    ─── GStack（9 个角色 slash 命令）
-    Layer 3: 工作流编排层  ─── Superpowers（brainstorm→spec→plan→build→review→merge）
-    Layer 2: 规范持久层    ─── OpenSpec（delta spec / project.md / archive）
-    Layer 1: 上下文工程层  ─── GSD Core（五步阶段循环 / 200K 子代理隔离）
-    Layer 0: 行为约束层    ─── Karpathy（4 条原则：先思考·简单优先·精准修改·目标驱动）  
-  '''
+
+    '''
+
+        Layer 5: 可组合工具层  ─── Matt Pocock Skills（grill-me / tdd / diagnose / handoff）
+        Layer 4: 角色专业层    ─── GStack（9 个角色 slash 命令）
+        Layer 3: 工作流编排层  ─── Superpowers（brainstorm→spec→plan→build→review→merge）
+        Layer 2: 规范持久层    ─── OpenSpec（delta spec / project.md / archive）
+        Layer 1: 上下文工程层  ─── GSD Core（五步阶段循环 / 200K 子代理隔离）
+        Layer 0: 行为约束层    ─── Karpathy（4 条原则：先思考·简单优先·精准修改·目标驱动）  
+    '''
     - ![6layer](./ch03-d01-six-layer-architecture.png)
     - Layer 0：行为约束层——地基
     - Layer 1：上下文工程层——抗腐化
@@ -105,3 +108,36 @@
       - ![wide vs Deep](.\ch03-d02-wide-deep-research.png)
   - 3. 用六层框架理解 Deep Research
       - ![instance](.\ch03-d03-deep-research-layer-mapping.png)
+## 第 4 章 逐层配置，搭出 Deep Research
+  - 本章导读
+    - 核心层
+        L0（行为约束）：给 AI 装上纪律，确保它不失控
+        L2（规范持久）：给 Deep Research 写一份规格，明确做什么、怎么做、边界在哪
+        L3（工作流编排）：配一套执行流程，让它按固定步骤干活
+        L5（可组合工具）：接上搜索工具和最小知识库，让它能碰到外部信息
+  - 1. 搭建 Deep Research 项目骨架
+    - 1.1 为什么需要项目骨架：
+      - 项目骨架不是形式主义，它是让配置可管理、AI 可读取的地基
+    - 1.2 核心目录结构
+        ‘’‘
+        
+            deep-research/
+            ├── AGENTS.md              ← L0：行为约束（Karpathy 四原则）
+            ├── spec.md                ← L2：Deep Research 规格
+            ├── workflows/             ← L3：工作流编排
+            │   └── research-flow.md   ← 六步研究流程定义
+            ├── tools/                 ← L5：可组合工具配置
+            │   ├── search.md          ← 搜索工具配置
+            │   └── knowledge-base.md  ← 最小知识库配置
+            ├── docs/                  ← 研究资料（非代码内容）
+            │   └── sources/           ← 接入的资料源文件
+            ├── reports/               ← 研究报告输出目录
+            └── .git/                  ← 版本控制（Git）    
+        ’‘’
+        ![project tree](.\ch04-d01-project-file-tree.png)
+        - 每个目录的具体职责：
+          -  根目录：放置核心配置文件（AGENTS.md 和 spec.md），AI 启动时首先读取这里
+          -  **workflows/**：放置工作流定义文件，规定 Deep Research 的执行步骤
+          -  **tools/**：放置工具配置文件，定义如何接入外部工具和知识库
+          -  **docs/sources/**：放置研究资料，作为 Deep Research 的本地知识库
+          -  **reports/**：放置 Deep Research 生成的研究报告，作为输出目录
