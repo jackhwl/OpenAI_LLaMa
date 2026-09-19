@@ -75,3 +75,18 @@
     - 5.5 最小体验样例：让复杂任务可管理
       - use Gstack office-hours 我想做一个帮助学生管理作业的 AI 助手
     - 5.6 常见问题与使用边界
+    ![](./ch02-d02-chat-to-specification.png)
+    ![](./ch02-d03-practice-composition-boundaries.png)
+  - 6. 这些实践说明了什么
+## 第 3 章 六层框架：把工具变成方法
+  - 1. 六层框架：把零散工具变成体系
+  '''
+    Layer 5: 可组合工具层  ─── Matt Pocock Skills（grill-me / tdd / diagnose / handoff）
+    Layer 4: 角色专业层    ─── GStack（9 个角色 slash 命令）
+    Layer 3: 工作流编排层  ─── Superpowers（brainstorm→spec→plan→build→review→merge）
+    Layer 2: 规范持久层    ─── OpenSpec（delta spec / project.md / archive）
+    Layer 1: 上下文工程层  ─── GSD Core（五步阶段循环 / 200K 子代理隔离）
+    Layer 0: 行为约束层    ─── Karpathy（4 条原则：先思考·简单优先·精准修改·目标驱动）  
+  '''
+    - ![6layer](./ch03-d01-six-layer-architecture.png)
+    - Layer 0：行为约束层——地基
