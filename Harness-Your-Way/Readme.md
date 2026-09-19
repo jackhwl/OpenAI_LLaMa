@@ -98,3 +98,8 @@
     - Layer 4：角色专业层——可管理
       - GStack
     - Layer 5：可组合工具层——有解法
+  - 2. Deep Research 是什么
+    - 2.1 一句话定义
+    - 2.2 业界已有 Deep Research 的 MCP 和 Skill
+    - 2.3 一个关键区分：Wide Research vs Deep Research
+      - ![wide vs Deep](.\ch03-d02-wide-deep-research.png)
