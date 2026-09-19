@@ -143,3 +143,8 @@
           -  **reports/**：放置 Deep Research 生成的研究报告，作为输出目录
     - 1.3 创建步骤
       ![flow](.\ch04-d02-four-layer-assembly.png)
+  - 2. 配置 L0 行为约束：写 AGENTS.md
+    - 2.1 为什么需要行为约束
+    - 2.2 四条原则的具体化
+    - 2.3 AGENTS.md 的内容
+    - 2.4 如何验证配置有效
