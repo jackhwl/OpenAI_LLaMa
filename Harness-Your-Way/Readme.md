@@ -90,3 +90,11 @@
   '''
     - ![6layer](./ch03-d01-six-layer-architecture.png)
     - Layer 0：行为约束层——地基
+    - Layer 1：上下文工程层——抗腐化
+    - Layer 2：规范持久层——可追溯
+      - OpenSpec
+    - Layer 3：工作流编排层——可验证
+      - Superpowers
+    - Layer 4：角色专业层——可管理
+      - GStack
+    - Layer 5：可组合工具层——有解法
