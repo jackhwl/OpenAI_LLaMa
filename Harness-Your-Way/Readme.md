@@ -162,3 +162,4 @@
         3. 检查点：这步完成的条件是什么，怎样算“通过”
       ![check point](.\ch04-d03-six-step-checkpoints.png)
     - 4.3 workflows/research-flow.md 的内容
+    - 4.4 工作流与规格的关系
