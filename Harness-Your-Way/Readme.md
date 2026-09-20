@@ -163,3 +163,8 @@
       ![check point](.\ch04-d03-six-step-checkpoints.png)
     - 4.3 workflows/research-flow.md 的内容
     - 4.4 工作流与规格的关系
+  - 5. 配置 L5 可组合工具：接入搜索工具和最小知识库
+    - 5.1 为什么需要工具
+    - 5.2 工具选择策略
+    - 5.3 搜索工具配置
+    - 5.4 最小知识库配置
