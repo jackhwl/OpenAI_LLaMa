@@ -225,3 +225,10 @@
       ![L1](./ch05-d03-cross-session-recovery.png)
     - 5.3 跨会话记忆：每次从干净起点开始
     - 5.4 L1 的配置落地
+  - 6. 补全 L4 角色分工
+    - 6.1 为什么需要 L4
+    - 6.2 角色专业化的原则
+    - 6.3 GStack 风格的 Deep Research 角色设计
+    - 6.4 配置落地
+    - 6.5 L4 与 L3 的衔接
+      ![L3L4](./ch05-d04-l3-l4-swimlanes.png)
