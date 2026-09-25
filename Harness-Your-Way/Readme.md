@@ -234,3 +234,11 @@
       ![L3L4](./ch05-d04-l3-l4-swimlanes.png)
 ## 第 6 章 测试与迭代——用证据改进 Deep Research
   - 1. 准备测试输入
+    - 1.1 为什么要专门准备测试输入
+    - 1.2 两类测试输入
+    - 1.3 测试用例设计原则
+    - 1.4 测试用例清单模板
+      ![matrix](./ch06-d01-test-input-coverage-matrix.png)
+  - 2. 证据验证：逐层检查 L0-L5
+    - 2.1 为什么逐层验证
+      ![matrix](./ch06-d02-evidence-verification-matrix.png)
