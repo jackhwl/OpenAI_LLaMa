@@ -243,3 +243,4 @@
     - 2.1 为什么逐层验证
       ![matrix](./ch06-d02-evidence-verification-matrix.png)
     - 2.2 每层的验证方法
+    - 2.3 验证记录模板
