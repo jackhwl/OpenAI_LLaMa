@@ -242,3 +242,4 @@
   - 2. 证据验证：逐层检查 L0-L5
     - 2.1 为什么逐层验证
       ![matrix](./ch06-d02-evidence-verification-matrix.png)
+    - 2.2 每层的验证方法
