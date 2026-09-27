@@ -244,3 +244,6 @@
       ![matrix](./ch06-d02-evidence-verification-matrix.png)
     - 2.2 每层的验证方法
     - 2.3 验证记录模板
+  - 3. 差距分析：规格要求 vs 实际行为
+    - 3.1 差距分析的三步法
+  
