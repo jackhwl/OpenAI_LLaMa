@@ -273,3 +273,4 @@
     - 1.3 与第四章项目结构的对应
       ![skill](./ch07-d01-config-to-skill-package.png)
     - 1.4 创建安装包骨架
+      ![skill](./ch07-d02-skill-lifecycle.png)
