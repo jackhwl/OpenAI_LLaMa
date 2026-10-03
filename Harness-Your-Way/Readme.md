@@ -274,3 +274,23 @@
       ![skill](./ch07-d01-config-to-skill-package.png)
     - 1.4 创建安装包骨架
       ![skill](./ch07-d02-skill-lifecycle.png)
+  - 2. 打包 Skill 本体
+    - 2.1 SKILL.md 的核心地位
+    - 2.2 SKILL.md 内容框架
+    '''
+    ---
+    name: deep-research
+    description: 输入研究问题，经过六步流程，输出带可追溯引用的结构化研究报告
+    version: 1.0.0
+    author: （你的名字或团队名）
+    ---
+    # Deep Research Skill
+    ## 做什么
+    （一句话说清这个 Skill 的职责）
+    ## 怎么用
+    （调用方式、输入格式、输出格式）
+    ## 规则
+    （执行时必须遵守的约束条件）
+    ## 已知限制
+    （这个 Skill 做不到什么、什么情况下会出错）
+    '''
