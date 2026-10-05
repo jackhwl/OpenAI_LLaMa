@@ -349,3 +349,4 @@
       '''
     - 2.4 references/ 目录内容
     - 2.5 workflows/ 目录内容
+    - 2.6 tools/ 目录内容
