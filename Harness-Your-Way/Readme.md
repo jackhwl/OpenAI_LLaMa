@@ -361,3 +361,5 @@
   - 5. 版本管理
   - 5.1 为什么需要版本管理
   - 5.2 版本号规范
+     ![](./ch07-d03-version-impact-scope.png)
+  - 5.3 CHANGELOG.md 示例
