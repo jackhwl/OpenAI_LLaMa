@@ -363,3 +363,4 @@
   - 5.2 版本号规范
      ![](./ch07-d03-version-impact-scope.png)
   - 5.3 CHANGELOG.md 示例
+  - 5.4 发布流程
