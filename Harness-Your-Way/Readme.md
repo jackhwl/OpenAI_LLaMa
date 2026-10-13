@@ -359,9 +359,11 @@
     - 4.2 README.md 完整示例
     - 4.3 安装说明的检查清单
   - 5. 版本管理
-  - 5.1 为什么需要版本管理
-  - 5.2 版本号规范
-     ![](./ch07-d03-version-impact-scope.png)
-  - 5.3 CHANGELOG.md 示例
-  - 5.4 发布流程
-    ![](./ch07-d04-release-acceptance-gate.png)
+    - 5.1 为什么需要版本管理
+    - 5.2 版本号规范
+      ![](./ch07-d03-version-impact-scope.png)
+    - 5.3 CHANGELOG.md 示例
+    - 5.4 发布流程
+      ![](./ch07-d04-release-acceptance-gate.png)
+  - 6. 成果展示
+    - 6.1 展示模板
