@@ -367,3 +367,4 @@
       ![](./ch07-d04-release-acceptance-gate.png)
   - 6. 成果展示
     - 6.1 展示模板
+    - 6.2 引导复盘
