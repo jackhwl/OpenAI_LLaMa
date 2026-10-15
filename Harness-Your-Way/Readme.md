@@ -371,3 +371,4 @@
     - 6.3 回顾 SDD 全流程
 ## 第 8 章 进阶配置示例——一个日常在用的 Deep Research Agent
   - 1. 为什么要看进阶配置
+  - 2. 场景定义：这个 Deep Research 做什么
