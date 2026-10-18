@@ -377,3 +377,4 @@
   - 3. 实际装配清单
     ![](./ch08-d01-assembly-overview.png)
     - 3.1 MCP 装配
+    - 3.2 Skill 装配
