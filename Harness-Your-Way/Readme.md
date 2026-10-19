@@ -378,3 +378,6 @@
     ![](./ch08-d01-assembly-overview.png)
     - 3.1 MCP 装配
     - 3.2 Skill 装配
+  - 4. 工作流与 Loop
+    ![](./ch08-d02-graph-loop.png)
+    - 4.1 十节点 Graph
