@@ -382,3 +382,4 @@
     ![](./ch08-d02-graph-loop.png)
     - 4.1 十节点 Graph
     - 4.2 report-draft-review 循环
+  - 5. 配置示例一：opencode.json 的 agent 段
