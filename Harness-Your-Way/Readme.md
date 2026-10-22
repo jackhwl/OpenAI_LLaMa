@@ -384,3 +384,4 @@
     - 4.2 report-draft-review 循环
   - 5. 配置示例一：opencode.json 的 agent 段
   - 6. 配置示例二：GStack 角色层装配
+  - 7. 最小版与进阶配置：六层对照
