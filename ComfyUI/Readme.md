@@ -11,6 +11,7 @@
     cd ~/Jack/imageAI
     source .venv310/bin/activate      
     python3 ComfyUI/main.py
+    using ComfyUI Desktop doesn't need python3 ComfyUI/main.py
     ```
   - Basic ComfyUI Workflow
     - Using lora model to speed up
