@@ -13,16 +13,17 @@
     python3 ComfyUI/main.py
     using ComfyUI Desktop doesn't need python3 ComfyUI/main.py
     ```
-  - Basic ComfyUI Workflow
+  - 3. Basic ComfyUI Workflow
     - Using lora model to speed up
     - Load LoRA
     - steps: 4
     - cfg: 1
     - sampler_name: lcm
     - scheduler sgm_uniform
-  - Text to Image
+  - 4. Text to Image
   - Image to Image
     - https://sbcode.net/genai/img-2-img/
   - Inpainting
     - 512-inpainting-ema.safetensors
   - Outpainting
+  
