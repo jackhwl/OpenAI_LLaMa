@@ -21,7 +21,7 @@
     - sampler_name: lcm
     - scheduler sgm_uniform
   - 4. Text to Image
-  - Image to Image
+  - 5. Image to Image
     - https://sbcode.net/genai/img-2-img/
   - Inpainting
     - 512-inpainting-ema.safetensors
