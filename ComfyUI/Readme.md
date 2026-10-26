@@ -26,4 +26,4 @@
   - 6. Inpainting
     - 512-inpainting-ema.safetensors
   - 7. Outpainting
-  
+  - 8. The ImageCompositeMasked Node
