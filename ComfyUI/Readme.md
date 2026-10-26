@@ -25,5 +25,5 @@
     - https://sbcode.net/genai/img-2-img/
   - 6. Inpainting
     - 512-inpainting-ema.safetensors
-  - Outpainting
+  - 7. Outpainting
   
