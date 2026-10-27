@@ -27,3 +27,4 @@
     - 512-inpainting-ema.safetensors
   - 7. Outpainting
   - 8. The ImageCompositeMasked Node
+  - 9. Subgraphs
