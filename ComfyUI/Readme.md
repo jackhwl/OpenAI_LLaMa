@@ -28,3 +28,4 @@
   - 7. Outpainting
   - 8. The ImageCompositeMasked Node
   - 9. Subgraphs
+  - 10. Install ComfyUI Manager
