@@ -29,3 +29,4 @@
   - 8. The ImageCompositeMasked Node
   - 9. Subgraphs
   - 10. Install ComfyUI Manager
+  - 11. ESRGAN
