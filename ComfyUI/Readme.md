@@ -30,3 +30,4 @@
   - 9. Subgraphs
   - 10. Install ComfyUI Manager
   - 11. ESRGAN
+  - 12. Model Checkpoint Comparison
