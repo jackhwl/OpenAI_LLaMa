@@ -32,3 +32,4 @@
   - 11. ESRGAN
   - 12. Model Checkpoint Comparison
     - SD 1.5, SD 2.1, SDXL, Flux Dev, Flux Schnell, DreamShaper 8, AbsoluteReality, DreamShaper XL Turbo and RealismEngineSDXL.
+  - 13. Latent Upscaling
