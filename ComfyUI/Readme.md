@@ -36,3 +36,4 @@
   - 14. Stable Video Diffusion
     - https://sbcode.net/genai/svd/
     - fish 900 seconds
+  - 15. Frame Interpolation
