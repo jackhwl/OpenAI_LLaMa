@@ -37,3 +37,4 @@
     - https://sbcode.net/genai/svd/
     - fish 900 seconds
   - 15. Frame Interpolation
+  - 16. Canny ControlNet
