@@ -43,3 +43,5 @@
     - DWPose
   - 19. IP-Adapter
   - 20. OpenPose ControlNet with Flux
+  - 21. IP-Adapter with Flux
+  - 22. ControlNets from Video
