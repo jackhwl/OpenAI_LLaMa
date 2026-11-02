@@ -40,3 +40,5 @@
   - 16. Canny ControlNet
   - 17. Depth ControlNet
   - 18. OpenPose ControlNet
+    - DWPose
+  - 19. IP-Adapter
