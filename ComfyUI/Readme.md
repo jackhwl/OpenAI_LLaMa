@@ -39,3 +39,4 @@
   - 15. Frame Interpolation
   - 16. Canny ControlNet
   - 17. Depth ControlNet
+  - 18. OpenPose ControlNet
