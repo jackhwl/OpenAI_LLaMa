@@ -45,3 +45,4 @@
   - 20. OpenPose ControlNet with Flux
   - 21. IP-Adapter with Flux
   - 22. ControlNets from Video
+  - 23. AnimateDiff
