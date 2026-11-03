@@ -48,3 +48,4 @@
   - 23. AnimateDiff
   - 24. Video Helper Suite
   - 25. ControlNeXt SVD
+  - 26. LTXV Text To Video
