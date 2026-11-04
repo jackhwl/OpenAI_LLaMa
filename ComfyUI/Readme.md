@@ -49,3 +49,4 @@
   - 24. Video Helper Suite
   - 25. ControlNeXt SVD
   - 26. LTXV Text To Video
+  - 27. LTXV Image To Video
