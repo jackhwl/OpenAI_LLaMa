@@ -53,3 +53,4 @@
   - 28. LTXV In Context LoRA Pose Control
   - 29. FLUX.1 Kontext
   - 30. FLUX.1 Kontext with Multiple Images
+  - 31. Wan 2.2 Text to Video (T2V)
