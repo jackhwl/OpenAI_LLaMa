@@ -54,3 +54,4 @@
   - 29. FLUX.1 Kontext
   - 30. FLUX.1 Kontext with Multiple Images
   - 31. Wan 2.2 Text to Video (T2V)
+  - 32. Wan 2.2 Image to Video (I2V & FLF2V)
