@@ -58,3 +58,5 @@
   - 33. Qwen Edit - Multiple Camera Angles
   - 34. Get Line Custom Node
   - 35. Lip Sync using Wan 2.2 (S2V)
+  - 88. Aderant
+  - 36. Wan 2.2 VACE Video Editing
