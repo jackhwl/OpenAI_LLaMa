@@ -62,3 +62,19 @@
   - 36. Wan 2.2 VACE Video Editing
   - 37. Wan 2.2 Animate - Character Replacement
   - 38. FLUX.2 Klein
+    - Txt2Image Qwen-Image-2.1 MLS workflow
+      - MLX 热启动基准 223.76 秒 vs 251.69 MPS, MLX 的耗时约少 11.1%
+    - Qwen-Image-2.1-T2I-MPS.json
+    - to start MLX @ http://127.0.0.1:8189/
+    ```
+   cd "$HOME/mlx-test-project/ComfyUI"
+
+  "$HOME/mlx-test313/bin/python" main.py \
+    --listen 127.0.0.1 \
+    --port 8189 \
+    --extra-model-paths-config "$HOME/mlx-test-project/models.yaml" \
+    --input-directory "$HOME/ComfyUI-Shared/input" \
+    --output-directory "$HOME/ComfyUI-Shared/output" 
+    ```
+    - Desktop version 8188: PyTorch MPS, including your working Qwen-Image 2.1 image-editing workflow.
+    - 8189: MLXU, including your MLX text-to-image workflow.
