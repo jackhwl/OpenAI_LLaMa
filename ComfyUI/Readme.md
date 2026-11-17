@@ -78,3 +78,14 @@
     ```
     - Desktop version 8188: PyTorch MPS, including your working Qwen-Image 2.1 image-editing workflow.
     - 8189: MLXU, including your MLX text-to-image workflow.
+  - on my Mac
+  
+| Feature | MPS | MLX |
+|---|---|---|
+| Full name | Metal Performance Shaders | MLX (framework name) |
+| Developed by | Apple | Apple |
+| Main purpose | GPU computation acceleration | Machine learning framework |
+| Used with | PyTorch, other frameworks | MLX-native models and code |
+| Apple Silicon GPU | Yes | Yes |
+| Unified memory | Yes | Yes |
+| Your ComfyUI | Desktop (8188) | MLXU (8189) |
