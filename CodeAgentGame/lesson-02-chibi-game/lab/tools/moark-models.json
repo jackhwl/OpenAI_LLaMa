@@ -1,0 +1,1288 @@
+{
+ "object": "list",
+ "data": [
+  {
+   "id": "Idol",
+   "object": "model",
+   "created": 1794452358,
+   "owned_by": "Other"
+  },
+  {
+   "id": "AutoTrust-JEV-27B-v1.1",
+   "object": "model",
+   "created": 1794387074,
+   "owned_by": "Other"
+  },
+  {
+   "id": "hy4",
+   "object": "model",
+   "created": 1793883589,
+   "owned_by": "tencent"
+  },
+  {
+   "id": "astrlink-guard",
+   "object": "model",
+   "created": 1793253976,
+   "owned_by": "Other"
+  },
+  {
+   "id": "Unlimited-OCR-2",
+   "object": "model",
+   "created": 1793179954,
+   "owned_by": "baidu"
+  },
+  {
+   "id": "Fibo-2.0-edit-turbo",
+   "object": "model",
+   "created": 1793168546,
+   "owned_by": "Other"
+  },
+  {
+   "id": "MiniMax-M3.1-Flash",
+   "object": "model",
+   "created": 1793070412,
+   "owned_by": "minimax"
+  },
+  {
+   "id": "kimi-k3.1-pro",
+   "object": "model",
+   "created": 1792818976,
+   "owned_by": "moonshot"
+  },
+  {
+   "id": "kimi-k3.1-pro-highspeed",
+   "object": "model",
+   "created": 1792818110,
+   "owned_by": "moonshot"
+  },
+  {
+   "id": "d3-turbo",
+   "object": "model",
+   "created": 1792742937,
+   "owned_by": "Other"
+  },
+  {
+   "id": "d3-flash",
+   "object": "model",
+   "created": 1792487890,
+   "owned_by": "Other"
+  },
+  {
+   "id": "d3",
+   "object": "model",
+   "created": 1792482736,
+   "owned_by": "Other"
+  },
+  {
+   "id": "DeepSeek-V4.1-Flash-1017",
+   "object": "model",
+   "created": 1792382340,
+   "owned_by": "deepseek"
+  },
+  {
+   "id": "Intern-Decision-4B",
+   "object": "model",
+   "created": 1790775825,
+   "owned_by": "internlm"
+  },
+  {
+   "id": "NeoHorse-Jev-4B",
+   "object": "model",
+   "created": 1790680280,
+   "owned_by": "tokenrhythm"
+  },
+  {
+   "id": "qwen-image-2.1-viggle-turbo",
+   "object": "model",
+   "created": 1790653170
+  },
+  {
+   "id": "DiffusionGemma-26B-A4B-it-Jev",
+   "object": "model",
+   "created": 1790246026,
+   "owned_by": "Other"
+  },
+  {
+   "id": "SemIf-OpenJev-4B",
+   "object": "model",
+   "created": 1790241376,
+   "owned_by": "Other"
+  },
+  {
+   "id": "APUS-OpenJev-v1-9B",
+   "object": "model",
+   "created": 1790162310,
+   "owned_by": "apus"
+  },
+  {
+   "id": "APUS-OpenJev-v1-4B",
+   "object": "model",
+   "created": 1790162223,
+   "owned_by": "apus"
+  },
+  {
+   "id": "Bespoke-Nimble-9B",
+   "object": "model",
+   "created": 1789987029,
+   "owned_by": "bespokelabs"
+  },
+  {
+   "id": "Qwen3.8-Omni-Flash",
+   "object": "model",
+   "created": 1789703514,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "MiniMax-H3",
+   "object": "model",
+   "created": 1789626774,
+   "owned_by": "minimax"
+  },
+  {
+   "id": "deepseek-v4.1-flash",
+   "object": "model",
+   "created": 1789355970,
+   "owned_by": "deepseek"
+  },
+  {
+   "id": "qwen3.8-max-0902",
+   "object": "model",
+   "created": 1788421270,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "WeMM-Embedding-9B",
+   "object": "model",
+   "created": 1788414800,
+   "owned_by": "tencent"
+  },
+  {
+   "id": "WeMM-Embedding-4B",
+   "object": "model",
+   "created": 1788414279,
+   "owned_by": "tencent"
+  },
+  {
+   "id": "WeMM-Embedding-2B",
+   "object": "model",
+   "created": 1788337754,
+   "owned_by": "tencent"
+  },
+  {
+   "id": "GLM-5.3-Flash",
+   "object": "model",
+   "created": 1788251397,
+   "owned_by": "glm"
+  },
+  {
+   "id": "wan3.0-video",
+   "object": "model",
+   "created": 1787819446,
+   "owned_by": "wan-ai"
+  },
+  {
+   "id": "qwen3.8-flash",
+   "object": "model",
+   "created": 1787810558,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "GLM-5.3",
+   "object": "model",
+   "created": 1787555031,
+   "owned_by": "glm"
+  },
+  {
+   "id": "qwen3.8-27b",
+   "object": "model",
+   "created": 1787278673,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "DeepSeek-V4-Pro-0813",
+   "object": "model",
+   "created": 1786588814,
+   "owned_by": "deepseek"
+  },
+  {
+   "id": "deepseek-v4-flash-0731",
+   "object": "model",
+   "created": 1785750784,
+   "owned_by": "deepseek"
+  },
+  {
+   "id": "qwen3.8-max",
+   "object": "model",
+   "created": 1785728404,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "VoxCPM2",
+   "object": "model",
+   "created": 1785141262,
+   "owned_by": "openbmb"
+  },
+  {
+   "id": "MinerU2.5-Pro",
+   "object": "model",
+   "created": 1784806764,
+   "owned_by": "opendatalab"
+  },
+  {
+   "id": "wan2.7-image",
+   "object": "model",
+   "created": 1784704972,
+   "owned_by": "wan-ai"
+  },
+  {
+   "id": "wan2.7-image-pro",
+   "object": "model",
+   "created": 1784704972,
+   "owned_by": "wan-ai"
+  },
+  {
+   "id": "qwen-image-2.0-pro",
+   "object": "model",
+   "created": 1784704972,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "kimi-k3",
+   "object": "model",
+   "created": 1784700207,
+   "owned_by": "moonshot"
+  },
+  {
+   "id": "Step-3.7-Flash",
+   "object": "model",
+   "created": 1784186665,
+   "owned_by": "stepfun"
+  },
+  {
+   "id": "Duix-Avatar",
+   "object": "model",
+   "created": 1782835200,
+   "owned_by": "duix"
+  },
+  {
+   "id": "qwen-image-2.0",
+   "object": "model",
+   "created": 1782465808,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "happyhorse-1.1",
+   "object": "model",
+   "created": 1782116413,
+   "owned_by": "aliyun_happyhorse"
+  },
+  {
+   "id": "Kimi-K2.7-Code",
+   "object": "model",
+   "created": 1781753433,
+   "owned_by": "moonshot"
+  },
+  {
+   "id": "GLM-5.2",
+   "object": "model",
+   "created": 1781663758,
+   "owned_by": "glm"
+  },
+  {
+   "id": "Qwen3.5-Plus",
+   "object": "model",
+   "created": 1781661600,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3-VL-32B-Thinking",
+   "object": "model",
+   "created": 1781661600,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3-Coder-Flash",
+   "object": "model",
+   "created": 1781661600,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "TeleTTS-Bidirectional-Mandarin",
+   "object": "model",
+   "created": 1781264122,
+   "owned_by": "teleai"
+  },
+  {
+   "id": "TeleTTS-MultiDialect",
+   "object": "model",
+   "created": 1781264122,
+   "owned_by": "teleai"
+  },
+  {
+   "id": "TeleTTS-Mandarin",
+   "object": "model",
+   "created": 1780555616,
+   "owned_by": "teleai"
+  },
+  {
+   "id": "TeleASR-MultiDialect",
+   "object": "model",
+   "created": 1780555616,
+   "owned_by": "teleai"
+  },
+  {
+   "id": "MiMo-V2.5-Pro",
+   "object": "model",
+   "created": 1780399311,
+   "owned_by": "xiaomi"
+  },
+  {
+   "id": "MiniMax-M3",
+   "object": "model",
+   "created": 1780367844,
+   "owned_by": "minimax"
+  },
+  {
+   "id": "HY-MT2-7B",
+   "object": "model",
+   "created": 1779862647,
+   "owned_by": "tencent"
+  },
+  {
+   "id": "Hy-MT2-30B-A3B",
+   "object": "model",
+   "created": 1779862155,
+   "owned_by": "tencent"
+  },
+  {
+   "id": "Qwen3.7-Plus",
+   "object": "model",
+   "created": 1779767423,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3.6-Flash",
+   "object": "model",
+   "created": 1779767423,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3.5-Flash",
+   "object": "model",
+   "created": 1779767423,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3.7-Max",
+   "object": "model",
+   "created": 1779448877,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "ViduQ3-Pro",
+   "object": "model",
+   "created": 1779278138,
+   "owned_by": "vidu"
+  },
+  {
+   "id": "ViduQ2-Pro",
+   "object": "model",
+   "created": 1779277968,
+   "owned_by": "vidu"
+  },
+  {
+   "id": "ViduQ2-Turbo",
+   "object": "model",
+   "created": 1779277906,
+   "owned_by": "vidu"
+  },
+  {
+   "id": "ViduQ3-Turbo",
+   "object": "model",
+   "created": 1779276050,
+   "owned_by": "vidu"
+  },
+  {
+   "id": "Wan2.7",
+   "object": "model",
+   "created": 1778828897,
+   "owned_by": "wan-ai"
+  },
+  {
+   "id": "qwen-mt-plus",
+   "object": "model",
+   "created": 1778404325,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "qwen-mt-flash",
+   "object": "model",
+   "created": 1778404325,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "qwen-mt-lite",
+   "object": "model",
+   "created": 1778404325,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "tongyi-intent-detect-v3",
+   "object": "model",
+   "created": 1778404325,
+   "owned_by": "Other"
+  },
+  {
+   "id": "ip-location",
+   "object": "model",
+   "created": 1778314141,
+   "owned_by": "Other"
+  },
+  {
+   "id": "qwen-max",
+   "object": "model",
+   "created": 1778207029,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "tongyi-xiaomi-analysis-pro",
+   "object": "model",
+   "created": 1778207029,
+   "owned_by": "Other"
+  },
+  {
+   "id": "tongyi-xiaomi-analysis-flash",
+   "object": "model",
+   "created": 1778207029,
+   "owned_by": "Other"
+  },
+  {
+   "id": "Intern-S2",
+   "object": "model",
+   "created": 1778207029,
+   "owned_by": "internlm"
+  },
+  {
+   "id": "laya-multilingual",
+   "object": "model",
+   "created": 1778207029,
+   "owned_by": "Other"
+  },
+  {
+   "id": "HappyHorse-1.0",
+   "object": "model",
+   "created": 1778155468,
+   "owned_by": "aliyun_happyhorse"
+  },
+  {
+   "id": "qwen3.5-ocr",
+   "object": "model",
+   "created": 1777564800,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "gui-plus-2026-02-26",
+   "object": "model",
+   "created": 1777564800,
+   "owned_by": "Other"
+  },
+  {
+   "id": "qwen3-vl-plus",
+   "object": "model",
+   "created": 1777564800,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "qwen-plus-2025-12-01",
+   "object": "model",
+   "created": 1777564800,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "qwen-flash",
+   "object": "model",
+   "created": 1777564800,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Atria-Dawn-Free",
+   "object": "model",
+   "created": 1777564800,
+   "owned_by": "internlm"
+  },
+  {
+   "id": "Qwen3.6-27B",
+   "object": "model",
+   "created": 1777547225,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3.6-35B-A3B",
+   "object": "model",
+   "created": 1777376132,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "DeepSeek-V4-Flash",
+   "object": "model",
+   "created": 1777028607,
+   "owned_by": "deepseek"
+  },
+  {
+   "id": "DeepSeek-V4-Pro",
+   "object": "model",
+   "created": 1777027997,
+   "owned_by": "deepseek"
+  },
+  {
+   "id": "Qwen3.6-Plus",
+   "object": "model",
+   "created": 1776842472,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Kimi-K2.6",
+   "object": "model",
+   "created": 1776739720,
+   "owned_by": "moonshot"
+  },
+  {
+   "id": "MiniMax-M2.7",
+   "object": "model",
+   "created": 1776067225,
+   "owned_by": "minimax"
+  },
+  {
+   "id": "gemma-4-26B-A4B-it",
+   "object": "model",
+   "created": 1775647730,
+   "owned_by": "google"
+  },
+  {
+   "id": "GLM-5.1",
+   "object": "model",
+   "created": 1775617405,
+   "owned_by": "glm"
+  },
+  {
+   "id": "Qwen3.5-122B-A10B",
+   "object": "model",
+   "created": 1773999159,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3.5-27B",
+   "object": "model",
+   "created": 1772105290,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3.5-35B-A3B",
+   "object": "model",
+   "created": 1772014985,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "MiniMax-M2.5",
+   "object": "model",
+   "created": 1770971999,
+   "owned_by": "minimax"
+  },
+  {
+   "id": "GLM-5",
+   "object": "model",
+   "created": 1770853836,
+   "owned_by": "glm"
+  },
+  {
+   "id": "Qwen3-Coder-Next",
+   "object": "model",
+   "created": 1770370367,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "FLUX.2-klein-4B",
+   "object": "model",
+   "created": 1770288190,
+   "owned_by": "black-forest-labs"
+  },
+  {
+   "id": "Qwen3-TTS",
+   "object": "model",
+   "created": 1770279739,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "LegalOne-8B",
+   "object": "model",
+   "created": 1770107461,
+   "owned_by": "legalone"
+  },
+  {
+   "id": "PaddleOCR-VL-1.5",
+   "object": "model",
+   "created": 1769771788,
+   "owned_by": "baidu"
+  },
+  {
+   "id": "Kimi-K2.5",
+   "object": "model",
+   "created": 1769505011,
+   "owned_by": "moonshot"
+  },
+  {
+   "id": "Qwen3-VL-Reranker-2B",
+   "object": "model",
+   "created": 1769425743,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "LTX-2",
+   "object": "model",
+   "created": 1769413396,
+   "owned_by": "lightricks"
+  },
+  {
+   "id": "Qwen3-VL-Embedding-2B",
+   "object": "model",
+   "created": 1769411304,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "FLUX.2-klein-9B",
+   "object": "model",
+   "created": 1769166186,
+   "owned_by": "black-forest-labs"
+  },
+  {
+   "id": "Qwen3-VL-Reranker-8B",
+   "object": "model",
+   "created": 1768895312,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3-VL-Embedding-8B",
+   "object": "model",
+   "created": 1768890052,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "GLM-Image",
+   "object": "model",
+   "created": 1768563901,
+   "owned_by": "glm"
+  },
+  {
+   "id": "MAI-UI-8B",
+   "object": "model",
+   "created": 1768461198,
+   "owned_by": "tongyi-mai"
+  },
+  {
+   "id": "Qwen-Image-2512",
+   "object": "model",
+   "created": 1768460802,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Sinong1.0-32B",
+   "object": "model",
+   "created": 1768446528,
+   "owned_by": "sinong"
+  },
+  {
+   "id": "HY-MT1.5-7B",
+   "object": "model",
+   "created": 1767871848,
+   "owned_by": "tencent"
+  },
+  {
+   "id": "VajraV1",
+   "object": "model",
+   "created": 1767777522,
+   "owned_by": "vayuai"
+  },
+  {
+   "id": "CosyVoice3",
+   "object": "model",
+   "created": 1767597381,
+   "owned_by": "funaudiollm"
+  },
+  {
+   "id": "sam3",
+   "object": "model",
+   "created": 1767000755,
+   "owned_by": "meta"
+  },
+  {
+   "id": "Fun-ASR-Nano-2512",
+   "object": "model",
+   "created": 1766991599,
+   "owned_by": "funaudiollm"
+  },
+  {
+   "id": "Qwen-Image-Edit-2511",
+   "object": "model",
+   "created": 1766744767,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "FLUX.2-dev",
+   "object": "model",
+   "created": 1765881152,
+   "owned_by": "black-forest-labs"
+  },
+  {
+   "id": "GLM-TTS",
+   "object": "model",
+   "created": 1765866139,
+   "owned_by": "glm"
+  },
+  {
+   "id": "InfiniteTalk",
+   "object": "model",
+   "created": 1765787330,
+   "owned_by": "meigen-ai"
+  },
+  {
+   "id": "KAT-Dev",
+   "object": "model",
+   "created": 1765528055,
+   "owned_by": "kwai"
+  },
+  {
+   "id": "AutoGLM-Phone-9B-Multilingual",
+   "object": "model",
+   "created": 1765445001,
+   "owned_by": "glm"
+  },
+  {
+   "id": "GLM-ASR",
+   "object": "model",
+   "created": 1765354272,
+   "owned_by": "glm"
+  },
+  {
+   "id": "LongCat-Image-Edit",
+   "object": "model",
+   "created": 1765188147,
+   "owned_by": "longcat"
+  },
+  {
+   "id": "LongCat-Image",
+   "object": "model",
+   "created": 1765187832,
+   "owned_by": "longcat"
+  },
+  {
+   "id": "HunyuanOCR",
+   "object": "model",
+   "created": 1764730868,
+   "owned_by": "tencent"
+  },
+  {
+   "id": "z-image-turbo",
+   "object": "model",
+   "created": 1764674347,
+   "owned_by": "tongyi-mai"
+  },
+  {
+   "id": "ERNIE-5.0-Thinking",
+   "object": "model",
+   "created": 1764578549,
+   "owned_by": "baidu"
+  },
+  {
+   "id": "Qwen3-Coder-30B-A3B-Instruct",
+   "object": "model",
+   "created": 1764499242,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "HuatuoGPT-o1-7B",
+   "object": "model",
+   "created": 1764495307,
+   "owned_by": "freedomintelligence"
+  },
+  {
+   "id": "HunyuanVideo-1.5",
+   "object": "model",
+   "created": 1764322204,
+   "owned_by": "tencent"
+  },
+  {
+   "id": "search",
+   "object": "model",
+   "created": 1764062786,
+   "owned_by": "Other"
+  },
+  {
+   "id": "SeedVR2-3B",
+   "object": "model",
+   "created": 1763706138,
+   "owned_by": "bytedance"
+  },
+  {
+   "id": "comfyui",
+   "object": "model",
+   "created": 1762851549,
+   "owned_by": "Other"
+  },
+  {
+   "id": "Qwen3Guard-Gen-0.6B",
+   "object": "model",
+   "created": 1760601889,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3Guard-Gen-4B",
+   "object": "model",
+   "created": 1760601581,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3Guard-Gen-8B",
+   "object": "model",
+   "created": 1760600888,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "MinerU2.5",
+   "object": "model",
+   "created": 1758695057,
+   "owned_by": "opendatalab"
+  },
+  {
+   "id": "IndexTTS-2",
+   "object": "model",
+   "created": 1757675146,
+   "owned_by": "index-tts"
+  },
+  {
+   "id": "Qwen-Image-Edit",
+   "object": "model",
+   "created": 1755690336,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "nonescape-v0",
+   "object": "model",
+   "created": 1754905469,
+   "owned_by": "aedilic"
+  },
+  {
+   "id": "FLUX_1-Krea-dev",
+   "object": "model",
+   "created": 1754032099,
+   "owned_by": "black-forest-labs"
+  },
+  {
+   "id": "Wan2_2-I2V-A14B",
+   "object": "model",
+   "created": 1754019280,
+   "owned_by": "wan-ai"
+  },
+  {
+   "id": "CogView4_6B",
+   "object": "model",
+   "created": 1753867803,
+   "owned_by": "glm"
+  },
+  {
+   "id": "bge-reranker-large",
+   "object": "model",
+   "created": 1752200442,
+   "owned_by": "baai"
+  },
+  {
+   "id": "Qwen2.5-VL-7B-Instruct",
+   "object": "model",
+   "created": 1752025004,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3-14B",
+   "object": "model",
+   "created": 1751955876,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "FLUX.1-Kontext-dev",
+   "object": "model",
+   "created": 1751614294,
+   "owned_by": "black-forest-labs"
+  },
+  {
+   "id": "stable-diffusion-3.5-large",
+   "object": "model",
+   "created": 1751351433,
+   "owned_by": "stabilityai"
+  },
+  {
+   "id": "jina-embeddings-v4",
+   "object": "model",
+   "created": 1751282676,
+   "owned_by": "jinaai"
+  },
+  {
+   "id": "AnimeSharp",
+   "object": "model",
+   "created": 1750325982,
+   "owned_by": "kim2091"
+  },
+  {
+   "id": "ERNIE-4.5-Turbo",
+   "object": "model",
+   "created": 1750152807,
+   "owned_by": "baidu"
+  },
+  {
+   "id": "ERNIE-4.5-Turbo-VL",
+   "object": "model",
+   "created": 1750152020,
+   "owned_by": "baidu"
+  },
+  {
+   "id": "Lingshu-32B",
+   "object": "model",
+   "created": 1749727599,
+   "owned_by": "lingshu"
+  },
+  {
+   "id": "Qwen3-Reranker-8B",
+   "object": "model",
+   "created": 1749206587,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3-Reranker-4B",
+   "object": "model",
+   "created": 1749206532,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3-Reranker-0.6B",
+   "object": "model",
+   "created": 1749206450,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3-Embedding-8B",
+   "object": "model",
+   "created": 1749203891,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3-Embedding-4B",
+   "object": "model",
+   "created": 1749203763,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3-Embedding-0.6B",
+   "object": "model",
+   "created": 1749203295,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Real-ESRGAN",
+   "object": "model",
+   "created": 1748921009,
+   "owned_by": "real-esrgan"
+  },
+  {
+   "id": "FLUX.1-dev",
+   "object": "model",
+   "created": 1747289116,
+   "owned_by": "black-forest-labs"
+  },
+  {
+   "id": "GLM-4-9B-0414",
+   "object": "model",
+   "created": 1747120170,
+   "owned_by": "glm"
+  },
+  {
+   "id": "ACE-Step-v1-3.5B",
+   "object": "model",
+   "created": 1746782504,
+   "owned_by": "ace-step"
+  },
+  {
+   "id": "Hi3DGen",
+   "object": "model",
+   "created": 1746584244,
+   "owned_by": "Other"
+  },
+  {
+   "id": "DeepSeek-Prover-V2-7B",
+   "object": "model",
+   "created": 1746105848,
+   "owned_by": "deepseek"
+  },
+  {
+   "id": "HiDream-I1-Full",
+   "object": "model",
+   "created": 1746063247,
+   "owned_by": "hidream-ai"
+  },
+  {
+   "id": "Qwen3-4B",
+   "object": "model",
+   "created": 1745913985,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3-32B",
+   "object": "model",
+   "created": 1745895473,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3-0.6B",
+   "object": "model",
+   "created": 1745844211,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Qwen3-8B",
+   "object": "model",
+   "created": 1745844183,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "HealthGPT-L14",
+   "object": "model",
+   "created": 1745830491,
+   "owned_by": "healthgpt"
+  },
+  {
+   "id": "DianJin-R1-32B",
+   "object": "model",
+   "created": 1745578061,
+   "owned_by": "dianjin"
+  },
+  {
+   "id": "all-mpnet-base-v2",
+   "object": "model",
+   "created": 1745575405,
+   "owned_by": "sentence-transformers"
+  },
+  {
+   "id": "InternVL3-38B",
+   "object": "model",
+   "created": 1745569718,
+   "owned_by": "opengvlab"
+  },
+  {
+   "id": "InternVL3-78B",
+   "object": "model",
+   "created": 1745411831,
+   "owned_by": "opengvlab"
+  },
+  {
+   "id": "Spark-TTS-0.5B",
+   "object": "model",
+   "created": 1744801437,
+   "owned_by": "sparkaudio"
+  },
+  {
+   "id": "moark-text-moderation",
+   "object": "model",
+   "created": 1744097442,
+   "owned_by": "Other"
+  },
+  {
+   "id": "Hunyuan3D-2",
+   "object": "model",
+   "created": 1743593183,
+   "owned_by": "tencent"
+  },
+  {
+   "id": "Fin-R1",
+   "object": "model",
+   "created": 1742553762,
+   "owned_by": "sufe-aiflm-lab"
+  },
+  {
+   "id": "whisper-large-v3",
+   "object": "model",
+   "created": 1742550625,
+   "owned_by": "openai"
+  },
+  {
+   "id": "PDF-Extract-Kit-1.0",
+   "object": "model",
+   "created": 1742467808,
+   "owned_by": "opendatalab"
+  },
+  {
+   "id": "internlm3-8b-instruct",
+   "object": "model",
+   "created": 1742354841,
+   "owned_by": "internlm"
+  },
+  {
+   "id": "QwQ-32B",
+   "object": "model",
+   "created": 1741247846,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "Wan2.1-T2V-14B",
+   "object": "model",
+   "created": 1740555190,
+   "owned_by": "wan-ai"
+  },
+  {
+   "id": "Step-Audio-TTS-3B",
+   "object": "model",
+   "created": 1740109995,
+   "owned_by": "stepfun"
+  },
+  {
+   "id": "DeepSeek-R1-Distill-Qwen-7B",
+   "object": "model",
+   "created": 1738496013,
+   "owned_by": "deepseek"
+  },
+  {
+   "id": "DeepSeek-R1-Distill-Qwen-14B",
+   "object": "model",
+   "created": 1738494316,
+   "owned_by": "deepseek"
+  },
+  {
+   "id": "DeepSeek-R1-Distill-Qwen-1.5B",
+   "object": "model",
+   "created": 1738484127,
+   "owned_by": "deepseek"
+  },
+  {
+   "id": "DeepSeek-R1-Distill-Qwen-32B",
+   "object": "model",
+   "created": 1738060201,
+   "owned_by": "deepseek"
+  },
+  {
+   "id": "Florence-2-large",
+   "object": "model",
+   "created": 1737545859,
+   "owned_by": "microsoft"
+  },
+  {
+   "id": "bce-reranker-base_v1",
+   "object": "model",
+   "created": 1737543821,
+   "owned_by": "youdao"
+  },
+  {
+   "id": "bce-embedding-base_v1",
+   "object": "model",
+   "created": 1737543126,
+   "owned_by": "youdao"
+  },
+  {
+   "id": "Security-semantic-filtering",
+   "object": "model",
+   "created": 1736840792,
+   "owned_by": "Other"
+  },
+  {
+   "id": "SenseVoiceSmall",
+   "object": "model",
+   "created": 1736508378,
+   "owned_by": "funaudiollm"
+  },
+  {
+   "id": "nsfw-classifier",
+   "object": "model",
+   "created": 1736507123,
+   "owned_by": "giacomoarienti"
+  },
+  {
+   "id": "UVDoc",
+   "object": "model",
+   "created": 1735647006,
+   "owned_by": "uvdoc"
+  },
+  {
+   "id": "whisper-large-v3-turbo",
+   "object": "model",
+   "created": 1735033506,
+   "owned_by": "openai"
+  },
+  {
+   "id": "RMBG-2.0",
+   "object": "model",
+   "created": 1734598369,
+   "owned_by": "briaai"
+  },
+  {
+   "id": "stable-diffusion-3.5-large-turbo",
+   "object": "model",
+   "created": 1732699966,
+   "owned_by": "stabilityai"
+  },
+  {
+   "id": "Qwen2.5-7B-Instruct",
+   "object": "model",
+   "created": 1732622275,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "flux-1-schnell",
+   "object": "model",
+   "created": 1725354000,
+   "owned_by": "black-forest-labs"
+  },
+  {
+   "id": "bge-m3",
+   "object": "model",
+   "created": 1723546832,
+   "owned_by": "baai"
+  },
+  {
+   "id": "bge-reranker-v2-m3",
+   "object": "model",
+   "created": 1723546823,
+   "owned_by": "baai"
+  },
+  {
+   "id": "glm-4-9b-chat",
+   "object": "model",
+   "created": 1722924390,
+   "owned_by": "glm"
+  },
+  {
+   "id": "Kolors",
+   "object": "model",
+   "created": 1721177231,
+   "owned_by": "kwai"
+  },
+  {
+   "id": "Qwen2-7B-Instruct",
+   "object": "model",
+   "created": 1719375020,
+   "owned_by": "qwen"
+  },
+  {
+   "id": "ChatTTS",
+   "object": "model",
+   "created": 1719374941,
+   "owned_by": "2noise"
+  },
+  {
+   "id": "bge-small-zh-v1.5",
+   "object": "model",
+   "created": 1718358459,
+   "owned_by": "baai"
+  },
+  {
+   "id": "bge-large-zh-v1.5",
+   "object": "model",
+   "created": 1718356952,
+   "owned_by": "baai"
+  }
+ ]
+}

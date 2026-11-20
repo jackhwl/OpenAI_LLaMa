@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#159b73" />
+<title>第二课 · 多模型协作的决策游戏（赤壁·风起） · Coding Agent 实战营</title>
+<style>
+  :root{--green:#159b73;--green-dark:#087452;--green-soft:#e8f6f0;--purple:#7356c9;--purple-dark:#563ba8;
+    --ink:#16181d;--ink2:#3c4148;--ink3:#6b7078;--muted:#85898e;--line:#e5e4ea;--paper:#fff;--paper2:#fbfbf9;
+    --paper3:#f4f4f1;--warn:#b4530a;--warn-bg:#fff7ed;
+    --mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:80px}
+  body{margin:0;color:var(--ink);background:var(--paper);line-height:1.78;
+    font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:var(--green-dark)}
+  .nav{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;
+    gap:14px;height:64px;padding:0 5vw;background:rgba(247,247,243,.93);
+    border-bottom:1px solid rgba(22,24,29,.08);backdrop-filter:blur(14px)}
+  .nav a{text-decoration:none;color:#555b64;font-size:13px;font-weight:650}
+  .nav a:hover{color:var(--green)}
+  .nav .back{display:inline-flex;align-items:center;gap:8px;color:var(--ink);font-weight:800;letter-spacing:-.02em}
+  .nav .mark{width:26px;height:26px;display:grid;place-items:center;color:#fff;background:var(--green);
+    clip-path:polygon(0 0,100% 0,100% 72%,72% 100%,0 100%);font-size:12px;font-weight:900}
+  .nav .meta{display:flex;align-items:center;gap:16px}
+  .pill{padding:4px 10px;border-radius:100px;background:var(--green-soft);color:var(--green-dark);
+    font:700 11px var(--mono)}
+  main{width:min(820px,90vw);margin:0 auto;padding:44px 0 60px}
+  h1{font-size:clamp(27px,3.6vw,38px);line-height:1.2;letter-spacing:-.05em;margin:0 0 6px;font-weight:900;text-wrap:balance}
+  h1+h2,h1+p{margin-top:0}
+  h2{margin:44px 0 12px;font-size:23px;letter-spacing:-.04em;padding-bottom:9px;
+    border-bottom:2px solid var(--green-soft)}
+  h3{margin:30px 0 10px;font-size:17.5px;letter-spacing:-.03em}
+  h4{margin:22px 0 8px;font-size:15px;color:var(--ink2)}
+  p{margin:0 0 14px;font-size:15px;color:var(--ink2)}
+  strong{color:var(--ink)}
+  ul,ol{margin:0 0 15px;padding-left:22px}
+  li{margin-bottom:6px;font-size:15px;color:var(--ink2)}
+  li>ul,li>ol{margin-top:6px}
+  code{font-family:var(--mono);font-size:12.8px;background:var(--paper3);padding:2px 6px;
+    border-radius:3px;color:#1c4f42;word-break:break-word}
+  pre{position:relative;background:#1e2229;border-radius:4px;padding:16px 18px;overflow:auto;margin:0 0 18px}
+  pre code{background:none;color:#a9e8c9;padding:0;font-size:12.6px;line-height:1.75;white-space:pre}
+  pre.wrap code{white-space:pre-wrap;word-break:break-word;overflow-wrap:anywhere}
+  pre .copy{position:absolute;top:8px;right:8px;padding:4px 10px;border-radius:3px;cursor:pointer;
+    border:1px solid #39404a;background:#272c34;color:#98a1ab;font:700 11px var(--mono);
+    opacity:.55;transition:.15s;letter-spacing:.04em}
+  pre:hover .copy,pre .copy:focus{opacity:1;border-color:#4a7a63;color:#a9e8c9}
+  pre .copy.ok{color:#a9e8c9;border-color:#4a7a63;opacity:1}
+  @media(hover:none){pre .copy{opacity:.9}}
+  blockquote{margin:0 0 18px;padding:15px 20px;background:var(--green-soft);
+    border-left:4px solid var(--green);border-radius:0 3px 3px 0}
+  blockquote p{margin:0;color:#25554a;font-size:14.5px}
+  hr{border:0;border-top:1px solid var(--line);margin:34px 0}
+  .tw{overflow-x:auto;margin:0 0 20px;border:1px solid var(--line)}
+  figure{margin:6px 0 22px}
+  figure img{width:100%;display:block;border:1px solid var(--line);border-radius:3px;background:var(--paper3)}
+  figcaption{margin-top:9px;font-size:12.5px;color:var(--muted);text-align:center;line-height:1.6}  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th{background:var(--paper3);text-align:left;padding:11px 13px;font-weight:800;
+    border-bottom:1px solid var(--line);white-space:nowrap}
+  td{padding:11px 13px;border-bottom:1px solid #f0f0ee;color:var(--ink2);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  .cb{display:inline-block;width:12px;height:12px;margin-right:7px;border:1.6px solid var(--green);
+    border-radius:2px;vertical-align:-1px}
+  .pager{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-top:52px;
+    padding-top:24px;border-top:1px solid var(--line)}
+  .pager a{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border:1px solid var(--line);
+    border-radius:3px;text-decoration:none;font-size:13px;font-weight:700;color:var(--ink);transition:.18s}
+  .pager a:hover{border-color:var(--green);background:var(--green-soft)}
+  .pager a.next{background:var(--purple-dark);color:#fff;border-color:var(--purple-dark)}
+  .pager a.next:hover{background:var(--purple)}
+  footer{padding:22px 0 40px;color:var(--muted);font-size:11.5px;text-align:center}
+  @media(max-width:620px){.nav .meta a:not(.pill){display:none} main{padding-top:30px}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="back" href="index.html"><span class="mark">课</span> Coding Agent 实战营</a>
+  <span class="meta"><span class="pill">LESSON 02 · 1 天</span><a href="README.md">课程总纲</a></span>
+</header>
+<main>
+<h1>第二课 · 多模型协作的决策游戏（赤壁·风起）</h1>
+<blockquote><p><strong>11 月 18 日 · 1 天</strong> ｜ 产出：一个可玩的决策游戏 + 一段对"规则与生成"边界的论述 <strong>先备知识</strong>：完成第一课；能用命令行启动一个 Python 脚本。</p></blockquote>
+<hr>
+<h2>这一课在解决什么问题</h2>
+<p>让一个模型写一段文字，是很容易的事。 难的是：<strong>当你要做的不只是一段文字，而是一个有规则、有胜负、有代价的系统时， 哪些部分该交给模型，哪些部分绝对不能交给模型？</strong></p>
+<p>这一课用一个真实做出来的小游戏来回答这个问题。</p>
+<blockquote><p>题材：建安十三年，赤壁。 你扮演孙权帐中的决策者，经历 5 个关键节点，每个节点 3 个选择。 你的每一步都会改变四维态势，最终走向六种结局之一。</p></blockquote>
+<hr>
+<h2>实验材料</h2>
+<pre><code>lab/
+├── server.py              ← 本地 AI 代理（约 390 行，只用 Python 标准库）
+├── index.html             ← 游戏前端（约 1040 行，单文件）
+├── config.example.json    ← 配置模板
+├── prompts/               ← **真正发给模型的提示词**（换题材改这里，不必动代码）
+├── assets/
+│   ├── choices/           ← 15 张选项插画（每个节点 3 张，已生成好）
+│   └── cache/             ← 生成结果缓存
+└── tools/                 ← 模型探测与基准脚本（教学用）</code></pre>
+<hr>
+<blockquote><p>🚪 <strong>还没拿到令牌？</strong> 也能先跑一遍：这一课在没有令牌时可以从封面一路玩到结局， 只是没有叙事、配图与配音。实测见 <a href="https://www.gitlink.org.cn/ccf-ai-infra/Coding-Agent-Bootcamp/tree/master/docs/offline-mode.md" target="_blank" rel="noreferrer">离线模式说明</a>。</p></blockquote>
+<h2>先看懂架构：为什么需要一个"本地代理"</h2>
+<p>打开 <code>index.html</code> 你会发现：<strong>这个页面里没有任何 API Key。</strong></p>
+<pre><code>浏览器 (index.html)                    本机 (server.py)                模力方舟
+   │                                        │                             │
+   │  POST /api/council/one {第几位, 局势}    │                             │
+   ├───────────────────────────────────────&gt;│                             │
+   │                                        │  Bearer &lt;Key&gt;  —— 只有这里知道 │
+   │                                        ├────────────────────────────&gt;│
+   │        {这一位的主张}                    │&lt;────────────────────────────┤
+   │&lt;───────────────────────────────────────┤                             │</code></pre>
+<blockquote><p>为什么是 <code>/one</code> 而不是一次问全五位？因为五个模型快慢差得远（实测 0.9 秒到几十秒）。 一次批量请求，页面得等最慢的那位，屏幕上只有一句"正在思量"——看上去跟卡死一样。 拆成五路之后，<strong>谁先想完谁先开口</strong>，等待是有形状的。 批量接口 <code>/api/council</code> 仍然保留，给脚本用（<code>lab/tools/smoke_council.py</code>）。</p></blockquote>
+<p><strong>这是本课程第一个必须记住的工程习惯：</strong> 前端页面是会被用户打开的、会被分享的、会被 F12 看穿的； <strong>任何密钥都不能出现在前端。</strong> 所有模型调用都要经过你自己写的后端。</p>
+<p>启动后可以在终端看到代理的自我介绍：</p>
+<pre><code>  赤壁 · 风起   —   本地 AI 代理
+  ----------------------------------------------
+  API Key : 已载入
+  参谋团  : GLM-5.3, InternVL3-78B, Fin-R1, HY-MT2-7B, internlm3-8b-instruct
+  笔法    : 快笔=internlm3-8b-instruct | 工笔=Qwen3-Coder-30B-A3B-Instruct | 史笔=GLM-5.3
+  生图    : Qwen-Image-2512 (1024x768; fallback: FLUX.1-dev, Kolors, z-image-turbo)
+  语音    : IndexTTS-2
+  ----------------------------------------------
+  打开    : http://127.0.0.1:8848</code></pre>
+<hr>
+<h2>步骤</h2>
+<h3>第 1 步 · 下载项目、放进你的 Key、启动</h3>
+<p>这一课是<strong>跑在你本机的网页项目</strong>，不吃环境变量，只读自己目录下的 <code>config.json</code>。 所以除了第一课配好的 Agent，还要把这个仓库拉下来、把这枚令牌写进去。</p>
+<h4>① 把项目下载到本地</h4>
+<p>用 git（推荐，以后能 <code>git pull</code> 拿更新）：</p>
+<pre class="lang-bash"><code>git clone https://www.gitlink.org.cn/ccf-ai-infra/Coding-Agent-Bootcamp.git
+cd Coding-Agent-Bootcamp</code></pre>
+<p>不用 git 也可以：打开<a href="https://www.gitlink.org.cn/ccf-ai-infra/Coding-Agent-Bootcamp" target="_blank" rel="noreferrer">仓库首页</a>， 点右上角的「克隆/下载」→ 下载 ZIP → 解压，效果一样，只是以后更新要重新下。</p>
+<h4>② 把你的 Key 写进 <code>config.json</code></h4>
+<p><strong>最省事的做法</strong>：打开第一课配置中心的<a href="https://coding-agent-setup.app.workbuddy.host/?sharecode=54UAZLYDKR#course-projects" target="_blank" rel="noreferrer">第 6 步</a>， 它已经按你填的令牌生成好了命令，点一下复制、粘进终端回车就行。</p>
+<p>手打版是这样（把 <code>sk-...</code> 换成你自己的令牌）：</p>
+<pre class="lang-bash wrap"><code>cd lesson-02-chibi-game/lab
+python -c &quot;import json,shutil;shutil.copy(&#x27;config.example.json&#x27;,&#x27;config.json&#x27;);d=json.load(open(&#x27;config.json&#x27;,encoding=&#x27;utf-8&#x27;));d[&#x27;api_key&#x27;]=&#x27;sk-...&#x27;;open(&#x27;config.json&#x27;,&#x27;w&#x27;,encoding=&#x27;utf-8&#x27;).write(json.dumps(d,ensure_ascii=False,indent=2));print(&#x27;已写入 config.json&#x27;)&quot;</code></pre>
+<p>这条命令做三件事：复制模板 → 只替换 <code>api_key</code> → 其余模型配置（参谋团、生图、配音）原样保留。 比手动编辑安全，不会把 JSON 结构改坏。</p>
+<blockquote><p><strong>Windows 请用 PowerShell</strong>（开始菜单搜 "PowerShell"），别用老的 <code>cmd</code> —— 命令里的引号在 <code>cmd</code> 下会被解析错。macOS / Linux 用系统自带的终端即可。</p></blockquote>
+<p>不想跑命令也行：把 <code>config.example.json</code> 复制一份改名 <code>config.json</code>，用编辑器把 <code>&lt;&lt;在这里粘贴你的模力方舟访问令牌&gt;&gt;</code> 换成令牌即可。</p>
+<h4>③ 启动</h4>
+<pre class="lang-bash"><code>python server.py</code></pre>
+<p>第一次运行会看到一段自我介绍（见本节开头的示例），重点确认两行： <code>API Key : 已载入</code>、<code>打开 : http://127.0.0.1:8848</code>。</p>
+<blockquote><p>⚠️ <strong>如果页面打不开，先怀疑本机代理。</strong> 很多开发机设了 <code>http_proxy</code>， 它会连 127.0.0.1 一起拦——现象是浏览器转圈或直接 <code>ERR_...</code>，而服务本身明明起来了。 解决办法是让回环地址绕过代理： - 起服务时：<code>no_proxy="127.0.0.1,localhost" python server.py</code>（出网仍走代理，这是对的） - 浏览器：加 <code>--proxy-bypass-list="127.0.0.1,localhost"</code> - 命令行验证：<code>curl --noproxy '*' http://127.0.0.1:8848/api/status</code> 一句话记住：<strong>出网要走代理，回环必须直连。</strong> 同一个进程里这俩都得满足。</p></blockquote>
+<p>看到 <code>API Key : 已载入</code> 就说明成功了，用浏览器打开 &lt;http://127.0.0.1:8848&gt;。</p>
+<blockquote><p>端口默认 8848，被占用时可以用 <code>PORT=9000 python server.py</code> 换一个。</p></blockquote>
+<figure><img src="https://dryoung95.github.io/coding-agent-setup/assets/preview/l2-01-start.jpg" alt="启动后的封面：身份、五决之序、参谋团分工都写在这一屏" loading="lazy"><figcaption>启动后的封面：身份、五决之序、参谋团分工都写在这一屏</figcaption></figure>
+<h3>第 2 步 · 完整玩一局</h3>
+<p>从头走到结局。游戏中注意观察四处：</p>
+<ol><li><strong>每个节点都有 5 名谋士各自陈词</strong> —— 点开看，他们<strong>不是同一个模型</strong>。</li></ol>
+<p>五位是同时开问的，谁先想完谁的卡片先出现，页头有"已陈词 x/5"和秒数。 某一位没配上 Key、超时或被平台限流，只会红一张卡，卡上有「重试这一位」。 实测五个里最快 0.8 秒开口、最慢那位 78 秒——所以页面必须边回来边显示。</p>
+<ol><li><strong>每个节点右下角可以「查看提示词」</strong> —— 真正发给模型的话，一字不改地摆在那里。</li><li><strong>四维态势的变化</strong>（军心 / 水战 / 天时 / 曹疑）由选项的数值直接决定。</li><li><strong>结局不是模型编的</strong> —— 下面是这一课的核心。</li></ol>
+<figure><img src="https://dryoung95.github.io/coding-agent-setup/assets/preview/l2-02-scene.jpg" alt="一幕：场景正文 + 三条选项，右上角是四维态势" loading="lazy"><figcaption>一幕：场景正文 + 三条选项，右上角是四维态势</figcaption></figure>
+<figure><img src="https://dryoung95.github.io/coding-agent-setup/assets/preview/l2-03-council.jpg" alt="五名谋士同屏陈词，分别来自五个不同模型" loading="lazy"><figcaption>五名谋士同屏陈词，分别来自五个不同模型</figcaption></figure>
+<h3>第 3 步 · 读代码：结局是怎么决定的</h3>
+<p>打开 <code>index.html</code>，搜索 <code>ENDINGS</code> 和判定函数。</p>
+<p>你会看到六种结局：东风有意（史实线）、火尽江寒（惨胜）、一纸降书（以诈取胜）、 南北分治（长期对峙）、铜雀春深、以及最罕见的投降线。</p>
+<p><strong>它们的判定完全由一段确定性代码完成</strong>，六条优先级规则，依次比对四维态势。 <code>5 个节点 × 3 个选项 = 243 条路径</code>，全部可以在本地暴力枚举跑一遍， 结果是六种结局都能到达（分布约 30% / 29% / 15% / 14% / 10% / 2%）。</p>
+<p>模型在这套系统里的职责被严格限制为三件：</p>
+<div class="tw"><table><thead><tr><th>交给模型</th><th>不交给模型</th></tr></thead><tbody><tr><td>把"你选了 X、态势变成 Y"写成一段有画面感的战史叙述</td><td>判定这一局赢还是输</td></tr><tr><td>把终局的态势写成一段收束断语</td><td>决定态势怎么加减</td></tr><tr><td>画图、配音</td><td>决定有哪些选项</td></tr></tbody></table></div>
+<p><strong>为什么？</strong> 因为模型的输出是概率性的。 如果让模型判胜负，那同一个操作在不同次运行里会有不同的结果—— 玩家就失去了"我在做决策"的感受，只剩下"我在抽奖"。</p>
+<blockquote><p>记住这句话：<strong>规则用代码，表达用模型。</strong> 这是这一课最值钱的结论。</p></blockquote>
+<figure><img src="https://dryoung95.github.io/coding-agent-setup/assets/preview/l2-06-endings.jpg" alt="结局页：结局画面、收束断语、全程五决的数值轨迹，最后一行写着「这一局是算法判定的」" loading="lazy"><figcaption>结局页：结局画面、收束断语、全程五决的数值轨迹，最后一行写着「这一局是算法判定的」</figcaption></figure>
+<h3>第 4 步 · 亲手改一件事</h3>
+<p>现在轮到你了。挑一个改（改动越小越好，方便对比）：</p>
+<p><strong>改法 A（最简单）· 改数值</strong> 在 <code>index.html</code> 里找到任意一个选项的 <code>d:{...}</code>，把某个数字改大。 比如把「连船」节点里"火攻"的 <code>naval</code> 加成从 +3 改成 +1。 刷新页面重玩一局，体会结局如何变化。</p>
+<p><strong>改法 B · 改文案</strong> 在 <code>prompts/base_rules.txt</code> 里，你会看到四条"硬性约束"， 其中一条<strong>明确列出了模型可以提到的人物白名单</strong>（曹操、孙权、刘备、周瑜、鲁肃、黄盖……）。 试着往白名单里加一个人，或者删掉一条约束，重跑一次，看看叙述会不会"跑偏"。</p>
+<blockquote><p>ℹ️ <code>server.py</code> 里<strong>已经没有提示词副本</strong>了（2026-10-27 删掉）。以前它抄了一份 <code>BASE_RULES</code> 当兜底，结果是改 <code>prompts/</code> 看不出效果、还以为"模型不听话"。 现在唯一来源就是 <code>prompts/</code>；万一文件丢了，<code>server.py</code> 会直接报错并告诉你 去仓库根目录跑 <code>python tools/gen_prompts.py</code>。改完保存即可，不必重启服务。</p></blockquote>
+<p><strong>改法 C · 换模型</strong> 在 <code>config.json</code> 的 <code>narrator_styles</code> 里，把「快笔」的模型换成一个推理型的大模型。 你会<strong>明显</strong>感觉到变慢——慢到怀疑人生。原因见下面的"常见坑"。</p>
+<h3>第 5 步 · 记录你的对比</h3>
+<p>不管你改了哪一种，请记录：<strong>改之前是什么结局、改之后是什么结局、中间哪一步开始分岔的。</strong></p>
+<p>这份记录就是本课的交付物。</p>
+<hr>
+<h2>你会看到什么（验收标准）</h2>
+<ul><li><span class="cb"></span>终端里打印出代理启动信息，<code>API Key : 已载入</code></li><li><span class="cb"></span>浏览器打开后能进入第一幕，显示 5 名谋士各自的陈词</li><li><span class="cb"></span>每个节点底部的「查看完整提示词」能展开，<strong>system（人设与硬性约束）和 user 都能看到</strong></li><li><span class="cb"></span>15 个选项都有插画（<code>assets/choices/</code> 里的图被正确加载）</li><li><span class="cb"></span>完整走一局到结局，结局页有画面、有结束语、有与史实的对照说明</li><li><span class="cb"></span>你的第三、四步有一个<strong>可复现</strong>的改动，并且能说清它改变了什么</li></ul>
+<hr>
+<h2>提示词档案：模型到底被下了什么命令</h2>
+<p><code>lab/prompts/</code> 下每个 <code>.txt</code> 都是<strong>真正发给模型的提示词</strong>，不是文档里转述的说明。 以 <code>##</code> 开头的行是注释，不会发出去。</p>
+<figure><img src="https://dryoung95.github.io/coding-agent-setup/assets/preview/l2-04-prompt.jpg" alt="游戏里点「查看提示词」，system 与 user 两段原样摆出来，连生图提示词都在" loading="lazy"><figcaption>游戏里点「查看提示词」，system 与 user 两段原样摆出来，连生图提示词都在</figcaption></figure>
+<div class="tw"><table><thead><tr><th>文件</th><th>决定什么</th></tr></thead><tbody><tr><td><code>base_rules.txt</code></td><td>硬性约束：可用词汇、不许虚构什么</td></tr><tr><td><code>narrator_system.txt</code></td><td>每一幕的文风</td></tr><tr><td><code>ending_system.txt</code></td><td>结局断语的语气</td></tr><tr><td><code>council_system.txt</code></td><td>5 名谋士的人格设定</td></tr><tr><td><code>consequence_user.txt</code> / <code>ending_user.txt</code> / <code>council_user.txt</code></td><td>每一步的具体任务</td></tr><tr><td><code>image_style.txt</code></td><td>插画的统一画风</td></tr><tr><td><code>stat_labels.json</code></td><td>四个态势维度的名字（军心 / 水战 / 天时 / 曹疑）</td></tr></tbody></table></div>
+<h3>面板上的每一段，分别来自哪个文件</h3>
+<p>游戏里点开「查看这一步发给 AI 的完整提示词」，会看到三段；结局页是两段。 每段标题下面都标着一个文件名，对应关系完整列在这里（除插画那行，其余都在 <code>lab/prompts/</code> 下）：</p>
+<div class="tw"><table><thead><tr><th>面板上的段落</th><th>改哪个文件</th><th>改它会发生什么</th></tr></thead><tbody><tr><td><code>[ system ]</code> 人设与硬性约束</td><td><code>narrator_system.txt</code>、<code>base_rules.txt</code></td><td>前者管文风，后者管禁用词汇与人物白名单。面板里是两段拼接后的结果</td></tr><tr><td><code>[ user ]</code> 这一步的具体任务</td><td><code>consequence_user.txt</code></td><td>字数上限、句数、能不能跳到下一场。<code>{node}</code>、<code>{delta}</code> 由服务端填，别删</td></tr><tr><td><code>[ 插画 ]</code> 本选项的画面描述</td><td><code>assets/choices/manifest.json</code> 的 <code>prompt</code> 字段</td><td>生成图片时就已写死；改 <code>image_style.txt</code> 只影响之后新生成的图</td></tr><tr><td>结局页的 <code>[ system ]</code> 与 <code>[ user ]</code></td><td><code>ending_system.txt</code>、<code>ending_user.txt</code></td><td>断语的语气，以及结局判定看哪几个维度</td></tr><tr><td>参谋团的陈词</td><td><code>council_system.txt</code>、<code>council_user.txt</code></td><td>各人的身份与口吻、80 字上限。人数在 <code>config.json</code> 的 <code>council</code></td></tr></tbody></table></div>
+<p>改法都一样：打开文件、改文字、保存。<code>server.py</code> 每次请求都重新读一遍这些文件， 所以不用重启服务，刷新页面重跑同一个节点就能把两次输出并排对比。 改坏了执行 <code>git checkout -- lab/prompts/</code> 恢复。</p>
+<h3>换题材时，这几条必须改</h3>
+<p>最容易忘、也最致命的是 <code>base_rules.txt</code> 的<strong>第 3 条</strong>：</p>
+<blockquote><p>不得虚构史书中没有的人物姓名；可提及的人物仅限：曹操、孙权、刘备……</p></blockquote>
+<p>你要写的是家乡的那场战役，而这条不改，模型张口还是曹操孙权。 同理 <code>council_system.txt</code> 里的「汉末孙权帐中」、<code>stat_labels.json</code> 里的维度名 （你的题材里未必有"水战"），都要跟着你的题材走。</p>
+<h3>改完不用重启</h3>
+<p><code>server.py</code> 每次请求都重读一遍这些文件。改完 <code>.txt</code> 刷新页面、再点一次同样的决策， 就能立刻看出差别——这是个很适合做实验的地方：把 <code>narrator_system.txt</code> 的语气 从「史书夹注」改成「说书人」，同一个决策会得到两种完全不同的叙事。</p>
+<h3>这些提示词能改吗</h3>
+<p>能。模型的行为几乎全部由这几个文件决定，改一张 <code>.txt</code> 就是一次干净的对照实验。</p>
+<p>游戏里点开「查看这一步发给 AI 的完整提示词」，每一段旁边都标着它来自哪个文件—— 逐段对照见上面「面板上的每一段，分别来自哪个文件」那张表。 <code>{占位符}</code> 是服务端填进去的（比如 <code>{delta}</code>），别删。</p>
+<p>几个现成的实验，都只改一行：</p>
+<div class="tw"><table><thead><tr><th>想验证什么</th><th>改哪儿</th><th>看什么</th></tr></thead><tbody><tr><td>硬性约束到底起不起作用</td><td>删掉 <code>base_rules.txt</code> 第 3 条的人物白名单</td><td>模型会不会开始编人名</td></tr><tr><td>文风是不是提示词决定的</td><td><code>narrator_system.txt</code> 换成说书人口吻</td><td>同一个决策的两种叙事</td></tr><tr><td>结局的语气由谁定</td><td><code>ending_system.txt</code> 删掉「史笔的克制」</td><td>断语会不会变成抒情</td></tr><tr><td>参谋团为什么说话那么短</td><td><code>council_system.txt</code> 把「80 字以内」改成「300 字」</td><td>五个谋士的陈词长度</td></tr></tbody></table></div>
+<p>每条实验的记录方式都一样：改之前先 <code>cp</code> 一份原文件，同一个节点跑两次，两段输出并排贴进打卡。 这就是「创新点」里最省力、也最容易复核的一条证据。</p>
+<p>一条限制：<strong>插画那段改不动</strong>。它在你生成图片的时候就被写进 <code>assets/choices/manifest.json</code> 了，改 <code>image_style.txt</code> 只影响之后新生成的图， 已经生成的图不会变。要验证就把那张图重新生成一次，<code>lab/tools/gen_choice_images.py</code> 里 写死了 15 条画面描述和画风后缀。</p>
+<h3>弄坏了怎么恢复</h3>
+<pre class="lang-bash"><code>git checkout -- lab/prompts/</code></pre>
+<blockquote><p>把提示词摆出来不是为了好看。这一课要在打卡里回答「为什么结局判定不该交给模型」—— 答案的一半就写在 <code>base_rules.txt</code> 和 <code>ending_system.txt</code> 里： <strong>模型服从的是你给的约束，而不是历史本身。</strong></p></blockquote>
+<hr>
+<h2>常见坑</h2>
+<figure><img src="https://dryoung95.github.io/coding-agent-setup/assets/preview/l2-04-outcome.jpg" alt="叙事位写着「（史官失语：Failed to fetch）」——模型没答上来时，界面不编，只把空位留着" loading="lazy"><figcaption>叙事位写着「（史官失语：Failed to fetch）」——模型没答上来时，界面不编，只把空位留着</figcaption></figure>
+<p><strong><code>未配置 API Key，请检查 config.json</code></strong> <code>config.json</code> 没建，或者建在了错误的目录。必须是 <code>lab/config.json</code>，和 <code>server.py</code> 同一层。</p>
+<p><strong>谋士们的回复很慢，甚至等很久只等到一两句</strong> 三个原因，按可能性排序：</p>
+<ol><li>你在用<strong>推理型模型</strong>（如 <code>GLM-5.3</code>）当参谋。这类模型的思维链不返回给你，</li></ol>
+<p>但会实打实花掉时间——2026-11-12 复测单次要 9~15 秒，历史记录里最慢到过 500 秒以上， 波动很大，别的模型都在 1 秒上下。</p>
+<ol><li><code>max_tokens</code> 给得太小。推理型模型会把额度全烧在思维链上，</li></ol>
+<p>然后<strong>返回一个空字符串且不报错</strong>。</p>
+<ol><li>平台限流。密集调用会返回 <code>429</code>，等一会儿再试。</li></ol>
+<blockquote><p>这正是本课让你亲手换模型的用意：<strong>速度和质量是硬冲突的， 你得为自己的场景做取舍，而不是抄一个"最强模型"的名字。</strong></p></blockquote>
+<p><strong>生图报 <code>参数无效 'size'</code></strong> 该平台的生图接口只接受白名单里的画幅。横屏基本只有一种可用。 <code>config.json</code> 里的 <code>image_size</code> 已经填的是可用值，别乱改。</p>
+<p><strong>页面里没有图，全是色块</strong> 说明 <code>assets/choices/</code> 没被读到。检查你是不是漏拷了这个目录， 或者 <code>manifest.json</code> 里的路径和服务器的静态目录对不上。</p>
+<p><strong>终端里刷出一长串 traceback（<code>ConnectionAbortedError</code> / <code>WinError 10053</code>）</strong> 在 HTTP/1.1 长连接下，浏览器提前断开（刷新页面、关标签、关闭自动化脚本）时， 服务端写响应必然失败。这不是错误，<code>_send</code> 里已经吞掉了这类异常。 如果你看到它，说明你的代码是从更早的版本复制来的——补上那三行 <code>except</code> 即可。</p>
+<p><strong>端口被占用</strong> <code>PORT=9000 python server.py</code>，然后用 9000 访问。</p>
+<hr>
+<h2>思考题</h2>
+<ol><li>如果把结局判定也交给模型，会产生哪些具体问题？</li></ol>
+<p>请至少说出两个<strong>玩家能感知到</strong>的问题，而不只是"不够准确"。</p>
+<ol><li><code>prompts/base_rules.txt</code> 里为什么要专门写一条"不得虚构史书中没有的人物姓名"？</li></ol>
+<p>试着把这一条删掉跑一次，看看会发生什么，再把答案补完整。 这条规则与第三课的"三分法标注"是同一个问题的两种解法，想想它们的区别。</p>
+<ol><li>前端页面用 <code>fetch</code> 调用你自己的代理，和直接调用模型服务商的接口，</li></ol>
+<p>除了"藏住密钥"之外，还多出哪些能力？（提示：缓存、降级、限流、日志）</p>
+<hr>
+<h2>提交清单（打卡）</h2>
+<h3>怎么交：Fork 本仓库，发一个 PR</h3>
+<ol><li>点仓库右上角 <strong>Fork</strong>，复制一份到你的 GitLink 账号；</li><li>在 <code>submissions/&lt;你的用户名&gt;/lesson-02/</code> 下放成果与三张截图；</li><li>提交后向本仓库发 <strong>Pull Request</strong>，标题写「第 2 课 · 你的名字」；</li><li>回到 <a href="https://www.gitlink.org.cn/ccf-ai-infra/Coding-Agent-Bootcamp/issues/2" target="_blank" rel="noreferrer">打卡 Issue #2</a> 评论你的 <strong>PR 链接</strong>。</li></ol>
+<p>细节见 <a href="https://www.gitlink.org.cn/ccf-ai-infra/Coding-Agent-Bootcamp/tree/master/submissions/README.md" target="_blank" rel="noreferrer"><code>submissions/README.md</code></a>。 链接要能打开；PR 没发出来、或仓库不可见，审查者看不到就等于没交。</p>
+<h3>交上去以后怎么判</h3>
+<p>评审不看文笔，只看四件事：题材说清了没有、决策路径对得上没有、改动能不能落到具体文件、改前改后是不是各有一个结局。</p>
+<ul><li><strong>通过</strong>：五项齐全，且论述里至少举出一个"判定交给模型"会产生的具体后果（复现不了 / 分数漂移 / 无法批改）。</li><li><strong>部分通过</strong>：跑通了但对比只有一边，或论述只是复述手册原话。补交一次即算通过。</li><li><strong>退回</strong>：只有结局截图、看不到决策路径，或改动写成"改了一下参数"。</li></ul>
+<p>一天节奏（11 月 18 日做，11 月 19 日截止）：上午跑通并定题材；下午改数据、跑一局看结局怎么变； 晚上改提示词、拍三张图、写论述。没有提交窗口——当天做完当天交，晚上十点还没凑齐就先交半程。</p>
+<h3>请先换掉题材</h3>
+<blockquote><p><strong>我们不希望收到第二份赤壁。</strong> 示例只是示范这套东西怎么搭，<strong>请换成你自己的题材</strong>—— 你家乡的那场战役、地方志里某位人物的一次抉择、县志里记过的一件小事。 越本地越好，那是我们抄不到的。</p></blockquote>
+<p>换题材可以分几层做，<strong>做到哪一层都能交</strong>，只要在 Issue 里写清楚你停在哪一层、为什么停：</p>
+<ul><li><strong>只动了数值或文案</strong>（第 4 步那种改法）→ 交上来就是一份"改动对比"，这也算。</li><li><strong>换了剧本、还没换提示词</strong> → 可以交。模型会用三国语气讲你的题材，这本身就是很好的观察材料。</li><li><strong>整条链路都换掉</strong> → 见下面的清单。</li></ul>
+<p>要改的地方：<code>index.html</code> 里的 <code>SCENES</code>（5 个决策场景）与 <code>ENDINGS</code>（6 个结局）。 四项数值 <code>morale / naval / fortune / cao</code> 也可以换成你题材里的维度 （例如「粮草 / 人心 / 天时 / 敌势」）。</p>
+<p>2026-10-27 我们派了三个学员从零试做，实测换题材要动 <strong>9 处</strong>。 下表是那次试做画出来的<strong>地图</strong>，不是门槛：照着改不会漏；只改一半，也知道自己漏了哪里。</p>
+<div class="tw"><table><thead><tr><th>#</th><th>改什么</th><th>在哪</th><th>不改会怎样</th></tr></thead><tbody><tr><td>1</td><td>剧本 5 幕 + 15 个选项</td><td><code>index.html</code> 的 <code>SCENES</code></td><td>还在讲赤壁</td></tr><tr><td>2</td><td>6 个结局</td><td><code>index.html</code> 的 <code>ENDINGS</code>（<strong>保留 <code>real</code> 字段</strong>）</td><td>同上；删掉 <code>real</code> 这门课就白学了</td></tr><tr><td>3</td><td>封面/标题/题诗/身份说明</td><td><code>index.html</code> 顶部与封面区</td><td>首页写着「赤壁 · 风起」</td></tr><tr><td>4</td><td>结局判定规则与方向</td><td><code>index.html</code> 的 <code>decide()</code>、<code>GOOD</code>、<code>BASE</code>、<code>STAT_META</code></td><td>⚠️ <strong>维度方向可能反转</strong>：原「曹疑」越低越好，你的「敌骄」可能是越高越好。不重写规则，六结局可达性会崩</td></tr><tr><td>5</td><td>结局页轨迹缩写、维度中文名</td><td><code>index.html</code> 结局区、<code>server.py</code> 的 <code>prompt_consequence</code> / <code>prompt_ending</code> 两个维度元组</td><td>⚠️ 漏掉 server 这两处，提示词里的 <code>{delta}</code> 会出现 <code>morale 6→8</code> 这种英文键</td></tr><tr><td>6</td><td><strong>发给模型的提示词</strong></td><td><code>prompts/</code> 下 7 个文件（清单见 <code>prompts/README.md</code>）</td><td>模型用三国的口吻讲你的家乡战役 ← 对这一课的主旨影响最大</td></tr><tr><td>7</td><td>选项插画</td><td><code>assets/choices/manifest.json</code> + 15 张 jpg</td><td>⚠️ <strong>最显眼的穿帮</strong>：你的选项配着赤壁水寨的图。零额度做法：清空 manifest，前端会退回矢量徽记</td></tr><tr><td>8</td><td>谋士称谓</td><td><code>config.json</code> 的 council（以及 <code>server.py</code> 内置默认）</td><td>头衔还是「都督府 · 主谋」</td></tr><tr><td>9</td><td>验收与探测脚本</td><td><code>acceptance.py</code>、<code>tools/*.py</code></td><td>跑 <code>acceptance.py</code> 时会拿三国文案去问模型</td></tr></tbody></table></div>
+<blockquote><p>自查的办法：随便点进一幕，看<strong>选项文字、配图、谋士头衔、态势名、封面标题</strong> 五处还剩几处赤壁的痕迹。五处全干净是一次完整换题材；还剩几处，就把那几处如实写进你的记录里 —— 那些"没换干净"的地方，往往比换干净了更有话说。</p></blockquote>
+<h3>内容清单</h3>
+<ul><li><span class="cb"></span>你玩的这一局的<strong>完整决策路径</strong>（5 个节点的选择）和最终结局</li><li><span class="cb"></span>你的改动：改了什么、为什么这么改</li><li><span class="cb"></span>改动前后的结局对比，以及你认为的分岔点</li><li><span class="cb"></span>一段 200 字以上的论述：<strong>为什么结局判定不该交给模型</strong></li><li><span class="cb"></span><strong>可选加分</strong>：往 <code>config.json</code> 的参谋团里加一个模型，观察它的陈词风格与别人的差异</li></ul>
+<h3>三张截图（缺一不可）</h3>
+<div class="tw"><table><thead><tr><th>#</th><th>拍什么</th><th>说明</th></tr></thead><tbody><tr><td>1</td><td><strong>参谋团同屏</strong></td><td>五个模型同时陈词的画面——本课最好看的一张</td></tr><tr><td>2</td><td><strong>这一局的结局</strong></td><td>走完 5 个节点后的结局页，要能看到结算数值</td></tr><tr><td>3</td><td><strong>改动前后对比</strong></td><td>你改的那段代码 + 改动前后触发的结局差异</td></tr></tbody></table></div>
+<blockquote><p>命名建议：<code>shot-01-council.png</code> / <code>shot-02-ending.png</code> / <code>shot-03-diff.png</code>。 ⚠️ 截图前确认没有令牌。</p></blockquote>
+<h3>创新点（请在 Issue 评论里单独写一段）</h3>
+<p><strong>这一课的评分不看画面好不好看，看你动过哪一层、以及能不能说清楚为什么。</strong> 下面八个方向，<strong>挑一个写透</strong>（200 字以上，必须带对比证据），不必全写。 换题材的同学请<strong>顺手写清楚你停在哪一层</strong>（只改数值 / 换了剧本 / 整条链路换掉）和为什么停。</p>
+<div class="tw"><table><thead><tr><th>方向</th><th>具体可以做什么</th><th>拿什么当证据</th></tr></thead><tbody><tr><td>换了题材</td><td>家乡的那场战役、地方志里某人的一次抉择、县志里的一件小事；越本地越好</td><td>五处赤壁痕迹的自查结果：选项文字、配图、谋士头衔、态势名、封面标题，还剩几处</td></tr><tr><td>改了判定维度</td><td>四维 <code>morale / naval / fortune / cao</code> 换成你题材的维度（如粮草 / 人心 / 天时 / 敌势）</td><td>改前改后的维度表；<strong>特别说明方向有没有反转</strong>（原「曹疑」越低越好，你的「敌骄」可能是越高越好）</td></tr><tr><td>改了结局规则</td><td>增删结局、改六条优先级规则、加第七个结局</td><td>枚举 243 条路径的输出：六种结局各自占比多少，有没有结局变成不可达</td></tr><tr><td>改了参谋团</td><td>人数、模型搭配、角色分工、单路还是并发；把某个角色换成推理型模型试试</td><td>五路并发撞 429 的实测记录 + 改成单路之后的耗时对比</td></tr><tr><td>重新划了模型边界</td><td>让模型多干一点或更少一点：例如只写比喻不写判断，或让模型参与评分但外面套一层确定性校验</td><td>改前改后同一节点的两段叙述 + 说清哪部分仍然是代码说了算</td></tr><tr><td>改了提示词</td><td>改 <code>prompts/base_rules.txt</code> 的人物白名单、增删一条约束，看叙述会不会跑偏</td><td>同一节点改前改后的两段输出并排对比</td></tr><tr><td>改了玩法</td><td>加玩家知情度、随机事件、回合时限、代价系统、多结局之外的结算口径</td><td>新机制的截图 + 一局实测记录</td></tr><tr><td>改了性能与降级</td><td>结果缓存、并发退避、生图降级链、失败重试</td><td>一局总耗时前后对比（例如 78.5s → 多少）</td></tr></tbody></table></div>
+<p><strong>这些不算创新点</strong>：改封面颜色、换题诗、把 <code>SCENES</code> 的文案替换成自己的题材但提示词没动且不作说明、 删掉结局里的 <code>real</code> 字段（那等于把这课最值钱的部分扔了）、只写"我的题材更有意思"。</p>
+<p><strong>自评模板</strong>（照这个格式写，三句话）：</p>
+<blockquote><p>我把 ______ 换成了 ______，因为 ______。 证据：______（改动前后对比 / 枚举输出 / 耗时数据）。 代价：这么做的缺点是 ______，下次我会 ______。</p></blockquote>
+<hr>
+<h2>下一课</h2>
+<p>这一课里，所有的"事实"都是我们自己写死在代码里的—— 5 个场景是固定文案，结局是固定算法。<strong>模型只负责说得好听。</strong></p>
+<p>第三课要反过来：把<strong>真实的历史时间线</strong>摆在桌面上， 让用户<strong>自由输入</strong>改写其中一个节点， 然后<strong>让模型推演后续会发生什么</strong>—— 并且，给它套上三道枷锁，逼它对自己生成的每一条内容负责。</p>
+  <nav class="pager"><a href="lesson-01-coding-agent.html">← 第一课</a><a class="next" href="lesson-03-timeline-lab.html">第三课 →</a></nav>
+</main>
+<footer>本手册为课程材料 · 密钥不进前端 · 结论不交给模型编 · 提示词全程公开</footer>
+<script>
+(function(){
+  function fallback(t, done){
+    var ta = document.createElement('textarea');
+    ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); done(); } catch(e) {}
+    document.body.removeChild(ta);
+  }
+  document.querySelectorAll('main pre').forEach(function(pre){
+    var b = document.createElement('button');
+    b.className = 'copy'; b.type = 'button'; b.textContent = '复制';
+    b.addEventListener('click', function(){
+      // 用 textContent：innerText 会把 pre-wrap 的软换行也带出来，粘回去命令就断了
+      var t = (pre.querySelector('code') || pre).textContent;
+      var done = function(){
+        b.textContent = '已复制'; b.classList.add('ok');
+        setTimeout(function(){ b.textContent = '复制'; b.classList.remove('ok'); }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(done, function(){ fallback(t, done); });
+      } else { fallback(t, done); }
+    });
+    pre.appendChild(b);
+  });
+})();
+</script>
+</body>
+</html>

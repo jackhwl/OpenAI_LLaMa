@@ -1,0 +1,12 @@
+{
+  "_说明": "四个态势维度的显示名与补注。换题材时改这里的值即可；键名 morale/naval/fortune/cao 与 index.html 耦合，一般不动。",
+  "labels": {
+    "morale": "军心",
+    "naval": "水战",
+    "fortune": "天时",
+    "cao": "曹疑"
+  },
+  "notes": {
+    "cao": "（曹疑越低，曹军越不设防）"
+  }
+}

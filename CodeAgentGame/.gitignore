@@ -1,0 +1,22 @@
+# ---------- 密钥：绝不提交 ----------
+config.json
+lesson-*/lab/config.json
+
+# ---------- Python ----------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# ---------- 编辑器 / 系统 ----------
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+.workbuddy/
+
+# 说明：assets/ 下的生成图片与 runs/ 下的推演存档是课程教学素材，
+# 故意保留在仓库里，方便同学不消耗任何额度也能看到完整效果。

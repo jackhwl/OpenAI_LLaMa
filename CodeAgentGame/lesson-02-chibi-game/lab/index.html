@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赤壁 · 风起 —— 一个可以改写的冬天</title>
+<style>
+:root{
+  --paper:#f2ece0; --paper2:#fdfaf3; --paper3:#e9e1d1;
+  --ink:#1b1e24; --ink2:#5c6068; --ink3:#928b7c;
+  --rule:#d8cfbc; --rule2:#e8e0cf;
+  --wu:#2b7a67;      /* 吴 · 青 */
+  --wei:#9c3b39;     /* 魏 · 朱 */
+  --shu:#a8761f;     /* 蜀 · 赭 */
+  --seal:#b3342e;
+  --gold:#b08a3e;
+  --serif:"Songti SC","SimSun","Noto Serif SC",Georgia,serif;
+  --sans:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",sans-serif;
+  --sh:0 1px 2px rgba(40,35,25,.05),0 8px 26px -14px rgba(40,35,25,.2);
+  --sh-lg:0 3px 8px rgba(40,35,25,.08),0 34px 70px -28px rgba(40,35,25,.4);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  /* 宣纸纤维：两组极淡的交叉斜纹 */
+  background-color:var(--paper);
+  background-image:
+    repeating-linear-gradient(118deg,rgba(150,130,95,.028) 0 1px,transparent 1px 3px),
+    repeating-linear-gradient(28deg,rgba(150,130,95,.019) 0 1px,transparent 1px 4px);
+  color:var(--ink);font-family:var(--sans);
+  font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased;min-height:100vh;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.55;
+  background-image:radial-gradient(circle at 25% 35%,rgba(150,130,95,.06) 0 1px,transparent 1px),
+                   radial-gradient(circle at 70% 65%,rgba(150,130,95,.05) 0 1px,transparent 1px);
+  background-size:36px 36px,54px 54px;
+}
+/* 水墨晕染：五团低饱和色气 + 一道对角光，让纸面有深浅 */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(ellipse 46% 32% at 3% -3%,rgba(43,122,103,.14),transparent 62%),
+    radial-gradient(ellipse 40% 28% at 101% 5%,rgba(156,59,57,.115),transparent 62%),
+    radial-gradient(ellipse 62% 44% at 44% 109%,rgba(43,122,103,.125),transparent 68%),
+    radial-gradient(ellipse 32% 24% at 87% 56%,rgba(176,138,62,.115),transparent 66%),
+    radial-gradient(ellipse 28% 20% at 12% 73%,rgba(156,59,57,.09),transparent 66%),
+    linear-gradient(162deg,rgba(176,138,62,.06),transparent 44%,rgba(43,122,103,.055));
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 26px;position:relative;z-index:1}
+
+/* ---------- 顶栏 ---------- */
+.top{
+  position:sticky;top:0;z-index:60;background:rgba(242,236,224,.9);
+  backdrop-filter:blur(14px)
+}
+.top .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;letter-spacing:.1em;font-size:15px;white-space:nowrap}
+.brand .mk{
+  width:26px;height:26px;background:var(--seal);color:#fff;border-radius:2px;display:grid;
+  place-items:center;font-size:14px;box-shadow:0 2px 8px -3px rgba(179,52,46,.7)
+}
+/* 江波纹分隔 */
+.wave{
+  position:absolute;left:0;right:0;bottom:-1px;height:8px;pointer-events:none;opacity:.55;
+  background-repeat:repeat-x;background-size:64px 8px;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='8'><path d='M0 6c8 0 8-4 16-4s8 4 16 4 8-4 16-4 8 4 16 4' fill='none' stroke='%23c9bda3' stroke-width='1.3' stroke-linecap='round'/></svg>")
+}
+.progress{margin-left:auto;display:flex;gap:7px;align-items:center}
+.pdot{width:9px;height:9px;border-radius:50%;background:var(--rule);transition:.3s}
+.pdot.done{background:var(--ink3)}
+.pdot.now{background:var(--seal);transform:scale(1.35);box-shadow:0 0 0 4px rgba(179,52,46,.15)}
+.mstat{font-size:12px;color:var(--ink3);letter-spacing:.1em}
+
+/* ---------- 状态条 ---------- */
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:16px 0;border-bottom:1px solid var(--rule2)}
+.stat{font-size:12px}
+.stat .lb{display:flex;justify-content:space-between;color:var(--ink3);letter-spacing:.1em;margin-bottom:5px}
+.stat .lb b{color:var(--ink);font-family:var(--serif);font-size:13px}
+.track{height:6px;background:var(--paper3);border-radius:99px;overflow:hidden}
+.fill{height:100%;border-radius:99px;transition:width .7s cubic-bezier(.2,.7,.3,1)}
+.f-morale{background:var(--wu)} .f-naval{background:#3f6f9c}
+.f-fortune{background:var(--gold)} .f-cao{background:var(--wei)}
+.delta{font-size:11px;margin-left:6px;font-family:var(--serif)}
+.delta.up{color:var(--wu)} .delta.dn{color:var(--wei)}
+
+/* ---------- 通用 ---------- */
+.hd{margin:30px 0 20px}
+.kicker{font-family:var(--serif);font-size:12px;letter-spacing:.3em;color:var(--seal);display:block;margin-bottom:9px}
+h1{font-family:var(--serif);font-size:clamp(30px,5vw,46px);letter-spacing:.06em;line-height:1.22;font-weight:700}
+h2{font-family:var(--serif);font-size:clamp(22px,3.2vw,30px);letter-spacing:.05em;line-height:1.35;font-weight:700}
+.lede{color:var(--ink2);font-size:15.5px;max-width:680px;margin-top:12px}
+.card{background:var(--paper2);border:1px solid var(--rule);border-radius:4px;box-shadow:var(--sh)}
+.btn{
+  font-family:var(--sans);font-size:13.5px;padding:9px 18px;border-radius:3px;
+  border:1px solid var(--rule);background:var(--paper2);color:var(--ink2);
+  cursor:pointer;transition:.18s;letter-spacing:.04em
+}
+.btn:hover{border-color:var(--ink3);color:var(--ink);background:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:#fdfbf5;font-weight:600}
+.btn.primary:hover{background:#000;border-color:#000;color:#fff}
+.btn.ghost{padding:7px 14px;font-size:12.5px}
+.btn.wei{border-color:rgba(156,59,57,.4);color:var(--wei)}
+.btn.wei:hover{background:rgba(156,59,57,.07);border-color:var(--wei)}
+
+/* ---------- 开始页 ---------- */
+.start{padding:56px 0 70px}
+.start-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:start;margin-top:8px}
+.poem{font-family:var(--serif);font-size:17px;letter-spacing:.14em;line-height:2.1;color:var(--ink2);border-left:2px solid var(--seal);padding-left:18px;margin:22px 0}
+.brief{padding:24px 26px}
+.brief h3{font-family:var(--serif);font-size:16px;letter-spacing:.14em;margin-bottom:14px;color:var(--ink3)}
+.brief .row{display:grid;grid-template-columns:74px 1fr;gap:12px;padding:9px 0;border-bottom:1px dashed var(--rule2);font-size:14px;align-items:baseline}
+.brief .row:last-of-type{border-bottom:0}
+.brief .k{font-family:var(--serif);color:var(--ink3);font-size:12.5px;letter-spacing:.1em}
+.brief .v{color:var(--ink2);line-height:1.7}
+.brief .v em{font-style:normal;color:var(--seal);font-weight:600}
+.tagline{display:inline-block;font-size:11.5px;letter-spacing:.14em;padding:3px 10px;border-radius:99px;border:1px solid rgba(179,52,46,.3);color:var(--seal);background:rgba(255,253,247,.7)}
+
+/* 五决之序 */
+.five{margin-top:34px}
+.frow{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}
+.fc{
+  position:relative;overflow:hidden;padding:14px 10px 13px;text-align:center;
+  border:1px solid var(--rule);border-radius:3px;background:var(--paper2);
+  box-shadow:var(--sh);transition:.24s
+}
+.fc::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 70% 80%,rgba(176,138,62,.14),transparent 64%)
+}
+.fc:hover{border-color:var(--wei);transform:translateY(-3px);box-shadow:var(--sh-lg)}
+.fc:hover::before{background:radial-gradient(circle at 70% 80%,rgba(156,59,57,.16),transparent 64%)}
+.fc b{
+  position:relative;display:grid;place-items:center;width:28px;height:28px;margin:0 auto 8px;
+  font-family:var(--serif);font-size:14px;font-weight:400;color:#fff;background:var(--seal);
+  border-radius:2px;box-shadow:0 2px 7px -3px rgba(179,52,46,.7)
+}
+.fc span{position:relative;display:block;font-size:11.5px;color:var(--ink3);line-height:1.45;letter-spacing:.02em}
+
+/* ---------- 场景 ---------- */
+.scene{padding-bottom:60px;position:relative}
+/* 右上角放大场景号水印 */
+.bignum{
+  position:absolute;right:-10px;top:-24px;font-family:var(--serif);font-size:158px;line-height:1;
+  color:var(--ink);opacity:.032;pointer-events:none;user-select:none;z-index:0
+}
+.scene-body{padding:26px 30px 26px 34px;font-size:16px;line-height:1.92;color:var(--ink);position:relative;overflow:hidden}
+/* 左缘朱砂竖线 */
+.scene-body::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,var(--seal),rgba(179,52,46,.12))
+}
+/* 右下角云气 */
+.scene-body::after{
+  content:"";position:absolute;right:-30px;bottom:-30px;width:170px;height:170px;pointer-events:none;
+  background:radial-gradient(circle at 70% 70%,rgba(43,122,103,.07),transparent 62%);
+  border-radius:50%
+}
+.scene-body .hl{color:var(--seal);font-weight:600}
+/* 每景气韵：同底色纸，不同微色温 */
+.scene.s1 .scene-body{background:linear-gradient(160deg,var(--paper2),#f8f3e8)}
+.scene.s2 .scene-body{background:linear-gradient(160deg,var(--paper2),#fbf1ee)}
+.scene.s3 .scene-body{background:linear-gradient(160deg,var(--paper2),#f0f4f1)}
+.scene.s4 .scene-body{background:linear-gradient(160deg,var(--paper2),#eef2f7)}
+.scene.s5 .scene-body{background:linear-gradient(160deg,var(--paper2),#faf0ea)}
+/* 标题前的方形小印 */
+h2 .sn{
+  display:inline-grid;place-items:center;width:30px;height:30px;font-size:15px;font-weight:400;
+  background:var(--seal);color:#fff;border-radius:2px;margin-right:12px;vertical-align:-4px;
+  box-shadow:0 2px 7px -2px rgba(179,52,46,.55);letter-spacing:0
+}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0 0}
+.visual{margin-top:18px;border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--paper3);position:relative;min-height:150px;display:none}
+.visual.on{display:block}
+.visual img{width:100%;display:block}
+.visual .ph{padding:44px 20px;text-align:center;color:var(--ink3);font-size:13px}
+
+.opts{display:grid;gap:14px;margin-top:24px}
+.opt{
+  position:relative;overflow:hidden;
+  display:grid;grid-template-columns:200px 1fr 112px;gap:18px;align-items:center;
+  padding:14px 20px;background:var(--paper2);border:1px solid var(--rule);
+  border-radius:4px;cursor:pointer;transition:.2s;text-align:left;box-shadow:var(--sh);
+  /* 显式指定：否则 button:disabled 会套用系统灰色文字，选中的那张反而变淡 */
+  color:var(--ink)
+}
+/* 左缘朱砂竖线，hover 时自上而下展开 */
+.opt::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:3px;z-index:2;
+  background:var(--wei);transform:scaleY(0);transform-origin:top;
+  transition:transform .3s cubic-bezier(.2,.7,.3,1)
+}
+/* 右下角水墨云晕（纯 CSS radial，可控、不会显脏） */
+.opt::after{
+  content:"";position:absolute;right:-48px;bottom:-48px;width:162px;height:162px;border-radius:50%;
+  pointer-events:none;z-index:0;transition:.4s;
+  background:radial-gradient(circle at 58% 58%,rgba(176,138,62,.14),transparent 62%)
+}
+.opt:hover{border-color:var(--wei);transform:translateX(4px);box-shadow:var(--sh-lg)}
+.opt:hover::before{transform:scaleY(1)}
+.opt:hover::after{background:radial-gradient(circle at 58% 58%,rgba(156,59,57,.17),transparent 62%)}
+/* 选定后：未选中的淡下去，被选中的保持满色 */
+.opt:disabled{cursor:default;opacity:.46;transition:opacity .4s}
+.opt.picked:disabled{opacity:1}
+.opt:disabled:hover{transform:none;box-shadow:var(--sh)}
+
+/* 徽记：汉风线描小图 + 右下角选项字 */
+.opt .k{
+  position:relative;width:58px;height:58px;display:grid;place-items:center;z-index:1;
+  border:1px solid var(--rule);border-radius:3px;
+  background:linear-gradient(150deg,#f5efe3,#e7dec9);
+  color:var(--ink2);transition:.26s cubic-bezier(.2,.7,.3,1);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 1px 3px rgba(40,35,25,.07)
+}
+.opt .k svg{width:34px;height:34px;display:block;transition:.26s}
+.opt .k .kx{
+  position:absolute;right:0;bottom:0;font-family:var(--serif);font-style:normal;
+  font-size:10px;line-height:1;padding:3px 5px;background:var(--paper2);color:var(--ink3);
+  border-left:1px solid var(--rule);border-top:1px solid var(--rule);border-radius:0 0 2px 0;transition:.26s
+}
+.opt:hover .k{border-color:var(--wei);color:var(--wei);background:linear-gradient(150deg,#fdf6f3,#f9e6e2)}
+.opt:hover .k svg{transform:scale(1.08) rotate(-3deg)}
+.opt:hover .k .kx{background:var(--wei);color:#fff;border-color:var(--wei)}
+.opt.picked .k{
+  background:linear-gradient(150deg,var(--wei),#8c2f2d);border-color:var(--wei);color:#fff;
+  box-shadow:0 4px 13px -4px rgba(156,59,57,.75)
+}
+.opt.picked .k .kx{background:#fff;color:var(--wei);border-color:var(--wei)}
+
+/* 选项插画图版 */
+.opt .ph{
+  position:relative;width:200px;height:150px;border-radius:3px;overflow:hidden;z-index:1;
+  border:1px solid var(--rule);background:var(--paper3);
+  box-shadow:0 3px 11px -5px rgba(40,35,25,.5)
+}
+.opt .ph img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .55s cubic-bezier(.2,.7,.3,1)
+}
+.opt:hover .ph img{transform:scale(1.07)}
+.opt .ph .kx{
+  position:absolute;left:0;bottom:0;font-family:var(--serif);font-style:normal;
+  font-size:11px;line-height:1;padding:4px 8px;color:var(--ink2);
+  background:rgba(253,250,243,.93);
+  border-top:1px solid var(--rule);border-right:1px solid var(--rule);
+  border-radius:0 2px 0 0;transition:.24s
+}
+.opt:hover .ph .kx,.opt.picked .ph .kx{background:var(--wei);color:#fff;border-color:var(--wei)}
+/* 拿不到插画时，退回纸底 + 矢量徽记 */
+.opt .ph.noimg{display:grid;place-items:center;color:var(--ink2);
+  background:linear-gradient(150deg,#f5efe3,#e7dec9)}
+.opt .ph.noimg svg{width:40px;height:40px;display:block}
+
+.opt .oc{position:relative;z-index:1}
+.opt .lb{display:block;font-family:var(--serif);font-size:17px;letter-spacing:.04em;margin-bottom:5px}
+/* 标题前的线描小徽记 */
+.opt .lb .ico{
+  display:inline-grid;place-items:center;width:20px;height:20px;color:var(--ink3);
+  vertical-align:-4px;margin-right:8px;transition:.24s
+}
+.opt .lb .ico svg{width:18px;height:18px;display:block}
+.opt:hover .lb .ico{color:var(--wei)}
+.opt .dt{display:block;font-size:13.5px;color:var(--ink2);line-height:1.65}
+
+/* 效果标签：对己方有利为青，不利为朱 —— 比单纯正负号更好读 */
+.opt .ef{
+  position:relative;z-index:1;display:flex;flex-direction:column;gap:5px;
+  align-items:flex-end;justify-content:center
+}
+.opt .ef i{
+  font-style:normal;font-family:var(--serif);font-size:11px;line-height:1;letter-spacing:.03em;
+  padding:4px 8px;border-radius:2px;white-space:nowrap
+}
+.opt .ef i.g{color:#1e6b58;background:rgba(43,122,103,.09);border:1px solid rgba(43,122,103,.24)}
+.opt .ef i.b{color:#9c3b39;background:rgba(156,59,57,.075);border:1px solid rgba(156,59,57,.22)}
+.opt .ef i.z{color:var(--ink3);background:var(--paper3);border:1px solid var(--rule2)}
+
+.opt.picked{border-color:var(--wei);background:#fdf6f3}
+.opt.picked::before{transform:scaleY(1)}
+.opt.picked::after{background:radial-gradient(circle at 58% 58%,rgba(156,59,57,.17),transparent 62%)}
+
+/* ---------- 参谋团 ---------- */
+.council{margin-top:22px;display:none}
+.council.on{display:block}
+.council-hd{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.council-hd h3{font-family:var(--serif);font-size:15px;letter-spacing:.16em}
+.council-hd .hint{font-size:12px;color:var(--ink3)}
+.ops{display:grid;gap:12px}
+.op{
+  display:grid;grid-template-columns:132px 1fr;gap:16px;padding:16px 18px;
+  background:var(--paper2);border:1px solid var(--rule);border-left:3px solid var(--ink3);
+  border-radius:3px;animation:fi .4s ease both
+}
+.op .who{font-size:12.5px;line-height:1.7}
+.op .who b{display:block;font-family:var(--serif);font-size:13.5px;color:var(--ink);margin-bottom:3px}
+.op .who code{font-size:10.5px;color:var(--ink3);font-family:ui-monospace,Consolas,monospace;word-break:break-all}
+.op .say{font-size:14.5px;line-height:1.85;color:var(--ink2);font-family:var(--serif)}
+/* 等待中的卡片：还没轮到开口的谋士，看起来就该是灰的 */
+.op.wait{border-left-color:var(--rule2)}
+.op.wait .who b,.op.wait .say{color:var(--ink3);font-weight:400}
+/* 失手的谋士：单独标出来，不要让整组人的成果陪它一起消失 */
+.op.bad{border-left-color:var(--wei)}
+.op.bad .say{color:var(--wei);font-size:13px}
+/* 单张重试：一位谋士被限流不该让整组重来 */
+.op .retry{margin-left:10px;border:1px solid var(--rule2);background:transparent;
+  color:var(--ink2);font-size:12px;font-family:var(--sans);padding:3px 10px;border-radius:2px;
+  cursor:pointer;letter-spacing:.05em}
+.op .retry:hover{border-color:var(--ink2);color:var(--ink)}
+@keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.dots{display:inline-flex;gap:4px}
+.dots i{width:5px;height:5px;border-radius:50%;background:var(--ink3);animation:bl 1.1s infinite}
+.dots i:nth-child(2){animation-delay:.18s}.dots i:nth-child(3){animation-delay:.36s}
+@keyframes bl{0%,60%,100%{opacity:.25}30%{opacity:1}}
+
+/* 笔法切换 */
+.seg{display:inline-flex;border:1px solid var(--rule);border-radius:3px;overflow:hidden;background:var(--paper2)}
+.seg button{border:0;background:transparent;padding:7px 14px;font-size:12.5px;color:var(--ink2);
+  cursor:pointer;font-family:var(--sans);transition:.15s;letter-spacing:.06em}
+.seg button + button{border-left:1px solid var(--rule)}
+.seg button:hover:not(.on){background:var(--paper3);color:var(--ink)}
+.seg button.on{background:var(--ink);color:#fdfbf5;font-weight:600}
+.seglab{font-size:12.5px;color:var(--ink3);letter-spacing:.1em;margin-right:2px}
+
+/* ---------- 后果 ---------- */
+.outcome{margin-top:20px;padding:26px 28px;border-left:3px solid var(--gold);background:var(--paper2);border-radius:0 4px 4px 0;display:none}
+.outcome.on{display:block;animation:fi .5s ease both}
+.outcome .oh{font-family:var(--serif);font-size:13px;letter-spacing:.22em;color:var(--gold);margin-bottom:12px}
+.outcome .oh .meta{font-family:var(--sans);font-size:11px;letter-spacing:.04em;color:var(--ink3);margin-left:9px}
+.outcome .txt{font-size:16px;line-height:1.95;font-family:var(--serif);letter-spacing:.02em;white-space:pre-wrap}
+.outcome .foot{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;align-items:center}
+details.pbox{margin-top:16px;border-top:1px dashed var(--rule2);padding-top:14px}
+details.pbox summary{font-size:12.5px;color:var(--ink3);cursor:pointer;letter-spacing:.08em;list-style:none}
+details.pbox summary::-webkit-details-marker{display:none}
+details.pbox summary::before{content:"▸ ";color:var(--seal)}
+details.pbox[open] summary::before{content:"▾ "}
+.prompt{background:#20232a;color:#e6e2d6;border-radius:3px;padding:14px 16px;margin-top:10px;
+  font-family:ui-monospace,Consolas,monospace;font-size:11.8px;line-height:1.75;white-space:pre-wrap;word-break:break-word}
+.prompt .pk{color:#e0a458}
+.prompt .pf{color:#7f8794}
+.pnote{font-size:12px;color:var(--ink3);line-height:1.85;margin:11px 0 0}
+.pnote code{font-size:11.5px;background:var(--paper3);padding:1px 5px;border-radius:2px}
+
+/* ---------- 结局 ---------- */
+.ending{padding:10px 0 70px}
+.ehero{
+  position:relative;overflow:hidden;padding:44px 34px;border-radius:4px;text-align:center;
+  border:1px solid var(--rule);background:var(--paper2);box-shadow:var(--sh-lg)
+}
+/* 装裱内框 */
+.ehero::before{
+  content:"";position:absolute;inset:9px;border:1px solid var(--rule2);border-radius:2px;pointer-events:none
+}
+/* 云气 */
+.ehero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 58% 68% at 50% 122%,rgba(43,122,103,.12),transparent 66%),
+    radial-gradient(ellipse 36% 48% at 4% -16%,rgba(156,59,57,.1),transparent 66%),
+    radial-gradient(ellipse 36% 48% at 96% -16%,rgba(176,138,62,.1),transparent 66%)
+}
+.ehero > *{position:relative;z-index:1}
+.ebadge{display:inline-block;font-size:11.5px;letter-spacing:.2em;padding:4px 12px;border-radius:99px;margin-bottom:16px}
+.eb-史实线{background:rgba(43,122,103,.1);color:var(--wu);border:1px solid rgba(43,122,103,.3)}
+.eb-反事实{background:rgba(156,59,57,.09);color:var(--wei);border:1px solid rgba(156,59,57,.3)}
+.eb-惨胜{background:rgba(168,118,31,.1);color:var(--shu);border:1px solid rgba(168,118,31,.3)}
+.ehero h2{font-size:clamp(30px,5.6vw,50px);letter-spacing:.14em}
+.ehero .sub{color:var(--ink3);letter-spacing:.2em;font-size:13px;margin-top:12px}
+.review{margin-top:24px}
+.review h3{font-family:var(--serif);font-size:14px;letter-spacing:.2em;color:var(--ink3);margin-bottom:12px}
+.rv{display:grid;grid-template-columns:126px 1fr 152px;gap:14px;padding:12px 16px;background:var(--paper2);
+  border:1px solid var(--rule);border-radius:3px;margin-bottom:9px;font-size:13.5px;align-items:center}
+.rv .rn{font-family:var(--serif);color:var(--ink3);font-size:12px;letter-spacing:.08em}
+.rv .rc{font-family:var(--serif);font-size:14.5px}
+.rv .rd{font-size:11.5px;color:var(--ink3);text-align:right;font-family:var(--serif)}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;justify-content:center}
+.verdict{margin-top:22px;padding:24px 28px;border-left:3px solid var(--seal);background:var(--paper2);border-radius:0 4px 4px 0}
+.verdict .vh{font-family:var(--serif);font-size:13px;letter-spacing:.22em;color:var(--seal);margin-bottom:12px}
+.verdict .vt{font-size:15.5px;line-height:1.95;font-family:var(--serif);white-space:pre-wrap}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+.gallery figure{border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--paper2)}
+.gallery img{width:100%;display:block}
+.gallery figcaption{padding:9px 13px;font-size:11.5px;color:var(--ink3);letter-spacing:.08em;border-top:1px solid var(--rule2)}
+
+/* ---------- 其它 ---------- */
+.note{font-size:12.5px;color:var(--ink3);line-height:1.85;margin-top:26px;padding:16px 18px;
+  background:var(--paper3);border-radius:3px}
+.note b{color:var(--ink2)}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:#20232a;color:#f0ece0;
+  padding:11px 20px;border-radius:3px;font-size:13px;z-index:200;box-shadow:var(--sh-lg);display:none}
+.toast.on{display:block;animation:fi .25s ease both}
+.audio-wrap{margin-top:14px}
+audio{width:100%;height:38px}
+.loading{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink3)}
+@media(max-width:860px){
+  .start-grid,.gallery{grid-template-columns:1fr}
+  .frow{grid-template-columns:repeat(2,1fr)}
+  .opt{grid-template-columns:122px 1fr;gap:13px;padding:12px 14px}
+  .opt .ph{width:122px;height:92px;align-self:start}
+  .opt .ph.noimg svg{width:30px;height:30px}
+  .opt .k{width:52px;height:52px;align-self:start}
+  .opt .k svg{width:30px;height:30px}
+  /* 窄屏：效果标签移到标题下方，横排 */
+  .opt .ef{
+    grid-column:2;flex-direction:row;align-items:center;justify-content:flex-start;
+    flex-wrap:wrap;gap:6px;margin-top:8px
+  }
+  .op{grid-template-columns:1fr;gap:8px}
+  .rv{grid-template-columns:1fr;gap:4px}
+  .rv .rd{text-align:left}
+  .statbar{grid-template-columns:repeat(2,1fr);gap:11px}
+  .bignum{font-size:104px;top:-14px}
+  .scene-body{padding:22px 20px 22px 24px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><span class="mk">赤</span>赤壁 · 风起</div>
+    <div class="progress" id="prog"></div>
+    <span class="mstat" id="mstat"></span>
+  </div>
+  <div class="wave" aria-hidden="true"></div>
+</header>
+
+<div class="wrap">
+  <div class="statbar" id="statbar" style="display:none"></div>
+  <main id="stage"></main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ==========================================================================
+   零、汉风线描徽记
+   每个选项一枚，与内容意象对应。内联 SVG —— 即时渲染、离线可用、
+   不消耗任何生图额度（这也是"元素"与"图片"的分工：装饰用矢量，写实才用 AI 图）
+   ========================================================================== */
+const ICONS = {
+  /* 一 · 江陵的军械 */
+  '1A':'<path d="M6 24h17M6 16h14M6 32h14"/><path d="M25 13l11 11-11 11"/>',            /* 急趋 */
+  '1B':'<path d="M11 39V23l3-3 3 3 3-3 3 3 3-3 3 3 3-3 3 3v16z"/><path d="M20 39v-8h7v8"/>', /* 城垛 */
+  '1C':'<path d="M24 8c7 9 11 13 11 20a11 11 0 0 1-22 0c0-5 3-8 6-12 0 5 2 7 4 7 1-6 0-10 1-15z"/>', /* 焚 */
+  /* 二 · 案上那一剑 */
+  '2A':'<circle cx="19" cy="24" r="10"/><circle cx="29" cy="24" r="10"/>',                 /* 结盟 */
+  '2B':'<circle cx="24" cy="24" r="14"/><path d="M24 10a14 14 0 0 1 0 28z" fill="currentColor" stroke="none"/>', /* 半明半暗 */
+  '2C':'<path d="M17 7v34"/><path d="M17 9h19l-5 6 5 6H17z"/>',                            /* 白旗 */
+  /* 三 · 连船 */
+  '3A':'<path d="M9 33h30l-4 7H13z"/><path d="M24 10v23"/><path d="M24 15l9 6-9 4z"/>',     /* 楼船 */
+  '3B':'<path d="M5 27c4-3 8-3 12 0s8 3 12 0 8-3 12 0"/><path d="M5 36c4-3 8-3 12 0s8 3 12 0 8-3 12 0"/><path d="M23 6l5 5-8 16-4-2z"/>', /* 水鬼凿船 */
+  '3C':'<path d="M5 37l10-15 6 9 5-8 17 14z"/><path d="M9 42c6-3 12-3 18 0"/>',            /* 山路 */
+  /* 四 · 风向 */
+  '4A':'<path d="M6 17h21a5 5 0 1 0-5-5"/><path d="M6 26h26a5 5 0 1 1-5 5"/><path d="M6 35h15a4 4 0 1 1-4 4"/>', /* 风 */
+  '4B':'<path d="M7 41L34 14"/><path d="M27 11l11-3-3 11z"/>',                             /* 强攻 */
+  '4C':'<path d="M24 13c6 8 9 11 9 17a9 9 0 0 1-18 0c0-4 2-7 5-10 0 4 2 6 3 6 1-5 0-8 1-13z"/><path d="M24 11c0-3 3-4 2-8" stroke-dasharray="2.5 3"/>', /* 烟 */
+  /* 五 · 黄盖的降书 */
+  '5A':'<path d="M13 9h19a3 3 0 0 1 3 3v25a3 3 0 0 0 3 3H16a3 3 0 0 1-3-3z"/><path d="M19 18h12M19 24h12M19 30h7"/>', /* 降书 */
+  '5B':'<path d="M14 18a13 13 0 0 1 20 2"/><path d="M34 30a13 13 0 0 1-20-2"/><path d="M31 13l3 7-7 1"/><path d="M17 35l-3-7 7-1"/>', /* 内外循环 */
+  '5C':'<path d="M12 30h24l-3 7H15z"/><path d="M22 30V14l8 6-8 6z"/><path d="M6 39h36M10 44h28"/>', /* 轻舟 */
+  /* 兜底 */
+  def:'<circle cx="24" cy="24" r="13"/><path d="M24 17v14M17 24h14"/>'
+};
+function ICO(name){
+  return `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.1"
+    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ICONS.def}</svg>`;
+}
+
+/* ==========================================================================
+   一、剧本数据
+   ========================================================================== */
+const SCENES = [
+  {
+    id: 1, date: '建安十三年 · 七月', place: '襄阳 · 城下',
+    title: '江陵的军械',
+    text: '刘表病亡，其子刘琮秘不发丧，已遣使北上请降。江陵城中囤有军械、战船与积粟，此刻无主。曹操大军尚在宛城——轻骑急趋，十日可至；缓行，则半月有余。你只有一次选择。',
+    imgPrompt: '汉末襄阳城郊，暮色苍茫，一支轻装骑兵沿驿道疾行，尘埃飞扬，远处城郭与长江水色，古战场气息',
+    options: [
+      { key:'A', label:'轻骑急趋江陵', detail:'抢在曹军之前，尽取军械战船', d:{morale:2,naval:2,fortune:0,cao:1} },
+      { key:'B', label:'退保夏口', detail:'与刘琦合兵，稳守江夏水口', d:{morale:1,naval:1,fortune:0,cao:-1} },
+      { key:'C', label:'焚毁江陵积储', detail:'一把火烧了，不留与曹操', d:{morale:-1,naval:0,fortune:0,cao:-1} }
+    ]
+  },
+  {
+    id: 2, date: '建安十三年 · 十月', place: '柴桑 · 孙权帐中',
+    title: '案上那一剑',
+    text: '曹操的劝降书送到。张昭、顾雍一班文臣皆言"不如迎之"。孙权起身，拔剑砍在案上："诸将吏敢复有言当迎操者，与此案同！" 剑还在案上颤。他转过头，看向你。',
+    imgPrompt: '汉末军帐内，烛火摇曳，案上横置一柄长剑，文武列坐两侧，气氛紧张对峙',
+    options: [
+      { key:'A', label:'联刘抗曹', detail:'与刘备结盟，共拒北军于江上', d:{morale:3,naval:1,fortune:0,cao:0} },
+      { key:'B', label:'外示纳降，内修战备', detail:'表面应承，暗中拖延与备战', d:{morale:1,naval:0,fortune:0,cao:-2} },
+      { key:'C', label:'割江夏三郡求和', detail:'保江东基业，不冒灭族之险', d:{morale:-2,naval:-1,fortune:0,cao:-3} }
+    ]
+  },
+  {
+    id: 3, date: '建安十三年 · 十一月', place: '三江口 · 江上',
+    title: '连船',
+    text: '周瑜初战小胜。但登上楼船北望，曹军水寨连绵数十里，首尾相接，旌旗蔽江——北人本不习水，为稳船身，曹操令战船铁索相连。诸将献计。',
+    imgPrompt: '长江江面，吴军楼船与曹军水寨隔江对峙，铁索连舟，旌旗蔽江，冬季雾气，肃杀气象',
+    options: [
+      { key:'A', label:'火攻，烧其连船', detail:'连船难散，一炬可破——但需风向', d:{morale:0,naval:3,fortune:1,cao:1} },
+      { key:'B', label:'遣水鬼凿船', detail:'夜遣善泅者，逐个凿沉其船', d:{morale:1,naval:1,fortune:0,cao:0} },
+      { key:'C', label:'陆路绕袭乌林', detail:'越江而上，断其粮道，逼其自退', d:{morale:2,naval:-1,fortune:0,cao:-2} }
+    ]
+  },
+  {
+    id: 4, date: '建安十三年 · 冬 · 决战前夜', place: '江上 · 一叶舟',
+    title: '风向',
+    text: '火攻器具已备齐。然而连刮数日西北风——若纵火，火势反噬自家船阵。周瑜呕血病倒，帐中一片死寂。诸葛亮立于江边，说：三日后，必有东南风。',
+    imgPrompt: '冬夜长江，江面孤舟一盏灯火，水面平静无波，远处北岸曹营灯火连绵如星，寒意肃杀',
+    options: [
+      { key:'A', label:'信他，等风', detail:'按兵不动，候三日之期', d:{morale:1,naval:0,fortune:3,cao:0} },
+      { key:'B', label:'不等了，今夜强攻', detail:'战机稍纵即逝，一鼓作气', d:{morale:2,naval:0,fortune:-2,cao:1} },
+      { key:'C', label:'先焚北岸旱寨', detail:'遣细作乱其军，再候风起', d:{morale:0,naval:0,fortune:1,cao:2} }
+    ]
+  },
+  {
+    id: 5, date: '建安十三年 · 冬 · 决战当夜', place: '南岸 · 点将台',
+    title: '黄盖的降书',
+    text: '黄盖愿行诈降。降书已写就，只等送出。而曹操素来多疑——这一纸文书，是他的破绽，也可能是一口陷阱。东南风起了，江面开始起浪。',
+    imgPrompt: '长江南岸点将台，夜风中旗帜猎猎，江面波涛初起，远处曹军水寨轮廓隐没在夜色浓雾中',
+    options: [
+      { key:'A', label:'黄盖诈降，蒙冲纵火', detail:'十艘蒙冲斗舰，实以薪草膏油，插旗诈降', d:{morale:0,naval:3,fortune:0,cao:1} },
+      { key:'B', label:'假戏真做，令其为内应', detail:'携真降表入曹营，从内部放火', d:{morale:-1,naval:1,fortune:0,cao:-3} },
+      { key:'C', label:'不诈降，轻舟强攻', detail:'堂堂之阵，夜以轻舟直冲水寨', d:{morale:1,naval:-1,fortune:0,cao:-1} }
+    ]
+  }
+];
+
+/* 结局判定：先到先得，顺序不可乱 */
+function decide(s){
+  if (s.naval >= 12 && s.fortune >= 8)  return 'victory';
+  if (s.fortune <= 3 && s.morale >= 9)  return 'pyrrhic';
+  if (s.cao <= 1 && s.naval >= 7)       return 'deception';
+  if (s.morale <= 5 && s.naval <= 4)    return 'surrender';
+  if (s.naval >= 8 && s.fortune >= 6)   return 'stalemate';
+  if (s.morale <= 6 || s.cao >= 9)      return 'defeat';
+  return 'victory';
+}
+
+const ENDINGS = {
+  victory: {
+    title:'东风有意', sub:'赤壁大胜 · 三分天下', badge:'史实线',
+    img:'赤壁大胜之后，长江上吴军楼船列阵，火光渐熄硝烟未散，破晓天光，壮阔寂寥',
+    desc:'与史实几乎重合。你每一步都踩在了周瑜与鲁肃当年走过的位置上：江陵、联盟、火攻、等风、诈降。五件事连成一条线，而这条线在真实历史里，只在建安十三年的那个冬天成立过一次。',
+    real:'结局与史实一致：曹操北还，孙刘各取荆州一部，三分之势自此展开。'
+  },
+  pyrrhic: {
+    title:'火尽江寒', sub:'惨胜 · 孙刘裂于胜后', badge:'惨胜',
+    img:'大战之后的焦土江岸，残破战船搁浅在泥滩上，远处营帐寥寥，天色阴沉',
+    desc:'你火攻成功了——但没有等到风向，是靠硬拼赌来的。曹操北退，联军也伤了元气。胜利来得太险，周瑜与刘备开始在荆州的归属上互不相让。胜仗打完了，盟约也跟着打完了。',
+    real:'与史实分岔：真实历史中火攻依赖东南风与诈降的配合，联军的裂痕要到战后数年才显现。'
+  },
+  deception: {
+    title:'一纸降书', sub:'以诈取胜 · 曹军自乱', badge:'反事实',
+    img:'曹营水寨内灯火通明却一片混乱，士兵在浓烟中奔逃，江面夜色如墨',
+    desc:'你把赌注全压在曹操的多疑上。黄盖携着真降表入营，曹军的戒心被彻底卸下。放火的那一夜，火是从内部烧起来的。曹操北还，江东保全，但你与刘备之间的那点信任，也用完了。',
+    real:'与史实分岔：真实历史中的诈降是单向的诱敌，而非双向的双面之计。'
+  },
+  stalemate: {
+    title:'南北分治', sub:'长期对峙 · 南北朝提前三百年', badge:'反事实',
+    img:'长江两岸对峙的营垒，南岸青旗北岸朱旗，江面平静，长期僵持的静默感',
+    desc:'曹操退而未走，联军胜而未追。此后数十年，双方沿江布防、年年小战、岁岁不成。谁也没能跨过这条江——南北分裂的格局，比真实历史里的那次，早来了将近三百年。',
+    real:'与史实分岔：真实历史里曹操北还后北方仍不稳，无力再举南征，统一被推迟了七十余年。'
+  },
+  defeat: {
+    title:'铜雀春深', sub:'大败 · 曹操渡江', badge:'反事实',
+    img:'曹操大军渡江，水寨烟火冲天，吴军战船崩散，江面被火光映红',
+    desc:'曹军识破了你的意图，或是你从未给过他一个松懈的理由。东南风起时，江上刮的方向是对的，可是人心的方向不对。火没有烧到北岸，倒是南岸的营帐先乱了。江东易主。',
+    real:'与史实分岔：铜雀台确实建于邺城，但"铜雀春深锁二乔"只是杜牧诗句中的想象——真实历史里曹操并未南下得逞。'
+  },
+  surrender: {
+    title:'案上剑', sub:'不战而屈 · 江东纳土', badge:'反事实',
+    img:'军帐内剑横案上，人影散尽，帐外归于平静，萧索的黄昏',
+    desc:'你始终没能聚起战意。张昭说的是实话：打，未必赢；不打，士族与百姓反而能保全。江东纳土，曹操不费一矢渡江——代价是把未来三十年的独立换成了眼下的太平。',
+    real:'与史实分岔：真实历史中孙权斩案而决，张昭的主降之议被否决。'
+  }
+};
+
+/* ==========================================================================
+   二、运行时状态
+   ========================================================================== */
+const BASE = { morale:5, naval:5, fortune:5, cao:5 };
+const STAT_META = [
+  { k:'morale',  name:'军心', hint:'越高，将士越愿为你死战' },
+  { k:'naval',   name:'水战', hint:'越高，江东水师越能压制曹军' },
+  { k:'fortune', name:'天时', hint:'越高，东风与机缘越站在你这边' },
+  { k:'cao',     name:'曹疑', hint:'越低，曹操越不设防（这是你的机会）' }
+];
+const MAXV = 16;
+
+let S = { ...BASE };
+let step = 0;
+let history = [];
+let busy = false;
+
+/* 笔法：同一个结局，不同模型写出来的味道不同 —— 这本身就是模型差异的演示 */
+const STYLES = [
+  { k:'fast',    label:'快笔', note:'internlm3-8b-instruct · 约 5 秒' },
+  { k:'sharp',   label:'工笔', note:'Qwen3-Coder-30B-A3B · 约 3 秒' },
+  { k:'classic', label:'史笔', note:'GLM-5.3 · 约 15 秒，笔法最佳' }
+];
+let NSTYLE = 'fast';
+function segHTML(){
+  return `<span class="seglab">笔法</span><span class="seg" id="seg">` +
+    STYLES.map(s=>`<button data-k="${s.k}" class="${s.k===NSTYLE?'on':''}" title="${s.note}">${s.label}</button>`).join('') +
+    `</span>`;
+}
+function bindSeg(){
+  const el = document.getElementById('seg'); if (!el) return;
+  el.querySelectorAll('button').forEach(b=>{
+    b.onclick = () => {
+      NSTYLE = b.dataset.k;
+      el.querySelectorAll('button').forEach(x=>x.classList.toggle('on', x.dataset.k === NSTYLE));
+      toast('笔法已换作「' + b.textContent + '」' + (NSTYLE==='fast'?'':'，出字会慢一些'));
+    };
+  });
+}
+
+/* ==========================================================================
+   三、工具
+   ========================================================================== */
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+
+function toast(msg, ms){
+  const t = $('toast'); t.textContent = msg; t.classList.add('on');
+  clearTimeout(t._h); t._h = setTimeout(()=>t.classList.remove('on'), ms||3000);
+}
+
+async function api(path, body){
+  const r = await fetch(path, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(body)
+  });
+  const d = await r.json().catch(()=>({error:'响应不是合法 JSON'}));
+  if (!r.ok || d.error) throw new Error(d.error || ('HTTP ' + r.status));
+  return d;
+}
+
+function clamp(v){ return Math.max(0, Math.min(MAXV, v)); }
+
+/* ---- 状态条 ---- */
+function renderStats(prev){
+  $('statbar').style.display = 'grid';
+  $('statbar').innerHTML = STAT_META.map(m=>{
+    const v = S[m.k];
+    const d = prev ? v - prev[m.k] : 0;
+    const dt = d ? `<span class="delta ${d>0?'up':'dn'}">${d>0?'+':''}${d}</span>` : '';
+    return `<div class="stat" title="${m.hint}">
+      <div class="lb"><span>${m.name}</span><b>${v}${dt}</b></div>
+      <div class="track"><div class="fill f-${m.k}" style="width:${v/MAXV*100}%"></div></div>
+    </div>`;
+  }).join('');
+}
+
+/* ---- 进度点 ---- */
+function renderProg(){
+  $('prog').innerHTML = SCENES.map((s,i)=>{
+    const cls = i < step ? 'done' : (i === step ? 'now' : '');
+    return `<span class="pdot ${cls}"></span>`;
+  }).join('');
+  $('mstat').textContent = step >= SCENES.length ? '推演结束' : `第 ${step+1} / ${SCENES.length} 决`;
+}
+
+/* ==========================================================================
+   四、视图
+   ========================================================================== */
+function viewStart(){
+  step = 0; S = {...BASE}; history = []; renderProg(); renderStats();
+  $('statbar').style.display = 'none';
+  $('stage').innerHTML = `
+  <section class="start">
+    <span class="kicker">一个可以改写的冬天</span>
+    <h1>赤壁 · 风起</h1>
+    <p class="lede">建安十三年，曹操率大军南下。真实的历史里，这场仗改变了中国的走向。
+       而你，将代替孙权坐进那顶军帐，做五个抉择——每一个都会改写后面的冬天。</p>
+
+    <div class="start-grid">
+      <div>
+        <div class="poem">折戟沉沙铁未销，<br>自将磨洗认前朝。<br>东风不与周郎便，<br>铜雀春深锁二乔。</div>
+        <span class="tagline">杜牧 · 《赤壁》</span>
+        <p class="lede" style="margin-top:22px;font-size:14.5px">
+          这四句诗本身就是一次反事实推演：<b>假如当年没有那场东风</b>。你接下来要做的，
+          是把"假如"变成五个可以按下去的选择。</p>
+        <div class="toolbar">
+          <button class="btn primary" id="go">入 帐 议 事</button>
+          <button class="btn ghost" id="probe">检查 AI 服务</button>
+        </div>
+      </div>
+
+      <div class="card brief">
+        <h3>推 演 须 知</h3>
+        <div class="row"><span class="k">你的身份</span><span class="v">孙权帐中一位可决事的谋主</span></div>
+        <div class="row"><span class="k">抉择之数</span><span class="v">五处，每处三策</span></div>
+        <div class="row"><span class="k">可变之势</span><span class="v"><em>军心</em>、<em>水战</em>、<em>天时</em>、<em>曹疑</em> —— 曹疑越低越好</span></div>
+        <div class="row"><span class="k">参谋之团</span><span class="v">五位谋士由<b>五个不同的大模型</b>扮演，可随时问计</span></div>
+        <div class="row"><span class="k">结局之数</span><span class="v">六种，从史实重演到彻底分岔</span></div>
+      </div>
+    </div>
+
+    <div class="five">
+      <span class="kicker">五 决 之 序</span>
+      <div class="frow">
+        ${SCENES.map((s,i)=>`<div class="fc" title="${s.date} · ${s.place}">
+          <b>${CN[i]}</b><span>${s.title}</span></div>`).join('')}
+      </div>
+    </div>
+  </section>`;
+  $('go').onclick = () => { step = 0; viewScene(); };
+  $('probe').onclick = probe;
+}
+
+async function probe(){
+  toast('正在检查模型可用性…', 6000);
+  try{
+    const d = await api('/api/status', {});
+    toast(`已连通 · 参谋 ${d.chat.length} 个 · 生图 ${d.image.length} 个 · 语音 ${d.tts.length} 个`, 5000);
+  }catch(e){ toast('连接失败：' + e.message, 6000); }
+}
+
+const CN = ['壹','贰','叁','肆','伍'];
+
+function viewScene(){
+  const sc = SCENES[step];
+  renderProg(); renderStats();
+  $('stage').innerHTML = `
+  <section class="scene s${sc.id}">
+    <div class="bignum" aria-hidden="true">${CN[step] || ''}</div>
+    <div class="hd">
+      <span class="kicker">${sc.date} · ${sc.place}</span>
+      <h2><span class="sn">${CN[step] || ''}</span>${sc.title}</h2>
+    </div>
+    <div class="card scene-body">${sc.text}</div>
+
+    <div class="toolbar">
+      <button class="btn" id="ask">◈ 问计于参谋团</button>
+      <button class="btn" id="pic">◈ 生成此景画面</button>
+      ${segHTML()}
+      <span class="loading" id="tip"></span>
+    </div>
+
+    <div class="visual" id="visual"></div>
+
+    <div class="council" id="council">
+      <div class="council-hd"><h3>参 谋 团</h3>
+        <span class="hint" id="chint">五位谋士，五个不同的大模型，谁先想完谁先开口</span></div>
+      <div class="ops" id="ops"></div>
+    </div>
+
+    <div class="opts" id="opts">
+      ${sc.options.map(o=>{
+        const id = sc.id + o.key, m = MANIFEST[id];
+        const plate = `<span class="ph${m ? '' : ' noimg'}">`
+          + (m ? `<img src="${m.img}" alt="${esc(o.label)}" loading="lazy">` : ICO(id))
+          + `<i class="kx">${o.key}</i></span>`;
+        const tIcon = m ? `<span class="ico">${ICO(id)}</span>` : '';
+        return `<button class="opt" data-k="${o.key}">
+          ${plate}
+          <span class="oc">
+            <span class="lb">${tIcon}${o.label}</span>
+            <span class="dt">${o.detail}</span>
+          </span>
+          <span class="ef">${effectHTML(o.d)}</span>
+        </button>`;
+      }).join('')}
+    </div>
+  </section>`;
+
+  $('ask').onclick = () => askCouncil(sc);
+  $('pic').onclick = () => genPicture(sc, 'visual', 'pic');
+  bindSeg();
+  $('opts').querySelectorAll('.opt').forEach(el=>{
+    el.onclick = () => choose(sc, sc.options.find(o=>o.key === el.dataset.k), el);
+  });
+}
+
+/* 效果标签：军心/水战/天时 越高越好，曹疑 越低越好
+   —— 所以按"对己方是否有利"着色，而不是简单地按正负号 */
+const GOOD = { morale:1, naval:1, fortune:1, cao:-1 };
+function effectHTML(d){
+  const n = {morale:'军心', naval:'水战', fortune:'天时', cao:'曹疑'};
+  const parts = Object.keys(d).filter(k=>d[k]).map(k=>{
+    const ok = Math.sign(d[k]) === GOOD[k];
+    return `<i class="${ok?'g':'b'}">${n[k]}${d[k]>0?'+':''}${d[k]}</i>`;
+  });
+  return parts.length ? parts.join('') : '<i class="z">无变化</i>';
+}
+
+async function askCouncil(sc){
+  const btn = $('ask'); btn.disabled = true;
+  const box = $('council'); box.classList.add('on');
+
+  // 名单从 /api/status 来：config.json 里加过模型的同学，页面显示的位次与服务端一致。
+  let roster = [];
+  try{ roster = (await api('/api/status', {})).council || []; }catch(e){ /* 退化 */ }
+  if (!roster.length) roster = ['','','','',''];
+
+  const payload = {sceneTitle: sc.date + ' ' + sc.title,
+                   sceneText: sc.text, options: sc.options};
+  const t0 = Date.now();
+  let done = 0;
+  const chint = () => $('chint').textContent =
+    `已陈词 ${done}/${roster.length}　·　已等待 ${((Date.now()-t0)/1000).toFixed(0)} 秒`;
+
+  $('ops').innerHTML = roster.map((m,i)=>`
+    <div class="op wait" id="op-${i}">
+      <div class="who"><b>待 陈 词</b><code>${esc(m)}</code></div>
+      <div class="say"><span class="dots"><i></i><i></i><i></i></span>　思量中…</div>
+    </div>`).join('');
+  const tick = setInterval(chint, 400);
+
+  // settled 让"重试"不会把计数刷成 6/5
+  const settled = {};
+  const bump = i => { if (!settled[i]) { settled[i] = true; done++; chint(); } };
+
+  const one = async i => {
+    const box0 = $('op-'+i);
+    if (box0 && !box0.classList.contains('wait')){
+      box0.outerHTML = `
+        <div class="op wait" id="op-${i}">
+          <div class="who"><b>重 问 中</b><code>${esc(roster[i])}</code></div>
+          <div class="say"><span class="dots"><i></i><i></i><i></i></span>　再问一次…</div>
+        </div>`;
+    }
+    try{
+      const d = await api('/api/council/one', Object.assign({index:i}, payload));
+      // ok=false 的人单独标出来：配置问题和"模型说了句场面话"必须看得出来差别
+      $('op-'+i).outerHTML = `
+        <div class="op${d.opinion.ok === false ? ' bad' : ''}" style="animation-delay:${i*70}ms">
+          <div class="who"><b>${esc(d.opinion.title)}</b><code>${esc(d.opinion.model)}</code></div>
+          <div class="say">${esc(d.opinion.text)}
+            ${d.opinion.ok === false
+              ? `<button class="retry" data-i="${i}">重试这一位</button>` : ''}</div>
+        </div>`;
+    }catch(e){
+      $('op-'+i).outerHTML = `
+        <div class="op bad">
+          <div class="who"><b>未 能 应 答</b><code>${esc(roster[i])}</code></div>
+          <div class="say">${esc(e.message)}<button class="retry" data-i="${i}">重试这一位</button></div>
+        </div>`;
+    }
+    bump(i);
+    document.querySelectorAll('#ops .retry')
+      .forEach(b => b.onclick = () => one(Number(b.dataset.i)));
+  };
+  await Promise.all(roster.map((_,i)=>one(i)));
+  clearInterval(tick);
+  toast('参谋团已各陈其词');
+  btn.disabled = false;
+}
+
+async function genPicture(sc, mountId, btnId, promptOverride){
+  const mount = $(mountId), btn = $(btnId);
+  if (btn) btn.disabled = true;
+  mount.classList.add('on');
+  mount.innerHTML = `<div class="ph"><span class="loading">
+    正在作画 <span class="dots"><i></i><i></i><i></i></span></span></div>`;
+  try{
+    const d = await api('/api/image', { prompt: promptOverride || sc.imgPrompt });
+    mount.innerHTML = `<img src="${d.url}" alt="场景画面">
+      <div class="ph" style="padding:8px 14px;text-align:left;font-size:11.5px">
+        ${d.cached ? '取自缓存' : '由 ' + esc(d.model||'') + ' 生成'} · 这是 AI 想象，不是史料</div>`;
+  }catch(e){
+    mount.innerHTML = `<div class="ph" style="color:var(--wei)">作画失败：${esc(e.message)}</div>`;
+  }finally{ if (btn) btn.disabled = false; }
+}
+
+async function choose(sc, opt, el){
+  if (busy) return; busy = true;
+  $('opts').querySelectorAll('.opt').forEach(x=>x.disabled = true);
+  el.classList.add('picked');
+
+  const before = { ...S };
+  Object.keys(opt.d).forEach(k => S[k] = clamp(S[k] + opt.d[k]));
+  const after = { ...S };
+
+  renderStats(before);
+  history.push({
+    scene: sc.title, date: sc.date, key: opt.key,
+    label: opt.label, detail: opt.detail, after: { ...after }
+  });
+
+  const isLast = step === SCENES.length - 1;
+  const done = document.createElement('div');
+  done.className = 'outcome on';
+  done.innerHTML = `
+    <div class="oh">此 决 之 后<span class="meta" id="nmeta"></span></div>
+    <div class="txt"></div>
+    <div class="foot">
+      <button class="btn ghost" id="say">◈ 朗读</button>
+      ${isLast ? '<button class="btn primary" id="next">看 结 局</button>'
+               : '<button class="btn primary" id="next">继续 · 下一步</button>'}
+      <button class="btn ghost" id="repic">◈ 为此景作画</button>
+      <button class="btn ghost" id="rewrite">◈ 换个笔法重写</button>
+    </div>`;
+  $('stage').querySelector('.scene').appendChild(done);
+  done.scrollIntoView({behavior:'smooth', block:'center'});
+
+  const payload = {
+    kind:'consequence', sceneTitle: sc.date + ' ' + sc.title,
+    choiceLabel: opt.label, choiceDetail: opt.detail, before, after
+  };
+  const got = await writeOutcome(done, payload);
+
+  if (got && got.prompt){
+    const det = document.createElement('details');
+    det.className = 'pbox';
+    const im = MANIFEST[sc.id + opt.key];
+    det.innerHTML = `<summary>查看这一步发给 AI 的完整提示词</summary>
+      <div class="prompt"><span class="pk">[ system · 人设与硬性约束 —— 决定 AI 用什么口吻、禁止它编什么 ]</span>
+<span class="pf">narrator_system.txt + base_rules.txt</span>
+${esc(got.system || '')}</div>
+      <div class="prompt" style="margin-top:9px"><span class="pk">[ user · 这一步的具体任务 ]</span>
+<span class="pf">consequence_user.txt</span>
+${esc(got.prompt)}</div>`
+      + (im ? `<div class="prompt" style="margin-top:9px"><span class="pk">[ 本选项插画的提示词 · 约束了画风与"不得出现文字" ]</span>
+<span class="pf">assets/choices/manifest.json（生成图片时固化）</span>
+${esc(im.prompt)}</div>` : '')
+      + `<p class="pnote">前两段就是 <code>lab/prompts/</code> 下那两个文件的原文，<code>{占位符}</code> 已按这一局填好。
+改完<b>不用重启</b>服务：保存文件、刷新页面、重跑同一个节点，就能拿两次输出并排对比。
+插画那段是生成图片时写进清单的，改 <code>image_style.txt</code> 只影响之后新生成的图。</p>`;
+    done.appendChild(det);
+  }
+
+  $('say').onclick = () => speak(done._text || '', 'say');
+  $('repic').onclick = () => genPicture(sc, 'visual', 'repic');
+  $('rewrite').onclick = (e) => writeOutcome(done, payload, e.currentTarget);
+  $('next').onclick = () => {
+    step++;
+    if (step >= SCENES.length) viewEnding(); else viewScene();
+  };
+
+  done.scrollIntoView({behavior:'smooth', block:'center'});
+  busy = false;
+}
+
+/* 调用叙事模型写后果，可反复调用以换笔法 */
+async function writeOutcome(host, payload, btn){
+  const txt = host.querySelector('.txt');
+  const meta = host.querySelector('#nmeta');
+  txt.innerHTML = '<span class="loading">史官落笔中 <span class="dots"><i></i><i></i><i></i></span></span>';
+  if (btn) btn.disabled = true;
+  try{
+    const d = await api('/api/narrate', Object.assign({ style: NSTYLE }, payload));
+    txt.textContent = d.text;
+    host._text = d.text;
+    if (meta) meta.textContent = `${d.styleLabel || ''} · ${d.model}`;
+    return d;
+  }catch(e){
+    txt.textContent = '（史官失语：' + e.message + '）';
+    return null;
+  }finally{ if (btn) btn.disabled = false; }
+}
+
+async function speak(text, btnId){
+  const host = document.querySelector('.outcome.on') || document.querySelector('.verdict');
+  const btn = $(btnId); if (btn) btn.disabled = true;
+  toast('正在合成语音…', 9000);
+  try{
+    const d = await api('/api/tts', { text });
+    let box = document.getElementById('audiobox');
+    if (!box){
+      box = document.createElement('div');
+      box.id = 'audiobox'; box.className = 'audio-wrap';
+      if (host) host.appendChild(box);
+    }
+    box.innerHTML = `<audio controls autoplay src="${d.url}"></audio>`;
+  }catch(e){
+    toast('语音合成失败：' + e.message, 6000);
+  }finally{ if (btn) btn.disabled = false; }
+}
+
+/* ---- 结局 ---- */
+async function viewEnding(){
+  renderProg();
+  const key = decide(S);
+  const E = ENDINGS[key];
+
+  $('stage').innerHTML = `
+  <section class="ending">
+    <div class="ehero">
+      <span class="ebadge eb-${E.badge}">${E.badge}</span>
+      <h2>${E.title}</h2>
+      <div class="sub">${E.sub}</div>
+    </div>
+
+    <div class="verdict">
+      <div class="vh">史 官 断 语<span class="meta" id="vmeta"
+        style="font-family:var(--sans);font-size:11px;color:var(--ink3);margin-left:9px"></span></div>
+      <div class="vt"></div>
+      <div class="foot toolbar" id="vfoot"></div>
+    </div>
+
+    <div class="card" style="padding:24px 26px;margin-top:20px">
+      <p style="font-size:15px;line-height:1.9;color:var(--ink2)">${E.desc}</p>
+      <p style="margin-top:14px;padding:13px 16px;background:var(--paper3);border-radius:3px;
+                font-size:13.5px;color:var(--ink2);line-height:1.8">
+        <b>与现实对照 ·</b> ${E.real}</p>
+    </div>
+
+    <div class="toolbar" style="margin-top:18px">
+      <button class="btn" id="epic">◈ 生成结局画面</button>
+      <span class="loading" id="etip"></span>
+    </div>
+    <div class="visual" id="evisual"></div>
+
+    <div class="review">
+      <h3>全 程 五 决</h3>
+      ${history.map((h,i)=>`
+        <div class="rv">
+          <div class="rn">第 ${i+1} 决 · ${h.date.split('·').pop().trim()}</div>
+          <div class="rc">${h.key} · ${h.label}</div>
+          <div class="rd">军${h.after.morale} 水${h.after.naval} 天${h.after.fortune} 曹${h.after.cao}</div>
+        </div>`).join('')}
+      <div class="rv" style="background:var(--paper3)">
+        <div class="rn">终 局</div>
+        <div class="rc">${E.title} —— ${E.sub}</div>
+        <div class="rd">军${S.morale} 水${S.naval} 天${S.fortune} 曹${S.cao}</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn primary" id="again">再 推 演 一 次</button>
+      <button class="btn" id="dist">看看还有哪些结局</button>
+    </div>
+    <div id="distbox"></div>
+
+    <div class="note">
+      <b>这一局是算法判定的，不是 AI 判定的。</b> 六个结局由四项态势的数值组合决定（军心、水战、天时、曹疑），
+      模型只负责把结果写成文字、画成画面、念成声音 —— <b>结论不交给模型去编</b>。
+      这是让 AI 参与叙事、又不让它篡改规则的基本做法。
+    </div>
+  </section>`;
+
+  $('epic').onclick = () => genPicture({imgPrompt: E.img}, 'evisual', 'epic');
+  $('again').onclick = viewStart;
+  $('dist').onclick = () => {
+    const b = $('distbox');
+    b.innerHTML = '<div class="note"><b>六种结局</b><br>' +
+      Object.keys(ENDINGS).map(k=>{
+        const e = ENDINGS[k], now = (k === key) ? ' ← 你这一次' : '';
+        return `· <b>${e.title}</b>（${e.badge}）—— ${e.desc.slice(0,34)}…${now}`;
+      }).join('<br>') + '</div>';
+  };
+
+  // AI 结局断语
+  const epayload = {
+    kind:'ending', title: E.title + ' —— ' + E.sub,
+    history: history.map((h,i)=>`第${i+1}决 ${h.date}：选${h.key}「${h.label}」`),
+    stats: S
+  };
+  $('vfoot').innerHTML =
+    `<button class="btn ghost" id="vsay">◈ 朗读断语</button>
+     <button class="btn ghost" id="vrewrite">◈ 换个笔法重写</button>` + segHTML();
+  bindSeg();
+  const r = await writeVerdict(epayload);
+  $('vsay').onclick = () => {
+    const t = document.querySelector('.verdict .vt').textContent;
+    if (t) speak(t, 'vsay');
+  };
+  $('vrewrite').onclick = (e) => writeVerdict(epayload, e.currentTarget);
+  if (r && r.prompt){
+    const det = document.createElement('details');
+    det.className = 'pbox';
+    det.innerHTML = `<summary>查看结局提示词</summary>
+      <div class="prompt"><span class="pk">[ system · 人设与硬性约束 ]</span>
+<span class="pf">ending_system.txt + base_rules.txt</span>
+${esc(r.system || '')}</div>
+      <div class="prompt" style="margin-top:9px"><span class="pk">[ user · 结局断语的具体任务 ]</span>
+<span class="pf">ending_user.txt</span>
+${esc(r.prompt)}</div>
+      <p class="pnote">这两段来自 <code>lab/prompts/</code>，改完保存、刷新页面重开一局即可对比。</p>`;
+    document.querySelector('.verdict').appendChild(det);
+  }
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+async function writeVerdict(payload, btn){
+  const vt = document.querySelector('.verdict .vt');
+  const meta = $('vmeta');
+  vt.innerHTML = '<span class="loading">落笔中 <span class="dots"><i></i><i></i><i></i></span></span>';
+  if (btn) btn.disabled = true;
+  try{
+    const d = await api('/api/narrate', Object.assign({ style: NSTYLE }, payload));
+    vt.textContent = d.text;
+    if (meta) meta.textContent = `${d.styleLabel || ''} · ${d.model}`;
+    return d;
+  }catch(e){
+    vt.textContent = '（史官未能落笔：' + e.message + '）';
+    return null;
+  }finally{ if (btn) btn.disabled = false; }
+}
+
+/* 选项插画清单：由 tools/gen_choice_images.py 生成。
+   取不到就整站退回矢量徽记 —— 页面任何时候都不会因为缺图而破相。 */
+let MANIFEST = {};
+async function loadManifest(){
+  try{
+    const r = await fetch('assets/choices/manifest.json', { cache: 'no-store' });
+    if (r.ok) MANIFEST = await r.json();
+  }catch(e){ MANIFEST = {}; }
+  console.log('选项插画已载入：' + Object.keys(MANIFEST).length + ' / 15');
+}
+
+loadManifest().finally(viewStart);
+</script>
+</body>
+</html>

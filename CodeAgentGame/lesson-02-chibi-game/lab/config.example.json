@@ -1,0 +1,72 @@
+{
+  "_说明": "本地配置。api_key 只留在本机，server.py 通过它访问模力方舟；不会发送给浏览器。",
+  "api_key": "<<在这里粘贴你的模力方舟访问令牌>>",
+  "narrator": "internlm3-8b-instruct",
+  "narrator_styles": {
+    "fast": {
+      "label": "快笔",
+      "model": "internlm3-8b-instruct",
+      "max_tokens": 1200
+    },
+    "sharp": {
+      "label": "工笔",
+      "model": "Qwen3-Coder-30B-A3B-Instruct",
+      "max_tokens": 1600
+    },
+    "classic": {
+      "label": "史笔",
+      "model": "GLM-5.3",
+      "max_tokens": 8000
+    }
+  },
+  "narrator_fallback": [
+    {
+      "model": "internlm3-8b-instruct",
+      "max_tokens": 1200
+    },
+    {
+      "model": "InternVL3-78B",
+      "max_tokens": 1600
+    }
+  ],
+  "image_model": "Qwen-Image-2512",
+  "image_size": "1024x768",
+  "image_fallback": [
+    "FLUX.1-dev",
+    "Kolors",
+    "z-image-turbo"
+  ],
+  "tts_model": "IndexTTS-2",
+  "council": [
+    {
+      "model": "GLM-5.3",
+      "persona": "主谋",
+      "title": "都督府 · 主谋",
+      "max_tokens": 2600
+    },
+    {
+      "model": "InternVL3-78B",
+      "persona": "老将",
+      "title": "军中 · 老将",
+      "max_tokens": 500
+    },
+    {
+      "model": "Fin-R1",
+      "persona": "算者",
+      "title": "度支 · 算者",
+      "max_tokens": 500
+    },
+    {
+      "model": "HY-MT2-7B",
+      "persona": "水客",
+      "title": "江上 · 水客",
+      "max_tokens": 500
+    },
+    {
+      "model": "internlm3-8b-instruct",
+      "persona": "书佐",
+      "title": "幕府 · 书佐",
+      "max_tokens": 500
+    }
+  ]
+}
